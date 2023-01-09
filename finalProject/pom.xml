@@ -122,8 +122,8 @@
 		
 		<!-- Test -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>JUnit</groupId>
+			<artifactId>JUnit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>   
