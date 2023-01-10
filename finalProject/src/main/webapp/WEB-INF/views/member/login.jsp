@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,7 +153,7 @@
         <div class="flex1 d1">
             
             <a href="#" class="logoa">
-                <img src="img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
+                <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
             </a>
             <form action="" class="wid300">
                 <div class="border1 inputUser1">
@@ -173,9 +174,9 @@
                 <small>SNS계정으로 간편 로그인/회원가입</small>
             </section>
             <div class="mt40">
-                <a href="#"><img src="img/fb.png" alt="" class="size48"></a>
-                <a href="#" class="ml20"><img src="img/kt.png" alt="" class="size48"></a>
-                <a href="#" class="ml20"><img src="img/gg.png" alt="" class="size48"></a>
+                <a href="#"><img src="${path}/resources/img/fb.png" alt="" class="size48"></a>
+                <a href="#" class="ml20"><img src="${path}/resources/img/kt.png" alt="" class="size48"></a>
+                <a href="#" class="ml20"><img src="${path}/resources/img/gg.png" alt="" class="size48"></a>
             </div>
             <section class="mt40">로그인에 문제가 있으신가요?</section>
             <hr class="hrwd">

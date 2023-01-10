@@ -89,7 +89,7 @@
             <div class="main_login">
                 <ul>
                     <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
-                    <li><a href="">로그인</a></li>
+                    <li><a href="login.me">로그인</a></li>
                     <li>|</li>
                     <li><a href="">회원가입</a></li>
                     <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
