@@ -36,3 +36,4 @@
      order by board_no desc
   </select>
   
+</mapper>
