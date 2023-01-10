@@ -7,7 +7,17 @@
 	
 	<typeAliases>
 		<typeAlias type="com.house.kh.member.model.vo.Member" alias="Member"/>
+		
+		<typeAlias type="com.house.kh.storeBoard.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.house.kh.homeBoard.model.vo.HomeBoard" alias="HomeBoard"/>
+		<typeAlias type="com.house.kh.seller.model.vo.Seller" alias="Seller"/>
 	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/mappers/member-mapper.xml" />
+		<mapper resource="/mappers/storeBoard-mapper.xml" />
+		<mapper resource="/mappers/homeBoard-mapper.xml" />
+	</mappers>
 	
 	
 </configuration>
