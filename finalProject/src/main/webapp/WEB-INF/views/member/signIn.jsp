@@ -247,6 +247,11 @@
                 <div class="idchkajax wid360">
                     이미있는아이디입니다
                 </div>
+                <span class="wid360 mgtb30 rmmg" style="text-align: left;">핸드폰</span>
+                <div class="wid360 alcen">
+                    <input class="sz100p bd1 ilb bora4" type="phone" name="memPhone">
+                </div>
+                <br>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">실명</span>
                 <div class="wid360 alcen">
                     <input class="sz100p bd1 ilb bora4" name="memName">
@@ -270,29 +275,29 @@
                 </div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">우편번호</span>
                 <div class="wid360 alcen" style="text-align: left;">
-                    <input class="sz50p bd1 ilb bora4" name="zipcode" placeholder="우편번호" id="postcode" readonly>
+                    <input class="sz50p bd1 ilb bora4" name="memZipcode" placeholder="우편번호" id="postcode" readonly>
                     <input class="sz50p kakaobut" type="button" value="우편번호찾기" onclick="findAddr()">
                 </div>
                 <div class="idchkajax wid360"></div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">주소</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="address" id="addr">
+                    <input class="sz100p bd1 ilb bora4" name="memAddr" id="addr">
                 </div>
                 <div class="idchkajax wid360"></div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">상세주소</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="detailaddress">
+                    <input class="sz100p bd1 ilb bora4" name="memDetailAddr">
                 </div>
                 <div class="idchkajax wid360"></div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">약관동의</span>
                 <div class="bd1 wid360 terms">
-                    <label for=""><input type="checkbox" id="allchk">전체동의</label>
+                    <label for="allchk"><input type="checkbox" id="allchk">전체동의</label>
                     <label for=""><hr></label>
-                    <label for="" class="necessary"><input type="checkbox" class="chkbox">만 14세 이상입니다</label>
-                    <label for="" class="necessary"><input type="checkbox" class="chkbox">이용약관</label>
-                    <label for="" class="necessary"><input type="checkbox" class="chkbox">개인정보수집 및 이용동의</label>
-                    <label for="" class="choice"><input type="checkbox" class="chkbox">개인정보 마케팅 활용 동의</label>
-                    <label for="" class="choice"><input type="checkbox" class="chkbox">이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신</label>
+                    <label for="chk1" class="necessary"><input type="checkbox" class="chkbox" id="chk1">만 14세 이상입니다</label>
+                    <label for="chk2" class="necessary"><input type="checkbox" class="chkbox" id="chk2">이용약관</label>
+                    <label for="chk3" class="necessary"><input type="checkbox" class="chkbox" id="chk3">개인정보수집 및 이용동의</label>
+                    <label for="chk4" class="choice"><input type="checkbox" class="chkbox" id="chk4">개인정보 마케팅 활용 동의</label>
+                    <label for="chk5" class="choice"><input type="checkbox" class="chkbox" id="chk5">이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신</label>
                 </div>
                 <input type="submit" class="submitbut wid360 bora4">
             </form>
