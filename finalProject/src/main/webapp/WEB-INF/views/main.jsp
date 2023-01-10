@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- header -->
+	<jsp:include page="common/header.jsp" />
+
+
+<!-- body -->
 	<h1>안효빈</h1>
+	
+	
+<!-- footer -->	
+	<jsp:include page="common/footer.jsp" />	
 </body>
 </html>

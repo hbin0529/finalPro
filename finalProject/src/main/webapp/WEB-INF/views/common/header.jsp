@@ -18,8 +18,6 @@
         })
     })
 </script>  
-<link href="../css/bootstrap.min.css" rel="stylesheet"> 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" /> 
 <style>
     /* 로고폰트 */
     @font-face {
@@ -41,7 +39,7 @@
     .main_logo a {
         font-family: 'SDSamliphopangche_Outline'; color: #21d9cb; font-size: 38px;}
     .main_logo li {position: relative; right:70px; list-style: none;} 
-    .main_logo li:last-child{top: -9px;}
+    .main_logo li:last-child{top: -2px;}
     .top_box{ width: 1200px; height: 120px;  margin: 0 auto; display: flex; justify-content: center; align-items:center;}
     .main_top {display: flex; height: 40px;  position: relative; font-family: 'GmarketSansMedium';}
     .main_top ul {list-style: none; text-align: center;} 
@@ -53,7 +51,7 @@
     .main_login ul{display: flex; margin-left: 50px;}
     .main_login ul li {margin-right: 20px; position: relative; left: 60px; font-size: 14px; top: 12px;}
     .main_login ul li:first-child{top: 3px;}
-    .main_login ul li:last-child{top: 2px;}
+    .main_login ul li:last-child{top: 3px;}
     .main_login ul li a{cursor: pointer;}
     .main_login img {width: 26px;}
     #login_cart{width: 32px;}
