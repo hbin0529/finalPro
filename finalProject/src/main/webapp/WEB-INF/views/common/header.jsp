@@ -89,7 +89,11 @@
             <div class="main_login">
                 <ul>
                     <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
+<<<<<<< HEAD
                     <li><a href="loginForm.me">로그인</a></li>
+=======
+                    <li><a href="login.me">로그인</a></li>
+>>>>>>> 34c4edb2bfdf003b5a5ed9e90d5a5313265f2e10
                     <li>|</li>
                     <li><a href="">회원가입</a></li>
                     <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
