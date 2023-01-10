@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,11 +88,11 @@
              </div>
             <div class="main_login">
                 <ul>
-                    <li><a href=""><img id="login_cart" src="img/main_cart.png"></a></li>
+                    <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
                     <li><a href="">로그인</a></li>
                     <li>|</li>
                     <li><a href="">회원가입</a></li>
-                    <li><a href=""><img src="./img/main_chat.png"></a></li>
+                    <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
             </div> 
         </nav> 
@@ -100,14 +101,14 @@
     <div class="header_store_dropdown" >
       <table class="">
           <tr class="">
-              <td><a href=""><img src="img/category_bed.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_sofa.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_table.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_chair.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_desk.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_closet.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_ledlemp.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="img/category_makeup.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_bed.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_sofa.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_table.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_chair.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_desk.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_closet.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_ledlemp.png" id="store_dropdown_img"></a></td>
+              <td><a href=""><img src="${path}/resources/img/category_makeup.png" id="store_dropdown_img"></a></td>
           </tr>
           <tr>
               <td><a href="">침대</a></td>
