@@ -155,7 +155,7 @@
             <a href="#" class="logoa">
                 <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
             </a>
-            <form action="" class="wid300" id="loginForm">
+            <form action="" class="wid300">
                 <div class="border1 inputUser1">
                     <input type="text" placeholder="이메일">
                 </div>
