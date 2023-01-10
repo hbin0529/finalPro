@@ -19,7 +19,7 @@ public class Member {
 	private String memEmail;
 	private String memPwd;
 	private String memName;
-	private String memphone;
+	private String memPhone;
 	private int memZipcode;
 	private String memAddr;
 	private String memDetailAddr;

@@ -5,6 +5,7 @@
   	<result column="mem_email" property="memEmail"/>
   	<result column="mem_pwd" property="memPwd"/>
   	<result column="mem_name" property="memName"/>
+  	<result column="mem_phone" property="memphone"/>
   	<result column="mem_zipcode" property="memZipcode"/>
   	<result column="mem_addr" property="memAddr"/>
   	<result column="mem_detail_addr" property="memDetailAddr"/>
@@ -18,7 +19,7 @@
   	<result column="mem_nick" property="memNick"/>
   </resultMap>
   <insert id="insertMember">
-  	insert into member values(#{memEmail}, #{memPwd}, #{memName}, #{memZipcode}, #{memAddr}, #{memDetailAddr}, #{memGender}, #{memPermit}, #{memStatus}, #{memImg}, #{memPoint}, #{memEnrollDate}, #{memDeleteDate}, #{memNick})
+  	insert into member_base values(#{memEmail}, #{memPwd}, #{memName}, #{memPhone}, #{memZipcode}, #{memAddr}, #{memDetailAddr}, #{memGender}, 1, 'Y', NULL, 0, SYSDATE, NULL, #{memNick})
   </insert>
   
   

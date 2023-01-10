@@ -31,7 +31,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("insert.me")
-	public void insertMember(Member m, Model md, HttpSession session) {
+	public String insertMember(Member m, Model md, HttpSession session) {
 		//System.out.println("m은 " + m);
 		//1. 한글깨짐 : 스프링에서 제공하는 인코딩 필터 등록해서 UTF로 변환
 		//2. 회원가입시 나이를 안넣으면 에러발생, null을 int형변환할수없어서 => String으로 변환
@@ -51,28 +51,23 @@ public class MemberController {
 		//3. web.xml에
 		//System.out.println("평문 : " + m.getUserPwd());
 		
-		//String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		System.out.println(encPwd);
 		
-		//m.setMemPwd(encPwd);
-		
-		
-		//System.out.println(encPwd);
-		
-		System.out.println(m.getMemEmailF());
-		System.out.println(m.getMemEmailS());
-		System.out.println(m.getMemEmailF()+"@"+m.getMemEmailS());
+		String memberFullEmail = m.getMemEmailF()+"@"+m.getMemEmailS();
+		m.setMemEmail(memberFullEmail);
 		
 		
-		/*
-		int result = mService.insertMember(m);
-		if(result > 0) {
-			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
+		int insertMemResult = mService.insertMember(m);
+		if(insertMemResult > 0) {
+			//session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
 			return "redirect:/";
 		}else {
-			md.addAttribute("error", "회원가입실패");
-			return "common/errorPage";
+			//md.addAttribute("error", "회원가입실패");
+			return "redirect:/";
 		}
-		*/
+		
 	}
 	
 	
