@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="storeBoardMapper">
+	<resultMap type="Product" id="storeBoardResult">
+		<result column="pro_no" property="proNo" />
+		<result column="sel_no" property="selNo" />
+		<result column="cate_no" property="cateNo" />
+		<result column="pro_white_stock" property="proWhiteStock" />
+		<result column="pro_black_stock" property="proBlackStock" />
+		<result column="pro_name" property="proName" />
+		<result column="pro_price" property="proPrice" />
+		<result column="pro_up_date" property="proUpDate" />
+		<result column="pro_origin_img" property="proOriginImg" />
+		<result column="pro_change_img" property="proChangeImg" />
+		<result column="pro_origin_detailimg" property="proOriginDetailImg" />
+		<result column="pro_change_detailim" property="proChangeDetailImg" />
+		<result column="status" property="status" />
+	</resultMap>
+	
+	<resultMap type="Seller" id="sellerResult">
+		<result column="sel_no" property="selNo" />
+		<result column="sel_email" property="selEmail" />
+		<result column="sel_pwd" property="selPwd" />
+		<result column="sel_name" property="selName" />
+		<result column="sel_bus_name" property="selBusName" />
+		<result column="sel_phone" property="selPhone" />
+		<result column="sel_bus_no" property="selBusNo" />
+		<result column="sel_zip_code" property="selZipcode" />
+		<result column="sel_addr" property="selAddr" />
+		<result column="sel_detail_addr" property="selDetailAddr" />
+		<result column="mem_permit" property="memPermit" />
+		<result column="sel_point" property="selPoint" />
+		<result column="sel_status" property="selStatus" />
+		<result column="sel_inter" property="selInter" />
+		<result column="sel_inter_introduce" property="selInterIntroduce" />
+	</resultMap>
+
+	<select id="selectListCount" resultType="_int">
+		select count(*)
+			from product
+		  where status = 'Y'
+	</select>
+	
+	<select id="selectList" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
+		select pro_origin_img
+			 , sel_bus_name
+			 , pro_name
+			 , pro_price
+		  from product, seller_base
+		  where product.status = 'Y' and product.sel_no = seller_base.sel_no and product.cate_no = 1
+		 order by product.pro_no desc
+	</select>
+
+</mapper>
+
