@@ -5,7 +5,9 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-	
+	<typeAliases>
+		<typeAlias type="com.house.kh.member.model.vo.Member" alias="Member"/>
+	</typeAliases>
 	
 	
 </configuration>
