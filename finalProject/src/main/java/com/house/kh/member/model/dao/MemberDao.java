@@ -12,7 +12,13 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertMember", m);
 	}
 	
+	public int searchIdVali(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.searchIdVali", id);
+	}
 	
+	public int searchNickVali(SqlSessionTemplate sqlSession, String nick) {
+		return sqlSession.selectOne("memberMapper.searchNickVali", nick);
+	}
 	
 	
 	

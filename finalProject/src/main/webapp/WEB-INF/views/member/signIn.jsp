@@ -134,7 +134,7 @@
             cursor: pointer; background-size: cover;
         }
         .mLabel{background-image: url(${path}/resources/img/male.png);}
-        .fLabel{background-image: url(${path}/resources/img/female.png);}
+        .fLabel{background-image: url(${path}/resources/img/female.png);}#idChkResult{display: none;}
     </style>
     <script>
     var path = "${path}/resources/"
@@ -201,6 +201,147 @@
             }).open();
         }
     </script>
+    <script>
+    	
+    
+    	$(function(){
+    		$("#memEmailF").on('keyup', function(){
+    			idChk();
+    		})
+    		
+    		$("#memEmailS").change(function(){
+    			idChk();
+    		})
+    		
+    		$("#userNick").on('keyup', function(){
+    			nickChk();
+    		})
+    	})
+    
+		function checkAndSubmit(){
+    		
+    		var emailF = document.getElementById("memEmailF").value;
+    		if(emailF==''||emailF==null){
+    			alert('이메일 형식이 올바르지 않습니다.')
+    			return;
+    		}
+    		
+    		var emailS = document.getElementById("memEmailS").value;
+    		if(emailS=='nonSelected'){
+    			alert('이메일 형식이 올바르지 않습니다.')
+    			return;
+    		}
+    		
+		   	var pass = document.getElementById("pass").value;
+		   	var rePass = document.getElementById("repass").value;
+		   	if(pass==rePass&&pass!=null&&pass!=""){
+		   	}else{
+		   		alert("비밀번호를 확인해주세요");
+		   		return;
+		   	}
+		   	
+			var phoneNum = document.getElementById("phoneNum").value;
+		   	var phoneRegExp = /^(010|011)-[0-9]{4}-[0-9]{4}$/
+			if(phoneRegExp.test(phoneNum)){
+			}else{
+				alert("핸드폰 번호를 올바르게 입력해주세요")
+		   		return;
+			}
+			
+		   	var userName = document.getElementById("userName").value;
+		   	var userNameRegExp = /^[가-힣]{2,5}$/
+		   	if(userNameRegExp.test(userName)){
+		   	}else{
+		   		alert("이름을 올바르게 입력해주세요")
+		   		return;
+		   	}
+		   	
+		   	var userNick = document.getElementById("userNick").value;
+		   	var userNickRegExp = /^[a-zA-Z0-9가-힣]{2,15}$/
+		   	if(userNickRegExp.test(userName)){
+		   	}else{
+		   		alert("닉네임을 올바르게 입력해주세요")
+		   		return;
+		   	}
+		   	
+		   	
+		   	var userDetail = document.getElementById("userDetail").value;
+		   	if(userDetail!=null&&userDetail!=""){
+		   	}else{
+		   		alert('상세주소를 입력해주세요')
+		   		return;
+		   	}
+		   	
+		   	var genderNum = $("input[type='radio']:checked").length;
+		   	if(genderNum!=0){
+		   	}else{
+		   		alert('성별을 선택해주세요')
+		   		return;
+		   	}
+		   	
+		   	var neccesaryCheck1 = $("#chk1:checked").length;
+		   	var neccesaryCheck2 = $("#chk2:checked").length;
+		   	var neccesaryCheck3 = $("#chk3:checked").length;
+		   	
+		   	if(neccesaryCheck1!=1||neccesaryCheck2!=1||neccesaryCheck3!=1){
+		   		alert('필수 이용약관에 동의해주세요');
+		   		return
+		   	}else{
+		   		regFrm.submit();
+		   	}
+		}
+    	
+    	function idChk(){
+    		$.ajax({
+    			url:"idChk.me",
+    			data:{
+    				id:$("#memEmailF").val()+"@"+$("#memEmailS").val()
+    			},
+    			success:function(result){
+    				if(result=='Y'){
+    					if($("#memEmailS").val()!='nonSelected'){
+    						if($("#memEmailS").val()!=''&&$("#memEmailS").val()!=null){
+		    					$("#idChkResult").show().text('사용 가능한 아이디입니다.').css({"color":"green"})
+		    					$("#submitButton").attr("disabled", false);
+    						}
+    					}
+    				}else if(result=='N'){
+    					if($("#memEmailS").val()!='nonSelected'){
+    						$("#idChkResult").show().text('이미 가입된 회원 아이디입니다.').css({"color":"red"})
+	    					$("#submitButton").attr("disabled", true);
+    					}
+    				}
+    			},
+    			error:function(){
+    				console.log('ajax통신오류 : function idChk()')
+    			}
+    		})
+    	}
+	    							
+    	
+    	function nickChk(){
+    		$.ajax({
+    			url:"nickChk.me",
+    			data:{
+    				nick:$("#userNick").val()
+    			},
+    			success:function(result){
+    				if(result=='Y'){
+    					console.log('사용가능한닉네임')
+    				}else if(result=='N'){
+    					console.log('중복된닉네임')
+    				}
+    			},
+    			error:function(){
+    				console.log('ajax통신오류 : function nickChk()')
+    			}
+    		})
+    	}
+    	
+    	function passChk(){
+    		
+    	}
+	</script>
 </head>
 <body>
     <div class="flex2 wrap">
@@ -216,11 +357,11 @@
                 <a href="#"><img src="${path}/resources/img/gg.png" alt="" class="sz40 mg10"></a>
             </div>
             <hr class="wid360 mgtb10">
-            <form action="insert.me" name="regFrm">
+            <form action="insert.me" name="regFrm" method="post">
                 <span class="wid360 mgtb30" style="text-align: left;">이메일</span>
                 <div class="wid360 alcen">
-                    <input class="sz40p bd1 ilb bora4" name="memEmailF"></input><span class="mg10 ft20 porel">@</span><select class="sz40p bd1 ilb bora4" name="memEmailS">
-                        <option value="">선택해주세요</option>
+                    <input class="sz40p bd1 ilb bora4" name="memEmailF" id="memEmailF"></input><span class="mg10 ft20 porel">@</span><select class="sz40p bd1 ilb bora4" name="memEmailS" id="memEmailS" required>
+                        <option value="nonSelected" selected>선택해주세요</option>
                         <option value="naver.com">naver.com</option>
                         <option value="nate.com">nate.com</option>
                         <option value="daum.net">daum.net</option>
@@ -229,40 +370,37 @@
                     </select>
                 </div>
                 <div class="wid360"><button class="wid360" id="emailchkbut">이메일 인증하기</button></div>
-                <div class="idchkajax wid360">
+                <div class="idchkajax wid360" id="idChkResult">
                     이미있는아이디입니다
-                </div>
+                </div><br>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">비밀번호</span>
                 <div class="inputInfo">영문 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요</div>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" type="password" name="memPwd">
+                    <input class="sz100p bd1 ilb bora4" type="password" name="memPwd" required id="pass">
                 </div>
                 <div class="idchkajax wid360">
-                    이미있는아이디입니다
-                </div>
+                    비밀번호를 다시 확인해주세요
+                </div><br>
                 <span class="wid360 mgtb30" style="text-align: left;">비밀번호 확인</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" type="password">
+                    <input class="sz100p bd1 ilb bora4" type="password" required id="repass">
                 </div>
                 <div class="idchkajax wid360">
-                    이미있는아이디입니다
-                </div>
+                    위에서 입력한 비밀번호와 다릅니다.
+                </div><br>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">핸드폰</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" type="phone" name="memPhone">
+                    <input class="sz100p bd1 ilb bora4" type="phone" name="memPhone" id="phoneNum" placeholder="010-0000-0000">
                 </div>
                 <br>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">실명</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="memName">
-                </div>
-                <div class="idchkajax wid360">
-                    이미있는아이디입니다
-                </div>
+                    <input class="sz100p bd1 ilb bora4" name="memName" id="userName" placeholder="2~5글자 사이의 한글 입력">
+                </div><br>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">닉네임</span>
                 <div class="inputInfo2">다른 유저와 겹치지 않도록 입력해주세요. (2~15자)</div>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="memNick">
+                    <input class="sz100p bd1 ilb bora4" name="memNick" id="userNick">
                 </div>
                 <div class="idchkajax wid360">
                     이미있는아이디입니다
@@ -275,18 +413,18 @@
                 </div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">우편번호</span>
                 <div class="wid360 alcen" style="text-align: left;">
-                    <input class="sz50p bd1 ilb bora4" name="memZipcode" placeholder="우편번호" id="postcode" readonly>
+                    <input class="sz50p bd1 ilb bora4" name="memZipcode" placeholder="우편번호" id="postcode" readonly required>
                     <input class="sz50p kakaobut" type="button" value="우편번호찾기" onclick="findAddr()">
                 </div>
                 <div class="idchkajax wid360"></div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">주소</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="memAddr" id="addr">
+                    <input class="sz100p bd1 ilb bora4" name="memAddr" id="addr" required readonly>
                 </div>
                 <div class="idchkajax wid360"></div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">상세주소</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="memDetailAddr">
+                    <input class="sz100p bd1 ilb bora4" name="memDetailAddr" id="userDetail">
                 </div>
                 <div class="idchkajax wid360"></div>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">약관동의</span>
@@ -299,8 +437,9 @@
                     <label for="chk4" class="choice"><input type="checkbox" class="chkbox" id="chk4">개인정보 마케팅 활용 동의</label>
                     <label for="chk5" class="choice"><input type="checkbox" class="chkbox" id="chk5">이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신</label>
                 </div>
-                <input type="submit" class="submitbut wid360 bora4">
+                <button type="button" onclick="checkAndSubmit();" class="submitbut wid360 bora4" id="submitButton" disabled>회원가입신청</button>
             </form>
+            
         </div>
     </div>
 </body>

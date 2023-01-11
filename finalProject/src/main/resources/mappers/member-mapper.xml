@@ -18,6 +18,12 @@
   	<result column="mem_delete_date" property="memDeleteDate"/>
   	<result column="mem_nick" property="memNick"/>
   </resultMap>
+  <select id="searchIdVali" resultType="_int">
+  	select count(*) from member_base where mem_email = #{id}
+  </select>
+  <select id="searchNickVali" resultType="_int">
+  	select count(*) from member_base where mem_nick = #{nick}
+  </select>
   <insert id="insertMember">
   	insert into member_base values(#{memEmail}, #{memPwd}, #{memName}, #{memPhone}, #{memZipcode}, #{memAddr}, #{memDetailAddr}, #{memGender}, 1, 'Y', NULL, 0, SYSDATE, NULL, #{memNick})
   </insert>
