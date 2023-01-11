@@ -67,6 +67,7 @@
             </div>
 
             <div class="store_product">
+            
             	<c:forEach var="p" items="${ list }">
 	                <div class="store_product_list">
 	                    <div class="store_product_card">
@@ -173,6 +174,10 @@
                 </div>
                 -->
             </div>
+            
+            
+            
+            
     </section>
     
  	<jsp:include page="../common/footer.jsp" />

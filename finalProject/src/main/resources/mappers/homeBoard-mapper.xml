@@ -35,5 +35,4 @@
      where status= 'Y'
      order by board_no desc
   </select>
-  
 </mapper>
