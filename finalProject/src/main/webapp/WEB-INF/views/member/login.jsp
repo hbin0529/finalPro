@@ -157,18 +157,17 @@
             <a href="#" class="logoa">
                 <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
             </a>
-            <form action="" class="wid300">
+            <form action="loginUser.me" class="wid300">
                 <div class="border1 inputUser1">
-                    <input type="text" placeholder="이메일">
+                    <input type="text" placeholder="이메일" name="memEmail">
                 </div>
                 <div class="border1 inputUser2">
-                    <input type="password" placeholder="비밀번호">
+                    <input type="password" placeholder="비밀번호" name="memPwd">
                 </div>
                 <button class="wid300 but">
                     로그인
                 </button>
                 <section class="underInp">
-                    <a href="#" class="ui1">비밀번호 재설정</a>
                     <a href="signIn.me">회원가입</a>
                 </section>
             </form>

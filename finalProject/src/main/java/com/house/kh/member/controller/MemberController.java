@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.house.kh.member.model.service.MemberService;
@@ -79,6 +80,35 @@ public class MemberController {
 			return "Y";
 		}
 	}
+	
+	
+	
+	
+	//로그인처리
+	@RequestMapping("loginUser.me")
+	public String login(Member m, HttpSession session, Model model) {
+		
+		Member loginUser = mService.searchUser(m);
+		
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			session.setAttribute("id", m.getMemEmail());
+			return "redirect:/";
+		}else {
+			//로그인실패, 에러페이지로 포워딩
+			model.addAttribute("errorMsg", "로그인 실패");
+			return "member/login";
+		}
+	}
+	
+	
+	
+	//카카오회원가입연동
+	@RequestMapping("kakao_callBack")
+    public String home(@RequestParam(value = "code", required = false) String code) throws Exception{
+        System.out.println("#########" + code);
+        return "/main";
+    }
 	
 	
 	
