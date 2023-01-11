@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="homeboardMapper">
+<mapper namespace="homeBoardMapper">
   <resultMap type="HomeBoard" id="homeBoardResult">
       <result column ="board_no" property="boardNo"/>
-      <result column ="mem_id" property="MemId"/>
+      <result column ="mem_id" property="memId"/>
       <result column ="board_mainimg_origin" property="boardMainimgOrigin"/>
       <result column ="board_mainimg_change" property="boardMainimgChange"/>
       <result column ="board_title" property="boardTitle"/>
@@ -13,26 +13,50 @@
       <result column ="board_content" property="boardContent"/>
       <result column ="board_count" property="boardCount"/> 
       <result column ="board_like" property="boardLike"/> 
-      <result column ="board_option" property="homeOption"/> 
-      <result column ="board_familyv" property="homeFamilyv"/> 
+      <result column ="home_option" property="homeOption"/> 
+      <result column ="home_familyv" property="homeFamilyv"/> 
       <result column ="status" property="status"/>   
+      <result column ="mem_email" property="memEmail"/>
+      <result column ="mem_nick" property="memNick"/>
   </resultMap> 
   
-   <select id="selectListCount" resultType ="_int">
+   <select id="selectListCount" resultType ="_int" >
        select count(*)
          from board_home
           where status = 'Y' 
   </select> 
   
-    <select id="selectList" resultMap="homeBoardResult">
+    <select id="selectList" resultType="HomeBoard" resultMap="homeBoardResult">
      select board_no
        , board_title
-       , mem_id
        , board_count
-       , to_char(board_date, 'YYYY-MM-DD') as board_date <!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
+       , board_date <!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
+       , board_mainimg_origin 
+       , mem_nick
+     from board_home h, member_base m
+     where m.mem_email = h.mem_id and status= 'Y' 
+     order by board_no desc
+      
+  </select>
+  
+  
+  <update id="increaseCount"> 
+        update board_home
+          set board_count = board_count+1
+          where board_no = #{boardNo} and status = 'Y'
+  </update>
+  
+  <select id="selectBoard"  resultType="HomeBoard" resultMap="homeBoardResult">
+      select board_no
+       , board_title
+       , board_content
+       , home_option
+       , home_familyv
+       , board_count 
+       , board_date <!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
        , board_mainimg_origin 
      from board_home
-     where status= 'Y'
-     order by board_no desc
+     where board_no = #{boardNo}     
   </select>
+  
 </mapper>
