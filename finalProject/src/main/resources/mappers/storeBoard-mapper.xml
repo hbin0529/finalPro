@@ -12,9 +12,10 @@
 		<result column="pro_up_date" property="proUpDate" />
 		<result column="pro_origin_img" property="proOriginImg" />
 		<result column="pro_change_img" property="proChangeImg" />
-		<result column="pro_origin_detailimg" property="proOriginDetaiimg" />
+		<result column="pro_origin_detailimg" property="proOriginDetailimg" />
 		<result column="pro_change_detailimg" property="proChangeDetailimg" />
 		<result column="status" property="status" />
+		<result column="pro_count" property="proCount" />
 		<result column="sel_bus_name" property="selBusName" />
 	</resultMap>
 	
@@ -26,13 +27,33 @@
 	</select>
 	
 	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
-		select pro_origin_img
+		select pro_no
+			 , pro_origin_img
 			 , sel_bus_name
 			 , pro_name
 			 , pro_price
 		  from product, seller_base
-		  where product.status = 'Y' and product.sel_no = seller_base.sel_no and product.cate_no = 1
+		  where product.status = 'Y' and product.sel_no = seller_base.sel_no
 		 order by product.pro_no desc
+	</select>
+	
+	<update id="increaseCount">
+		update product
+			set pro_count = pro_count+1
+		  where pro_no = #{proNo} and status = 'Y'
+	</update>
+	
+	<select id="selectBoard" resultType="Product" resultMap="storeBoardResult">
+		select pro_no
+			 , sel_bus_name
+			 , pro_name
+			 , pro_price
+			 , pro_origin_img
+			 , pro_change_img
+			 , pro_origin_detailimg
+			 , pro_change_detailimg
+		  from product p, seller_base s
+		 where pro_no = #{proNo} and p.sel_no = s.sel_no
 	</select>
 
 </mapper>

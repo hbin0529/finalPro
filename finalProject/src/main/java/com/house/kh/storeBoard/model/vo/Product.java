@@ -28,6 +28,9 @@ public class Product {
 	private String proOriginDetailimg;
 	private String proChangeDetailimg;
 	private String status;
+	private int proCount;
+	
+	//판매자테이블
 	private String selBusName;
 }
 
