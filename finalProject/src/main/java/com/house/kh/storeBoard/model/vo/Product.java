@@ -1,6 +1,9 @@
 package com.house.kh.storeBoard.model.vo;
 
+import com.house.kh.seller.model.vo.Seller;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +14,6 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-
 public class Product {
 	private int proNo;
 	private int selNo;
@@ -23,10 +25,10 @@ public class Product {
 	private String proUpDate;
 	private String proOriginImg;
 	private String proChangeImg;
-	private String proOriginDetailImg;
-	private String proChangeDetailImg;
+	private String proOriginDetailimg;
+	private String proChangeDetailimg;
 	private String status;
-	
+	private String selBusName;
 }
 
 

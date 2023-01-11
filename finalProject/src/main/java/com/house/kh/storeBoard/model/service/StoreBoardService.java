@@ -2,6 +2,7 @@ package com.house.kh.storeBoard.model.service;
 
 import java.util.ArrayList;
 
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.vo.Product;
 
 public interface StoreBoardService {

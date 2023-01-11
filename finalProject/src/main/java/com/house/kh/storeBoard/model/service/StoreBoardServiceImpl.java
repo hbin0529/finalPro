@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.dao.StoreBoardDao;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -52,6 +53,8 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	public int updateBoard(Product p) {
 		return 0;
 	}
+
+
 	
 
 }

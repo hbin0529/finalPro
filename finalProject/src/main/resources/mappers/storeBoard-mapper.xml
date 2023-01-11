@@ -12,28 +12,12 @@
 		<result column="pro_up_date" property="proUpDate" />
 		<result column="pro_origin_img" property="proOriginImg" />
 		<result column="pro_change_img" property="proChangeImg" />
-		<result column="pro_origin_detailimg" property="proOriginDetailImg" />
-		<result column="pro_change_detailim" property="proChangeDetailImg" />
+		<result column="pro_origin_detailimg" property="proOriginDetaiimg" />
+		<result column="pro_change_detailimg" property="proChangeDetailimg" />
 		<result column="status" property="status" />
+		<result column="sel_bus_name" property="selBusName" />
 	</resultMap>
 	
-	<resultMap type="Seller" id="sellerResult">
-		<result column="sel_no" property="selNo" />
-		<result column="sel_email" property="selEmail" />
-		<result column="sel_pwd" property="selPwd" />
-		<result column="sel_name" property="selName" />
-		<result column="sel_bus_name" property="selBusName" />
-		<result column="sel_phone" property="selPhone" />
-		<result column="sel_bus_no" property="selBusNo" />
-		<result column="sel_zip_code" property="selZipcode" />
-		<result column="sel_addr" property="selAddr" />
-		<result column="sel_detail_addr" property="selDetailAddr" />
-		<result column="mem_permit" property="memPermit" />
-		<result column="sel_point" property="selPoint" />
-		<result column="sel_status" property="selStatus" />
-		<result column="sel_inter" property="selInter" />
-		<result column="sel_inter_introduce" property="selInterIntroduce" />
-	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
 		select count(*)
@@ -41,7 +25,7 @@
 		  where status = 'Y'
 	</select>
 	
-	<select id="selectList" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
+	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
 		select pro_origin_img
 			 , sel_bus_name
 			 , pro_name
