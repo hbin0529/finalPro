@@ -36,4 +36,12 @@ public class MemberService {
 	}
 	
 	
+	//로그인시도
+	public Member searchUser(Member m) {
+		Member searchUserResult = mDao.searchUser(sqlSession, m);
+		return searchUserResult;
+	}
+	
+	
+	
 }
