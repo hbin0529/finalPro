@@ -145,8 +145,10 @@
             border-radius: 8px 8px 8px 8px;
             padding: 15px 13px;
         }
-        
     </style>
+    <script type="text/javascript">
+    	if(${alertMsg}!=null||${alertMsg}!="")alert("${alertMsg}");
+    </script>
 </head>
 <body>
     <div class="flex2 wrap">
@@ -167,7 +169,7 @@
                 </button>
                 <section class="underInp">
                     <a href="#" class="ui1">비밀번호 재설정</a>
-                    <a href="#">회원가입</a>
+                    <a href="signIn.me">회원가입</a>
                 </section>
             </form>
             <section>

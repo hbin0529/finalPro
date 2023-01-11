@@ -12,20 +12,25 @@ import lombok.ToString;
 @Getter
 @ToString
 public class HomeBoard {
-	
-	private int boardNo;
-	private String MemId;
-	private String boardMainimgOrigin;
-	private String boardMainimgChange;
-	private String boardTitle; 
-	private String boardDate; 
-	private String boardImgOrigin;
-	private String boardImgChange; 
-	private String boardContent; 
-	private int boardCount; 
-	private int boardLike; 
-	private String homeOption; 
-	private String homeFamilyv;
-	private String status; 
+   
+   private int boardNo;
+   private String memId;
+   private String boardMainimgOrigin;
+   private String boardMainimgChange;
+   private String boardTitle; 
+   private String boardDate; 
+   private String boardImgOrigin;
+   private String boardImgChange; 
+   private String boardContent; 
+   private int boardCount; 
+   private int boardLike; 
+   private String homeOption; 
+   private String homeFamilyv;
+   private String status; 
+   private String memEmail;
+   private String memNick;
+   
+   
+   
 
 }
