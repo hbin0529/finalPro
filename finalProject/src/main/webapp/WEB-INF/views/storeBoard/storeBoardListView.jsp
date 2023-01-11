@@ -24,10 +24,10 @@
     .store_product_top table tr td:nth-child(2){font-size: 13px; padding-top: 5px; color: rgb(105, 105, 105);} 
     .store_product_top table tr td:nth-child(3){text-align: right; padding-right: 40px;}
     #product_list{border: 1px solid #dee2e6; width: 100px; padding: 5px; border-radius: 6%; color: rgb(105, 105, 105);} 
-    .store_product{display: flex;}
-    .store_product_list{ margin-top: 10px; padding-left: 85px;}
+    .store_product{display: flex; width:1000px; flex-wrap:wrap; padding-left:60px; padding-bottom:100px;}
+    .store_product_list{ margin-top: 10px; margin-left: 50px; }
     .store_product_list img{width: 270px; height: 270px; margin-left: 15px; margin-top: 30px; border: 1px solid #dee2e6;}
-    .store_product_card{width: 300px; height: 400px; margin-left: -20px; font-family: 'Pretendard-Regular';}
+    .store_product_card{width: 290px; height: 380px; margin-left: -10px; font-family: 'Pretendard-Regular'; margin-bottom:30px;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 14px;}
     .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; margin-top: 3px;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold; margin-top: 3px;}
@@ -39,7 +39,7 @@
         <div class="store_left_category">
             <ul>
                 <li class="left_category">카테고리</li>
-                <li id="left_category"><a href="" style="color: #21d9cb;">침대</a></li>
+                <li id="left_category"><a href="">침대</a></li>
                 <li id="left_category"><a href="">쇼파</a></li>
                 <li id="left_category"><a href="">식탁</a></li>
                 <li id="left_category"><a href="">의자</a></li>
@@ -54,7 +54,7 @@
                 <table>
                     <tr>
                         <td>전체</td>
-                        <td>${ listCount }개</td>
+                        <td>${ listCount }</td>
                         <td>
                             <select id="product_list">
                                 <option>최신순</option>
@@ -67,117 +67,30 @@
             </div>
 
             <div class="store_product">
-            
             	<c:forEach var="p" items="${ list }">
 	                <div class="store_product_list">
-	                    <div class="store_product_card">
-	                        <a href="">
-	                        <div class="store_product_img"><img src="${path}/resources/img/product/${ p.proName }1.png"></div>
-	                        <div class="store_product_seller"><p>${ p.selBusName }</p></div>
-	                        <div class="store_product_title"><p>${ p.proName }</p></div>
-	                        <div class="store_product_price"><p>${ p.proPrice }</p></div>
-	                        </a>
-	                    </div>
+		                    <div class="store_product_card">
+		                        <div class="pno" style="display:none">${ p.proNo }</div>
+		                        <div class="store_product_img"><img src="${path}/resources/img/product/${ p.proName }1.png"></div>
+		                        <div class="store_product_seller"><p>${ p.selBusName }</p></div>
+		                        <div class="store_product_title"><p>${ p.proName }</p></div>
+		                        <div class="store_product_price"><p>${ p.proPrice }</p></div>
+		                        <div class="store_product_price"><p>${ p.proCount }</p></div>
+		                    </div>
 	                </div>
 				</c:forEach>
-				<!--  
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/머스크템바보드소파테이블2.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/모딜리아니대리석골드4인식탁테이블1.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="store_product">
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/링컨세라믹14004인식탁세트1.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/머스크템바보드소파테이블2.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/모딜리아니대리석골드4인식탁테이블1.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="store_product">
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/링컨세라믹14004인식탁세트1.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/머스크템바보드소파테이블2.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../FINAL/img/모딜리아니대리석골드4인식탁테이블1.JPG"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-                -->
+			
             </div>
             
-            
-            
-            
+            <!-- 상세페이지 -->
+            <script>
+            	$(function() {
+            		$(".store_product_card").click(function(){
+            			location.href='productdetail.bo?pno='+ $(this).children(".pno").text();
+            		})
+            	})
+            </script>
+     
     </section>
     
  	<jsp:include page="../common/footer.jsp" />
