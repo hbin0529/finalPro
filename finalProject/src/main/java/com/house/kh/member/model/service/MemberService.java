@@ -17,13 +17,23 @@ public class MemberService {
 	private SqlSessionTemplate sqlSession;
 	
 	
+	//회원가입처리
 	public int insertMember(Member m) {
-		
 		int insertResult = mDao.insertMember(sqlSession, m);
-		
 		return insertResult;
 	}
 	
+	//아이디중복검사
+	public int searchIdVali(String id) {
+		int searchResult = mDao.searchIdVali(sqlSession, id);
+		return searchResult;
+	}
+	
+	//닉네임중복검사
+	public int searchNickVali(String nick) {
+		int searchResult = mDao.searchNickVali(sqlSession, nick);
+		return searchResult;
+	}
 	
 	
 }

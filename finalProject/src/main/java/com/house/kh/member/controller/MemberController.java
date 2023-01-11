@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.house.kh.member.model.service.MemberService;
 import com.house.kh.member.model.vo.Member;
@@ -20,36 +21,21 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
+	//로그인페이지로이동
 	@RequestMapping("login.me")
 	public String login() {
 		return "member/login";
 	}
 	
+	//회원가입페이지로이동
 	@RequestMapping("signIn.me")
 	public String signIn() {
 		return "member/signIn";
 	}
 	
+	//회원가입처리
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model md, HttpSession session) {
-		//System.out.println("m은 " + m);
-		//1. 한글깨짐 : 스프링에서 제공하는 인코딩 필터 등록해서 UTF로 변환
-		//2. 회원가입시 나이를 안넣으면 에러발생, null을 int형변환할수없어서 => String으로 변환
-		//3. 비밀번호 입력 시 암호화하여 DB에 저장
-		
-		/*
-		 * 3.1 단방향 암호화 : 복호화가 불가능함(sha-256, sha-512)
-		 * 평문 -------------> 암호문
-		 * 
-		 * 3.2 양방향 암호화 : 복호화 가능(Bcrypt방식 : 평문+난수를 암호화)
-		 * 평문 <------------> 암호문
-		 */
-		
-		//쓰는법
-		//1. pom.xml에 라이브러리 추가
-		//2. BcryptPasswordEncoder클래스를 빈으로 등록
-		//3. web.xml에
-		//System.out.println("평문 : " + m.getUserPwd());
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
 		m.setMemPwd(encPwd);
@@ -61,14 +47,41 @@ public class MemberController {
 		
 		int insertMemResult = mService.insertMember(m);
 		if(insertMemResult > 0) {
-			//session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
-			return "redirect:/";
+			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
+			return "member/login";
 		}else {
 			//md.addAttribute("error", "회원가입실패");
 			return "redirect:/";
 		}
 		
 	}
+	
+	//아이디중복검사 ajax통신
+	@ResponseBody
+	@RequestMapping("idChk.me")
+	public String idChk(String id) {
+		int idChkResult = mService.searchIdVali(id);
+		if(idChkResult>0) {
+			return "N";
+		}else {
+			return "Y";
+		}
+	}
+	
+	//닉네임중복검사 ajax통신
+	@ResponseBody
+	@RequestMapping("nickChk.me")
+	public String nickChk(String nick) {
+		int nickChkResult = mService.searchNickVali(nick);
+		if(nickChkResult>0) {
+			return "N";
+		}else {
+			return "Y";
+		}
+	}
+	
+	
+	
 	
 	
 	
