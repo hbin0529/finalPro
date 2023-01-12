@@ -24,7 +24,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.searchUser", m);
 	}
 	
-	
+	public int kakaoUserSignChk(SqlSessionTemplate sqlSession, String kakaoUserEmail) {
+		return sqlSession.selectOne("memberMapper.kakaoUserSignChk", kakaoUserEmail);
+	}
 	
 	
 	
