@@ -20,7 +20,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.searchNickVali", nick);
 	}
 	
-	
+	public Member searchUser(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.searchUser", m);
+	}
 	
 	
 	

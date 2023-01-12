@@ -134,7 +134,7 @@
             cursor: pointer; background-size: cover;
         }
         .mLabel{background-image: url(${path}/resources/img/male.png);}
-        .fLabel{background-image: url(${path}/resources/img/female.png);}#idChkResult{display: none;}
+        .fLabel{background-image: url(${path}/resources/img/female.png);}#idChkResult{display: none;}#nickChkResult{display:none}
     </style>
     <script>
     var path = "${path}/resources/"
@@ -327,9 +327,9 @@
     			},
     			success:function(result){
     				if(result=='Y'){
-    					console.log('사용가능한닉네임')
+    					$("#nickChkResult").show().text('사용 가능한 닉네임입니다').css("color", "green")
     				}else if(result=='N'){
-    					console.log('중복된닉네임')
+    					$("#nickChkResult").show().text('중복된 닉네임입니다').css("color", "red")
     				}
     			},
     			error:function(){
@@ -352,8 +352,12 @@
             <span class="wid360 mgtb30" style="text-align: left;">회원가입</span>
             <small class="mgtb30">SNS계정을 통해 편하게 가입하세요</small>
             <div>
-                <a href="#"><img src="${path}/resources/img/fb.png" alt="" class="sz40 mg10"></a>
-                <a href="#"><img src="${path}/resources/img/kt.png" alt="" class="sz40 mg10"></a>
+                <a href="#">
+   					<img src="${path}/resources/img/kt.png" alt="" class="sz40 mg10">
+ 				</a>
+                <a href="">
+					<img src="${path}/resources/img/naverL.png" alt="" class="sz40 mg10">
+				</a>
                 <a href="#"><img src="${path}/resources/img/gg.png" alt="" class="sz40 mg10"></a>
             </div>
             <hr class="wid360 mgtb10">
@@ -402,9 +406,9 @@
                 <div class="wid360 alcen">
                     <input class="sz100p bd1 ilb bora4" name="memNick" id="userNick">
                 </div>
-                <div class="idchkajax wid360">
+                <div class="idchkajax wid360" id="nickChkResult">
                     이미있는아이디입니다
-                </div>
+                </div><br>
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">성별</span>
                 <div class="wid360 alcen" style="height: 190px;">
                     <input type="radio" value="M" id="mSelect" class="disnon" name="memGender">
@@ -439,7 +443,6 @@
                 </div>
                 <button type="button" onclick="checkAndSubmit();" class="submitbut wid360 bora4" id="submitButton" disabled>회원가입신청</button>
             </form>
-            
         </div>
     </div>
 </body>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.house.kh.member.model.service.MemberService;
 import com.house.kh.member.model.vo.Member;
 
@@ -20,6 +21,41 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	
+	/*
+	@Inject
+	private SnsValue naverSns;
+	
+	@Inject
+	private SnsValue googleSns;
+	*/
+	
+	
+	//로그인시도
+	//로그인처리
+	
+	@RequestMapping("loginUser.me")
+	public String login(Member m, HttpSession session, Model model) {
+		
+		Member loginUser = mService.searchUser(m);
+		
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			session.setAttribute("id", m.getMemEmail());
+			return "redirect:/";
+		}else {
+			//로그인실패, 에러페이지로 포워딩
+			model.addAttribute("errorMsg", "로그인 실패");
+			return "member/login";
+			
+		}
+	}
+	
+	
+	
+	
+	
 	
 	//로그인페이지로이동
 	@RequestMapping("login.me")
@@ -81,8 +117,25 @@ public class MemberController {
 	}
 	
 	
-	
-	
-	
+	/*
+	//SNS로그인
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void login(Model model) throws Exception {
+		//logger.info("login GET .....");
+		
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
+		
+//		SNSLogin googleLogin = new SNSLogin(googleSns);
+//		model.addAttribute("google_url", googleLogin.getNaverAuthURL());
+		
+		// 구글code 발행을 위한 URL 생성 
+		
+		//OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		//String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		//model.addAttribute("google_url", url);
+		
+	}
+	*/
 	
 }
