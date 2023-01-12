@@ -18,9 +18,20 @@
       <result column ="status" property="status"/>   
       <result column ="mem_email" property="memEmail"/>
       <result column ="mem_nick" property="memNick"/>
+      <result column ="mem_addr" property="memAddr"/>
   </resultMap> 
   
-   <select id="selectListCount" resultType ="_int" >
+  <resultMap type="HomeReply" id="homeReplyResult">
+    <result column="home_reply_no" property="homeReplyNo" />
+    <result column="mem_id" property="memId" />
+    <result column="home_reply_content" property="homeReplyContent" /> 
+    <result column="home_reply_date" property="homeReplyDate" /> 
+    <result column="home_reply_like" property="homeReplyLike" /> 
+    <result column="status" property="status" /> 
+    <result column ="mem_email" property="memEmail"/>
+    <result column ="mem_nick" property="memNick"/>
+  </resultMap>
+     <select id="selectListCount" resultType ="_int" >
        select count(*)
          from board_home
           where status = 'Y' 
@@ -29,23 +40,17 @@
     <select id="selectList" resultType="HomeBoard" resultMap="homeBoardResult">
      select board_no
        , board_title
-       , board_count
-       , board_date <!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
-       , board_mainimg_origin 
-       , mem_nick
+       , board_count 
+       , mem_nick 
      from board_home h, member_base m
      where m.mem_email = h.mem_id and status= 'Y' 
-     order by board_no desc
-      
-  </select>
-  
-  
+     order by board_no desc 
+  </select>  
   <update id="increaseCount"> 
         update board_home
           set board_count = board_count+1
           where board_no = #{boardNo} and status = 'Y'
-  </update>
-  
+  </update> 
   <select id="selectBoard"  resultType="HomeBoard" resultMap="homeBoardResult">
       select board_no
        , board_title
@@ -53,10 +58,28 @@
        , home_option
        , home_familyv
        , board_count 
-       , board_date <!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
-       , board_mainimg_origin 
-     from board_home
-     where board_no = #{boardNo}     
+       , to_char(board_date, 'YYYY-MM-DD') as "board_date"<!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
+       , mem_nick
+       , mem_addr
+     from board_home h, member_base m
+     where board_no = #{boardNo}   
+     and m.mem_email = h.mem_id and status= 'Y' 
   </select>
+  
+   <select id="selectReplyList" resultMap="homeReplyResult">
+   select home_reply_no
+           , mem_nick
+		   , home_reply_content
+		   , to_char(home_reply_date, 'YYYY-MM-DD') as "home_reply_date" 
+      from board_home_reply1 r, member_base m
+      where status = 'Y' and ref_bno=#{boardNo}
+      and m.mem_email = r.mem_id
+  </select>
+  
+  <insert id = "insertReply">
+     insert into reply(home_reply_no, home_reply_content, ref_bno, mem_nick)
+                  values(seq_hrno.nextval, #{homeReplyContent}, #{refBno}, #{memNick})
+     
+  </insert>
   
 </mapper>

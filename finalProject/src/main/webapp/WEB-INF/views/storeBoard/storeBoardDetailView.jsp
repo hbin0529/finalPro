@@ -65,7 +65,7 @@
     /*-----------------------------------  상품 디테일 설명 -----------------------------------*/
     .product_detail{width: 1150px; margin: 0 auto; display: flex; margin-top: 50px;}
     .left_detail_img{width:800px; margin-bottom: 50px; margin-right: 20px; }
-    #detail_img{width: 800px;}
+    #detail_img{width: 800px; margin-bottom:100px; margin-top:50px;}
     .detail_information_table{width: 800px; text-align: left; font-size: 13px; margin-bottom: 100px; height: 300px; border-collapse: collapse; font-family: 'Pretendard-Regular'; }
     .detail_information_table td:nth-child(1){width: 180px; color: gray;}
     .detail_information_table tr td{border-bottom: 1px solid rgb(224, 224, 224);}
@@ -141,19 +141,19 @@
                     <div><img src="${path}/resources/img/logo_user.png"></div>
                 </div>
                 <div class="product_intro">
-                    <div><p style="margin-bottom: 10px;"><a href="" style="color: rgb(109, 108, 108); font-size: 15px; font-weight: bold;">판매처이름</a></p></div>
-                    <div><p style="margin-bottom: 10px; font-size: 25px; font-weight: bolder;">가구이름 가구이름 가구이름</p></div>
+                    <div><p style="margin-bottom: 10px;"><a href="" style="color: rgb(109, 108, 108); font-size: 15px; font-weight: bold;">${ p.selBusName }</a></p></div>
+                    <div><p style="margin-bottom: 10px; font-size: 25px; font-weight: bolder;">${ p.proName }</p></div>
                     <div class="intro_review">
                         <div><p>★★★★★</p></div>
                         <div><p>1,234개 리뷰</p></div>
                     </div>
-                    <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;">19,900원</p></div>
+                    <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;">${ p.proPrice }원</p></div>
                     <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div>
                     <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;1/20(금) 이내 도착 예정</p></div>
                     <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div>
                     <div class="intro_home_img" style="margin-bottom: 30px;">
                         <div><img src="${path}/resources/img/logo_user.png" style="width: 30px; margin-left: 10px;"></div>
-                        <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">판매처이름</a></p></div>
+                        <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">${ p.selBusName }</a></p></div>
                     </div>
                     <div>
                         <select>
@@ -180,7 +180,7 @@
                     </div>
                     <div class="order_price">
                         <div><p style="font-size: 13px; font-weight: bolder; margin-top: 5px; margin-bottom: 30px;">주문금액</p></div>
-                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;">19,900원</p></div>
+                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;">${ p.proPrice }</p></div>
                     </div>
                     <div class="intro_btn">
                         <div><button>장바구니</button></div>
@@ -196,7 +196,7 @@
                             <div><p style="width: 220px; margin-left: 580px; "><a href="">상품정보</a></p></div>
                             <div class="product_body_category_review" style="width: 220px;">
                                 <div><a href=""><p style="margin-right: 10px;">리뷰</p></div>
-                                <div><p style="color: gray;">1,234</p></a></div>
+                                <div><p style="color: gray;"><span id="rcount">0</span></p></a></div>
                             </div>
                             <div class="product_body_category_question" style="width: 220px;">
                                 <div><a href=""><p style="margin-right: 10px;">문의</p></div>
@@ -237,7 +237,7 @@
                             </tr>
                             <tr>
                                 <td>A/S책임자와 전화번호</td>
-                                <td>1544-1201</td>
+                                <td>${ p.selPhone }</td>
                             </tr>
                         </table>
 
@@ -288,9 +288,10 @@
                         <!--리뷰상세-->
                         <div class="review_detail">
                             <table>
-                                <tr>
+                            	
+                                <%-- <tr>
                                     <td rowspan="2" id="review_user_img"><img src="${path}/resources/img/logo_user.png" id="user_img"></td>
-                                    <td colspan="2" id="review_nickname">닉네임</td>
+                                    <td colspan="2" id="review_nickname">${ p.memNick }</td>
                                 </tr>
                                 <tr>
                                     <td id="user_review_star">★★★★★</td>
@@ -304,33 +305,34 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3" id="review_text">침대 너무 이뻐요 침대 너무 이뻐요 침대 너무 이뻐요 침대 너무 이뻐요</td>
-                                </tr>
+                                </tr> --%>
+                                
+						<%-- value += "<tr>"
+							  +		"<td rowspan="2" id="review_user_img"><img src="${path}/resources/img/logo_user.png" id="user_img"></td>"
+							  +		"<td colspan="2" id="review_nickname">" + list[i].memNick + "</td>"
+							  +  "</tr>"
+							  +  "<tr>"
+							  +		"<td colspan="3" id="review_option">" + list[i].reviewStar + "</td>"
+							  +		"<td id="review_date">" + list[i].reviewDate + "</td>"
+							  +  "</tr>"
+							  +  "<tr>"
+							  +		"<td colspan="3" id="review_option"> 옵션 : " + list[i].ordOption + "</td>"
+							  +  "</tr>"
+							  +  "<tr>"
+							  +		"<td colspan="3" id="review_main_img"><img src="${path}/resources/img/logo_user.png" id="user_review"></td>"		
+							  +  "</tr>"
+							  +  "<tr>"		
+							  +		"<td colspan="3" id="review_text"> + list[i].reviewContent + "</td>"			  
+							  +	 "</tr>"; --%>
+							  
+							  
+                            
                             </table>
 
-                            <table>
-                                <tr>
-                                    <td rowspan="2" id="review_user_img"><img src="${path}/resources/img/logo_user.png" id="user_img"></td>
-                                    <td colspan="2" id="review_nickname">닉네임</td>
-                                </tr>
-                                <tr>
-                                    <td id="user_review_star">★★★★★</td>
-                                    <td id="review_date">2023.01.05</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" id="review_option">옵션 : 블랙</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" id="review_main_img"><a href=""><img src="${path}/resources/img/logo_user.png" id="user_review"></a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" id="review_text">침대 너무 이뻐요 침대 너무 이뻐요 침대 너무 이뻐요 침대 너무 이뻐요</td>
-                                </tr>
-                            </table>
 
                             <!--리뷰 페이징-->
                             <div class="review_paiging">1  2  3  4  5</div>
                         </div>
-
 
                         <!--문의-->
                         <div>
@@ -405,27 +407,27 @@
                                 <table class="seller_information_table">
                                     <tr>
                                         <td>상호</td>
-                                        <td>판매처이름</td>
+                                        <td>${ p.selBusName }</td>
                                     </tr>
                                     <tr>
                                         <td>대표자</td>
-                                        <td>대표자이름</td>
+                                        <td>${ p.selName }</td>
                                     </tr>
                                     <tr>
                                         <td>사업장소재지</td>
-                                        <td>서울 송파구 올림픽로35가길 11 14층 1420호</td>
+                                        <td>${ p.selAddr }+${ p.selDetailAddr }</td>
                                     </tr>
                                     <tr>
                                         <td>고객센터 전화번호</td>
-                                        <td>02-6959-2444</td>
+                                        <td>${ p.selPhone }</td>
                                     </tr>
                                     <tr>
                                         <td>E-mail</td>
-                                        <td>ortho110@naver.com</td>
+                                        <td>${ p.selEmail }</td>
                                     </tr>
                                     <tr>
                                         <td>사업자 등록번호</td>
-                                        <td>219-81-30785</td>
+                                        <td>${ selBusNo }</td>
                                     </tr>
                                 </table>
                             </div>
@@ -458,7 +460,7 @@
                         </div>
                         <div class="order_price">
                             <div><p style="font-size: 13px; font-weight: bolder; margin-top: 5px; margin-bottom: 30px; text-align: center;">주문금액</p></div>
-                            <div><p style="width:290px; text-align: right; font-size: 25px; font-weight: bolder;">19,900원</p></div>
+                            <div><p style="width:290px; text-align: right; font-size: 25px; font-weight: bolder;">${ p.proPrice }원</p></div>
                         </div>
                         <div style="height: 500px;"></div>
                         <div class="detail_btn">
@@ -470,6 +472,52 @@
             </div>
         </div>
     </section>
+    
+    
+    <script type="text/javascript">
+	    $(function(){
+			selectReviewList();
+		})
+		
+		function selectReviewList(){
+    		$.ajax({
+				url:"reviewlist.bo",
+				data:{pno:${p.proNo}},
+				success:function(list){
+					let value = "";
+					for(let i in list) {
+						value += "<tbody>"
+							  + 	"<tr>"
+							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/resources/img/logo_user.png' id='user_img'></td>"
+							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
+							  +  	"</tr>"
+							  +  	"<tr>"
+							  +			"<td colspan='3' id='review_option'>" + list[i].reviewStar + "</td>"
+							  +			"<td id='review_date'>" + list[i].reviewDate + "</td>"
+							  +  	"</tr>"
+							  +  	"<tr>"
+							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"
+							  +  	"</tr>"
+							  +  	"<tr>"
+							  +			"<td colspan='3' id='review_main_img'><img src='${path}/resources/img/logo_user.png' id='user_review'></td>"		
+							  +  	"</tr>"
+							  +  	"<tr>"		
+							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  
+							  +	 	"</tr>"
+							  + "</tbody>";
+					}
+					$(".review_detail table").html(value);
+					$("#rcount").text(list.length);
+				},
+				error:function(){
+					console.log("댓글리스트 조회용 ajax 통신 실패");
+				}
+			});
+		}
+		
+		
+    
+    </script>
     
     
     <jsp:include page="../common/footer.jsp" />

@@ -9,6 +9,7 @@
 		<typeAlias type="com.house.kh.storeBoard.model.vo.Product" alias="Product" />
 		<typeAlias type="com.house.kh.homeBoard.model.vo.HomeBoard" alias="HomeBoard" />
 		<typeAlias type="com.house.kh.seller.model.vo.Seller" alias="Seller" />
+		<typeAlias type="com.house.kh.homeBoard.model.vo.HomeReply" alias="HomeReply" />
 	</typeAliases> 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
