@@ -103,22 +103,29 @@
      .detail_title_author_date{position: relative; left: 65px; top: -47px; font-weight: lighter; font-family: 'Pretendard-Regular';}
      .writer_button input{position: relative; left:475px; top: 45px; font-weight: lighter; font-family: 'Pretendard-Regular'; color: white; background-color: #21d9cb; border-style: none; width: 120px; height: 40px; border-radius: 3px;}
       .project-detail-metadata{margin-top: 150px; display: flex;}
-      .project-detail-metadata_table_detail_1,.project-detail-metadata_table_detail_2, .project-detail-metadata_table_detail_3 {display: inline-block;  margin-left: 60px; font-family: 'Pretendard-Regular'; }
+      .project-detail-metadata_table_detail_1,.project-detail-metadata_table_detail_2, .project-detail-metadata_table_detail_3 {display: inline-block;  margin-left: 90px; font-family: 'Pretendard-Regular'; padding-left:10px;}
       .project-detail-metadata_table_detail_1{width: 90px;}
-      .project-detail-metadata_table_detail_2{width: 180px;}
-      .project-detail-metadata_table_detail_3{width: 110px;}
+      .project-detail-metadata_table_detail_2{width: 130px; margin-left:55px;}
+      .project-detail-metadata_table_detail_3{width: 140px;}
       .project-detail-metadata_table{width: 720px; display: inline; margin: 0 auto; padding:30px; border: 1px solid none; background-color: rgb(245, 243, 243); }
       .project-detail-metadata_table_detail td{margin-left: 5px; display: inline; }
       .detail_content_img{margin-top:80px;}
-      .detail_content_text{margin-top:20px; font-family: 'Pretendard-Regular';} 
-      .protect_buttom{margin-top: 60px;}
+      .detail_content_img h3{font-size:20px}
+      .detail_content_text{margin-top:20px; font-family: 'Pretendard-Regular'; line-height:30px;} 
+       .protect_buttom{margin-top: 60px;}
       .detail_content_like{margin-top: 110px; font-family: 'Pretendard-Regular';}
       .detail_content_comment, .detail_content_comment_detail{margin-top: 30px;}
-      .detail_content_comment_1 {display: inline-block;  margin-bottom: 25px;}
+      .detail_content_comment_1 {display: inline-block;  margin-bottom: 25px; width: 50px;} 
       .detail_content_comment_detail{width: 500px; margin-left: 20px;}
       .detail_content_comment_detail td{ margin-top: 20px; display: inline-block; margin-left: 9px;}
       .detail_content_comment_detail_comment{background-color: rgb(96, 93, 93);}
       .content_paging{text-align: center; margin-top: 30px; }
       .detail_content_comment_detail{font-family: 'Pretendard-Regular';}
       .detail_content_comment button{font-size: 13px; border-radius: 3px; padding:17px} 
-       
+      #replyArea tbody{ border: 1px solid #444444; height: 200px;}
+      #replyArea tbody td:last-child{width: 130px;  font-size: 15px; display: inline-block; margin-top: 25px;}
+
+        /*-------------------------글쓰기스타일모음--------------------------- */
+        .write_content{ display: block; margin-bottom: 20px;}
+        .content_title{width: 140px;}
+        main{font-family: 'Pretendard-Regular';}
