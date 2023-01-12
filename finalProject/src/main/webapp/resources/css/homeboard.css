@@ -103,9 +103,9 @@
      .detail_title_author_date{position: relative; left: 65px; top: -47px; font-weight: lighter; font-family: 'Pretendard-Regular';}
      .writer_button input{position: relative; left:475px; top: 45px; font-weight: lighter; font-family: 'Pretendard-Regular'; color: white; background-color: #21d9cb; border-style: none; width: 120px; height: 40px; border-radius: 3px;}
       .project-detail-metadata{margin-top: 150px; display: flex;}
-      .project-detail-metadata_table_detail_1,.project-detail-metadata_table_detail_2, .project-detail-metadata_table_detail_3 {display: inline-block;  margin-left: 60px; font-family: 'Pretendard-Regular'; padding-left:10px;}
+      .project-detail-metadata_table_detail_1,.project-detail-metadata_table_detail_2, .project-detail-metadata_table_detail_3 {display: inline-block;  margin-left: 90px; font-family: 'Pretendard-Regular'; padding-left:10px;}
       .project-detail-metadata_table_detail_1{width: 90px;}
-      .project-detail-metadata_table_detail_2{width: 130px; margin-left:105px;}
+      .project-detail-metadata_table_detail_2{width: 130px; margin-left:55px;}
       .project-detail-metadata_table_detail_3{width: 140px;}
       .project-detail-metadata_table{width: 720px; display: inline; margin: 0 auto; padding:30px; border: 1px solid none; background-color: rgb(245, 243, 243); }
       .project-detail-metadata_table_detail td{margin-left: 5px; display: inline; }

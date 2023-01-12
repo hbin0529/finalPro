@@ -1,6 +1,11 @@
 package com.house.kh.homeBoard.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -66,9 +72,7 @@ public class HomeBoardController {
 	   public String ajaxSelectReplyList(HomeReply r) {
 		 int result = hbService.insertReply(r);
 	         return result >0 ? "success" : "fail";
-	   }
-	   
-      
+	   } 
     
   }
  

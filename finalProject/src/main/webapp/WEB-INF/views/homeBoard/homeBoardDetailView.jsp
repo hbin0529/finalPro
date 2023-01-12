@@ -22,14 +22,11 @@
                       <div class="detail_title_author_date">${ h.boardDate }</div> 
                 </div>  
         </div>
-        <form action="" name="" class="writer_button" >
-            <input type="button" value="수정하기">
-            <input type="reset" value="삭제하기">
-        </form> 
+        
         <div class="project-detail-metadata">
           <table class="project-detail-metadata_table"> 
                 <tr class="project-detail-metadata_table_detail_1">
-                  <td><img src="${path}/resources/img/apart_img.png" width="25px" style="position: absolute; left: 650px;"></td>
+                  <td><img src="${path}/resources/img/apart_img.png" width="25px" style="position: absolute; left: 695px;"></td>
                   <td style="width:100px; display: inline-block;">${ h.homeOption }</td>
               </tr>
          
@@ -76,21 +73,25 @@
     <div class="swiper mySwiper"> 
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-            <img src="./img/detail_content_buy_img01.jpeg" width="130px">
-            <img src="./img/detail_content_buy_img02.jpeg" width="130px">
-            <img src="./img/detail_content_buy_img03.jpeg" width="130px">
-            <img src="./img/detail_content_buy_img04.jpeg" width="130px">
-            <img src="./img/detail_content_buy_img05.jpeg" width="130px"> 
+            <img src="${path}/resources/img/detail_content_buy_img01.jpeg" width="130px">
+            <img src="${path}/resources/img/detail_content_buy_img02.jpeg" width="130px"> 
           </div>
         </div>   
      </div>  
       <div class="protect_buttom">
-           <img src="${path}/resources/img/protect_buttom.PNG"><div> 
-      </div>
-          <hr>  
-          
+           <img src="${path}/resources/img/protect_buttom.PNG"><div>  
+      </div>  
+      
+      
+       <div align="right">
+                   <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
+                   <a class="btn btn-primary" onclick="postFormSubmit(1);">수정하기</a>
+                   <a class="btn btn-danger" onclick="postFormSubmit(2);">삭제하기</a>
+               </div><br><br>
+      
        <!-- 댓글 창 -->    
          <table class="table" id="replyArea" style="padding-bottom: 40px;margin-bottom: 5px;">
+      
              <thead>
                 <tr class="detail_content_comment_1">
                     <td style="width: 5000px;  display: inline-block; margin-top: 40px">댓글(<span id="rcount">0</span>)</td> 
@@ -100,30 +101,14 @@
                     <td><textarea placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px;"></textarea></td>
                     <td><button style="width: 45px; height: 45px; border: 1px solid gainsboro; margin-left: 6px; padding: 6px;" onclick="addReply();" >입력</button></td>
                 </tr>  
-             </thead>  
-     <!-- 댓글 리스트 -->  
-        <tbody style="font-family: 'Pretendard-Regular';"> 
+             </thead> 
+             
+        <tbody style="font-family: 'Pretendard-Regular';">  
+        </tbody>  
+       <hr>    
+        </table>    
+       
         
-        </tbody> 
-     
-         <%-- <table class="detail_content_comment_detail">
-                    <tr>
-                        <td rowspan="3" style="vertical-align: top;"><img src="${path}/resources/img/logo_user.png" width="40px"></td>
-                        <td colspan="2"></td>
-                    </tr>
-                    <tr> 
-                        <td colspan="2" style="position: relative; left: 48px; top: -40px;"></td>
-                    </tr>
-                    <tr> 
-                        <td style="position: relative; left: 48px; top: -50px;">2022.01.02&ensp; | </td>
-                        <td style="position: relative; left: 48px; top: -50px;"><a href="$">수정하기</a></td>
-                        <td style="position: relative; left: 48px; top: -50px;"><a href="$">삭제하기</a></td>
-                    </tr> 
-                <tbody>                        
-                </tbody>       
-          </table>     --%>
-        </table>   
-    <!--     <div class="content_paging"><a href="#"><p>1 2 3 4 5 6 7 </p></a> </div> -->
       </section>
 	</main> 
 	
