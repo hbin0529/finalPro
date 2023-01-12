@@ -1,27 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>오구싶은집 충전사이트</title>
-<style type="text/css">
-/* 주문결제페이지 */
-    .main_wrap{display: flex; -webkit-box-pack: center; justify-content: center; position: relative; width: 100%; max-width: 1256px; padding: 0px 60px; margin: 0px auto; box-sizing: border-box;}
-    /* 왼쪽 주문창 */
-    .left_container{flex: 1 0 0px; box-sizing: border-box;}
-    .left_container h1{font-size: 24px; line-height: 36px; color: rgb(0, 0, 0); font-weight: bold; margin: 40px 0px 20px;}
-    /* 오른쪽 sticky주문창 */
-    .sticky_wrap{position: relative; flex: 0 1 0px; min-width: 366px; margin-left: 40px; box-sizing: border-box;} 
-    .sticky_container{position: sticky; top: 81px; transition: top 0.1s ease 0s; border: 1px solid rgb(234, 235, 239); padding: 20px;}
-    .necessary{display: flex; -webkit-box-align: center; align-items: center; text-align: left; border: 0px; background-color: transparent; width: 100%; padding: 0px; font-weight: normal; font-size: 14px; line-height: 17px; color: rgb(101, 110, 117); letter-spacing: -0.4px; padding: 10px;}
-    .submitbut{width: 100%; margin-top: 20px; padding: 15px 10px; line-height: 20px; font-size: 17px; min-height: 50px; background-color: #21d9cb; color: #fff; border-radius: 5px; border: none;
-                cursor: pointer;}
-    .order_input{display: inline-block; width: 100%; margin: 0; padding: 8px 15px 9px; border: 1px solid #dbdbdb; background-color: #fff; 
-        color: #000; border-radius: 4px; box-sizing: border-box; font-size: 15px; font-weight: bold; line-height: 21px; 
-        transition: border-color .1s,background-color .1s;}
-</style>
+<link rel="shortcut icon" href="#">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script>
@@ -48,12 +34,18 @@
 	    })
 	
 	})
+	function test11(){
+		alert('왜안됏ㅂ')
+	}
 	function charge_Submit() {
 	    if($("#agree").is(":checked") == false) {
 	        alert("충전 포인트 및 유효기간 확인 동의를 해주세요.")
 	    }
 	}
 </script>
+<link
+	href="${pageContext.request.contextPath}/resources/css/charge.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="wrap" style="font-family: 'Pretendard-Regular';">
@@ -61,9 +53,9 @@
         <form action="" method="post">
             <div class="sidebar">
                 <div style="border-right: 1px solid #515151; text-align: center; height: 100%;">
-                    <img src="resource/img/lhblogo.JPG" alt="로고1">
+                    <img src="${path}/resources/img/lhblogo.jpg" alt="로고1">
                     <div style="font-size: 32px; font-weight: bold; margin-top: 10px;">포인트충전</div>
-                    <img style="width: 200px; height: 200px; position: relative; top: 240px;" src="resource/img/chargePage.gif" alt="">
+                    <img style="width: 200px; height: 200px; position: relative; top: 240px;" src="${path}/resources/img/chargePage.gif" alt="">
                 </div>
             </div>
             <div class="main_content">

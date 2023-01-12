@@ -194,7 +194,7 @@
                                 <input id="point_level" class="order_input" type="number" value="0" disabled style="background-color: rgb(250, 250, 250); border-color: rgb(219, 219, 219); color: #bdbdbd; flex: 1 0 0px;">
                                 <button class="wid360 bora4" type="button" onclick="charge()" style="background-color: #fff; border: 1px solid transparent; border-radius: 3px;
                                             border-color: #21d9cb; color: #21d9cb; margin-left: 8px; padding: 11px 10px; min-height: 40px; cursor: pointer;">
-                                        충전하기
+                                        	충전하기
                                 </button>
                             </div>
                         </div>
