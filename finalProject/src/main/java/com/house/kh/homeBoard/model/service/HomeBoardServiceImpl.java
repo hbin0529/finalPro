@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.house.kh.homeBoard.model.dao.HomeBoardDao;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
+import com.house.kh.homeBoard.model.vo.HomeReply;
 import com.house.kh.storeBoard.model.dao.StoreBoardDao;
 
 @Service
@@ -55,6 +56,18 @@ public class HomeBoardServiceImpl implements HomeBoardService {
    public int updateBoard(HomeBoard h) {
       return 0;
    }
+
+	@Override
+	public ArrayList<HomeReply> selectReplyList(int boardNo) {
+	      return hbDao.selectReplyList(sqlSession, boardNo);
+
+	}
+	
+	@Override
+	public int insertReply(HomeReply hr) {
+		return hbDao.insertReply(sqlSession, hr);
+
+	}
    
     
 }
