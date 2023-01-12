@@ -43,5 +43,10 @@ public class MemberService {
 	}
 	
 	
+	public int kakaoUserSignChk(String kakaoUserEmail) {
+		int searchResult = mDao.kakaoUserSignChk(sqlSession, kakaoUserEmail);
+		return searchResult;
+	}
+	
 	
 }

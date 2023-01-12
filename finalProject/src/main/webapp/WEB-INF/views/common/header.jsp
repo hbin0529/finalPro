@@ -87,6 +87,7 @@
                 <button>검색</button>
              </div>
             <div class="main_login">
+            <c:if test="${ empty id }">
                 <ul>
                     <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
                     <li><a href="login.me">로그인</a></li>
@@ -94,6 +95,15 @@
                     <li><a href="signIn.me">회원가입</a></li>
                     <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
+            </c:if>
+            <c:if test="${ not empty id }">
+                <ul>
+                    <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
+                    <li>${ nick }님 환영합니다</li>
+                    <li><a href="logout.me">로그아웃</a></li>
+                    <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
+                </ul>
+            </c:if>
             </div> 
         </nav> 
     </header> 
