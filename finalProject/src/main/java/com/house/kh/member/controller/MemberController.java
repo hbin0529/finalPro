@@ -102,7 +102,7 @@ public class MemberController {
 	}
 	
 	
-	
+	/*
 	//카카오회원가입연동
 	@RequestMapping("kakao_callBack")
     public String home(@RequestParam(value = "code", required = false) String code) throws Exception{
@@ -110,7 +110,7 @@ public class MemberController {
         return "/main";
     }
 	
-	
+	*/
 	
 	
 	

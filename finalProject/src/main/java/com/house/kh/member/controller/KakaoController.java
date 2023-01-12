@@ -18,11 +18,11 @@ public class KakaoController {
     @Autowired
     private KakaoService kakaoService;
 
-    @RequestMapping("/kakao_oauth12")
+    @RequestMapping("/kakao_callBack")
     public String home(@RequestParam(value = "code", required = false) String code) throws Exception{
         System.out.println("#########" + code);
         String access_Token = kakaoService.getAccessToken(code);
         System.out.println("###access_Token#### : " + access_Token);
-        return "testPage";
+        return "/main";
     }
 }
