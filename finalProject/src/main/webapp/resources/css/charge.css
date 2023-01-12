@@ -1,0 +1,42 @@
+@charset "UTF-8";
+        *{padding: 0; margin: 0 auto;}
+        html, body{width: 1200px; height: 600px;}
+        ul, li{list-style: none;}
+        a{text-decoration: none; color: black;}
+        .wrap {width: 1200px; height: 600px;}
+        form{width: 100%; height: 100%; display: flex; flex-flow: row nowrap;}
+        .container { width: 100%; height: 100%;}
+        .sidebar{height: 100%; width: 25%;}
+        .main_content{width: 75%;}
+        .main_content_info{border: 1px solid #333; background-color: rgb(252, 252, 252); margin: 35px 50px 20px 45px; padding: 5px; width: 800px;}
+        .main_content_info a{position: relative; left: 10px; font-weight: bold;}
+        .price_point{display: flex; position: relative;}
+        .price_point li{border: 3px solid #fff; background-color: #21d9cb; width: 125px; height: 125px; text-align: center; cursor: pointer;}
+        .price_point li span{position: relative; top: 55px; font-weight: bold;}
+        .caution_div dl dt{width: 860px; text-align: center; padding: 20px; font-size: 18px; font-weight: bold; color: rgb(51, 51, 51);}
+        .caution_div dl dt span{display: block;}
+        .caution_info_txt {border: 1px solid #ccc; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.493); width: 820px; border-radius: 5px; padding-bottom: 10px; background-color: rgb(245, 245, 245);}
+        .caution_info_txt ul {border: 1px solid #fff; padding: 10px; margin: 10px; width: 750px; position: relative; top: 5px; left: 13px; background-color: #fff;}
+        .caution_info_danger{display: flex; padding: 10px;}
+        .caution_info_danger_ok{font-size: 14px; position: relative; left: 5px; top: 3px; padding: 5px; font-weight: bold;}
+        .caution_info_danger_ok span{border-bottom: 1px solid #333;}
+        .caution_info_danger_agree_chkbox{display: none;}
+        .caution_info_danger_agree_label{background-color: #ccc; border: none; color: #333; padding: 10px 20px; position: relative; right: 10px; top: 3px; border-radius: 5px; cursor: pointer;}
+        .charge_letgo{display: flex; position: relative; text-align: center; top: 20px;}
+        .charge_letgo_input{background-color: #21d9cb; border: none; padding: 10px 20px; cursor: pointer; border-radius: 2px; color: white;}
+        
+
+        /* 메뉴폰트 */
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            }
+        /* 본문내용폰트 */
+            @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            }
