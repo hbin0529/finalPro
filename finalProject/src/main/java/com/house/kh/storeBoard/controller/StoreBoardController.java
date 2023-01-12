@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -16,7 +18,7 @@ public class StoreBoardController {
 	@Autowired
 	private StoreBoardService sbService;
 	
-	@RequestMapping("storelist.bo")  //값은 현재페이지인데, 맨처음에 페이지가 안들어오면 디폴트 1로하고 nowPage변수에 넣어준다
+	@RequestMapping("storelist.bo")  
 	public ModelAndView selectList(ModelAndView mv, Model model) {
 		int listCount = sbService.selectListCount();
 													  
@@ -42,5 +44,24 @@ public class StoreBoardController {
 		}
 		return mv;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "reviewlist.bo", produces="application/json; character=utf-8")
+	public String ajaxSelectReviewList(int pno) {
+		ArrayList<Product> list = sbService.selectReviewList(pno);
+		return new Gson().toJson(list);
+	}
+	
+	
+	/*
+	 * @RequestMapping("categorylist.bo") public ModelAndView
+	 * selectCateList(ModelAndView mv, Model model) {
+	 * 
+	 * ArrayList<Product> clist = sbService.selectCateList();
+	 * 
+	 * mv.addObject("clist",clist); mv.setViewName("storeBoard/storeBoardListView");
+	 * 
+	 * System.out.println(clist); return mv; }
+	 */
 	
 }

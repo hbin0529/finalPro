@@ -29,6 +29,7 @@ public class HomeBoard {
    private String status; 
    private String memEmail;
    private String memNick;
+   private String memAddr;
    
    
    

@@ -3,6 +3,7 @@ package com.house.kh.homeBoard.model.service;
 import java.util.ArrayList; 
   
 import com.house.kh.homeBoard.model.vo.HomeBoard;
+import com.house.kh.homeBoard.model.vo.HomeReply;
 
 public interface HomeBoardService {  
       //집들이게시판 리스트 페이지
@@ -22,13 +23,11 @@ public interface HomeBoardService {
       //게시글 수정
       int updateBoard(HomeBoard h);
       
-      /*
-      //댓글 리스트(ajax)
-      ArrayList<Reply> selectReplyList(int boardNo);
-      
-      //댓글 작성(ajax)
-      int insertReply(Reply r); 
-      */ 
+    //댓글 리스트(ajax)
+  	ArrayList<HomeReply> selectReplyList(int boardNo);
+  	
+  	//댓글 작성(ajax)
+  	int insertReply(HomeReply hr); 
 
 
 }

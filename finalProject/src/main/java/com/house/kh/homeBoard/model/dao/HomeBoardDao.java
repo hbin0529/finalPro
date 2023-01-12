@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.house.kh.homeBoard.model.vo.HomeBoard;
+import com.house.kh.homeBoard.model.vo.HomeReply;
 
 @Repository
 public class HomeBoardDao { 
@@ -24,6 +25,15 @@ public class HomeBoardDao {
     
     public HomeBoard selectBoard(SqlSessionTemplate sqlSession, int boardNo) {
     	return sqlSession.selectOne("homeBoardMapper.selectBoard", boardNo);
+    }
+    
+    public ArrayList<HomeReply> selectReplyList(SqlSessionTemplate sqlSession, int boardNo){
+    	return (ArrayList)sqlSession.selectList("homeBoardMapper.selectReplyList",boardNo);
+    }
+    
+    public int insertReply(SqlSessionTemplate sqlSession, HomeReply hr) {
+    	return sqlSession.insert("homeBoardMapper.insertReply",hr);
+    
     }
     
 

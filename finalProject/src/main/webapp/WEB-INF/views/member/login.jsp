@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,9 +147,6 @@
             padding: 15px 13px;
         }
     </style>
-    <script type="text/javascript">
-    	if(${alertMsg}!=null||${alertMsg}!="")alert("${alertMsg}");
-    </script>
 </head>
 <body>
     <div class="flex2 wrap">
@@ -175,7 +173,7 @@
                 <small>SNS계정으로 간편 로그인/회원가입</small>
             </section>
             <div class="mt40">
-                <a href="#"><img src="${path}/resources/img/fb.png" alt="" class="size48"></a>
+                <a href="#"><img src="${path}/resources/img/naverL.png" alt="" class="size48"></a>
                 <a href="#" class="ml20"><img src="${path}/resources/img/kt.png" alt="" class="size48"></a>
                 <a href="#" class="ml20"><img src="${path}/resources/img/gg.png" alt="" class="size48"></a>
             </div>

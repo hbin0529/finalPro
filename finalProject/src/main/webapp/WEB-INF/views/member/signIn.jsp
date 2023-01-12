@@ -352,10 +352,12 @@
             <span class="wid360 mgtb30" style="text-align: left;">회원가입</span>
             <small class="mgtb30">SNS계정을 통해 편하게 가입하세요</small>
             <div>
-                <a href="https://kauth.kakao.com/oauth/authorize?client_id=f6fe3171557d39cedd87a6054fd8431f&redirect_uri=http://localhost:8050/final/kakao_callBack&response_type=code">
+                <a href="#">
    					<img src="${path}/resources/img/kt.png" alt="" class="sz40 mg10">
  				</a>
-                <a href="#"><img src="${path}/resources/img/fb.png" alt="" class="sz40 mg10"></a>
+                <a href="">
+					<img src="${path}/resources/img/naverL.png" alt="" class="sz40 mg10">
+				</a>
                 <a href="#"><img src="${path}/resources/img/gg.png" alt="" class="sz40 mg10"></a>
             </div>
             <hr class="wid360 mgtb10">

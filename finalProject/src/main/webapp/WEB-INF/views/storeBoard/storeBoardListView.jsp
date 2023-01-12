@@ -39,14 +39,14 @@
         <div class="store_left_category">
             <ul>
                 <li class="left_category">카테고리</li>
-                <li id="left_category"><a href="">침대</a></li>
-                <li id="left_category"><a href="">쇼파</a></li>
-                <li id="left_category"><a href="">식탁</a></li>
-                <li id="left_category"><a href="">의자</a></li>
-                <li id="left_category"><a href="">책상</a></li>
-                <li id="left_category"><a href="">옷장</a></li>
-                <li id="left_category"><a href="">조명</a></li>
-                <li id="left_category"><a href="">화장대</a></li>
+		        	<li id="left_category"><a class="pcate">침대</a></li>
+		            <li id="left_category"><a class="pcate">쇼파</a></li>
+		            <li id="left_category"><a class="pcate">식탁</a></li>
+		            <li id="left_category"><a class="pcate">의자</a></li>
+		            <li id="left_category"><a class="pcate">책상</a></li>
+		            <li id="left_category"><a class="pcate">옷장</a></li>
+		            <li id="left_category"><a class="pcate">조명</a></li>
+		            <li id="left_category"><a class="pcate">화장대</a></li>
             </ul>
         </div>
         <div class="store_product_top">
@@ -69,13 +69,13 @@
             <div class="store_product">
             	<c:forEach var="p" items="${ list }">
 	                <div class="store_product_list">
-		                    <div class="store_product_card">
+		            		<div class="store_product_card">
 		                        <div class="pno" style="display:none">${ p.proNo }</div>
 		                        <div class="store_product_img"><img src="${path}/resources/img/product/${ p.proName }1.png"></div>
 		                        <div class="store_product_seller"><p>${ p.selBusName }</p></div>
 		                        <div class="store_product_title"><p>${ p.proName }</p></div>
 		                        <div class="store_product_price"><p>${ p.proPrice }</p></div>
-		                        <div class="store_product_price"><p>${ p.proCount }</p></div>
+		                        <div class="pcate"><p>${ p.cateNo }</p></div>
 		                    </div>
 	                </div>
 				</c:forEach>
@@ -89,6 +89,16 @@
             			location.href='productdetail.bo?pno='+ $(this).children(".pno").text();
             		})
             	})
+            	
+            	$(function() {
+            		$(".left_category1").click(function(){
+            			location.href='productdetail.bo?cateno='+ $(this).children(".pcate>p").text();
+            		})
+            	})
+            	
+            	
+            	
+            	
             </script>
      
     </section>
