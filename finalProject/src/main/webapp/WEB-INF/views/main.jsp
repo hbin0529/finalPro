@@ -443,6 +443,9 @@
     </div>  
 </div>
 
+<!-- 형빈 포인트 test -->
+<a href="order.or">이형빈테스트</a>
+
 </section> 
 <!-- footer -->	
 	<jsp:include page="common/footer.jsp" />	

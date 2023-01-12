@@ -17,10 +17,8 @@
 	        $(".price_point li").css({"color":"black", "border":"3px solid #fff"})
 	        $(this).css({"color" : "white", "border":"3px solid #333"})
 	    })
-	
-	    // 동의함 체크 안하고 충전하기 누를 시 알러트 창
-	    $("")
-	    // alert("충전 포인트 및 유효기간 확인 동의를 해주세요.")
+	    
+	    //
 	
 	    // 동의함 체크시 색 변경
 	    $("#agree").prop("checked", false);
@@ -32,11 +30,30 @@
 	            $(".caution_info_danger_agree_label").css({"background-color":"#ccc", "color":"#333"})
 	        }
 	    })
+	   	
+	    // 충전할 포인트 금액 누르면 input id="point" value값 변경 
+        $("#20000p").parent("li").click(function() {
+	 	    $("#point").attr("value", "20000")
+		})
+
+        $("#50000p").parent("li").click(function() {
+ 	    	$("#point").attr("value", "50000")
+		})
+
+        $("#100000p").parent("li").click(function() {
+ 	    	$("#point").attr("value", "100000")
+		})
+
+        $("#200000p").parent("li").click(function() {
+ 	    	$("#point").attr("value", "200000")
+		})
+
+        $("#500000p").parent("li").click(function() {
+ 	    	$("#point").attr("value", "500000")
+		})
 	
 	})
-	function test11(){
-		alert('왜안됏ㅂ')
-	}
+
 	function charge_Submit() {
 	    if($("#agree").is(":checked") == false) {
 	        alert("충전 포인트 및 유효기간 확인 동의를 해주세요.")
@@ -50,7 +67,7 @@
 <body>
 <div class="wrap" style="font-family: 'Pretendard-Regular';">
     <div class="container">
-        <form action="" method="post">
+        <form action="pointCharge.or" method="post">
             <div class="sidebar">
                 <div style="border-right: 1px solid #515151; text-align: center; height: 100%;">
                     <img src="${path}/resources/img/lhblogo.jpg" alt="로고1">
@@ -70,28 +87,28 @@
                     </dl>
                     <dd>
                         <ul class="price_point">
-                            <li onclick="">
-                                <span>
+                            <li>
+                                <span id="20000p">
                                     20,000 POINT
                                 </span>
                             </li>
                             <li>
-                                <span>
+                                <span id="50000p">
                                     50,000 POINT
                                 </span>
                             </li>
                             <li>
-                                <span>
+                                <span id="100000p">
                                     100,000 POINT
                                 </span>
                             </li>
                             <li>
-                                <span>
+                                <span id="200000p">
                                     200,000 POINT
                                 </span>
                             </li>
                             <li>
-                                <span>
+                                <span id="500000p">
                                     500,000 POINT
                                 </span>
                             </li>
@@ -130,7 +147,7 @@
                 <div class="charge_letgo">
                     <input class="charge_letgo_input" type="submit" onclick="charge_Submit()" value="충전하기">
                 </div>
-                <input type="hidden" value="0" name="point" id="point">
+                	<input type="hidden" value="0" name="point" id="point">
             </div>
         </form>
     </div>
