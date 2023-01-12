@@ -25,6 +25,8 @@ public class Product {
 	private String proUpDate;
 	private String proOriginImg;
 	private String proChangeImg;
+	private String proOriginImg1;
+	private String proChangeImg1;
 	private String proOriginDetailimg;
 	private String proChangeDetailimg;
 	private String status;
@@ -32,6 +34,32 @@ public class Product {
 	
 	//판매자테이블
 	private String selBusName;
+	private String selEmail;
+	private String selName;
+	private String selPhone;
+	private String selAddr;
+	private String selDetailAddr;
+	private String selBusNo;
+	
+	//리뷰테이블
+	private int reviewNo;
+	private int ordNo;
+	private String memEmail;
+	private String reviewImgOrigin;
+	private String reviewImgChange;
+	private String reviewContent;
+	private String reviewDate;
+	private String reviewStar;
+	private String memNick;
+	private String ordOption;
+	
+	
+	
+	
+	/*
+	 * 카테고리테이블 private String cateName;
+	 */
+
 }
 
 
