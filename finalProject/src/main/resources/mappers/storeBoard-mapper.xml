@@ -12,11 +12,30 @@
 		<result column="pro_up_date" property="proUpDate" />
 		<result column="pro_origin_img" property="proOriginImg" />
 		<result column="pro_change_img" property="proChangeImg" />
+		<result column="pro_origin_img1" property="proOriginImg1" />
+		<result column="pro_change_img1" property="proChangeImg1" />
 		<result column="pro_origin_detailimg" property="proOriginDetailimg" />
 		<result column="pro_change_detailimg" property="proChangeDetailimg" />
 		<result column="status" property="status" />
 		<result column="pro_count" property="proCount" />
+		<!-- SELLER -->
 		<result column="sel_bus_name" property="selBusName" />
+		<result column="sel_email" property="selEmail" />
+		<result column="sel_name" property="selName" />
+		<result column="sel_phone" property="selPhone" />
+		<result column="sel_addr" property="selAddr" />
+		<result column="sel_detail_addr" property="selDetailAddr" />
+		<result column="sel_bus_no" property="selBusNo" />
+		<!-- REVIEW -->
+		<result column="ord_no" property="ordNo" />
+		<result column="mem_email" property="memEmail" />
+		<result column="review_img_origin" property="reviewImgOrigin" />
+		<result column="review_img_change" property="reviewImgChange" />
+		<result column="review_content" property="reviewContent" />
+		<result column="review_date" property="reviewDate" />
+		<result column="review_star" property="reviewStar" />
+		<result column="mem_nick" property="memNick" />
+		<result column="ord_option" property="ordOption" />
 	</resultMap>
 	
 
@@ -32,6 +51,7 @@
 			 , sel_bus_name
 			 , pro_name
 			 , pro_price
+			 , cate_no
 		  from product, seller_base
 		  where product.status = 'Y' and product.sel_no = seller_base.sel_no
 		 order by product.pro_no desc
@@ -46,6 +66,12 @@
 	<select id="selectBoard" resultType="Product" resultMap="storeBoardResult">
 		select pro_no
 			 , sel_bus_name
+			 , sel_phone
+			 , sel_bus_no
+			 , sel_name
+			 , sel_addr
+			 , sel_detail_addr
+			 , sel_email
 			 , pro_name
 			 , pro_price
 			 , pro_origin_img
@@ -55,6 +81,20 @@
 		  from product p, seller_base s
 		 where pro_no = #{proNo} and p.sel_no = s.sel_no
 	</select>
+	
+	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
+		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option
+			from product p, review r, member_base m, order_detail o
+		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y'
+	</select>
+	
+	
+	
+	<!-- <select id="selectCateList" resultType="Product" resultMap="storeBoardResult">
+		select cate_no
+			 , cate_name 
+		  from category
+	</select> -->
 
 </mapper>
 

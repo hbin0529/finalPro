@@ -27,6 +27,17 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	public ArrayList<Product> selectList() {
 		return sbDao.selectList(sqlSession);
 	}
+	
+	@Override
+	public ArrayList<Product> selectReviewList(int proNo) {
+		return sbDao.selectReviewList(sqlSession, proNo);
+	}
+	
+	/*
+	 * @Override public ArrayList<Product> selectCateList() { return
+	 * sbDao.selectCateList(sqlSession); }
+	 */
+	
 
 	@Override
 	public int insertBoard(Product p) {

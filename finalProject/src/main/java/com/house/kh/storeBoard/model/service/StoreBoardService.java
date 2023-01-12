@@ -16,14 +16,16 @@ public interface StoreBoardService {
 	int increaseCount(int proNo); //조회수올리기
 	Product selectBoard(int proNo);
 	
+	// 6. 리뷰리스트 (ajax)
+	ArrayList<Product> selectReviewList(int proNo);
+
 	// 4. 게시글삭제
 	int deleteBoard(int boardNo);
 	
 	// 5. 게시글 수정
 	int updateBoard(Product p);
 	
-	// 6. 댓글리스트 (ajax)
-	//ArrayList<Reply> selectReplyList(int boardNo);
+	
 	
 	// 7. 댓글작성 (ajax)
 	//int insertReply(Reply r);
