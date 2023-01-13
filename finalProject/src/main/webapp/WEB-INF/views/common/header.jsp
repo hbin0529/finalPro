@@ -72,8 +72,8 @@
     <header class="top_box">
         <nav class="main_top">
             <div class="main_logo" >
-                <li><a href="">59'HOUSE</a></li>
-                <li><a href="" style="color:black; font-size: 20px; margin-left: 80px;">오구싶은집</a></li>
+                <li><a href="home.com">59'HOUSE</a></li>
+                <li><a href="home.com" style="color:black; font-size: 20px; margin-left: 80px;">오구싶은집</a></li>
             </div>
             <div class="main_category">
                 <ul>
@@ -99,7 +99,7 @@
             <c:if test="${ not empty id }">
                 <ul>
                     <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
-                    <li>${ nick }님 환영합니다</li>
+                    <li>${ nick }</li>
                     <li><a href="logout.me">로그아웃</a></li>
                     <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>

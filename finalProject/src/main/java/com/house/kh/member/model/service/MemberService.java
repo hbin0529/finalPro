@@ -49,4 +49,26 @@ public class MemberService {
 	}
 	
 	
+	//랜덤문구추출
+	public String createComment() {
+		
+		String[] commentPool = {
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				};
+		
+		int randomInt = (int)Math.random()*commentPool.length;
+		String returnComment = commentPool[randomInt];
+		
+		return returnComment;
+	}
+	
+	
+	
+	
+	
+	
 }

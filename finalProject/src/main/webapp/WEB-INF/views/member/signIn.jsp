@@ -10,6 +10,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+   	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+		window.Kakao.init("1dd3ef03f2a09b8946553bf5c5bb032f");
+		
+		function kakaoLogin(){
+			Kakao.Auth.login({
+				scope:'profile_nickname, account_email, gender',
+				success: function(authObj){
+					//토큰관련된 정보
+					//console.log(authObj);
+					window.Kakao.API.request({
+						url:'/v2/user/me',
+						success: res => {
+							const kakao_account = res.kakao_account;
+							//넘어온 정보가 담긴 객체
+							//console.log(kakao_account);
+							var nickname = Object.entries(authObj)
+							$("#kakaoEmail").val(kakao_account.email);
+							$("#kakaoNickname").val(kakao_account.profile.nickname);
+							$("#kakaoHidden").submit();
+						}
+					})
+				}
+			})
+		}
+	</script>
     <style>
         /* 로고폰트 */
         @font-face {
@@ -346,19 +372,21 @@
 <body>
     <div class="flex2 wrap">
         <div class="flex1 d1">
-            <a href="#" class="logoa">
+            <a href="home.com" class="logoa">
                 <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
             </a>
             <span class="wid360 mgtb30" style="text-align: left;">회원가입</span>
             <small class="mgtb30">SNS계정을 통해 편하게 가입하세요</small>
             <div>
-                <a href="#">
-   					<img src="${path}/resources/img/kt.png" alt="" class="sz40 mg10">
- 				</a>
-                <a href="">
+                <a href="" style="visibility:hidden;">
 					<img src="${path}/resources/img/naverL.png" alt="" class="sz40 mg10">
 				</a>
-                <a href="#"><img src="${path}/resources/img/gg.png" alt="" class="sz40 mg10"></a>
+                <a onclick="kakaoLogin();">
+   					<img src="${path}/resources/img/kt.png" alt="" class="sz40 mg10">
+ 				</a>
+                <a href="#" style="visibility:hidden;">
+               	 <img src="${path}/resources/img/gg.png" alt="" class="sz40 mg10">
+                </a>
             </div>
             <hr class="wid360 mgtb10">
             <form action="insert.me" name="regFrm" method="post">
@@ -445,6 +473,10 @@
             </form>
         </div>
     </div>
+    <form id="kakaoHidden" action="kakaoIdControll.me">
+        	<input type="hidden" id="kakaoEmail" name="kakaoUserEmail">
+        	<input type="hidden" id="kakaoNickname" name="kakaoUserNickname">
+        </form>
 </body>
 <script>
     
