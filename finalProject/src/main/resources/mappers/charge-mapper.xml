@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="chargeMapper">
+	<resultMap type="Charge" id="chargeResult">
+		<result column="charge_no" property="chargeNo"/>
+		<result column="charge_email" property="chargeEmail"/>
+		<result column="charge_amount" property="chargeAmount"/>
+		<result column="charge_date" property="chargeDate"/>
+		<result column="charge_status" property="chargeStatus"/>
+ 	</resultMap>
+  
+	<insert id="pointCharge">
+		insert into charge values(charge_seq.nextval, #{chargeEmail}, #{chargeAmount}, sysdate, 'Y')
+	</insert>
+	<update id="pointUpdate">
+		update member_base
+		set mem_point = mem_point + #{chargeAmount}
+		where mem_email = #{chargeEmail}
+	</update>
+
+</mapper>

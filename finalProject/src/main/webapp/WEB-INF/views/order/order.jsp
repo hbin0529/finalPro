@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,7 +165,7 @@
                                 <div>
                                     <div style="display: flex; padding: 16px; box-sizing: border-box;">
                                         <picture>
-                                            <img src="resource/img/MASS아쿠아텍스2인소파2.jpg" alt="" style="width: 64px; height: 64px;">
+                                            <img src="${path}/resources/img/category_chair.png" alt="" style="width: 64px; height: 64px;">
                                         </picture>
                                         <div style="flex: 1 0 0px; align-items: center; margin-left: 10px;">
                                             <div style="font-size: 15px; line-height: 18px; color: rgb(41, 41, 41); margin: 8px 0;">

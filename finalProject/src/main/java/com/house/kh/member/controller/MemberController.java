@@ -43,6 +43,7 @@ public class MemberController {
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
 			session.setAttribute("id", m.getMemEmail());
+			session.setAttribute("nick", loginUser.getMemNick());
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
@@ -52,14 +53,21 @@ public class MemberController {
 		}
 	}
 	
-	
-	
+	//로그아웃
+	@RequestMapping("logout.me")
+	public String logout(HttpSession session, Model m) {
+		session.invalidate();
+		m.addAttribute("alertMsg", "로그아웃되었습니다");
+		return "common/logout";
+	}
 	
 	
 	
 	//로그인페이지로이동
 	@RequestMapping("login.me")
-	public String login() {
+	public String login(HttpSession session) {
+		String comment = mService.createComment();
+		session.setAttribute("randomComment", comment);
 		return "member/login";
 	}
 	
@@ -116,6 +124,38 @@ public class MemberController {
 		}
 	}
 	
+	//카카오아이디로그인시도가 들어왔을떄 처리
+	@RequestMapping("kakaoIdControll.me")
+	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model){
+		
+		int kakaoUserSignChkResult = mService.kakaoUserSignChk(kakaoUserEmail);
+		if(kakaoUserSignChkResult>0) {
+			//이미 존재하는 회원이므로 로그인처리
+			session.setAttribute("id", kakaoUserEmail);
+			session.setAttribute("nick", kakaoUserNickname);
+			return "main";
+		}
+		else {
+			//신규회원이므로 회원가입 후 로그인처리
+			//회원가입처리하기전에 카카오에서 못받은 정보들 마저 입력하게 설정
+			model.addAttribute("kakaoUserEmail", kakaoUserEmail);
+			model.addAttribute("kakaoUserNickname", kakaoUserNickname);
+			if(kakaoGender=="male") {
+				kakaoGender = "M";
+			}else if(kakaoGender=="female") {
+				kakaoGender = "F";
+			}else {
+				kakaoGender = "none";
+			}
+			model.addAttribute("kakaoGender", kakaoGender);
+			return "addInfo.me";
+		}
+		
+	}
+	
+	//추가정보창에 값 박아넣고 밑에 남은정보 받아서 회원가입 버튼 누르면 다시 컨트롤러로 오게
+	//
+	
 	
 	/*
 	//SNS로그인
@@ -137,5 +177,7 @@ public class MemberController {
 		
 	}
 	*/
+	
+	
 	
 }

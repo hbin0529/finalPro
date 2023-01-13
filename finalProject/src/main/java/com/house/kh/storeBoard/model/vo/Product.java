@@ -53,13 +53,18 @@ public class Product {
 	private String memNick;
 	private String ordOption;
 	
+	// 문의테이블
+	int proQueNo;
+	String memId;
+	String proQueType;
+	String proQueContent;
+	String proQueResult;
+	String proQueDate;	
 	
-	
-	
-	/*
-	 * 카테고리테이블 private String cateName;
-	 */
-
+	// 답변테이블
+	int queReplyNo;
+	String queReplyContent;
+	String queReplyDate;
 }
 
 

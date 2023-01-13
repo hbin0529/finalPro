@@ -47,23 +47,17 @@
     .intro_btn button{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: #21d9cb; border: 1px solid #21d9cb; color: white; cursor: pointer; border-radius: 5px;}
 
    /*----------------------------------- 상품 바디 카테고리 바 -----------------------------------*/
-    .product_body{width: 1400px; margin: 0 auto;}
-    .body_category{height: 60px; position: sticky;}
-    .product_body_category{display: flex; background-color: rgb(252, 252, 252); width: 1900px; margin:0 auto; 
-        height: 60px; border-top: 1px solid rgb(214, 214, 214); border-bottom: 1px solid rgb(214, 214, 214); margin-left: -250px; margin-bottom: 50px;position: relative; }
+    .product_body{}
+    .body_category{height: 60px;}
+    .product_body_category{display: flex; background-color: rgb(252, 252, 252); width:1900px; margin-left:-250px;
+        height: 60px; border-top: 1px solid rgb(214, 214, 214); border-bottom: 1px solid rgb(214, 214, 214); margin-bottom: 50px;}
     .product_body_category p{margin-top: 22px; font-family: 'GmarketSansMedium'; font-weight: bolder;}
     .product_body_category a:hover{color: #21d9cb;}
     .product_body_category_review{display: flex;}
     .product_body_category_question{display: flex;}
 
-    /*-----------------------------------  상품 디테일설명 오른쪽 스티커-----------------------------------*/
-    .right_fix_order{width: 350px; font-family: 'Pretendard-Regular';}
-    .right_fix_order select{width: 350px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;}
-    .detail_btn{display: flex;}
-    .detail_btn button{width: 170px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: #21d9cb; border: 1px solid #21d9cb; color: white; cursor: pointer; border-radius: 5px;}
-
     /*-----------------------------------  상품 디테일 설명 -----------------------------------*/
-    .product_detail{width: 1150px; margin: 0 auto; display: flex; margin-top: 50px;}
+    .product_detail{width: 1150px; margin: 0 auto; display: flex; margin-top: 50px; padding-left:200px;}
     .left_detail_img{width:800px; margin-bottom: 50px; margin-right: 20px; }
     #detail_img{width: 800px; margin-bottom:100px; margin-top:50px;}
     .detail_information_table{width: 800px; text-align: left; font-size: 13px; margin-bottom: 100px; height: 300px; border-collapse: collapse; font-family: 'Pretendard-Regular'; }
@@ -145,7 +139,7 @@
                     <div><p style="margin-bottom: 10px; font-size: 25px; font-weight: bolder;">${ p.proName }</p></div>
                     <div class="intro_review">
                         <div><p>★★★★★</p></div>
-                        <div><p>1,234개 리뷰</p></div>
+                        <div><p><span id="rcount">0</span>개 리뷰</p></div>
                     </div>
                     <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;">${ p.proPrice }원</p></div>
                     <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div>
@@ -193,14 +187,14 @@
                 <!--메뉴바-->
                 <div class="body_category">
                     <div class="product_body_category">
-                            <div><p style="width: 220px; margin-left: 580px; "><a href="">상품정보</a></p></div>
+                            <div><p style="width: 220px; margin-left: 680px; "><a href="">상품정보</a></p></div>
                             <div class="product_body_category_review" style="width: 220px;">
-                                <div><a href=""><p style="margin-right: 10px;">리뷰</p></div>
-                                <div><p style="color: gray;"><span id="rcount">0</span></p></a></div>
+                                <div><p style="margin-right: 10px;">리뷰</p></div>
+                                <div><p style="color: gray;"><span id="rcount1">0</span></p></div>
                             </div>
                             <div class="product_body_category_question" style="width: 220px;">
                                 <div><a href=""><p style="margin-right: 10px;">문의</p></div>
-                                <div><p style="color: gray;">1,234</p></a></div>
+                                <div><p style="color: gray;" id="qcount">0</p></a></div>
                             </div>
                         </div>
                     </div>
@@ -245,7 +239,7 @@
                         <div class="bottom_review">
                             <div class="bottom_review_star">
                                 <p>리뷰</p>
-                                <p style="color: #21d9cb; padding-left: 10px;">1,234</p>
+                                <p style="color: #21d9cb; padding-left: 10px;"><span id="rcount2">0</span></p>
                             </div>
                             <div style="display: flex;">
                                 <div class="review_box">
@@ -288,45 +282,7 @@
                         <!--리뷰상세-->
                         <div class="review_detail">
                             <table>
-                            	
-                                <%-- <tr>
-                                    <td rowspan="2" id="review_user_img"><img src="${path}/resources/img/logo_user.png" id="user_img"></td>
-                                    <td colspan="2" id="review_nickname">${ p.memNick }</td>
-                                </tr>
-                                <tr>
-                                    <td id="user_review_star">★★★★★</td>
-                                    <td id="review_date">2023.01.05</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" id="review_option">옵션 : 블랙</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" id="review_main_img"><a href=""><img src="${path}/resources/img/logo_user.png" id="user_review"></a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" id="review_text">침대 너무 이뻐요 침대 너무 이뻐요 침대 너무 이뻐요 침대 너무 이뻐요</td>
-                                </tr> --%>
-                                
-						<%-- value += "<tr>"
-							  +		"<td rowspan="2" id="review_user_img"><img src="${path}/resources/img/logo_user.png" id="user_img"></td>"
-							  +		"<td colspan="2" id="review_nickname">" + list[i].memNick + "</td>"
-							  +  "</tr>"
-							  +  "<tr>"
-							  +		"<td colspan="3" id="review_option">" + list[i].reviewStar + "</td>"
-							  +		"<td id="review_date">" + list[i].reviewDate + "</td>"
-							  +  "</tr>"
-							  +  "<tr>"
-							  +		"<td colspan="3" id="review_option"> 옵션 : " + list[i].ordOption + "</td>"
-							  +  "</tr>"
-							  +  "<tr>"
-							  +		"<td colspan="3" id="review_main_img"><img src="${path}/resources/img/logo_user.png" id="user_review"></td>"		
-							  +  "</tr>"
-							  +  "<tr>"		
-							  +		"<td colspan="3" id="review_text"> + list[i].reviewContent + "</td>"			  
-							  +	 "</tr>"; --%>
-							  
-							  
-                            
+							<!-- 자바스크립트 reviewList -->
                             </table>
 
 
@@ -339,64 +295,23 @@
                             <!--문의상단 바-->
                             <div class="bottom_question_title">
                                 <p>문의</p>
-                                <p>1,234</p>
-                                <div><button>문의하기</button></div>
+                                <p id="qcount1">0</p>
+                                <div><button type="button" data-toggle="modal" data-target="#myModal">문의하기</button></div>
                             </div>
                             <!--질문답변-->
-                            <div class="question_answer">
-                                <div class="question_nickname_date">
-                                    <p>닉네** | 2023.01.05</p>
+                             <div class="question_answer">
+                                <!-- <div class="user_question">
+                                    	
+                                    	문의 ajax
+                                    	
                                 </div>
-                                <div class="bottom_question">
-                                    <div><p>Q</p></div>
-                                    <div>
-                                        <p>
-                                            안녕하세요 프레임을 구매 하고 싶은데요
-                                            지누스 매트리스 30cm Q사이즈 입니다
-                                            이제품에 사용 가능 할까요?
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="bottom_answer_title">
-                                    <div><p>A</p></div>
-                                    <div><p>판매처</p></div>
-                                    <div><p>2023.01.06</p></div><br>
-                                </div>
-                                <div class="bottom_answer">
-                                    <p>
-                                        안녕하세요, 자연을 담은 편안한 공간 올쏘입니다.
-                                        아이비 원목 침대 Q 사이즈에는 2000 * 1500mm 사이즈의 매트리스 사용을 권장합니다.
-                                        문의사항에 도움이 되셨길 바라며, 문의감사드립니다:)
-                                    </p>
-                                </div>
+                                <div class="seller_answer">
+                               
+                               			
+                                    
+                                </div> -->
                             </div>
-                            <div class="question_answer">
-                                <div class="question_nickname_date">
-                                    <p>닉네** | 2023.01.05</p>
-                                </div>
-                                <div class="bottom_question">
-                                    <div><p>Q</p></div>
-                                    <div>
-                                        <p>
-                                            안녕하세요 프레임을 구매 하고 싶은데요
-                                            지누스 매트리스 30cm Q사이즈 입니다
-                                            이제품에 사용 가능 할까요?
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="bottom_answer_title">
-                                    <div><p>A</p></div>
-                                    <div><p>판매처</p></div>
-                                    <div><p>2023.01.06</p></div><br>
-                                </div>
-                                <div class="bottom_answer">
-                                    <p>
-                                        안녕하세요, 자연을 담은 편안한 공간 올쏘입니다.
-                                        아이비 원목 침대 Q 사이즈에는 2000 * 1500mm 사이즈의 매트리스 사용을 권장합니다.
-                                        문의사항에 도움이 되셨길 바라며, 문의감사드립니다:)
-                                    </p>
-                                </div>
-                            </div>
+                            
                             <!--문의 페이징바-->
                             <div class="question_paiging">1  2  3  4  5</div>
                             <!--판매자정보 테이블-->
@@ -415,7 +330,7 @@
                                     </tr>
                                     <tr>
                                         <td>사업장소재지</td>
-                                        <td>${ p.selAddr }+${ p.selDetailAddr }</td>
+                                        <td>${ p.selAddr } ${ p.selDetailAddr }</td>
                                     </tr>
                                     <tr>
                                         <td>고객센터 전화번호</td>
@@ -427,54 +342,19 @@
                                     </tr>
                                     <tr>
                                         <td>사업자 등록번호</td>
-                                        <td>${ selBusNo }</td>
+                                        <td>${ p.selBusNo }</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                    </div>
-
-                    <!--스티커 상품구매-->
-                    <div class="right_fix_order">
-                        <div style="text-align: center;">
-                            <select>
-                                <option>색상선택</option>
-                                <option>BLACK</option>
-                                <option>WHITE</option>
-                            </select>
-                        </div>
-                        <div style="margin-bottom: 30px; text-align: center;">
-                            <select>
-                                <option>수량선택</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                        </div>
-                        <div class="order_price">
-                            <div><p style="font-size: 13px; font-weight: bolder; margin-top: 5px; margin-bottom: 30px; text-align: center;">주문금액</p></div>
-                            <div><p style="width:290px; text-align: right; font-size: 25px; font-weight: bolder;">${ p.proPrice }원</p></div>
-                        </div>
-                        <div style="height: 500px;"></div>
-                        <div class="detail_btn">
-                            <div><button>장바구니</button></div>
-                            <div><button>바로구매</button></div>
-                        </div>
-                    </div>
+                    </div>               
                 </div>
             </div>
         </div>
     </section>
     
     
-    <script type="text/javascript">
+    <script>
 	    $(function(){
 			selectReviewList();
 		})
@@ -492,7 +372,7 @@
 							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
-							  +			"<td colspan='3' id='review_option'>" + list[i].reviewStar + "</td>"
+							  +			"<td id='review_option'>" + list[i].reviewStar + "</td>"
 							  +			"<td id='review_date'>" + list[i].reviewDate + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
@@ -508,13 +388,91 @@
 					}
 					$(".review_detail table").html(value);
 					$("#rcount").text(list.length);
+					$("#rcount1").text(list.length);
+					$("#rcount2").text(list.length);
 				},
 				error:function(){
 					console.log("댓글리스트 조회용 ajax 통신 실패");
 				}
 			});
 		}
+	    
+	    
+	    $(function(){
+			selectQuestionList();
+		})
 		
+		function selectQuestionList(){
+    		$.ajax({
+				url:"qlist.bo",
+				data:{pno:${p.proNo}},
+				success:function(list){
+					let value = "";
+					for(let i in list) {
+						value += "<div class='user_question'>"
+							  + 	"<div class='question_nickname_date'>"
+							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
+							  +		"</div>"
+							  + 	"<div class='bottom_question'>"
+							  +			"<div><p>Q</p></div>"
+							  +			"<div>"
+							  +				"<p>" + list[i].proQueContent + "</p>"
+							  +			"</div>"
+							  +		"</div>"
+							  + "</div>" 
+							  + "<div class='seller_answer'>"
+							  + 	"<div class='bottom_answer_title'>"
+							  + 		"<div><p>A</p></div>"
+							  + 		"<div><p>" + list[i].selBusName + "</p></div>"
+							  + 		"<div><p>" + list[i].queReplyDate + "</p></div>"
+							  +	 	"</div>"
+							  +	 	"<div class='bottom_answer'>"
+							  + 		"<p>"
+							  + 		list[i].queReplyContent
+							  + 		"</p>"
+							  +	 	"</div>"
+							  + "</div>";
+					}
+					$(".question_answer").html(value);
+					$("#qcount").text(list.length);
+					$("#qcount1").text(list.length);
+				},
+				error:function(){
+					console.log("댓글리스트 조회용 ajax 통신 실패");
+				}
+			});
+	    }
+		
+	    
+	   /*  $(function(){
+			 selectAnswerList(); 
+		})
+		
+		function selectAnswerList(){
+    		$.ajax({
+				url:"alist.bo",
+				data:{pno:${p.proNo}},
+				success:function(list){
+					let value = "";
+					for(let i in list) {
+						value += "<div class='bottom_answer_title'>"
+							  + 	"<div><p>A</p></div>"
+							  + 	"<div><p>" + list[i].selBusName + "</p></div>"
+							  + 	"<div><p>" + list[i].queReplyDate + "</p></div>"
+							  +	 "</div>"
+							  +	 "<div class='bottom_answer'>"
+							  + 	"<p>"
+							  + 	list[i].queReplyContent
+							  + 	"</p>"
+							  +	 "</div>";
+					}
+					$(".seller_answer").html(value);
+				},
+				error:function(){
+					console.log("댓글리스트 조회용 ajax 통신 실패");
+				}
+			});
+	    } */
 		
     
     </script>

@@ -65,7 +65,8 @@
             <div class="footer_category">
                 <table>
                     <tr>
-                        <td id="category_name"><a href="">회사소개</a></td>
+											<!-- 이형빈_주문페이지_테스트 링크 -->
+                        <td id="category_name"><a href="order.or">회사소개</a></td>
                         <td id="category_name"><a href="">이용약관</a></td>
                         <td id="category_name"><a href="">공지사항</a></td>
                         <td id="category_name"><a href="">고객의소리</a></td>

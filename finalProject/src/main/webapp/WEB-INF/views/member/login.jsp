@@ -146,13 +146,60 @@
             border-radius: 8px 8px 8px 8px;
             padding: 15px 13px;
         }
+        .mt40 button{
+        	outline:none;
+        	border:none;
+        	background-color: white;
+        }
     </style>
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+		window.Kakao.init("1dd3ef03f2a09b8946553bf5c5bb032f");
+		
+		function kakaoLogin(){
+			Kakao.Auth.login({
+				scope:'profile_nickname, account_email, gender',
+				success: function(authObj){
+					//토큰관련된 정보
+					//console.log(authObj);
+					window.Kakao.API.request({
+						url:'/v2/user/me',
+						success: res => {
+							const kakao_account = res.kakao_account;
+							//넘어온 정보가 담긴 객체
+							//console.log(kakao_account);
+							var nickname = Object.entries(authObj)
+							$("#kakaoEmail").val(kakao_account.email);
+							$("#kakaoNickname").val(kakao_account.profile.nickname);
+							if(kakao_account.gender!=undefined){
+								$("#kakaoGender").val(kakao_account.gender);
+							}else{
+								$("#kakaoGender").val("none");
+							}
+								
+								
+							$("#kakaoHidden").submit(); //이따 테스트 끝나구 주석 풀기 **************
+							
+							//카카오에서넘어온값테스트주석
+							//console.log(kakao_account);
+							//console.log(kakao_account.email);
+							//console.log(kakao_account.gender);
+							//console.log(kakao_account.profile.nickname);
+							
+							
+						}
+					})
+				}
+			})
+		}
+	</script>
 </head>
 <body>
     <div class="flex2 wrap">
         <div class="flex1 d1">
             
-            <a href="#" class="logoa">
+            <a href="home.com" class="logoa">
                 <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
             </a>
             <form action="loginUser.me" class="wid300">
@@ -173,19 +220,24 @@
                 <small>SNS계정으로 간편 로그인/회원가입</small>
             </section>
             <div class="mt40">
-                <a href="#"><img src="${path}/resources/img/naverL.png" alt="" class="size48"></a>
-                <a href="#" class="ml20"><img src="${path}/resources/img/kt.png" alt="" class="size48"></a>
-                <a href="#" class="ml20"><img src="${path}/resources/img/gg.png" alt="" class="size48"></a>
+                <button style="visibility:hidden;"><img src="${path}/resources/img/naverL.png" alt="" class="size48"></button>
+                <button class="ml20" onclick="kakaoLogin();"><img src="${path}/resources/img/kt.png" alt="" class="size48"></button>
+                <button class="ml20" style="visibility:hidden;"><img src="${path}/resources/img/gg.png" alt="" class="size48"></button>
             </div>
             <section class="mt40">로그인에 문제가 있으신가요?</section>
             <hr class="hrwd">
             <div class="underInp">
-                <a href="#">뭐 넣을거 없으면 빼기</a>
+                <a href="#">${ randomComment }</a>
             </div>
         </div>
         <footer>
             ©  bucketplace, Co., Ltd.. All Rights Reserved
         </footer>
+        <form id="kakaoHidden" action="kakaoIdControll.me">
+        	<input type="hidden" id="kakaoEmail" name="kakaoUserEmail">
+        	<input type="hidden" id="kakaoNickname" name="kakaoUserNickname">
+        	<input type="hidden" id="kakaoGender" name="kakaoGender">
+        </form>
     </div>
 </body>
 </html>
