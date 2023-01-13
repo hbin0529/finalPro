@@ -24,8 +24,8 @@ public class Order {
 	private String orderZipcode;
 	private String orderAddr;
 	private String orderDetailAddr;
-	private String orderName;
-	private int orderPhone;
+	private String cusName;
+	private int cusPhone;
 	// 주문자 요청사항
 	private int orderRequest;
 	

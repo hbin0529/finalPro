@@ -72,8 +72,8 @@
     <header class="top_box">
         <nav class="main_top">
             <div class="main_logo" >
-                <li><a href="">59'HOUSE</a></li>
-                <li><a href="" style="color:black; font-size: 20px; margin-left: 80px;">오구싶은집</a></li>
+                <li><a href="home.com">59'HOUSE</a></li>
+                <li><a href="home.com" style="color:black; font-size: 20px; margin-left: 80px;">오구싶은집</a></li>
             </div>
             <div class="main_category">
                 <ul>
@@ -87,6 +87,7 @@
                 <button>검색</button>
              </div>
             <div class="main_login">
+            <c:if test="${ empty id }">
                 <ul>
                     <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
                     <li><a href="login.me">로그인</a></li>
@@ -94,6 +95,15 @@
                     <li><a href="signIn.me">회원가입</a></li>
                     <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
+            </c:if>
+            <c:if test="${ not empty id }">
+                <ul>
+                    <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
+                    <li>${ nick }</li>
+                    <li><a href="logout.me">로그아웃</a></li>
+                    <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
+                </ul>
+            </c:if>
             </div> 
         </nav> 
     </header> 
