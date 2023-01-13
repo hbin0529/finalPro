@@ -179,10 +179,10 @@
 							}
 								
 								
-							//$("#kakaoHidden").submit(); //이따 테스트 끝나구 주석 풀기 **************
+							$("#kakaoHidden").submit(); //이따 테스트 끝나구 주석 풀기 **************
 							
 							//카카오에서넘어온값테스트주석
-							console.log(kakao_account);
+							//console.log(kakao_account);
 							//console.log(kakao_account.email);
 							//console.log(kakao_account.gender);
 							//console.log(kakao_account.profile.nickname);
