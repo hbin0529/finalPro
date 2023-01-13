@@ -53,16 +53,22 @@ public class MemberService {
 	public String createComment() {
 		
 		String[] commentPool = {
-				"1",
-				"2",
-				"3",
-				"4",
-				"5",
+				"\"주먹은 법보다 빠르다\"-강지민-",
+				"\"뭉치면 죽고 흩어지면 산다\"-이것도 강지민-",
+				"\"일찍 일어나는 지렁이가 잡아먹히는거야\"-강지민-",
+				"\"티끌은 모아봤자 티끌이다 \"-강지민-",
+				"\"아프리카 청춘이다 \"-강지민(틀)-",
+				"\"정환아 도와줘 \"-안효빈-",
+				"\"자바 두명 타요\"",
+				"\"오늘 점심도 구내식당이네...\"",
+				"\"콘솔창에 오류메시지가 안뜨네..\"",
+				"\"오늘은 꼭 집가서 해야겠다\"",
+				"\"왜 값이 안넘어가는거야...\""
 				};
 		
-		int randomInt = (int)Math.random()*commentPool.length;
+		int randomInt = (int)(Math.random()*commentPool.length);
+		System.out.println("randomInt는"+randomInt);
 		String returnComment = commentPool[randomInt];
-		
 		return returnComment;
 	}
 	
