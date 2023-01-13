@@ -28,6 +28,9 @@ public interface HomeBoardService {
   	
   	//댓글 작성(ajax)
   	int insertReply(HomeReply hr); 
+  	
+  //댓글 삭제(ajax)
+    int deleteReply(int homeReplyNo);
 
 
 }

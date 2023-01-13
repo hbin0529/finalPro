@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title he
+</title>
 </head>
 <body>
 	<jsp:forward page="WEB-INF/views/main.jsp"/>

@@ -61,18 +61,30 @@ public class HomeBoardController {
       @ResponseBody
 	   @RequestMapping(value="rlist.bo", produces="application/json; charset=utf-8")
 	   public String ajaxSelectReplyList(int bno) {
-		   ArrayList<HomeReply> list = hbService.selectReplyList(bno);
-		   System.out.println(list);
+		   ArrayList<HomeReply> list = hbService.selectReplyList(bno); 
 	         return new Gson().toJson(list);
 	   
 	   }
 	   
 	   @ResponseBody
 	   @RequestMapping(value="rinsert.bo")
-	   public String ajaxSelectReplyList(HomeReply r) {
-		 int result = hbService.insertReply(r);
+	   public String ajaxSelectReplyList(HomeReply hr) {
+		 int result = hbService.insertReply(hr);
 	         return result >0 ? "success" : "fail";
 	   } 
-    
+	   
+	   @ResponseBody
+	   @RequestMapping("delete.bo")
+	   public String deleteBoard(int rbno, HttpSession session, Model model) {  //파일이 있으면 삭제하면 안되기 때문에 파일도 넘겨받아야함
+	      int result = hbService.deleteReply(rbno);
+
+	      session.setAttribute("alertMsg", "성공적으로 답변이 삭제되었습니다.");
+   	       return "redirect:list.bo";  
+
+	   } 
+	   
+
+
+	   
   }
  

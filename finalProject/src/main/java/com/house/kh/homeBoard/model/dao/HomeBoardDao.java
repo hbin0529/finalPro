@@ -33,8 +33,10 @@ public class HomeBoardDao {
     
     public int insertReply(SqlSessionTemplate sqlSession, HomeReply hr) {
     	return sqlSession.insert("homeBoardMapper.insertReply",hr);
-    
+     
     }
-    
+    public int deleteReply(SqlSessionTemplate sqlSession, int homeReplyNo) {
+	   return sqlSession.update("homeBoardMapper.deleteReply", homeReplyNo);
+    }
 
 }
