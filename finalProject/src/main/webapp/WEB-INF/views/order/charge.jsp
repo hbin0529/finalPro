@@ -57,6 +57,8 @@
 	function charge_Submit() {
 	    if($("#agree").is(":checked") == false) {
 	        alert("충전 포인트 및 유효기간 확인 동의를 해주세요.")
+	    } else {
+	    	
 	    }
 	}
 </script>

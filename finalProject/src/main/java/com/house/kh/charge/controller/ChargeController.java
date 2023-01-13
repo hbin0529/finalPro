@@ -29,7 +29,7 @@ public class ChargeController {
 		
 		if(pointChargeResult > 0) {
 			model.addAttribute("alertMsg", "충전이 완료되었습니다.");
-			return "";
+			return "order/chargeCallback";
 		} else {			
 			return "";
 		}
