@@ -33,10 +33,15 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 		return sbDao.selectReviewList(sqlSession, proNo);
 	}
 	
-	/*
-	 * @Override public ArrayList<Product> selectCateList() { return
-	 * sbDao.selectCateList(sqlSession); }
-	 */
+	@Override
+	public ArrayList<Product> selectQuestionList(int proNo) {
+		return sbDao.selectQuestionList(sqlSession, proNo);
+	}
+	
+	@Override
+	public ArrayList<Product> selectAnswerList(int proNo) {
+		return sbDao.selectAnswerList(sqlSession, proNo);
+	}
 	
 
 	@Override

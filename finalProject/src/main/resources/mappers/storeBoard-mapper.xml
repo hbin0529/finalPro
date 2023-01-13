@@ -27,6 +27,7 @@
 		<result column="sel_detail_addr" property="selDetailAddr" />
 		<result column="sel_bus_no" property="selBusNo" />
 		<!-- REVIEW -->
+		<result column="review_no" property="reviewNo" />
 		<result column="ord_no" property="ordNo" />
 		<result column="mem_email" property="memEmail" />
 		<result column="review_img_origin" property="reviewImgOrigin" />
@@ -36,6 +37,17 @@
 		<result column="review_star" property="reviewStar" />
 		<result column="mem_nick" property="memNick" />
 		<result column="ord_option" property="ordOption" />
+		<!-- QUESTION -->
+		<result column="pro_que_no" property="proQueNo" />
+		<result column="mem_id" property="memId" />
+		<result column="pro_que_type" property="proQueType" />
+		<result column="pro_que_content" property="proQueContent" />
+		<result column="pro_que_result" property="proQueResult" />
+		<result column="pro_que_date" property="proQueDate" />
+		<!-- ANSWER -->
+		<result column="que_reply_no" property="queReplyNo" />
+		<result column="que_reply_content" property="queReplyContent" />
+		<result column="que_reply_date" property="queReplyDate" />
 	</resultMap>
 	
 
@@ -49,6 +61,11 @@
 		select pro_no
 			 , pro_origin_img
 			 , sel_bus_name
+			 , sel_name
+			 , sel_email
+			 , sel_bus_no
+			 , sel_addr
+			 , sel_detail_addr
 			 , pro_name
 			 , pro_price
 			 , cate_no
@@ -85,16 +102,24 @@
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
 		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option
 			from product p, review r, member_base m, order_detail o
-		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y'
+		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y' and r.pro_no = #{proNo}
+		  order by r.review_date desc
 	</select>
 	
+	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
+		select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content
+			from member_base m, product_question pq, product p, seller_base s, pro_question_reply a
+		  where m.mem_email = pq.mem_id and p.pro_no = pq.pro_no and pq.status = 'Y' and a.status='Y' and pq.pro_no = #{proNo} and a.pro_no = #{proNo} and and pq.pro_que_no = a.pro_que_no
+		  order by pq.pro_que_date, a.que_reply_date desc
+	</select>
 	
-	
-	<!-- <select id="selectCateList" resultType="Product" resultMap="storeBoardResult">
-		select cate_no
-			 , cate_name 
-		  from category
+	<!-- <select id="selectAnswerList" resultType="Product" resultMap="storeBoardResult">
+		select s.sel_bus_name, a.que_reply_date, a.que_reply_content
+   			from pro_question_reply a, seller_base s, product_question pq
+    		where a.pro_que_no = pq.pro_que_no and s.sel_no = a.sel_no and a.status='Y' and a.pro_no = #{proNo}
+    	order by a.que_reply_date desc
 	</select> -->
+	
 
 </mapper>
 
