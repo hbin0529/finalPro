@@ -65,7 +65,9 @@ public class MemberController {
 	
 	//로그인페이지로이동
 	@RequestMapping("login.me")
-	public String login() {
+	public String login(HttpSession session) {
+		String comment = mService.createComment();
+		session.setAttribute("randomComment", comment);
 		return "member/login";
 	}
 	
@@ -124,7 +126,7 @@ public class MemberController {
 	
 	//카카오아이디로그인시도가 들어왔을떄 처리
 	@RequestMapping("kakaoIdControll.me")
-	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, HttpSession session){
+	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model){
 		
 		int kakaoUserSignChkResult = mService.kakaoUserSignChk(kakaoUserEmail);
 		if(kakaoUserSignChkResult>0) {
@@ -135,10 +137,25 @@ public class MemberController {
 		}
 		else {
 			//신규회원이므로 회원가입 후 로그인처리
-			return "없는새끼임";
+			//회원가입처리하기전에 카카오에서 못받은 정보들 마저 입력하게 설정
+			model.addAttribute("kakaoUserEmail", kakaoUserEmail);
+			model.addAttribute("kakaoUserNickname", kakaoUserNickname);
+			if(kakaoGender=="male") {
+				kakaoGender = "M";
+			}else if(kakaoGender=="female") {
+				kakaoGender = "F";
+			}else {
+				kakaoGender = "none";
+			}
+			model.addAttribute("kakaoGender", kakaoGender);
+			return "addInfo.me";
 		}
 		
 	}
+	
+	//추가정보창에 값 박아넣고 밑에 남은정보 받아서 회원가입 버튼 누르면 다시 컨트롤러로 오게
+	//
+	
 	
 	/*
 	//SNS로그인
