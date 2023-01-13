@@ -52,7 +52,7 @@ public class StoreBoardController {
 		ArrayList<Product> list = sbService.selectReviewList(pno);
 		return new Gson().toJson(list);
 	}
-	
+
 	/* 문의리스트 불러오기 */
 	@ResponseBody
 	@RequestMapping(value = "qlist.bo", produces = "application/json; character=utf-8")
@@ -60,15 +60,16 @@ public class StoreBoardController {
 		ArrayList<Product> list = sbService.selectQuestionList(pno);
 		return new Gson().toJson(list);
 	}
-	
-	/* 답변리스트 불러오기 */
-	@ResponseBody
-	@RequestMapping(value = "alist.bo", produces = "application/json; character=utf-8")
-	public String ajaxSelectAnswerList(int pno) {
-		ArrayList<Product> list = sbService.selectAnswerList(pno);
-		return new Gson().toJson(list);
-	}
-	
-	
+
+	/*
+	 * 답변리스트 불러오기
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "alist.bo", produces =
+	 * "application/json; character=utf-8") public String ajaxSelectAnswerList(int
+	 * pno) { ArrayList<Product> list = sbService.selectAnswerList(pno); return new
+	 * Gson().toJson(list); }
+	 */
 
 }

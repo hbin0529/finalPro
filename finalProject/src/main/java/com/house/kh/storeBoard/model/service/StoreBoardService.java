@@ -24,9 +24,9 @@ public interface StoreBoardService {
 	// 문의리스트 (ajax)
 	ArrayList<Product> selectQuestionList(int proNo);
 	
-	// 답변리스트 (ajax)
-	ArrayList<Product> selectAnswerList(int proNo);
-
+	/*
+	 * // 답변리스트 (ajax) ArrayList<Product> selectAnswerList(int proNo);
+	 */
 
 	// 게시글삭제
 	int deleteBoard(int boardNo);

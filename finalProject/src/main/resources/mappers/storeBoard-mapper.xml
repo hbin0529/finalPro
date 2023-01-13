@@ -107,9 +107,14 @@
 	</select>
 	
 	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
-		select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content
+		select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content, a.status
 			from member_base m, product_question pq, product p, seller_base s, pro_question_reply a
-		  where m.mem_email = pq.mem_id and p.pro_no = pq.pro_no and pq.status = 'Y' and a.status='Y' and pq.pro_no = #{proNo} and a.pro_no = #{proNo} and and pq.pro_que_no = a.pro_que_no
+		  where m.mem_email = pq.mem_id 
+		  		and p.pro_no = pq.pro_no 
+		  		and pq.status = 'Y' 
+		  		and pq.pro_no = #{proNo} 
+		  		and a.pro_no = #{proNo} 
+		  		and pq.pro_que_no = a.pro_que_no 
 		  order by pq.pro_que_date, a.que_reply_date desc
 	</select>
 	

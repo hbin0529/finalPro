@@ -288,6 +288,7 @@
 
                             <!--리뷰 페이징-->
                             <div class="review_paiging">1  2  3  4  5</div>
+                            <hr style="border-color:white; background-color:rgb(300, 300, 300); border-width:(0px 0px 0px 0px); height:1px;">
                         </div>
 
                         <!--문의-->
@@ -384,7 +385,8 @@
 							  +  	"<tr>"		
 							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  
 							  +	 	"</tr>"
-							  + "</tbody>";
+							  + "</tbody>"
+							  + "<hr>";
 					}
 					$(".review_detail table").html(value);
 					$("#rcount").text(list.length);
@@ -421,7 +423,8 @@
 							  +		"</div>"
 							  + "</div>" 
 							  + "<div class='seller_answer'>"
-							  + 	"<div class='bottom_answer_title'>"
+							  if(list[i].status == "Y") {
+						value += 	"<div class='bottom_answer_title'>"
 							  + 		"<div><p>A</p></div>"
 							  + 		"<div><p>" + list[i].selBusName + "</p></div>"
 							  + 		"<div><p>" + list[i].queReplyDate + "</p></div>"
@@ -431,7 +434,12 @@
 							  + 		list[i].queReplyContent
 							  + 		"</p>"
 							  +	 	"</div>"
-							  + "</div>";
+							  + "</div>"
+							  + "<br><br>";
+							  } else {
+						value += "</div>"
+							  + "<br><br>"; 
+							}
 					}
 					$(".question_answer").html(value);
 					$("#qcount").text(list.length);
