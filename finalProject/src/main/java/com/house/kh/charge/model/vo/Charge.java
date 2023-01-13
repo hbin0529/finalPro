@@ -15,10 +15,10 @@ import lombok.ToString;
 @Setter
 public class Charge {
 	
-	// 충전이력번호, 충전이메일(아이디), 충전금액, 충전날짜, 충전처리상태
+	// 충전신청순서번호, 충전이메일(아이디), 충전금액, 충전날짜, 충전처리상태
 	private int chargeNo;
 	private String chargeEmail;
 	private int chargeAmount;
 	private Date chargeDate;
-	private String chargeStatus; 
+	private String chargeStatus;
 }
