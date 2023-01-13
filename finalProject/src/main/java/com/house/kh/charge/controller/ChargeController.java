@@ -20,7 +20,7 @@ public class ChargeController {
 	public String pointCharge(Charge c, Model model, HttpSession session, int point) {
 		String id = (String)session.getAttribute("id");
 		c.setChargeEmail(id);
-		System.out.println(id);
+//		System.out.println(id);
 		c.setChargeAmount(point);
 		
 		

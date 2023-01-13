@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-	alert(${alertMsg})
-	window.close()
+	alert("${alertMsg}");
+	window.close();
 </script>
 <body>
-
+	
 </body>
 </html>
