@@ -9,11 +9,14 @@
 <title>Insert title here</title>
 </head>
   <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css">
+ 
+  
 <body>
-    <jsp:include page="../common/header.jsp"/> 
-     <main class="content">
+ <jsp:include page="../common/header.jsp"/> 
+<main>
+<input type="hidden" value="김김김" id="nicknick">
        <div class="detail_img"><img src="${path}/resources/img/house_img1.png"></div>
-        <section>
+    <section>
         <div>
             <div class="detail_title"><h2>${ h.boardTitle }</h2></div> 
                 <div class="detail_title_author_img">
@@ -80,39 +83,41 @@
      </div>  
       <div class="protect_buttom">
            <img src="${path}/resources/img/protect_buttom.PNG"><div>  
-      </div>  
-      
-      
-       <div align="right">
-                   <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
-                   <a class="btn btn-primary" onclick="postFormSubmit(1);">수정하기</a>
-                   <a class="btn btn-danger" onclick="postFormSubmit(2);">삭제하기</a>
-               </div><br><br>
-      
+      </div>   
        <!-- 댓글 창 -->    
          <table class="table" id="replyArea" style="padding-bottom: 40px;margin-bottom: 5px;">
       
-             <thead>
-                <tr class="detail_content_comment_1">
-                    <td style="width: 5000px;  display: inline-block; margin-top: 40px">댓글(<span id="rcount">0</span>)</td> 
-                </tr>
-                <tr>
-                    <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
-                    <td><textarea placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px;"></textarea></td>
-                    <td><button style="width: 45px; height: 45px; border: 1px solid gainsboro; margin-left: 6px; padding: 6px;" onclick="addReply();" >입력</button></td>
-                </tr>  
-             </thead> 
-             
-        <tbody style="font-family: 'Pretendard-Regular';">  
-        </tbody>  
-       <hr>    
-        </table>    
-       
-        
-      </section>
-	</main> 
-	
-	   <!-- 댓글 ajax -->
+                <thead>  
+                           <tr class="detail_content_comment_1">
+                              <td style="width: 5000px;  display: inline-block; margin-top: 40px">댓글(<span id="rcount">0</span>)</td> 
+                            </tr>
+                
+                     <c:choose>
+                     <c:when test="${ empty id }">
+                          <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
+                           <td><textarea class="form-control" id="content" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px; font-family: 'Pretendard-Regular'; font-size:16px">로그인한 사용자만 이용가능합니다.</textarea></td>
+                           <td><button style="padding:15px;" disabled>입력</button></td>
+                     </c:when>
+                     <c:otherwise>  
+                             <tr>
+                                   <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
+                                  <td><textarea class="form-control" id="content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px;"></textarea></td>
+                                   <td><button onclick="addReply();" style="padding:15px; font-size:17px">입력</button></td>
+                               </tr>  
+                       </c:otherwise>
+                     </c:choose>  
+                 </thead>  
+             <tbody style="font-family: 'Pretendard-Regular';"> 
+              </tbody>  
+               <hr>     
+         </table>     
+         <form id="postForm" action="delete.bo">
+            <input name="rbno" type="hidden" id="test23123">
+         </form>
+   </section>
+</main>   
+         
+      <!-- 댓글 ajax -->
     <script type="text/javascript">
        $(function() {
           selectReplyList();
@@ -125,12 +130,16 @@
              success:function(list) {
                 let value= "";
                 for(let i in list) {
-                   value += "<tr>"  
+                   value += "<tr id='replyNum" + list[i].homeReplyNo + "'>"
                        +    "<th>" + list[i].memNick + "</th>" 
                         +    "<td>" + list[i].homeReplyContent + "</td>"
-                        +    "<td>" + list[i].homeReplyDate + "</td>"
-                        +  "</tr>";
-                        
+                        +    "<td>" + list[i].homeReplyDate  
+                      
+                         if(list[i].memNick==$("#nicknick").val()){
+                           value += "<button value='"+ list[i].homeReplyNo +"' class='testSpan' onclick='a(this.value)'>&ensp;삭제</button>"
+                        }   
+                      value  += "</td>" 
+                        +  "</tr>"; 
                 }
                 $("#replyArea tbody").html(value);
                 $("#rcount").text(list.length);
@@ -142,30 +151,49 @@
        }
        
        function addReply() {
-          if($("#content").val().trim().length != 0) {
-             $.ajax({
-                url:"rinsert.bo",
-                data:{
-                   refBno:${h.boardNo},
-                   replyContent:$("#content").val(),
-                   replyWriter:"${loginUser.userId}"
-                },
-                success:function(result) {
-                   if(result == "success") {
-                      selectReplyList();
-                      $("#content").val("");
+             if($("#content").val().trim().length != 0) {
+                $.ajax({
+                   url:"rinsert.bo",
+                   data:{
+                      refBno:${h.boardNo},
+                      homeReplyContent:$("#content").val(),
+                      memId:"${id}"
+                   },
+                   success:function(result) {
+                      if(result == "success") {
+                         selectReplyList();
+                         $("#content").val(""); 
+                      }
+                   },
+                   error:function() {
+                      console.log("댓글 작성 ajax 통신 실패");
                    }
-                },
-                error:function() {
-                   console.log("댓글 작성 ajax 통신 실패");
-                }
-             });
-          } else {
-             alertify.alert("댓글 작성후 등록해 주세요");
-          }
-       }
-    </script>
-	
+                });
+             } else {
+                alertify.alert("댓글 작성후 등록해 주세요");
+             }
+          }  
+       
+     	function a(no){
+     		
+            $("#postForm #test23123").val(no)
+            //$("#postForm").attr("action", "delete.bo").submit();
+            $("#postForm").submit();
+     	}
+       
+       $(function(){
+          $(document).on("click",$(".testSpan"), function(){
+        	 /*
+             console.log($(".testSpan").text())
+             var inputVal = $(this).siblings("p").val();
+             console.log(inputVal)
+             $("#postForm #test23123").val(inputVal)
+             //$("#postForm").attr("action", "delete.bo").submit();
+             //$("#postForm").submit();
+             */
+          })
+       })  
+     </script> 
     <jsp:include page="../common/footer.jsp"/>
      
 </body>

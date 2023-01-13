@@ -33,9 +33,8 @@
 			</select>
 		</div>
 		<!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼 -->
-		<c:if test="${ not empty loginUser }">
-			<a class="writer_button" style="float: right" href="enrollForm.bo">집들이
-				글쓰기</a>
+		<c:if test="${ not empty id }">
+		<a class="btn btn-outline-primary" style="padding:10px 30px; margin:20px 0  0 860px;" href="enrollForm.bo">글쓰기</a> 
 		</c:if>
 	</form>
 

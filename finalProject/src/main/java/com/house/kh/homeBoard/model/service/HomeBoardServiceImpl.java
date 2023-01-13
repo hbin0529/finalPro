@@ -68,6 +68,11 @@ public class HomeBoardServiceImpl implements HomeBoardService {
 		return hbDao.insertReply(sqlSession, hr);
 
 	}
+
+	@Override
+	public int deleteReply(int homeReplyNo) {
+		return hbDao.deleteReply(sqlSession, homeReplyNo);
+	}
    
     
 }

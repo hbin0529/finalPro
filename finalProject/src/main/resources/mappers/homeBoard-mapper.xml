@@ -23,6 +23,7 @@
   
   <resultMap type="HomeReply" id="homeReplyResult">
     <result column="home_reply_no" property="homeReplyNo" />
+    <result column="ref_bno" property="refBno" /> 
     <result column="mem_id" property="memId" />
     <result column="home_reply_content" property="homeReplyContent" /> 
     <result column="home_reply_date" property="homeReplyDate" /> 
@@ -77,9 +78,14 @@
   </select>
   
   <insert id = "insertReply">
-     insert into reply(home_reply_no, home_reply_content, ref_bno, mem_nick)
-                  values(seq_hrno.nextval, #{homeReplyContent}, #{refBno}, #{memNick})
-     
-  </insert>
+     insert into board_home_reply1(home_reply_no, home_reply_content, ref_bno, mem_id)
+                  values(seq_hrno.nextval, #{homeReplyContent}, #{refBno}, #{memId})
+   
+  </insert> 
   
+  <update id="deleteReply"> 
+        update board_home_reply1 
+          set status = 'N'
+          where home_reply_no = #{homeReplyNo}
+  </update> 
 </mapper>
