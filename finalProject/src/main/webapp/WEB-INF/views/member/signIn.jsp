@@ -220,7 +220,7 @@
                     }else if(jibunAddr != ''){
                         document.getElementById('addr').value = jibunAddress;
                     }
-                    regFrm.detailaddress.focus();
+                    regFrm.memDetailAddr.focus();
                     
                     
                 }
