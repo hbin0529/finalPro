@@ -57,21 +57,48 @@
 		  where status = 'Y'
 	</select>
 	
+	<select id="selectCateListCount" resultType="_int">
+		select count(*)
+			from product pro
+		  where pro.status = 'Y'
+		  and pro.cate_no = #{cateNo}
+	</select>
+	
 	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
 		select pro_no
-			 , pro_origin_img
-			 , sel_bus_name
-			 , sel_name
-			 , sel_email
-			 , sel_bus_no
-			 , sel_addr
-			 , sel_detail_addr
-			 , pro_name
-			 , pro_price
-			 , cate_no
-		  from product, seller_base
-		  where product.status = 'Y' and product.sel_no = seller_base.sel_no
-		 order by product.pro_no desc
+			 , pro.pro_origin_img
+			 , sb.sel_bus_name
+			 , sb.sel_name
+			 , sb.sel_email
+			 , sb.sel_bus_no
+			 , sb.sel_addr
+			 , sb.sel_detail_addr
+			 , pro.pro_name
+			 , pro.pro_price
+			 , pro.cate_no
+		  from product pro, seller_base sb
+		  where pro.sel_no = sb.sel_no 
+		  and pro.status = 'Y'
+		 order by pro.pro_no desc
+	</select>
+	
+	<select id="selectCateList" resultType="Product" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
+		 select pro_no
+			 , pro.pro_origin_img
+			 , sb.sel_bus_name
+			 , sb.sel_name
+			 , sb.sel_email
+			 , sb.sel_bus_no
+			 , sb.sel_addr
+			 , sb.sel_detail_addr
+			 , pro.pro_name
+			 , pro.pro_price
+			 , pro.cate_no
+		  from product pro, seller_base sb
+		  where pro.sel_no = sb.sel_no 
+		  and pro.status = 'Y'
+		  and pro.cate_no = #{cateNo}
+		 order by pro.pro_no desc
 	</select>
 	
 	<update id="increaseCount">

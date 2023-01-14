@@ -7,9 +7,11 @@ import com.house.kh.storeBoard.model.vo.Product;
 public interface StoreBoardService {
 	// 게시판리스트 카운트
 	int selectListCount();
+	int selectCateListCount(Product product);
 	
 	// 게시판리스트 페이지
 	ArrayList<Product> selectList(); //어떤거 가져올지
+	ArrayList<Product> selectCateList(Product product); //어떤거 가져올지
 	
 	// 게시글 작성
 	int insertBoard(Product p);

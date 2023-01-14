@@ -14,9 +14,16 @@ public class StoreBoardDao {
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("storeBoardMapper.selectListCount");
 	}
+	public int selectCateListCount(SqlSessionTemplate sqlSession, Product product) {
+		return sqlSession.selectOne("storeBoardMapper.selectCateListCount", product);
+	}
 	
 	public ArrayList<Product> selectList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectList");
+	}
+	
+	public ArrayList<Product> selectCateList(SqlSessionTemplate sqlSession, Product product) {
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList", product);
 	}
 	
 	public int increaseCount(SqlSessionTemplate sqlSession, int proNo) {
