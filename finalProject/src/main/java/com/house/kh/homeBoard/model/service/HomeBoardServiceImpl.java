@@ -44,14 +44,9 @@ public class HomeBoardServiceImpl implements HomeBoardService {
 	
 	@Override
 	   public int insertBoard(HomeBoard h) { 
-	      return 0;
+		return hbDao.insertBoard(sqlSession, h); 
 	   }
-
-   @Override
-   public int deleteBoard(int boardNo) {
-      return 0;
-   }
-
+ 
    @Override
    public int updateBoard(HomeBoard h) {
       return 0;
@@ -73,6 +68,14 @@ public class HomeBoardServiceImpl implements HomeBoardService {
 	public int deleteReply(int homeReplyNo) {
 		return hbDao.deleteReply(sqlSession, homeReplyNo);
 	}
+	
+
+	 @Override
+	   public int deleteBoard(int boardNo) {
+	      return hbDao.deleteBoard(sqlSession, boardNo);
+	   }
+			
+
    
     
 }

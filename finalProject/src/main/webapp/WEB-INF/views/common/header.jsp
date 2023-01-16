@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- ----------------써머노트 !!!!---------------- -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+ 
+
 <script>
     $(function(){
         $("#header_store").mouseover(function(){
@@ -78,6 +83,12 @@
     .header_store_bar{width: 2500px; margin-left: -900px;}    
 </style>
 <body>
+   <c:if test="${ not empty alertMsg }">
+         <script>
+         alertify.alert("${ alertMsg }");
+         </script>
+         <c:remove var="alertMsg" scope="session" />
+   </c:if> 
     <header class="top_box">
         <nav class="main_top">
             <div class="main_logo" >

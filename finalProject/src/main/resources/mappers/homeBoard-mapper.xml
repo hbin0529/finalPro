@@ -43,6 +43,8 @@
        , board_title
        , board_count 
        , mem_nick 
+       , board_mainimg_origin
+       , board_mainimg_change
      from board_home h, member_base m
      where m.mem_email = h.mem_id and status= 'Y' 
      order by board_no desc 
@@ -61,7 +63,10 @@
        , board_count 
        , to_char(board_date, 'YYYY-MM-DD') as "board_date"<!--보여졌으면 하는 형태로 입력 후 as해줘야함 갖고올때 깔끔히 보이기 위해-->
        , mem_nick
+       , mem_id
        , mem_addr
+       , board_mainimg_origin
+       , board_mainimg_change
      from board_home h, member_base m
      where board_no = #{boardNo}   
      and m.mem_email = h.mem_id and status= 'Y' 
@@ -70,6 +75,7 @@
    <select id="selectReplyList" resultMap="homeReplyResult">
    select home_reply_no
            , mem_nick
+           , mem_id
 		   , home_reply_content
 		   , to_char(home_reply_date, 'YYYY-MM-DD') as "home_reply_date" 
       from board_home_reply1 r, member_base m
@@ -88,4 +94,19 @@
           set status = 'N'
           where home_reply_no = #{homeReplyNo}
   </update> 
+  
+  <!-- 게시판 insert -->
+<insert id="insertBoard"> 
+	 insert into board_home(board_no, home_familyv, home_option, board_title, board_content, mem_id, board_mainimg_origin, board_mainimg_change)
+				values(seq_bno.nextval, #{homeFamilyv}, #{homeOption}, #{boardTitle}, #{boardContent}, #{memId}, #{boardMainimgOrigin}, #{boardMainimgChange})
+				
+</insert>
+  <!-- 게시판 delete -->
+<update id="deleteBoard"> 
+        update board_home 
+          set status = 'N'
+          where board_no = #{boardNo}
+  </update>
+  
+  
 </mapper>
