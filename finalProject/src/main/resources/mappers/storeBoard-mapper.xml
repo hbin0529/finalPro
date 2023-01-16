@@ -124,6 +124,8 @@
 			 , p.pro_change_img
 			 , p.pro_origin_detailimg
 			 , p.pro_change_detailimg
+			 , p.pro_white_stock
+			 , p.pro_black_stock
 		  from product p, seller_base s
 		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no
 	</select>
@@ -163,6 +165,21 @@
 		update product
 			set status = 'N'
 		  where pro_no = #{proNo}
+	</update>
+	
+	<update id="proUpdateBoard">
+		update product
+			set cate_no = #{cateNo}
+				,pro_white_stock = #{proWhiteStock}
+				,pro_black_stock = #{proBlackStock}
+				,pro_name = #{proName}
+				,pro_price = #{proPrice}
+				,pro_origin_img = #{proOriginImg}
+				,pro_change_img = #{proChangeImg}
+				,pro_origin_detailimg = #{proOriginDetailimg}
+				,pro_change_detailimg = #{proChangeDetailimg}
+				,pro_origin_img1 = #{proOriginImg1}
+		   where pro_no = #{proNo}
 	</update>
 
 </mapper>
