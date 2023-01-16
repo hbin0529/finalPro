@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주문/결제</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script>
     $(function(){
         $("#header_store").mouseover(function(){
@@ -169,7 +171,7 @@
                                         </picture>
                                         <div style="flex: 1 0 0px; align-items: center; margin-left: 10px;">
                                             <div style="font-size: 15px; line-height: 18px; color: rgb(41, 41, 41); margin: 8px 0;">
-                                                상품명을 등록하면되는데 이걸 어떻게 해야할까요
+                                                	상품명을 등록하면되는데 이걸 어떻게 해야할까요
                                             </div>
                                             <div style="display: flex; -webkit-box-align: center; align-items: center; margin-top: 11px;">
                                                 <span style="font-size: 14px; line-height: 17px; color: rgb(41, 41, 41); font-weight: bold;">가격45,000원</span>
@@ -188,6 +190,28 @@
                     <div style="margin: 0px auto; box-sizing: border-box; width: auto; max-width: 100%; min-height: 1px; display: flex; 
                     -webkit-box-align: center; align-items: center; height: 56px; border-bottom: 1px solid rgb(234, 235, 239);">
                         <div style="font-size: 20px; font-weight: bold;">보유 포인트</div>
+                        <script type="text/javascript">
+                        /* 보유포인트 조회 ajax */
+                        $(function() {
+                        	// setInterval(showUserPoint, 500)
+                        	showUserPoint();
+                        })
+                        
+                        function showUserPoint() {
+                        	console.log("asdasd");
+                			$.ajax({
+                				url: "showPoint.or",
+                				data:{userEmail:"${id}"},
+                				success:function(point){
+               						$("#point_level").val(point);
+               						
+                				},
+                				error:function() {
+                					console.log("보유포인트 조회 ajax 통신 오류");
+                				}
+                			})
+                		}
+                        </script>
                     </div>
                     <div style="overflow: hidden; margin: -3px; padding: 23px 3px 3px; box-sizing: border-box;"> 
                         <div style="margin: 0px auto; box-sizing: border-box; width: auto; max-width: 100%; min-height: 1px;">
@@ -197,6 +221,9 @@
                                             border-color: #21d9cb; color: #21d9cb; margin-left: 8px; padding: 11px 10px; min-height: 40px; cursor: pointer;">
                                         	충전하기
                                 </button>
+                                
+                                <!-- 새로고침 버튼 -->
+                               	<img style="display:flex; width: 30px; height: 30px; margin-left: 12px; margin-top: 5px; cursor: pointer;" alt="새로고침" src="${path}/resources/img/refresh.png" onclick="showUserPoint();">            
                             </div>
                         </div>
                     </div>
