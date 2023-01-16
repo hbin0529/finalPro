@@ -82,7 +82,7 @@ public class SellerController {
 			session.setAttribute("id", s.getSelEmail());
 			session.setAttribute("nick", loginUser.getSelBusName());
 			session.setAttribute("permit", loginUser.getMemPermit());
-			System.out.println(loginUser.getMemPermit());
+			session.setAttribute("selNo", loginUser.getSelNo());
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩

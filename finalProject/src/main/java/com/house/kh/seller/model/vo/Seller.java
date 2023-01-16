@@ -14,6 +14,8 @@ import lombok.ToString;
 @Setter
 public class Seller {
 	
+	
+	private int selNo;
 	private String selEmailF;
 	private String selEmailS;
 	private String selEmail;
@@ -30,5 +32,7 @@ public class Seller {
 	private String selStatus;
 	private String selInter;
 	private String selInterIntroduce;
+	
+	//사라짐?
 	
 }

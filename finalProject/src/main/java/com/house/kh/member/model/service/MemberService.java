@@ -68,18 +68,12 @@ public class MemberService {
 				"\"원하는 대로 끄적이다 보면<br>바라는 대로 이루어질거야\"",
 				"\"아주 갑작스럽게,<br>혹은 아주 자연스럽게\"",
 				"\"왜 값이 안넘어가는거야...\"",
-				"외않되",
-				"저기압일때는 고기 앞으로 가라",
-				"불이 꺼지지 않는 이레빌딩 19F<br>-이현규",
 				"쟤 또한 지나가리라<br>-정한나-",
 				"\"내가 쟤 보단 낫지\"의 쟤를 맡고있습니다<br>-강지민-",
-				"yes pain, no gain<br>-이현규-",
-				"yes pain, no gain<br>-이현규-",
 				"\"낮말은 새가 듣고<br> 밥 말은 국밥 먹고싶다..\"<br>-정한나-"
 				};
 		
 		int randomInt = (int)(Math.random()*commentPool.length);
-		System.out.println("randomInt는"+randomInt);
 		String returnComment = commentPool[randomInt];
 		return returnComment;
 	}

@@ -19,13 +19,14 @@
   	<result column="sel_inter_introduce" property="selInterIntroduce"/>
   </resultMap>
   <resultMap type="Seller" id="searchUserResult">
+  	<result column="sel_no" property="selNo"/>
   	<result column="sel_email" property="selEmail"/>
   	<result column="sel_pwd" property="selPwd"/>
   	<result column="sel_bus_name" property="selBusName"/>
   	<result column="mem_permit" property="memPermit"/>
   </resultMap>
   <select id="searchUser" resultMap="searchUserResult">
-  	select sel_email, sel_pwd, sel_bus_name, mem_permit from seller_base where sel_email = #{selEmail}
+  	select sel_no, sel_email, sel_pwd, sel_bus_name, mem_permit from seller_base where sel_email = #{selEmail}
   </select>
   
   <insert id="insertMember">

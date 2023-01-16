@@ -85,10 +85,10 @@
             <div class="footer_sns">
                 <table>
                     <tr>
-                        <td id=""><a href="chat.so"><img src="${path}/resources/img/sns_instagram.png"></a></td>
+                        <td id=""><a href="#"><img src="${path}/resources/img/sns_instagram.png"></a></td>
                         <td id=""><a href="sellerSignIn.se"><img src="${path}/resources/img/sns_facebook.png"></a></td>
                         <td id=""><a href="sellerLogin.se"><img src="${path}/resources/img/sns_youtube.png"></a></td>
-                        <td id=""><a href=""><img src="${path}/resources/img/sns_twitter.png"></a></td>
+                        <td id=""><a href="chat.in"><img src="${path}/resources/img/sns_twitter.png"></a></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="font-family: 'Pretendard-Regular';">* Icons made by Freepik from FLACTICON</td>
