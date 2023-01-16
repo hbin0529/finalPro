@@ -70,7 +70,8 @@ public class MemberService {
 				"\"왜 값이 안넘어가는거야...\"",
 				"쟤 또한 지나가리라<br>-정한나-",
 				"\"내가 쟤 보단 낫지\"의 쟤를 맡고있습니다<br>-강지민-",
-				"\"낮말은 새가 듣고<br> 밥 말은 국밥 먹고싶다..\"<br>-정한나-"
+				"\"낮말은 새가 듣고<br> 밥 말은 국밥 먹고싶다..\"<br>-정한나-",
+				"아니<br>인스타 감성문구<br>넣으려고했는데.."
 				};
 		
 		int randomInt = (int)(Math.random()*commentPool.length);
