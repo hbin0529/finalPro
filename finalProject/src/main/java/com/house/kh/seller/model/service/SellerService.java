@@ -23,10 +23,18 @@ public class SellerService {
 		return insertResult;
 	}
 	
+	//판매자로그인
 	public Seller searchUser(Seller s) {
 		Seller searchUserResult = sDao.searchUser(sqlSession, s);
 		return searchUserResult;
 	}
+	
+	//아이디중복검사
+	public int searchIdVali(String id) {
+		int searchResult = sDao.searchIdVali(sqlSession, id);
+		return searchResult;
+	}
+	
 	
 	
 }

@@ -162,6 +162,8 @@
         .rmmg{margin-bottom: 0px;}.hei190{height: 190px;}.hei550{height: 550px;}
         .emailform{
         	display:flex;
+        }#idChkResult{
+        display:none;
         }
     </style>
         <script>
@@ -192,6 +194,122 @@
                 })
 
             })
+        </script>
+        <script>
+        
+        $(function(){
+        	$("#selEmailF").on('keyup', function(){
+    			idChk();
+    		})
+    		
+    		$("#selEmailS").change(function(){
+    			idChk();
+    		})
+        })
+        
+        function idChk(){
+    		$.ajax({
+    			url:"idChk.se",
+    			data:{
+    				id:$("#selEmailF").val()+"@"+$("#selEmailS").val()
+    			},
+    			success:function(result){
+    				if(result=='Y'){
+    					if($("#selEmailS").val()!='nonSelected'){
+    						if($("#selEmailS").val()!=''&&$("#selEmailS").val()!=null){
+		    					$("#idChkResult").show().text('사용 가능한 아이디입니다.').css({"color":"green"})
+		    					$("#submitButton").attr("disabled", false);
+    						}
+    					}
+    				}else if(result=='N'){
+    					if($("#selEmailS").val()!='nonSelected'){
+    						$("#idChkResult").show().text('이미 가입된 회원 아이디입니다.').css({"color":"red"})
+	    					$("#submitButton").attr("disabled", true);
+    					}
+    				}
+    			},
+    			error:function(){
+    				console.log('ajax통신오류 : function idChk()')
+    			}
+    		})
+    	}
+        
+        //판매자회원가입정규식
+		function sellerInfoSubmit(){
+        	
+			var neccesaryCheck1 = $("#chk1:checked").length;
+		   	var neccesaryCheck2 = $("#chk2:checked").length;
+		   	var neccesaryCheck3 = $("#chk3:checked").length;
+		   	
+		   	if(neccesaryCheck1!=1||neccesaryCheck2!=1||neccesaryCheck3!=1){
+		   		alert('필수 이용약관에 동의해주세요');
+		   		return;
+		   	}
+		   	
+		   	var emailF = document.getElementById("selEmailF").value;
+    		if(emailF==''||emailF==null){
+    			alert('이메일 형식이 올바르지 않습니다.')
+    			return;
+    		}
+    		
+    		var emailS = document.getElementById("selEmailS").value;
+    		if(emailS=='nonSelected'){
+    			alert('이메일 형식이 올바르지 않습니다.')
+    			return;
+    		}
+    		
+		   	var pass = document.getElementById("pass").value;
+		   	var rePass = document.getElementById("repass").value;
+		   	if(pass==rePass&&pass!=null&&pass!=""){
+		   	}else{
+		   		alert("비밀번호를 확인해주세요");
+		   		return;
+		   	}
+		   	
+			var phoneNum = document.getElementById("phoneNum").value;
+		   	var phoneRegExp = /^(010|011)-[0-9]{4}-[0-9]{4}$/
+			if(phoneRegExp.test(phoneNum)){
+			}else{
+				alert("핸드폰 번호를 올바르게 입력해주세요")
+		   		return;
+			}
+			
+			var selBusNum = document.getElementById("selBusNum").value;
+		   	var selBusNumRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{4}$/
+			if(selBusNumRegExp.test(selBusNum)){
+			}else{
+				alert("사업자 번호를 올바르게 입력해주세요")
+		   		return;
+			}
+		   	
+		   	var userName = document.getElementById("selName").value;
+		   	var userNameRegExp = /^[가-힣]{2,5}$/
+		   	if(userNameRegExp.test(userName)){
+		   	}else{
+		   		alert("이름을 올바르게 입력해주세요")
+		   		return;
+		   	}
+		   	
+		   	
+		   	var userDetail = document.getElementById("selDetail").value;
+		   	if(userDetail!=null&&userDetail!=""){
+		   		regFrm.submit();
+		   	}else{
+		   		alert('상세주소를 입력해주세요')
+		   		return;
+		   	}
+		   	
+		   	
+		   	
+		   	
+        }
+        
+        
+        
+        
+        
+        
+        
         </script>
         <!--카카오 주소 api-->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -241,9 +359,9 @@
             <form action="sellerInsert.se" name="regFrm">
                 <span class="wid360 mgtb30" style="text-align: left;">이메일</span>
                 <div class="wid360 alcen emailform">
-                    <input class="sz40p bd1 ilb bora4" name="selEmailF"></input>
+                    <input class="sz40p bd1 ilb bora4" name="selEmailF" id="selEmailF"></input>
                     <span class="mg10 ft20 porel">@</span>
-                    <select class="sz40p bd1 ilb bora4" name="selEmailS">
+                    <select class="sz40p bd1 ilb bora4" name="selEmailS" id="selEmailS">
                         <option value="none">선택해주세요</option>
                         <option value="naver.com">naver.com</option>
                         <option value="nate.com">nate.com</option>
@@ -252,32 +370,27 @@
                         <option value="hanmail.net">hanmail.net</option>
                     </select>
                 </div>
-                <div class="idchkajax wid360">
+                <div class="idchkajax wid360" id="idChkResult">
                     이미있는아이디입니다
                 </div>
 
 
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">비밀번호</span>
-                <div class="inputInfo">영문 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요</div>
+                <div class="inputInfo">(아직테스트중이라 제한없음 1234 ㄱㄱ)</div>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="selPwd">
-                </div>
-                <div class="idchkajax wid360">
-                    이미있는아이디입니다
+                    <input class="sz100p bd1 ilb bora4" name="selPwd" id="pass">
                 </div>
 
 
                 <span class="wid360 mgtb30" style="text-align: left;">비밀번호 확인</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4">
+                    <input class="sz100p bd1 ilb bora4" id="repass">
                 </div>
-                <div class="idchkajax wid360">
-                    이미있는아이디입니다
-                </div>
+                <hr style="margin:50px 0">
 
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">대표자 이름(실명)</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="selName">
+                    <input class="sz100p bd1 ilb bora4" name="selName" placeholder="자음 모음이 합쳐진 한글 2~5글자" id="selName">
                 </div>
                     <div class="idchkajax wid360">
                 </div>
@@ -285,7 +398,7 @@
 
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">판매자 전화번호</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="selPhone">
+                    <input class="sz100p bd1 ilb bora4" name="selPhone" id="phoneNum" placeholder="010(011)-0000-0000">
                 </div>
                     <div class="idchkajax wid360">
                 </div>
@@ -293,7 +406,7 @@
 
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">사업자등록번호</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="selBusNo">
+                    <input class="sz100p bd1 ilb bora4" name="selBusNo" id="selBusNum" placeholder="000-00-0000">
                 </div>
                     <div class="idchkajax wid360">
                 </div>
@@ -330,31 +443,29 @@
                 <div class="idchkajax wid360"></div>
 
 
-                <span class="wid360 mgtb30 rmmg" style="text-align: left;">주소</span>
+                <span class="wid360 mgtb30 rmmg" style="text-align: left;">사업장 주소</span>
                 <div class="wid360 alcen">
                     <input class="sz100p bd1 ilb bora4" name="address" id="addr">
                 </div>
                 <div class="idchkajax wid360"></div>
 
 
-                <span class="wid360 mgtb30 rmmg" style="text-align: left;">상세주소</span>
+                <span class="wid360 mgtb30 rmmg" style="text-align: left;">사업장 상세주소</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="detailaddress">
+                    <input class="sz100p bd1 ilb bora4" name="detailaddress" id="selDetail">
                 </div>
                 <div class="idchkajax wid360"></div>
 
 
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">약관동의</span>
                 <div class="bd1 wid360 terms">
-                    <label for=""><input type="checkbox" id="allchk">전체동의</label>
+                    <label for="allchk"><input type="checkbox" id="allchk">전체동의</label>
                     <label for=""><hr></label>
-                    <label for="" class="necessary"><input type="checkbox" class="chkbox">만 14세 이상입니다</label>
-                    <label for="" class="necessary"><input type="checkbox" class="chkbox">이용약관</label>
-                    <label for="" class="necessary"><input type="checkbox" class="chkbox">개인정보수집 및 이용동의</label>
-                    <label for="" class="choice"><input type="checkbox" class="chkbox">개인정보 마케팅 활용 동의</label>
-                    <label for="" class="choice"><input type="checkbox" class="chkbox">이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신</label>
+                    <label for="chk1" class="necessary"><input type="checkbox" class="chkbox" id="chk1">판매자 회원가입 정책에 동의합니다</label>
+                    <label for="chk2" class="necessary"><input type="checkbox" class="chkbox" id="chk2">이용약관</label>
+                    <label for="chk3" class="necessary"><input type="checkbox" class="chkbox" id="chk3">개인정보수집 및 이용동의</label>
                 </div>
-                <input type="submit" class="submitbut wid360 bora4">
+                <button type="button" id="submitButton" onclick="sellerInfoSubmit();" class="submitbut wid360 bora4">판매자 회원 가입</button>
                 <input type="hidden" name="selEmail">
                 <input type="hidden" name="selStatus">
             </form>
