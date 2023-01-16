@@ -228,8 +228,8 @@
 <body>
     <div class="flex2 wrap">
 	    <div id="choiceLogin">
-		    <label id="mLogChoice" class="selectLogin">멤버로그</label>
-		    <label id="sLogChoice">판매로그</label>
+		    <label id="mLogChoice" class="selectLogin">일반회원</label>
+		    <label id="sLogChoice">판매자회원</label>
 	    </div>
         <div class="flex1 d1" id="memberLog">
             

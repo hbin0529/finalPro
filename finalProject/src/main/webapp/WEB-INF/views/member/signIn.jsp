@@ -477,9 +477,9 @@
         </div>
     </div>
     <form id="kakaoHidden" action="kakaoIdControll.me">
-        	<input type="hidden" id="kakaoEmail" name="kakaoUserEmail">
-        	<input type="hidden" id="kakaoNickname" name="kakaoUserNickname">
-        </form>
+      	<input type="hidden" id="kakaoEmail" name="kakaoUserEmail">
+      	<input type="hidden" id="kakaoNickname" name="kakaoUserNickname">
+    </form>
 </body>
 <script>
     

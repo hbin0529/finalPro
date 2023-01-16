@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.house.kh.member.model.service.MemberService;
@@ -45,9 +46,15 @@ public class MemberController {
 		
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			String[] emailFS = m.getMemEmail().split("@");
+			String emailF = emailFS[0];
+			String emailS = emailFS[1];
+			session.setAttribute("emailF", emailF);
+			session.setAttribute("emailS", emailS);
 			session.setAttribute("id", m.getMemEmail());
 			session.setAttribute("nick", loginUser.getMemNick());
 			session.setAttribute("permit", 1);
+			session.setAttribute("m", loginUser);
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
@@ -140,12 +147,19 @@ public class MemberController {
 	@RequestMapping("kakaoIdControll.me")
 	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model) throws IOException{
 		
-		int kakaoUserSignChkResult = mService.kakaoUserSignChk(kakaoUserEmail);
-		if(kakaoUserSignChkResult>0) {
+		Member m = mService.kakaoUserSignChk(kakaoUserEmail);
+		int mCount = mService.kakaoUserSignChkCount(kakaoUserEmail);
+		if(mCount>0) {
 			//이미 존재하는 회원이므로 로그인처리
+			String[] emailFS = m.getMemEmail().split("@");
+			String emailF = emailFS[0];
+			String emailS = emailFS[1];
+			session.setAttribute("emailF", emailF);
+			session.setAttribute("emailS", emailS);
 			session.setAttribute("id", kakaoUserEmail);
 			session.setAttribute("nick", kakaoUserNickname);
 			session.setAttribute("permit", 1);
+			session.setAttribute("m", m);
 			return "main";
 		}
 		else {
@@ -168,30 +182,6 @@ public class MemberController {
 		
 	}
 	
-	//추가정보창에 값 박아넣고 밑에 남은정보 받아서 회원가입 버튼 누르면 다시 컨트롤러로 오게
-	//
-	
-	
-	/*
-	//SNS로그인
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void login(Model model) throws Exception {
-		//logger.info("login GET .....");
-		
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
-		
-//		SNSLogin googleLogin = new SNSLogin(googleSns);
-//		model.addAttribute("google_url", googleLogin.getNaverAuthURL());
-		
-		// 구글code 발행을 위한 URL 생성 
-		
-		//OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		//String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-		//model.addAttribute("google_url", url);
-		
-	}
-	*/
 	
 	@RequestMapping("kakaoTest.me")
 	public String gogosing() {
@@ -199,11 +189,37 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("myPage.me")
+	public String myPage(String id) {
+		return "member/myPage";
+	}
 	
 	
-	
-	
-	
+	@RequestMapping("updateMem.me")
+	public String updateMem(Member inputM, HttpSession session, Model model, MultipartFile upfile) {
+		
+		
+		System.out.println(inputM);
+		//파일명 유저닉네임이랑 같게
+		
+		
+		
+		
+		if(!inputM.getMemPwd().equals("kakaoSnsLoginUser")) {
+			String encPwd = bcryptPasswordEncoder.encode(inputM.getMemPwd());
+			inputM.setMemPwd(encPwd);
+		}
+		
+		int updateMemberResult = mService.updateMember(inputM);
+		if(updateMemberResult>0) {
+			model.addAttribute("alertMsg", "정상적으로 수정되었습니다. 다시 로그인해주세요");
+			return "main";
+		}else {
+			return "redirect:/";
+		}
+		
+		
+	}
 	
 	
 	

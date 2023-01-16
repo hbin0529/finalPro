@@ -84,6 +84,7 @@ public class SellerController {
 			session.setAttribute("nick", loginUser.getSelBusName());
 			session.setAttribute("permit", loginUser.getMemPermit());
 			session.setAttribute("selNo", loginUser.getSelNo());
+			session.setAttribute("s", loginUser);
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
@@ -105,8 +106,10 @@ public class SellerController {
 	} 
 	
 	
-	
-	
+	@RequestMapping("myPage.se")
+	public String myPage(String id) {
+		return "";
+	}
 	
 	
 	

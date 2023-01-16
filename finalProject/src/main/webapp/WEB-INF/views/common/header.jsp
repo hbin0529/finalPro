@@ -120,7 +120,12 @@
             <c:if test="${ not empty id }">
                 <ul>
                     <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
-                    <li>${ nick }</li>
+                  <c:if test="${ permit > 1 }">
+                    <li><a href="myPage.se">${ nick }</a></li>
+                  </c:if>
+                  <c:if test="${ permit eq 1 }">
+   	                <li><a href="myPage.me">${ nick }</a></li>
+                  </c:if>
                     <li><a href="logout.me">로그아웃</a></li>
                     <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
