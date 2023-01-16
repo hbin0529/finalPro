@@ -53,8 +53,6 @@
 		
 	})
 	
-	// 금액 체크 안하고 
-	
 	// 동의함 체크 안하고 충전하기 클릭시 경고창 띄우기
 	function charge_Submit() {
 		if($("#agree").is(":checked") == false) {
@@ -62,7 +60,8 @@
 			location.reload();
 			return;
 	    }
-		
+		// 금액 체크 안하고 충전하기 클릭시 sumit 되는 오류 수정
+		// location.reload() 새로고침 해서 해결함.
 		if($("#point").val() == 0) {
 			var target = document.getElementById('target_btn');
 			target.disabled = true;
@@ -78,6 +77,7 @@
 			console.log("값이0인가요:else, " + $("#point").val());
 		}
 		chargePoint.submit();
+		
 	}
 </script>
 <link

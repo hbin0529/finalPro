@@ -17,5 +17,4 @@
 		set mem_point = mem_point + #{chargeAmount}
 		where mem_email = #{chargeEmail}
 	</update>
-
 </mapper>
