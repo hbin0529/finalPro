@@ -22,10 +22,20 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	public int selectListCount() {
 		return sbDao.selectListCount(sqlSession);
 	}
+	
+	@Override
+	public int selectCateListCount(Product product) {
+		return sbDao.selectCateListCount(sqlSession, product);
+	}
 
 	@Override
 	public ArrayList<Product> selectList() {
 		return sbDao.selectList(sqlSession);
+	}
+	
+	@Override
+	public ArrayList<Product> selectCateList(Product product) {
+		return sbDao.selectCateList(sqlSession, product);
 	}
 	
 	@Override
@@ -39,14 +49,8 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	}
 	
 	@Override
-	public ArrayList<Product> selectAnswerList(int proNo) {
-		return sbDao.selectAnswerList(sqlSession, proNo);
-	}
-	
-
-	@Override
-	public int insertBoard(Product p) {
-		return 0;
+	public int insertProduct(Product p) {
+		return sbDao.insertProduct(sqlSession, p);
 	}
 
 	@Override

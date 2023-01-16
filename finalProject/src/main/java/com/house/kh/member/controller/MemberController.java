@@ -1,5 +1,8 @@
 package com.house.kh.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.house.kh.member.model.service.MemberService;
 import com.house.kh.member.model.vo.Member;
@@ -44,6 +47,7 @@ public class MemberController {
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
 			session.setAttribute("id", m.getMemEmail());
 			session.setAttribute("nick", loginUser.getMemNick());
+			session.setAttribute("permit", 1);
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
@@ -80,16 +84,24 @@ public class MemberController {
 	//회원가입처리
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model md, HttpSession session) {
-		
-		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
-		m.setMemPwd(encPwd);
-		System.out.println(encPwd);
-		
-		String memberFullEmail = m.getMemEmailF()+"@"+m.getMemEmailS();
+		System.out.println("m  ====== "+m);
+		//kakaoSnsLoginUser
+		if(!m.getMemPwd().equals("kakaoSnsLoginUser")) {
+			String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+			m.setMemPwd(encPwd);
+		}
+		String memberFullEmail = "";
+		if(m.getMemEmail()!=null) {
+			memberFullEmail = m.getMemEmail();
+		}else {
+			memberFullEmail = m.getMemEmailF()+"@"+m.getMemEmailS();
+		}
 		m.setMemEmail(memberFullEmail);
 		
+		System.out.println("m  ====== "+m);
 		
 		int insertMemResult = mService.insertMember(m);
+		System.out.println("m  ====== "+m);
 		if(insertMemResult > 0) {
 			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
 			return "member/login";
@@ -126,13 +138,14 @@ public class MemberController {
 	
 	//카카오아이디로그인시도가 들어왔을떄 처리
 	@RequestMapping("kakaoIdControll.me")
-	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model){
+	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model) throws IOException{
 		
 		int kakaoUserSignChkResult = mService.kakaoUserSignChk(kakaoUserEmail);
 		if(kakaoUserSignChkResult>0) {
 			//이미 존재하는 회원이므로 로그인처리
 			session.setAttribute("id", kakaoUserEmail);
 			session.setAttribute("nick", kakaoUserNickname);
+			session.setAttribute("permit", 1);
 			return "main";
 		}
 		else {
@@ -148,7 +161,9 @@ public class MemberController {
 				kakaoGender = "none";
 			}
 			model.addAttribute("kakaoGender", kakaoGender);
-			return "addInfo.me";
+			model.addAttribute("alertMsg", "사용자 필수정보를 추가로 입력해주세요");
+			
+			return "member/kakaoSignInAddInfo";
 		}
 		
 	}
@@ -177,6 +192,19 @@ public class MemberController {
 		
 	}
 	*/
+	
+	@RequestMapping("kakaoTest.me")
+	public String gogosing() {
+		return "member/kakaoSignInAddInfo";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

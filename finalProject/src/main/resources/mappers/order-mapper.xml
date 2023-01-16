@@ -8,8 +8,18 @@
 		<result column="ord_zipcode" property="orderZipcode"/>
 		<result column="ord_addr" property="orderAddr"/>
 		<result column="ord_detail_addr" property="orderDetailAddr"/>
-		<result column="cus_name" property=cusName/>
+		<result column="cus_name" property="cusName"/>
 		<result column="cus_phone" property="cusPhone"/>
 		<result column="ord_request" property="orderRequest"/>
 	  </resultMap>
+	  <resultMap type="Member" id="memberPoint">
+	  	<result column="mem_point" property="memPoint"/>
+	  </resultMap>
+	 
+	  
+  	<select id="holdPoint" resultMap="memberPoint">
+		select mem_point
+		from member_base
+		where mem_email = #{o}
+	</select>
 </mapper>

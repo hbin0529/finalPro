@@ -136,15 +136,15 @@
                 </div>
                 <div class="product_intro">
                     <div><p style="margin-bottom: 10px;"><a href="" style="color: rgb(109, 108, 108); font-size: 15px; font-weight: bold;">${ p.selBusName }</a></p></div>
-                    <div><p style="margin-bottom: 10px; font-size: 25px; font-weight: bolder;">${ p.proName }</p></div>
+                    <div><p style="margin-bottom: 10px; font-size: 25px; font-weight: bolder;" >${ p.proName }</p></div>
                     <div class="intro_review">
                         <div><p>★★★★★</p></div>
                         <div><p><span id="rcount">0</span>개 리뷰</p></div>
                     </div>
-                    <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;">${ p.proPrice }원</p></div>
-                    <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div>
-                    <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;1/20(금) 이내 도착 예정</p></div>
-                    <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div>
+                    <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;" >${ p.proPrice } 원</p></div>
+                    <input type="hidden" value="${ p.proPrice }" id = "proPrice">
+                    <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div><br>
+                    <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div><br>
                     <div class="intro_home_img" style="margin-bottom: 30px;">
                         <div><img src="${path}/resources/img/logo_user.png" style="width: 30px; margin-left: 10px;"></div>
                         <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">${ p.selBusName }</a></p></div>
@@ -152,33 +152,34 @@
                     <div>
                         <select>
                             <option>색상선택</option>
-                            <option>BLACK</option>
-                            <option>WHITE</option>
+                            <option value="BLACK">BLACK</option>
+                            <option value="WHITE">WHITE</option>
                         </select>
                     </div>
-                    <div>
-                        <select style="margin-bottom: 30px;">
+                    <div id="proCntBox">
+                        <select id="proCnt" style="margin-bottom: 30px;">
                             <option>수량선택</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="add" id="add">직접입력</option>
                         </select>
                     </div>
                     <div class="order_price">
                         <div><p style="font-size: 13px; font-weight: bolder; margin-top: 5px; margin-bottom: 30px;">주문금액</p></div>
-                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;">${ p.proPrice }</p></div>
+                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;" id="sumPrice"></p></div>
                     </div>
                     <div class="intro_btn">
                         <div><button>장바구니</button></div>
                         <div><button>바로구매</button></div>
+                        <div><a href="productWrite.bo">상품올리기</a></div>
                     </div>
                 </div>
             </div>
@@ -284,10 +285,9 @@
                             <table>
 							<!-- 자바스크립트 reviewList -->
                             </table>
-
-
-                            <!--리뷰 페이징-->
-                            <div class="review_paiging">1  2  3  4  5</div>
+                            
+                           
+                           
                         </div>
 
                         <!--문의-->
@@ -312,8 +312,7 @@
                                 </div> -->
                             </div>
                             
-                            <!--문의 페이징바-->
-                            <div class="question_paiging">1  2  3  4  5</div>
+                           
                             <!--판매자정보 테이블-->
                             <div>
                                 <p id="seller_information">판매자 정보</p>
@@ -384,7 +383,8 @@
 							  +  	"<tr>"		
 							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  
 							  +	 	"</tr>"
-							  + "</tbody>";
+							  + "</tbody>"
+							  + "<hr>";
 					}
 					$(".review_detail table").html(value);
 					$("#rcount").text(list.length);
@@ -421,7 +421,8 @@
 							  +		"</div>"
 							  + "</div>" 
 							  + "<div class='seller_answer'>"
-							  + 	"<div class='bottom_answer_title'>"
+							  if(list[i].status == "Y") {
+						value += 	"<div class='bottom_answer_title'>"
 							  + 		"<div><p>A</p></div>"
 							  + 		"<div><p>" + list[i].selBusName + "</p></div>"
 							  + 		"<div><p>" + list[i].queReplyDate + "</p></div>"
@@ -431,7 +432,12 @@
 							  + 		list[i].queReplyContent
 							  + 		"</p>"
 							  +	 	"</div>"
-							  + "</div>";
+							  + "</div>"
+							  + "<br><br>";
+							  } else {
+						value += "</div>"
+							  + "<br><br>"; 
+							}
 					}
 					$(".question_answer").html(value);
 					$("#qcount").text(list.length);
@@ -443,37 +449,16 @@
 			});
 	    }
 		
-	    
-	   /*  $(function(){
-			 selectAnswerList(); 
-		})
-		
-		function selectAnswerList(){
-    		$.ajax({
-				url:"alist.bo",
-				data:{pno:${p.proNo}},
-				success:function(list){
-					let value = "";
-					for(let i in list) {
-						value += "<div class='bottom_answer_title'>"
-							  + 	"<div><p>A</p></div>"
-							  + 	"<div><p>" + list[i].selBusName + "</p></div>"
-							  + 	"<div><p>" + list[i].queReplyDate + "</p></div>"
-							  +	 "</div>"
-							  +	 "<div class='bottom_answer'>"
-							  + 	"<p>"
-							  + 	list[i].queReplyContent
-							  + 	"</p>"
-							  +	 "</div>";
-					}
-					$(".seller_answer").html(value);
-				},
-				error:function(){
-					console.log("댓글리스트 조회용 ajax 통신 실패");
-				}
-			});
-	    } */
-		
+	    $(function() {
+    		$("#proCnt").change(function(e){
+    			$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
+    			if( $("#proCnt").val() == "add" ) { 
+    				$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
+    			};
+    		})
+    	})
+    	
+    	
     
     </script>
     

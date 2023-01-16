@@ -11,11 +11,14 @@
 		<typeAlias type="com.house.kh.seller.model.vo.Seller" alias="Seller" />
 		<typeAlias type="com.house.kh.homeBoard.model.vo.HomeReply" alias="HomeReply" />
 		<typeAlias type="com.house.kh.charge.model.vo.Charge" alias="Charge" />
+		<typeAlias type="com.house.kh.order.model.vo.Order" alias="Order" />
 	</typeAliases> 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
 		<mapper resource="/mappers/storeBoard-mapper.xml" />
 		<mapper resource="/mappers/homeBoard-mapper.xml" />
 		<mapper resource="/mappers/charge-mapper.xml" />
+		<mapper resource="/mappers/seller-mapper.xml" />
+		<mapper resource="/mappers/order-mapper.xml" />
 	</mappers>
 </configuration>

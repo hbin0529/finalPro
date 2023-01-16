@@ -53,16 +53,28 @@ public class MemberService {
 	public String createComment() {
 		
 		String[] commentPool = {
-				"1",
-				"2",
-				"3",
-				"4",
-				"5",
+				"\"주먹은 법보다 빠르다\"-강지민-",
+				"\"뭉치면 죽고 흩어지면 산다\"-강지민-",
+				"\"일찍 일어나는 지렁이가 잡아먹히는거야\"-강지민-",
+				"\"티끌은 모아봤자 티끌이다 \"-강지민-",
+				"\"지나친 걱정은 몸과 마음을 해칠 뿐이야\"",
+				"\"정환아 도와줘 \"-안효빈-",
+				"\"자바 두명 타요\"",
+				"\"오늘 점심도 구내식당이네...\"",
+				"\"콘솔창에 오류메시지가 안뜨네..\"",
+				"\"오늘은 꼭 집가서 해야겠다\"",
+				"\"웹소켓도 해야하는데...\"",
+				"\"커피가 약빨이 다됐다\"",
+				"\"원하는 대로 끄적이다 보면<br>바라는 대로 이루어질거야\"",
+				"\"아주 갑작스럽게,<br>혹은 아주 자연스럽게\"",
+				"\"왜 값이 안넘어가는거야...\"",
+				"쟤 또한 지나가리라<br>-정한나-",
+				"\"내가 쟤 보단 낫지\"의 쟤를 맡고있습니다<br>-강지민-",
+				"\"낮말은 새가 듣고<br> 밥 말은 국밥 먹고싶다..\"<br>-정한나-"
 				};
 		
-		int randomInt = (int)Math.random()*commentPool.length;
+		int randomInt = (int)(Math.random()*commentPool.length);
 		String returnComment = commentPool[randomInt];
-		
 		return returnComment;
 	}
 	
