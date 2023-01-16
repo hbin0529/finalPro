@@ -93,13 +93,14 @@
                 <div>판매하는 상품정보를 입력해주세요 ! </div>
             </div>
             <div class="category_box">
-                <form id="productWrite" action="proInsert.bo" method="post" enctype="multipart/form-data">
+                <form id="productUpdate" action="proUpdate.bo" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="selNo2" value="${ selNo }">
+                    <input type="hidden" name="proNo" value="${ p.proNo }"> 
                     <div class="category_form">
                         <div><p>✔ 등록하는 상품의 카테고리를 선택해주세요</p></div>
                         <div>
                             <select name="cateNo" required>
-                                <option>카테고리</option>
+                                <option disabled>카테고리</option>
                                 <option value="1">침대</option>
                                 <option value="2">쇼파</option>
                                 <option value="3">식탁</option>
@@ -113,31 +114,34 @@
                     </div>
                     <div class="product_name">
                         <div><p>✔ 등록하는 상품의 타이틀을 입력해주세요</p></div>
-                        <div><textarea name="proName" placeholder=" 상품타이틀" row="2" style="margin-top:3px; resize:none;" required></textarea></div>
+                        <div><textarea name="proName" placeholder="${ p.proName }" row="2" style="margin-top:3px; resize:none;" value="${ p.proName }" required></textarea></div>
                     </div>
                     <div class="option">
                         <div><p id="option_text">✔ 등록하는 상품의 색상별 수량을 입력해주세요</p></div>
                         <div class="option_number">
                             <div><p>□ WHITE</p></div>
-                            <div><input type="number" name="proWhiteStock" placeholder="수량을 입력해주세요" required></div>
+                            <div><input type="number" name="proWhiteStock"  value="${ p.proWhiteStock }" required></div>
                             <div><p>■ BLACK</p></div>
-                            <div><input type="number" name="proBlackStock" placeholder="수량을 입력해주세요" required></div>
+                            <div><input type="number" name="proBlackStock"  value="${ p.proBlackStock }" required></div>
                             <div><p>💲 개당 가격</p></div>
-                            <div><input type="number" name="proPrice" placeholder="가격을 입력해주세요" required></div>
+                            <div><input type="number" name="proPrice" placeholder="${ p.proPrice }" value="${ p.proPrice }" required></div>
                         </div>
                     </div>
                     <div class="main_img">
                         <div><label for="upfile">✔ 메인 이미지를 두 장 선택해주세요</label></div>
                         <div><input type="file" class="main_file_1" name="upfile" required></div>
+                        <div><p>🎨 현재 업로드된 사진 : ${ p.proOriginImg } </p></div>
                         <div><input type="file" class="main_file_2" name="upfile" required></div>
+                        <div><p>🎨 현재 업로드된 사진 : ${ p.proOriginImg1 } </p></div>
                     </div>
                     <div class="detail_img">
                         <div><label for="upfile">✔ 상품의 상세 이미지를 한 장 선택해주세요</label></div>
                         <div><input type="file" class="main_file_3" name="upfile" required></div>
+                        <div><p>🎨 현재 업로드된 사진 : ${ p.proOriginDetailimg } </p></div>
                     </div>
                     <div class="btn">
-                        <button type="submit">등록하기</button>
-                        <button type="reset">취소하기</button>
+                        <button type="submit">수정하기</button>
+                        <button type="button" onClick="javascript:history.back();">이전으로</button>
                     </div>
                 </form>
             </div>

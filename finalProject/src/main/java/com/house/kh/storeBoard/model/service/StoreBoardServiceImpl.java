@@ -69,8 +69,8 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	}
 
 	@Override
-	public int updateBoard(Product p) {
-		return 0;
+	public int proUpdateBoard(Product p) {
+		return sbDao.proUpdateBoard(sqlSession, p);
 	}
 
 

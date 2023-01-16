@@ -120,7 +120,7 @@ public class StoreBoardController {
 		int result = sbService.insertProduct(p);
 		if(result > 0) { //insert가 잘 되었으면
 			session.setAttribute("alertMsg", "상품이 등록 되었습니다");
-			return "redirect:storeBoardList.bo";
+			return "redirect:storelist.bo";
 		} else {
 			model.addAttribute("errorMsg", "상품 등록 실패");
 			return "common/errorPage";
@@ -141,6 +141,38 @@ public class StoreBoardController {
 			return "common/errorPage";
 		}
 	}
-		
+
+	@RequestMapping("productUpdate.bo") 
+	public String updateForm(int pno, Model model) {
+		model.addAttribute("p", sbService.selectBoard(pno));
+		return "storeBoard/productUpdate";
+	}
+	
+	@RequestMapping("proUpdate.bo") 
+	public String proUpdateBoard(Product p, MultipartFile reupfile, HttpSession session, Model model) {
+		if(!reupfile.getOriginalFilename().equals("")) {
+			if(p.getProOriginImg() != null && p.getProOriginImg1() != null && p.getProOriginDetailimg() != null) {
+				new File(session.getServletContext().getRealPath(p.getProChangeImg())).delete();
+				new File(session.getServletContext().getRealPath(p.getProChangeImg1())).delete();
+				new File(session.getServletContext().getRealPath(p.getProChangeDetailimg())).delete();
+			}
+			String changeName = changeFilename(reupfile, session);
+			
+			p.setProOriginImg(reupfile.getOriginalFilename());
+			p.setProChangeImg("resources/uploadFile" + changeName);
+			p.setProOriginImg1(reupfile.getOriginalFilename());
+			p.setProChangeImg1("resources/uploadFile" + changeName);
+			p.setProOriginDetailimg(reupfile.getOriginalFilename());
+			p.setProChangeDetailimg("resources/uploadFile" + changeName);
+		}
+		int result = sbService.proUpdateBoard(p);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "성공적으로 게시글이 수정되었습니다");
+			return "redirect:productdetail.bo?pno=" + p.getProNo();
+		} else {
+			model.addAttribute("errorMsg", "게시글 수정 실패");
+			return "common/errorPage";
+		}
+	}
 
 }

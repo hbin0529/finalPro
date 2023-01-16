@@ -30,7 +30,7 @@ public interface StoreBoardService {
 	int proDeleteBoard(int proNo);
 	
 	// 게시글 수정
-	int updateBoard(Product p);
+	int proUpdateBoard(Product p);
 	
 	
 	

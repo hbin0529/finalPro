@@ -200,10 +200,8 @@
 						<script>
 							function postFormSubmit(num) {
 								if(num == 1) {
-									$("#postForm").attr("action" , "productUpdateForm.bo").submit();
+									$("#postForm").attr("action" , "productUpdate.bo").submit();
 								} else {
-									
-									
 									$("#postForm").attr("action" , "productDelete.bo").submit();
 								}
 							}

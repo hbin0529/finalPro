@@ -50,5 +50,8 @@ public class StoreBoardDao {
 		return sqlSession.update("storeBoardMapper.proDeleteBoard", proNo); 
 	}
 
+	public int proUpdateBoard(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.update("storeBoardMapper.proUpdateBoard", p); 
+	}
 	
 }
