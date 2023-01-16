@@ -87,7 +87,7 @@ public class SellerController {
 		}else {
 			//로그인실패, 에러페이지로 포워딩
 			model.addAttribute("errorMsg", "로그인 실패");
-			return "seller/login";
+			return "seller/sellerSignIn";
 			
 		}
 	}
