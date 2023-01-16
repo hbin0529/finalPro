@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="sellerMapper">
+  <resultMap type="Seller" id="sellerResult">
+  	<result column="sel_no" property="selNo"/>
+  	<result column="sel_email" property="selEmail"/>
+  	<result column="sel_pwd" property="selPwd"/>
+  	<result column="sel_name" property="selName"/>
+  	<result column="sel_busname" property="selBusName"/>
+  	<result column="sel_phone" property="selPhone"/>
+  	<result column="sel_bus_no" property="selBusNo"/>
+  	<result column="sel_zipcode" property="selZipcode"/>
+  	<result column="sel_addr" property="selAddr"/>
+  	<result column="sel_detail_addr" property="selDetailAddr"/>
+  	<result column="mem_permit" property="memPermit"/>
+  	<result column="sel_point" property="selPoint"/>
+  	<result column="sel_status" property="selStatus"/>
+  	<result column="sel_inter" property="selInter"/>
+  	<result column="sel_inter_introduce" property="selInterIntroduce"/>
+  </resultMap>
+  <resultMap type="Seller" id="searchUserResult">
+  	<result column="sel_email" property="selEmail"/>
+  	<result column="sel_pwd" property="selPwd"/>
+  	<result column="sel_bus_name" property="selBusName"/>
+  	<result column="mem_permit" property="memPermit"/>
+  </resultMap>
+  <select id="searchUser" resultMap="searchUserResult">
+  	select sel_email, sel_pwd, sel_bus_name, mem_permit from seller_base where sel_email = #{selEmail}
+  </select>
+  
+  <insert id="insertMember">
+  	insert into seller_base values(sel_seq.nextval, #{selEmail}, #{selPwd}, #{selName}, #{selBusName}, #{selPhone}, #{selBusNo}, #{selZipcode}, #{selAddr}, #{selDetailAddr}, default, 0, default, #{selInter}, #{selInterIntroduce})
+  </insert>
+  
+</mapper>

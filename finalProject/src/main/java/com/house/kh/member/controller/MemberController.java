@@ -47,6 +47,7 @@ public class MemberController {
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
 			session.setAttribute("id", m.getMemEmail());
 			session.setAttribute("nick", loginUser.getMemNick());
+			session.setAttribute("permit", 1);
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
@@ -70,7 +71,6 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String login(HttpSession session) {
 		String comment = mService.createComment();
-		System.out.println("comment는"+comment);
 		session.setAttribute("randomComment", comment);
 		return "member/login";
 	}
@@ -89,8 +89,6 @@ public class MemberController {
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
 			m.setMemPwd(encPwd);
 		}
-		System.out.println("값이 왜 안쳐넘어가는거야"+m.getMemEmail());
-		System.out.println("값이 왜 안쳐넘어가는거야"+m.getMemZipcode());
 		String memberFullEmail = "";
 		if(m.getMemEmail().equals("")||m.getMemEmail()!=null) {
 			memberFullEmail = m.getMemEmail();
@@ -144,6 +142,7 @@ public class MemberController {
 			//이미 존재하는 회원이므로 로그인처리
 			session.setAttribute("id", kakaoUserEmail);
 			session.setAttribute("nick", kakaoUserNickname);
+			session.setAttribute("permit", 1);
 			return "main";
 		}
 		else {
@@ -195,5 +194,15 @@ public class MemberController {
 	public String gogosing() {
 		return "member/kakaoSignInAddInfo";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

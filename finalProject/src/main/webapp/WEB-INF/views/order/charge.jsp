@@ -21,7 +21,6 @@
 	    //
 	
 	    // 동의함 체크시 색 변경
-	    $("#agree").prop("checked", false);
 	    $(".caution_info_danger_agree_label").click(function(){ 
 	        // alert("충전 포인트 및 유효기간 확인 동의를 해주세요.")
 	        if(true == $("#agree").is(":checked")) {
@@ -51,15 +50,34 @@
         $("#500000p").parent("li").click(function() {
  	    	$("#point").attr("value", "500000")
 		})
-	
+		
 	})
-
+	
+	// 금액 체크 안하고 
+	
+	// 동의함 체크 안하고 충전하기 클릭시 경고창 띄우기
 	function charge_Submit() {
-	    if($("#agree").is(":checked") == false) {
-	        alert("충전 포인트 및 유효기간 확인 동의를 해주세요.")
-	    } else {
-	    	
+		if($("#agree").is(":checked") == false) {
+			alert("충전 포인트 및 유효기간 확인 동의를 해주세요.");
+			location.reload();
+			return;
 	    }
+		
+		if($("#point").val() == 0) {
+			var target = document.getElementById('target_btn');
+			target.disabled = true;
+			console.log("비활성화됨");
+			alert("충전할 금액을 선택하세요.");
+			console.log("값이0인가요 : if, " + $("#point").val());
+			location.reload();
+			return;
+		} else {
+			var target = document.getElementById('target_btn');
+			target.disabled = false;
+			console.log("활성화됨");
+			console.log("값이0인가요:else, " + $("#point").val());
+		}
+		chargePoint.submit();
 	}
 </script>
 <link
@@ -69,7 +87,7 @@
 <body>
 <div class="wrap" style="font-family: 'Pretendard-Regular';">
     <div class="container">
-        <form action="pointCharge.or" method="post">
+        <form action="pointCharge.or" method="post" name="chargePoint">
             <div class="sidebar">
                 <div style="border-right: 1px solid #515151; text-align: center; height: 100%;">
                     <img src="${path}/resources/img/lhblogo.jpg" alt="로고1">
@@ -147,7 +165,7 @@
                     </dd>
                 </div>
                 <div class="charge_letgo">
-                    <input class="charge_letgo_input" type="submit" onclick="charge_Submit()" value="충전하기">
+                    <input class="charge_letgo_input" type="button" id="target_btn" onclick="charge_Submit();" value="충전하기">
                 </div>
                 	<input type="hidden" value="0" name="point" id="point">
             </div>
