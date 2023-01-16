@@ -17,6 +17,9 @@ public class SellerDao {
 		return sqlSession.selectOne("sellerMapper.searchUser", s);
 	}
 	
+	public int searchIdVali(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("sellerMapper.searchIdVali", id);
+	}
 	
 	
 }

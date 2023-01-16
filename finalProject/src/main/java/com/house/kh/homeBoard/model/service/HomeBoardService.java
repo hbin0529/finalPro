@@ -11,15 +11,13 @@ public interface HomeBoardService {
       ArrayList<HomeBoard> selectList();  
     
       //집들이게시글 작성
-      int insertBoard(HomeBoard h);
+      int insertBoard(HomeBoard h); 
+
       
       //집들이게시글 상세조회
       int increaseCount(int boardNo);
-      HomeBoard selectBoard(int boardNo);
-      
-      //게시글 삭제
-      int deleteBoard(int boardNo);
-      
+      HomeBoard selectBoard(int boardNo); 
+       
       //게시글 수정
       int updateBoard(HomeBoard h);
       
@@ -32,5 +30,8 @@ public interface HomeBoardService {
   //댓글 삭제(ajax)
     int deleteReply(int homeReplyNo);
 
+    
+  //게시글 삭제
+  	int deleteBoard(int boardNo);
 
 }

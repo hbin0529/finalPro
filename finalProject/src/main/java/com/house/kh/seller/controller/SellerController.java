@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.seller.model.service.SellerService;
@@ -87,9 +88,26 @@ public class SellerController {
 		}else {
 			//로그인실패, 에러페이지로 포워딩
 			model.addAttribute("errorMsg", "로그인 실패");
-			return "seller/login";
+			return "seller/sellerSignIn";
 			
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("idChk.se")
+	public String idChk(String id) {
+		int idChkResult = SService.searchIdVali(id);
+		if(idChkResult>0) {
+			return "N";
+		}else {
+			return "Y";
+		}
+	} 
+	
+	
+	
+	
+	
+	
 	
 }

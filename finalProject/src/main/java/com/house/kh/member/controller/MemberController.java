@@ -84,21 +84,24 @@ public class MemberController {
 	//회원가입처리
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model md, HttpSession session) {
+		System.out.println("m  ====== "+m);
 		//kakaoSnsLoginUser
 		if(!m.getMemPwd().equals("kakaoSnsLoginUser")) {
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
 			m.setMemPwd(encPwd);
 		}
 		String memberFullEmail = "";
-		if(m.getMemEmail().equals("")||m.getMemEmail()!=null) {
+		if(m.getMemEmail()!=null) {
 			memberFullEmail = m.getMemEmail();
 		}else {
 			memberFullEmail = m.getMemEmailF()+"@"+m.getMemEmailS();
 		}
 		m.setMemEmail(memberFullEmail);
 		
+		System.out.println("m  ====== "+m);
 		
 		int insertMemResult = mService.insertMember(m);
+		System.out.println("m  ====== "+m);
 		if(insertMemResult > 0) {
 			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
 			return "member/login";

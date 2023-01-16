@@ -29,6 +29,10 @@
   	select sel_no, sel_email, sel_pwd, sel_bus_name, mem_permit from seller_base where sel_email = #{selEmail}
   </select>
   
+  <select id="searchIdVali" resultType="_int">
+  	select count(*) from seller_base where sel_email = #{id}
+  </select>
+  
   <insert id="insertMember">
   	insert into seller_base values(sel_seq.nextval, #{selEmail}, #{selPwd}, #{selName}, #{selBusName}, #{selPhone}, #{selBusNo}, #{selZipcode}, #{selAddr}, #{selDetailAddr}, default, 0, default, #{selInter}, #{selInterIntroduce})
   </insert>
