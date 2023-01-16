@@ -191,15 +191,13 @@
                     }; 
                 })
 
-
-
             })
         </script>
         <!--카카오 주소 api-->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script>
             function findAddr(){
-                console.log('왜안돌아가냐')
+            	
                 new daum.Postcode({
                     
                     oncomplete: function(data) {
