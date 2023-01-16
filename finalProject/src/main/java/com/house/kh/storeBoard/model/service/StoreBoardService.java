@@ -27,7 +27,7 @@ public interface StoreBoardService {
 	int insertProduct(Product p);
 	
 	// 게시글삭제
-	int deleteBoard(int boardNo);
+	int proDeleteBoard(int proNo);
 	
 	// 게시글 수정
 	int updateBoard(Product p);

@@ -32,20 +32,24 @@
         }
 	a{text-decoration:none; color:black;}
    /*----------------------------------- 상품 헤더 스타일모음-------------------------------------------- */
-    .main_body{width: 1400px; margin: 0 auto;}
+    .main_body{width: 1400px; margin: 0 auto; }
     .product_header{display: flex; width: 1200px; margin: 0 auto; padding-top: 100px;}
     .product_small_img img{width: 100px; margin-bottom: 10px; margin-right: 20px; border-radius: 5px;}
     .product_main_img img{width: 600px; border-radius: 5px; margin-right: 40px; margin-bottom: 100px;}
     .product_intro{margin-top: 10px; font-family: 'Pretendard-Regular';}
-    .intro_review{display: flex; margin-bottom: 10px; font-family: 'Pretendard-Regular';}
+    .intro_review{display: flex; margin-bottom: 10px;}
     .intro_review div:nth-child(1){color: #21d9cb; font-size: 25px;}
     .intro_review div:nth-child(2){font-size: 14px; height: 35px; color: rgb(131, 131, 131); margin-left: 5px; margin-top: 7px;}
     .intro_home_img{display: flex;}
     .product_header select{width: 400px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;}
     .order_price{display: flex;}
-    .intro_btn{display: flex;}
-    .intro_btn button{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: #21d9cb; border: 1px solid #21d9cb; color: white; cursor: pointer; border-radius: 5px;}
-
+    .intro_btn{display: flex; font-family: 'Pretendard-Regular';}
+    #btnbtn{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: #21d9cb; 
+    border: 1px solid #21d9cb; color: white; cursor: pointer; border-radius: 5px; text-align:center;}
+    #btnbtn1{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: black; 
+    border: 1px solid rgb(185, 14, 14); color: white; cursor: pointer; border-radius: 5px; text-align:center;}
+    #buy{margin-top:15px; color:white; font-size: 18px;}
+    #delete{margin-top:15px; color:white; font-size: 18px;}
    /*----------------------------------- 상품 바디 카테고리 바 -----------------------------------*/
     .product_body{}
     .body_category{height: 60px;}
@@ -177,12 +181,38 @@
                         <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;" id="sumPrice"></p></div>
                     </div>
                     <div class="intro_btn">
-                        <div><button>장바구니</button></div>
-                        <div><button>바로구매</button></div>
-                        <div><a href="productWrite.bo">상품올리기</a></div>
+                    	<c:choose>
+	                    	<c:when test="${selNo eq p.selNo }">
+		                        <div id="btnbtn1""><a onClick="postFormSubmit(1);"><p id="delete">수정하기</p></a></div>
+		                        <div id="btnbtn1""><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
+		                        <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
+								<form action="" method="post" id="postForm">
+									<input type="hidden" name="pno" value="${ p.proNo }">
+									<input type="hidden" name="filePath" value="${ p.proChangeImg }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
+								</form>
+		                    </c:when>
+	                        <c:otherwise>
+	                        	<div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
+	                        	<div id="btnbtn"><a href="order.or"><p id="buy">바로구매</p></a></div>
+	                        </c:otherwise>
+                        </c:choose>
+						
+						<script>
+							function postFormSubmit(num) {
+								if(num == 1) {
+									$("#postForm").attr("action" , "productUpdateForm.bo").submit();
+								} else {
+									
+									
+									$("#postForm").attr("action" , "productDelete.bo").submit();
+								}
+							}
+						</script>
+                        
                     </div>
                 </div>
             </div>
+            <a href="productWrite.bo">상품올리기</a>
             
             <div class="product_body">
                 <!--메뉴바-->

@@ -75,7 +75,6 @@
     .btn{display: flex; margin-top: 50px; padding-left: 350px; border: none;}
     .btn button{background-color: #21d9cb; border: 1px solid #21d9cb; color: white; font-size: 20px; width: 200px; padding-top: 10px; padding-bottom: 10px; margin-left: 20px; border-radius: 5px; cursor:pointer;}
 </style>
-
 <body>
     <header class="top_box">
         <nav class="main_top">
@@ -95,7 +94,7 @@
             </div>
             <div class="category_box">
                 <form id="productWrite" action="proInsert.bo" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="selNo" value="${ selNo }" >
+                    <input type="hidden" name="selNo2" value="${ selNo }">
                     <div class="category_form">
                         <div><p>✔ 등록하는 상품의 카테고리를 선택해주세요</p></div>
                         <div>

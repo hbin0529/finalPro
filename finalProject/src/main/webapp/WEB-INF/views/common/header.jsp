@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- ----------------써머노트 !!!!---------------- -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+ 
+
 <script>
     $(function(){
         $("#header_store").mouseover(function(){
@@ -27,6 +32,7 @@
             $(".header_store_dropdown").stop().fadeOut(300);
         })
     })
+   
 </script>  
 <style>
     /* 로고폰트 */
@@ -78,6 +84,12 @@
     .header_store_bar{width: 2500px; margin-left: -900px;}    
 </style>
 <body>
+   <c:if test="${ not empty alertMsg }">
+         <script>
+         alertify.alert("${ alertMsg }");
+         </script>
+         <c:remove var="alertMsg" scope="session" />
+   </c:if> 
     <header class="top_box">
         <nav class="main_top">
             <div class="main_logo" >
@@ -120,24 +132,24 @@
     <div class="header_store_dropdown" >
       <table class="">
           <tr class="">
-              <td><a href=""><img src="${path}/resources/img/category_bed.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_sofa.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_table.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_chair.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_desk.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_closet.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_ledlemp.png" id="store_dropdown_img"></a></td>
-              <td><a href=""><img src="${path}/resources/img/category_makeup.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=1"><img src="${path}/resources/img/category_bed.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=2"><img src="${path}/resources/img/category_sofa.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=3"><img src="${path}/resources/img/category_table.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=4"><img src="${path}/resources/img/category_chair.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=5"><img src="${path}/resources/img/category_desk.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=6"><img src="${path}/resources/img/category_closet.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=7"><img src="${path}/resources/img/category_ledlemp.png" id="store_dropdown_img"></a></td>
+              <td><a href="storelist.bo?cateNo=8"><img src="${path}/resources/img/category_makeup.png" id="store_dropdown_img"></a></td>
           </tr>
           <tr>
-              <td><a href="">침대</a></td>
-              <td><a href="">쇼파</a></td>
-              <td><a href="">식탁</a></td>
-              <td><a href="">의자</a></td>
-              <td><a href="">책상</a></td>
-              <td><a href="">옷장</a></td>
-              <td><a href="">조명</a></td>
-              <td><a href="">화장대</a></td>
+              <td><a href="storelist.bo?cateNo=1">침대</a></td>
+              <td><a href="storelist.bo?cateNo=2">쇼파</a></td>
+              <td><a href="storelist.bo?cateNo=3">식탁</a></td>
+              <td><a href="storelist.bo?cateNo=4">의자</a></td>
+              <td><a href="storelist.bo?cateNo=5">책상</a></td>
+              <td><a href="storelist.bo?cateNo=6">옷장</a></td>
+              <td><a href="storelist.bo?cateNo=7">조명</a></td>
+              <td><a href="storelist.bo?cateNo=8">화장대</a></td>
           </tr>
       </table>
       <hr class="header_store_bar">

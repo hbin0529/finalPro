@@ -8,14 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-  <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css">
- 
-  
+<link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css"> 
 <body>
  <jsp:include page="../common/header.jsp"/> 
-<main>
-<input type="hidden" value="김김김" id="nicknick">
-       <div class="detail_img"><img src="${path}/resources/img/house_img1.png"></div>
+<main> 
+       <div class="detail_img"><img src="${path}/${ h.boardMainimgChange }"></div>
     <section>
         <div>
             <div class="detail_title"><h2>${ h.boardTitle }</h2></div> 
@@ -25,6 +22,29 @@
                       <div class="detail_title_author_date">${ h.boardDate }</div> 
                 </div>  
         </div>
+          <c:if test="${ id eq h.memId }">
+               <div class="del_upd_button">
+                   <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
+                   <a class="update_button" onclick="postFormSubmit(1);">수정하기</a>&ensp;
+                   <a class="delete_button" onclick="postFormSubmit(2);">삭제하기</a>
+               </div>
+         </c:if>
+         
+          <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
+         <form action="" method="post" id="postForm">
+            <input type="hidden" name= "bno" value="${ h.boardNo }">
+            <input type="hidden" name="filePath" value="${ h.boardMainimgChange }">         
+         </form>
+         
+         <script>
+            function postFormSubmit(num) {
+               if(num == 1) {
+                  $("#postForm").attr("action", "updateForm.bo").submit();
+               } else {
+                  $("#postForm").attr("action", "deleteBoard.bo").submit();
+               }
+            }
+         </script>
         
         <div class="project-detail-metadata">
           <table class="project-detail-metadata_table"> 
@@ -44,34 +64,12 @@
                 </tr> 
         </table>
       </div>
-      <div class="detail_content_img">
-        <img src="${path}/resources/img/detail_content_img01.jpeg"> 
-      </div>
+       
       <div class="detail_content_text">
           <p>${ h.boardContent }</p>
-          <br> 
-      </div>
+          <br>  
 
-      <div class="detail_content_img">
-        <h3 style="color: #21d9cb; font-family: 'Pretendard-Regular'; font-weight: bold; font-size: 30px;" >⚡️3초 컷! 집들이 미리보기</h3>
-        <img src="${path}/resources/img/detail_content_img02.jpeg"> 
-      </div>
-      <div class="detail_content_text">
-          <p>2bay에 거실, 주방, 방 2개, 욕실, 발코니가 있는 전형적인 구축 복도식 아파트 구조입니다. 특이한 건 거실과 주방이 직사각형으로 긴 형태입니다. 공사를 진행 하기 전 주방은 매우 좁은 편이었습니니다. 주방과 거실이 작아서 미리 산 가구들을 배치하면 너무 좁아 보이지 않을까.. 걱정했습니다. 또, 수납이 절대적으로 부족한 집이었습니다. 각 방에는 붙박이장을 만들어 수납을 하기로 계획했습니다.</p>
-          <br>
-      </div>
-
-      <div class="detail_content_img"> 
-        <img src="${path}/resources/img/detail_content_img03.jpeg"> 
-      </div>
-      <div class="detail_content_text">
-          <p>인테리어는 자신이 원하는게 무엇인지!를 아는 게 가장 중요하다고 생각합니다.  내가 살 공간이니까요. 저는 취향이 확실한 편이지만 턴 키 상담 전 "나는 어떤 집을 원하지?", "내가 원하는 집의 톤은 어떤 걸까?" 등 스스로에게 끊임없이 질문했습니다.
- </p>
-          <br>
-          <p>더 확실히 저의 취향을 알기 위해 틈이 날 때마다 인스타그램, 블로그, 오늘의 집 등 여러 SNS에 올라온, 마음에 드는 집들을 저장해두었습니다. 나중에 저장한 집들을 찬찬히 살펴보니 제가 원하는 분위기, 색감 등 제가 좋아하는 것을 파악 할 수 있었습니다. 사진들을 토대로 저만의 레퍼런스를 만들기 시작했습니다. 턴키 상담 시 제가 원하는 구도와 분위기를 보여주기 위함이었습니다. 
- </p>
-      </div>
-      <div style="margin-top: 60px;"><h3 style="color: #21d9cb; font-family: 'Pretendard-Regular'; font-weight: bold; font-size:30px;">⚡️오늘의 집 회원 PICK!</h3></div>
+       <div style="margin-top: 60px;"><h3 style="color: #21d9cb; font-family: 'Pretendard-Regular'; font-weight: bold; font-size:30px;">⚡️오늘의 집 회원 PICK!</h3></div>
  <!-- Swiper -->
     <div class="swiper mySwiper"> 
           <div class="swiper-wrapper">
@@ -84,6 +82,15 @@
       <div class="protect_buttom">
            <img src="${path}/resources/img/protect_buttom.PNG"><div>  
       </div>   
+       
+        <%--  <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
+         <form action="" method="post" id="postForm">
+            <input type="hidden" name= "bno" value="${ b.boardNo }">
+            <input type="hidden" name="filePath" value="${ b.changeName }">         
+         </form>
+      
+       --%> 
+      
        <!-- 댓글 창 -->    
          <table class="table" id="replyArea" style="padding-bottom: 40px;margin-bottom: 5px;">
       
@@ -113,7 +120,9 @@
          </table>     
          <form id="postForm" action="delete.bo">
             <input name="rbno" type="hidden" id="test23123">
+            <input name="bno" type="hidden" value="${h.boardNo}">
          </form>
+ <input type="hidden" value="${ nick }" id="nicknick">	
    </section>
 </main>   
          
@@ -130,14 +139,16 @@
              success:function(list) {
                 let value= "";
                 for(let i in list) {
-                   value += "<tr id='replyNum" + list[i].homeReplyNo + "'>"
+                   value += "<tr>"
                        +    "<th>" + list[i].memNick + "</th>" 
                         +    "<td>" + list[i].homeReplyContent + "</td>"
-                        +    "<td>" + list[i].homeReplyDate  
+                        +    "<td>" + list[i].homeReplyDate 
                       
-                         if(list[i].memNick==$("#nicknick").val()){
-                           value += "<button value='"+ list[i].homeReplyNo +"' class='testSpan' onclick='a(this.value)'>&ensp;삭제</button>"
-                        }   
+                        if(list[i].memNick==$("#nicknick").val()){
+                           value += "&ensp;<button value='"+ list[i].homeReplyNo +"' class='testSpan' onclick='a(this.value)'>삭제</button></td>"
+                           		+"</tr>";
+                        } 
+                       
                       value  += "</td>" 
                         +  "</tr>"; 
                 }

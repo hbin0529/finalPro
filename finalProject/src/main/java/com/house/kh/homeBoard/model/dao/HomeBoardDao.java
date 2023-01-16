@@ -38,5 +38,15 @@ public class HomeBoardDao {
     public int deleteReply(SqlSessionTemplate sqlSession, int homeReplyNo) {
 	   return sqlSession.update("homeBoardMapper.deleteReply", homeReplyNo);
     }
+    
+    public int insertBoard(SqlSessionTemplate sqlSession, HomeBoard h) {
+    	return sqlSession.insert("homeBoardMapper.insertBoard", h);
+     
+    }
+    
+    public int deleteBoard(SqlSessionTemplate sqlSession, int boardNo) {
+    	return sqlSession.update("homeBoardMapper.deleteBoard", boardNo);
+    }
+    
 
 }

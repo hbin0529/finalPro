@@ -67,6 +67,7 @@
 	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> 
 		select pro_no
 			 , pro.pro_origin_img
+			 , sb.sel_no
 			 , sb.sel_bus_name
 			 , sb.sel_name
 			 , sb.sel_email
@@ -135,24 +136,34 @@
 	</select>
 	
 	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
-		select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content, a.status
+		select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content, a.status,
+			   pq.status, a.sel_no
 			from member_base m, product_question pq, product p, seller_base s, pro_question_reply a
 		  where m.mem_email = pq.mem_id 
 		  		and p.pro_no = pq.pro_no 
 		  		and pq.status = 'Y' 
-		  		and pq.pro_no = #{proNo} 
+		  		and a.status = 'Y'
+		  		and pq.pro_no = #{proNo}
 		  		and a.pro_no = #{proNo} 
-		  		and pq.pro_que_no = a.pro_que_no 
+		  		and a.sel_no = s.sel_No
+		  		and a.pro_que_no = pq.pro_que_no
 		  order by pq.pro_que_date, a.que_reply_date desc
 	</select>
 	
 	
 	<insert id="insertProduct">
-		insert into product(board_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
+		insert into product(pro_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
 							pro_change_img, pro_origin_detailimg, pro_change_detailimg, pro_origin_img1, pro_change_img1)
 					values(pro_no_seq.nextval, #{selNo}, #{cateNo}, #{proWhiteStock}, #{proBlackStock}, #{proName}, #{proPrice}
-							, #{proOriginIimg}, #{proChangeImg}, #{proOriginDetailimg}, #{proChangeDetailimg}, #{proOriginImg1}, #{proChangeImg1})
+							, #{proOriginImg}, #{proChangeImg}, #{proOriginDetailimg}, #{proChangeDetailimg}, #{proOriginImg1}, #{proChangeImg1})
 	</insert>
+	
+	
+	<update id="proDeleteBoard">
+		update product
+			set status = 'N'
+		  where pro_no = #{proNo}
+	</update>
 
 </mapper>
 

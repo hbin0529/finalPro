@@ -64,8 +64,8 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	}
 
 	@Override
-	public int deleteBoard(int boardNo) {
-		return 0;
+	public int proDeleteBoard(int proNo) {
+		return sbDao.proDeleteBoard(sqlSession, proNo);
 	}
 
 	@Override

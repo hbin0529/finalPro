@@ -50,7 +50,7 @@
 							<div id="col_body">
 								<div class="card shadow-sm">
 									<p id="bno" style="display:none;">${ h.boardNo }</p>
-									<img src="" width="100%" height="225">
+									<img src="${path}/${ h.boardMainimgChange }" width="100%" height="225">
 									<div class="card-body">
 										<p class="card-text_title">${ h.boardTitle }</p>
 										<p class="card-text_name">
