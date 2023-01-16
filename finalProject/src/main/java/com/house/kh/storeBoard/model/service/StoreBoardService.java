@@ -13,9 +13,6 @@ public interface StoreBoardService {
 	ArrayList<Product> selectList(); //어떤거 가져올지
 	ArrayList<Product> selectCateList(Product product); //어떤거 가져올지
 	
-	// 게시글 작성
-	int insertBoard(Product p);
-	
 	// 게시글 상세조회
 	int increaseCount(int proNo); //조회수올리기
 	Product selectBoard(int proNo);
@@ -26,10 +23,9 @@ public interface StoreBoardService {
 	// 문의리스트 (ajax)
 	ArrayList<Product> selectQuestionList(int proNo);
 	
-	/*
-	 * // 답변리스트 (ajax) ArrayList<Product> selectAnswerList(int proNo);
-	 */
-
+	// 게시글 작성
+	int insertProduct(Product p);
+	
 	// 게시글삭제
 	int deleteBoard(int boardNo);
 	

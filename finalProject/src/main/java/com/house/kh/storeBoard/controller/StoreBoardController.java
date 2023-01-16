@@ -1,18 +1,22 @@
 package com.house.kh.storeBoard.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.house.kh.common.model.vo.PageInfo;
-import com.house.kh.common.template.Pagination;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -32,8 +36,7 @@ public class StoreBoardController {
 		}else {
 			list = sbService.selectList();
 			listCount = sbService.selectListCount();
-		}
-		
+		}	
 
 		mv.addObject("list", list);
 		model.addAttribute("listCount", listCount);
@@ -45,10 +48,7 @@ public class StoreBoardController {
 	/* 상품디테일정보 불러오기 */
 	@RequestMapping("productdetail.bo")
 	public ModelAndView selectBoard(int pno, ModelAndView mv) {
-		//int reviewCount = sbService.selectReviewCount();
-		//PageInfo pi = Pagination.getPageInfo(reviewCount, nowPage, 10, 5);
 		
-		//mv.addObject("pi",pi);
 		int result = sbService.increaseCount(pno);
 		if (result > 0) {
 			Product p = sbService.selectBoard(pno);
@@ -75,15 +75,56 @@ public class StoreBoardController {
 		return new Gson().toJson(list);
 	}
 
-	/*
-	 * 답변리스트 불러오기
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "alist.bo", produces =
-	 * "application/json; character=utf-8") public String ajaxSelectAnswerList(int
-	 * pno) { ArrayList<Product> list = sbService.selectAnswerList(pno); return new
-	 * Gson().toJson(list); }
-	 */
+	@RequestMapping("productWrite.bo") // 글쓰는 페이지로 넘겨주기
+	public String productWrite() {
+		return "storeBoard/productWrite";
+	}
+	
+	// 파일 이름바꾸는거 메소드로 정의한것 !
+		public String changeFilename(MultipartFile upfile, HttpSession session) {
+			String originName = upfile.getOriginalFilename();
+			String currentTime = new SimpleDateFormat("yyyyMMdddHHmmss").format(new Date());
+			int ranNum = (int)(Math.random() * 90000 + 10000); //10000~99999까지 랜덤값
+			String ext = originName.substring(originName.lastIndexOf(".")); //이름제일 뒤에서 .뒤에있는것 추출하기 (.jpg)
+			String changeName = currentTime + ranNum + ext;
+			
+			//업로드 시키고자하는 폴더의 물리적인 경로 알아오기
+			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+			
+			try {
+				upfile.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+			return changeName;
+		}
+	
+	
+	@RequestMapping("proInsert.bo") //게시글 입력후 데이터에 넣어주기
+	public String insertBoard(Product p, MultipartFile upfile, HttpSession session, Model model) {
+		
+		//만약 파일이 비어있지 않으면
+		if(!upfile.getOriginalFilename().equals("")) {
+			
+			String changeName = changeFilename(upfile, session);
+			p.setProOriginImg(upfile.getOriginalFilename());
+			p.setProChangeImg("resources/uploadFiles/" + changeName);
+			p.setProOriginImg1(upfile.getOriginalFilename());
+			p.setProChangeImg1("resources/uploadFiles/" + changeName);
+			p.setProOriginDetailimg(upfile.getOriginalFilename());
+			p.setProChangeDetailimg("resources/uploadFiles/" + changeName);
+		}
+		// 넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로가 있는 바뀐이름
+		// 넘어온 파일이 없으면 : 제목, 작성자, 내용
+		int result = sbService.insertProduct(p);
+		if(result > 0) { //insert가 잘 되었으면
+			session.setAttribute("alertMsg", "상품이 등록 되었습니다");
+			return "redirect:storeList.bo";
+		} else {
+			model.addAttribute("errorMsg", "상품 등록 실패");
+			return "common/errorPage";
+		}
+	}
+		
 
 }

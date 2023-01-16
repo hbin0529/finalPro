@@ -143,9 +143,8 @@
                     </div>
                     <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;" >${ p.proPrice } 원</p></div>
                     <input type="hidden" value="${ p.proPrice }" id = "proPrice">
-                    <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div>
-                    <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;1/20(금) 이내 도착 예정</p></div>
-                    <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div>
+                    <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div><br>
+                    <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div><br>
                     <div class="intro_home_img" style="margin-bottom: 30px;">
                         <div><img src="${path}/resources/img/logo_user.png" style="width: 30px; margin-left: 10px;"></div>
                         <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">${ p.selBusName }</a></p></div>
@@ -170,7 +169,7 @@
                             <option value="8">8</option>
                             <option value="9">9</option>
                             <option value="10">10</option>
-                            <option value="add" id="add"></option>
+                            <option value="add" id="add">직접입력</option>
                         </select>
                     </div>
                     <div class="order_price">
@@ -180,6 +179,7 @@
                     <div class="intro_btn">
                         <div><button>장바구니</button></div>
                         <div><button>바로구매</button></div>
+                        <div><a href="productWrite.bo">상품올리기</a></div>
                     </div>
                 </div>
             </div>
@@ -287,9 +287,7 @@
                             </table>
                             
                            
-                            <!--리뷰 페이징-->
-                            <div class="review_paiging">1  2  3  4  5</div> 
-                            <hr style="border-color:white; background-color:rgb(300, 300, 300); border-width:(0px 0px 0px 0px); height:1px;">
+                           
                         </div>
 
                         <!--문의-->
@@ -314,8 +312,7 @@
                                 </div> -->
                             </div>
                             
-                            <!--문의 페이징바-->
-                            <div class="question_paiging">1  2  3  4  5</div>
+                           
                             <!--판매자정보 테이블-->
                             <div>
                                 <p id="seller_information">판매자 정보</p>
@@ -456,7 +453,7 @@
     		$("#proCnt").change(function(e){
     			$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
     			if( $("#proCnt").val() == "add" ) { 
-    				$("#proCntBox").html("<input type='number'>")
+    				$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
     			};
     		})
     	})
