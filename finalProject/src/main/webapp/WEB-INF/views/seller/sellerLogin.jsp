@@ -217,18 +217,10 @@
                 <button class="wid300 but">
                     판매자 로그인
                 </button>
-                <section class="underInp">
-                    <a href="sellerSignIn.se">판매자 회원가입</a>
-                </section>
             </form>
-            <section>
-                <small>SNS계정으로 간편 로그인/회원가입</small>
+            <section class="underInp">
+                <a href="sellerSignIn.se">판매자 회원가입</a>
             </section>
-            <div class="mt40">
-                <button style="visibility:hidden;"><img src="${path}/resources/img/naverL.png" alt="" class="size48"></button>
-                <button class="ml20" onclick="kakaoLogin();"><img src="${path}/resources/img/kt.png" alt="" class="size48"></button>
-                <button class="ml20" style="visibility:hidden;"><img src="${path}/resources/img/gg.png" alt="" class="size48"></button>
-            </div>
             <section class="mt40">로그인에 문제가 있으신가요?</section>
             <hr class="hrwd">
             <div class="underInp">

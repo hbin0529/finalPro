@@ -161,6 +161,8 @@
         }
         .mLabel{background-image: url(${path}/resources/img/male.png);}
         .fLabel{background-image: url(${path}/resources/img/female.png);}#idChkResult{display: none;}#nickChkResult{display:none}
+        #areYouSeller{font-size:8px;}
+        #areYouSeller a{color:rgb(33,217,203); text-decoration: none; }
     </style>
     <script>
     var path = "${path}/resources/"
@@ -376,6 +378,7 @@
                 <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
             </a>
             <span class="wid360 mgtb30" style="text-align: left;">회원가입</span>
+            <span id="areYouSeller"><a href="sellerSignIn.se">혹시 판매자로 회원가입하고 싶으신가요?</a></span>
             <small class="mgtb30">SNS계정을 통해 편하게 가입하세요</small>
             <div>
                 <a href="" style="visibility:hidden;">
