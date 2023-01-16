@@ -70,7 +70,6 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String login(HttpSession session) {
 		String comment = mService.createComment();
-		System.out.println("comment는"+comment);
 		session.setAttribute("randomComment", comment);
 		return "member/login";
 	}
@@ -89,8 +88,6 @@ public class MemberController {
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
 			m.setMemPwd(encPwd);
 		}
-		System.out.println("값이 왜 안쳐넘어가는거야"+m.getMemEmail());
-		System.out.println("값이 왜 안쳐넘어가는거야"+m.getMemZipcode());
 		String memberFullEmail = "";
 		if(m.getMemEmail().equals("")||m.getMemEmail()!=null) {
 			memberFullEmail = m.getMemEmail();
@@ -195,5 +192,15 @@ public class MemberController {
 	public String gogosing() {
 		return "member/kakaoSignInAddInfo";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

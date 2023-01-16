@@ -17,5 +17,6 @@
 		<mapper resource="/mappers/storeBoard-mapper.xml" />
 		<mapper resource="/mappers/homeBoard-mapper.xml" />
 		<mapper resource="/mappers/charge-mapper.xml" />
+		<mapper resource="/mappers/seller-mapper.xml" />
 	</mappers>
 </configuration>
