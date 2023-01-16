@@ -95,10 +95,6 @@
             			location.href='storelist.bo?cateNo='+ categorySeq;
             		})
             	})
-            	
-            	
-            	
-            	
             </script>
      
     </section>

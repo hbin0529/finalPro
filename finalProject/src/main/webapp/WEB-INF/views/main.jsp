@@ -106,17 +106,26 @@
     <div class="store_left_category">
         <ul>
             <li class="left_category">카테고리</li>
-            <li id="left_category"><a href="">침대</a></li>
-            <li id="left_category"><a href="">쇼파</a></li>
-            <li id="left_category"><a href="">식탁</a></li>
-            <li id="left_category"><a href="">의자</a></li>
-            <li id="left_category"><a href="">책상</a></li>
-            <li id="left_category"><a href="">옷장</a></li>
-            <li id="left_category"><a href="">조명</a></li>
-            <li id="left_category"><a href="">화장대</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="1">침대</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="2">쇼파</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="3">식탁</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="4">의자</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="5">책상</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="6">옷장</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="7">조명</a></li>
+            <li id="left_category"><a class="pcate" data-category-seq="8">화장대</a></li>
         </ul>
     </div>  
-
+    
+<script>
+	$(function() {
+		$(".pcate").click(function(e){
+			var categorySeq = e.target.dataset.categorySeq;
+			location.href='storelist.bo?cateNo='+ categorySeq;
+		})
+	})
+	
+</script>
  <!-- -------------------------메인 이미지 슬라이드---------------------------------------- -->        
  
  
