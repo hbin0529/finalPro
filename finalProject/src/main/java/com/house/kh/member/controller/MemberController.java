@@ -47,6 +47,7 @@ public class MemberController {
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
 			session.setAttribute("id", m.getMemEmail());
 			session.setAttribute("nick", loginUser.getMemNick());
+			session.setAttribute("permit", 1);
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
@@ -141,6 +142,7 @@ public class MemberController {
 			//이미 존재하는 회원이므로 로그인처리
 			session.setAttribute("id", kakaoUserEmail);
 			session.setAttribute("nick", kakaoUserNickname);
+			session.setAttribute("permit", 1);
 			return "main";
 		}
 		else {
