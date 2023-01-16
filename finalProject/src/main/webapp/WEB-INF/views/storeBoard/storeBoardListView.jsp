@@ -39,14 +39,14 @@
         <div class="store_left_category">
             <ul>
                 <li class="left_category">카테고리</li>
-		        	<li id="left_category"><a class="pcate">침대</a></li>
-		            <li id="left_category"><a class="pcate">쇼파</a></li>
-		            <li id="left_category"><a class="pcate">식탁</a></li>
-		            <li id="left_category"><a class="pcate">의자</a></li>
-		            <li id="left_category"><a class="pcate">책상</a></li>
-		            <li id="left_category"><a class="pcate">옷장</a></li>
-		            <li id="left_category"><a class="pcate">조명</a></li>
-		            <li id="left_category"><a class="pcate">화장대</a></li>
+		        	<li id="left_category"><a class="pcate" data-category-seq="1">침대</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="2">쇼파</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="3">식탁</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="4">의자</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="5">책상</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="6">옷장</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="7">조명</a></li>
+		            <li id="left_category"><a class="pcate" data-category-seq="8">화장대</a></li>
             </ul>
         </div>
         <div class="store_product_top">
@@ -89,10 +89,10 @@
             			location.href='productdetail.bo?pno='+ $(this).children(".pno").text();
             		})
             	})
-            	
             	$(function() {
-            		$(".left_category1").click(function(){
-            			location.href='productdetail.bo?cateno='+ $(this).children(".pcate>p").text();
+            		$(".pcate").click(function(e){
+            			var categorySeq = e.target.dataset.categorySeq;
+            			location.href='storelist.bo?cateNo='+ categorySeq;
             		})
             	})
             	
