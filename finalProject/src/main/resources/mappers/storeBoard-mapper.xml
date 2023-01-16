@@ -64,7 +64,7 @@
 		  and pro.cate_no = #{cateNo}
 	</select>
 	
-	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
+	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> 
 		select pro_no
 			 , pro.pro_origin_img
 			 , sb.sel_bus_name
@@ -82,7 +82,7 @@
 		 order by pro.pro_no desc
 	</select>
 	
-	<select id="selectCateList" resultType="Product" resultMap="storeBoardResult"> <!-- resultMap이름이 위 resultMap의 아이디랑 같아야함 -->
+	<select id="selectCateList" resultType="Product" resultMap="storeBoardResult"> 
 		 select pro_no
 			 , pro.pro_origin_img
 			 , sb.sel_bus_name
@@ -108,22 +108,23 @@
 	</update>
 	
 	<select id="selectBoard" resultType="Product" resultMap="storeBoardResult">
-		select pro_no
-			 , sel_bus_name
-			 , sel_phone
-			 , sel_bus_no
-			 , sel_name
-			 , sel_addr
-			 , sel_detail_addr
-			 , sel_email
-			 , pro_name
-			 , pro_price
-			 , pro_origin_img
-			 , pro_change_img
-			 , pro_origin_detailimg
-			 , pro_change_detailimg
+		select p.pro_no
+			 , s.sel_bus_name
+			 , s.sel_no
+			 , s.sel_phone
+			 , s.sel_bus_no
+			 , s.sel_name
+			 , s.sel_addr
+			 , s.sel_detail_addr
+			 , s.sel_email
+			 , p.pro_name
+			 , p.pro_price
+			 , p.pro_origin_img
+			 , p.pro_change_img
+			 , p.pro_origin_detailimg
+			 , p.pro_change_detailimg
 		  from product p, seller_base s
-		 where pro_no = #{proNo} and p.sel_no = s.sel_no
+		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no
 	</select>
 	
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
@@ -145,13 +146,13 @@
 		  order by pq.pro_que_date, a.que_reply_date desc
 	</select>
 	
-	<!-- <select id="selectAnswerList" resultType="Product" resultMap="storeBoardResult">
-		select s.sel_bus_name, a.que_reply_date, a.que_reply_content
-   			from pro_question_reply a, seller_base s, product_question pq
-    		where a.pro_que_no = pq.pro_que_no and s.sel_no = a.sel_no and a.status='Y' and a.pro_no = #{proNo}
-    	order by a.que_reply_date desc
-	</select> -->
 	
+	<insert id="insertProduct">
+		insert into product(board_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
+							pro_change_img, pro_origin_detailimg, pro_change_detailimg, pro_origin_img1, pro_change_img1)
+					values(pro_no_seq.nextval, #{selNo}, #{cateNo}, #{proWhiteStock}, #{proBlackStock}, #{proName}, #{proPrice}
+							, #{proOriginIimg}, #{proChangeImg}, #{proOriginDetailimg}, #{proChangeDetailimg}, #{proOriginImg1}, #{proChangeImg1})
+	</insert>
 
 </mapper>
 

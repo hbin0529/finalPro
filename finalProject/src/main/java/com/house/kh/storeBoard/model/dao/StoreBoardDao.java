@@ -42,11 +42,9 @@ public class StoreBoardDao {
 		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectQuestionList", proNo); 
 	}
 	
-	/*
-	 * public ArrayList<Product> selectAnswerList(SqlSessionTemplate sqlSession, int
-	 * proNo) { return
-	 * (ArrayList)sqlSession.selectList("storeBoardMapper.selectAnswerList", proNo);
-	 * }
-	 */
+	public int insertProduct(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("boardMapper.insertProduct", p); 
+	}
+
 	
 }

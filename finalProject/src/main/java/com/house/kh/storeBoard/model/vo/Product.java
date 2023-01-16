@@ -54,17 +54,17 @@ public class Product {
 	private String ordOption;
 	
 	// 문의테이블
-	int proQueNo;
-	String memId;
-	String proQueType;
-	String proQueContent;
-	String proQueResult;
-	String proQueDate;	
+	private int proQueNo;
+	private String memId;
+	private String proQueType;
+	private String proQueContent;
+	private String proQueResult;
+	private String proQueDate;	
 	
 	// 답변테이블
-	int queReplyNo;
-	String queReplyContent;
-	String queReplyDate;
+	private int queReplyNo;
+	private String queReplyContent;
+	private String queReplyDate;
 }
 
 

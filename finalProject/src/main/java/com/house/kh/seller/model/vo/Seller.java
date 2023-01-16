@@ -14,11 +14,11 @@ import lombok.ToString;
 @Setter
 public class Seller {
 	
-	//private int selNo;
+	private int selNo;
 	private String selEmail;
 	private String selPwd;
 	private String selName;
-	//private String selBusName;
+	private String selBusName;
 	private String selPhone;
 	private String selBusNo;
 	private int selZipcode;
