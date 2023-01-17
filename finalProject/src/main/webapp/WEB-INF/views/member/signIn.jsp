@@ -36,6 +36,12 @@
 			})
 		}
 	</script>
+		<c:if test="${ not empty alertMsg }">
+		<script>
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session" />
+	</c:if> 
     <style>
         /* 로고폰트 */
         @font-face {
@@ -477,9 +483,9 @@
         </div>
     </div>
     <form id="kakaoHidden" action="kakaoIdControll.me">
-        	<input type="hidden" id="kakaoEmail" name="kakaoUserEmail">
-        	<input type="hidden" id="kakaoNickname" name="kakaoUserNickname">
-        </form>
+      	<input type="hidden" id="kakaoEmail" name="kakaoUserEmail">
+      	<input type="hidden" id="kakaoNickname" name="kakaoUserNickname">
+    </form>
 </body>
 <script>
     

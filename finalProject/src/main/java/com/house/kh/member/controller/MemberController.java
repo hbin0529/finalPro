@@ -1,6 +1,9 @@
 package com.house.kh.member.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.house.kh.member.model.service.MemberService;
@@ -45,13 +49,19 @@ public class MemberController {
 		
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			String[] emailFS = m.getMemEmail().split("@");
+			String emailF = emailFS[0];
+			String emailS = emailFS[1];
+			session.setAttribute("emailF", emailF);
+			session.setAttribute("emailS", emailS);
 			session.setAttribute("id", m.getMemEmail());
 			session.setAttribute("nick", loginUser.getMemNick());
 			session.setAttribute("permit", 1);
+			session.setAttribute("m", loginUser);
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
-			model.addAttribute("errorMsg", "로그인 실패");
+			model.addAttribute("alertMsg", "로그인 실패");
 			return "member/login";
 			
 		}
@@ -84,7 +94,6 @@ public class MemberController {
 	//회원가입처리
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model md, HttpSession session) {
-		System.out.println("m  ====== "+m);
 		//kakaoSnsLoginUser
 		if(!m.getMemPwd().equals("kakaoSnsLoginUser")) {
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
@@ -98,15 +107,13 @@ public class MemberController {
 		}
 		m.setMemEmail(memberFullEmail);
 		
-		System.out.println("m  ====== "+m);
 		
 		int insertMemResult = mService.insertMember(m);
-		System.out.println("m  ====== "+m);
 		if(insertMemResult > 0) {
 			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
 			return "member/login";
 		}else {
-			//md.addAttribute("error", "회원가입실패");
+			md.addAttribute("alertMsg", "회원가입에 실패하셨습니다.");
 			return "redirect:/";
 		}
 		
@@ -140,12 +147,19 @@ public class MemberController {
 	@RequestMapping("kakaoIdControll.me")
 	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model) throws IOException{
 		
-		int kakaoUserSignChkResult = mService.kakaoUserSignChk(kakaoUserEmail);
-		if(kakaoUserSignChkResult>0) {
+		Member m = mService.kakaoUserSignChk(kakaoUserEmail);
+		int mCount = mService.kakaoUserSignChkCount(kakaoUserEmail);
+		if(mCount>0) {
 			//이미 존재하는 회원이므로 로그인처리
+			String[] emailFS = m.getMemEmail().split("@");
+			String emailF = emailFS[0];
+			String emailS = emailFS[1];
+			session.setAttribute("emailF", emailF);
+			session.setAttribute("emailS", emailS);
 			session.setAttribute("id", kakaoUserEmail);
 			session.setAttribute("nick", kakaoUserNickname);
 			session.setAttribute("permit", 1);
+			session.setAttribute("m", m);
 			return "main";
 		}
 		else {
@@ -168,30 +182,6 @@ public class MemberController {
 		
 	}
 	
-	//추가정보창에 값 박아넣고 밑에 남은정보 받아서 회원가입 버튼 누르면 다시 컨트롤러로 오게
-	//
-	
-	
-	/*
-	//SNS로그인
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void login(Model model) throws Exception {
-		//logger.info("login GET .....");
-		
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
-		
-//		SNSLogin googleLogin = new SNSLogin(googleSns);
-//		model.addAttribute("google_url", googleLogin.getNaverAuthURL());
-		
-		// 구글code 발행을 위한 URL 생성 
-		
-		//OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		//String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-		//model.addAttribute("google_url", url);
-		
-	}
-	*/
 	
 	@RequestMapping("kakaoTest.me")
 	public String gogosing() {
@@ -199,12 +189,103 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("myPage.me")
+	public String myPage(String id) {
+		return "member/myPage";
+	}
+	
+	
+	@RequestMapping("updateMem.me")
+	public String updateMem(Member inputM, HttpSession session, Model model, MultipartFile upfile, String existImg) {
+		
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			new File(session.getServletContext().getRealPath(existImg)).delete();
+			String originName = upfile.getOriginalFilename(); 
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); 
+			int ranNum = (int)(Math.random() * 90000 + 10000); 
+			String ext = originName.substring(originName.lastIndexOf(".")); // .jpg .png 이런 확장자만 따로발라낸거 
+			String changeName = currentTime + ranNum + ext;
+			  
+			//업로드시키고자 하는 폴더의 물리적 경로 알아오기(세션에있음) 
+			String savePath = session.getServletContext().getRealPath("/resources/userImg/");
+			  
+			try { 
+				upfile.transferTo(new File(savePath + changeName)); 
+			} catch(IllegalStateException e) {
+				e.printStackTrace(); 
+			} catch (IOException e) {
+				e.printStackTrace(); 
+			}
+			 
+			inputM.setMemImg("/resources/userImg/" + changeName);
+		}else {
+			inputM.setMemImg(existImg);
+		}
+		
+		
+		
+		if(!inputM.getMemPwd().equals("kakaoSnsLoginUser")) {
+			String encPwd = bcryptPasswordEncoder.encode(inputM.getMemPwd());
+			inputM.setMemPwd(encPwd);
+		}
+		
+		int updateMemberResult = mService.updateMember(inputM);
+		if(updateMemberResult>0) {
+			model.addAttribute("alertMsg", "정상적으로 수정되었습니다. 다시 로그인해주세요");
+			session.invalidate();
+			return "main";
+		}else {
+			return "redirect:/";
+		}
+		
+		
+	}
 	
 	
 	
 	
 	
+	@RequestMapping("delete.me")
+	public String deleteMember(String id, String pwd, Model model, HttpSession session) {
+		boolean isKakao = mService.isKakao(id); 
+		if(isKakao) {
+			//카카오유저일때
+			//그냥탈퇴
+			//탈퇴메소드실행
+			mService.deleteMem(id);
+			model.addAttribute("alertMsg", "성공적으로 탈퇴되었습니다.");
+			session.invalidate();
+			return "main";
+		}else{
+			//카카오아닐때
+			model.addAttribute("id", id);
+			return "member/deleteMem";
+		}
+	}
 	
+	@RequestMapping("deleteConfirm.me")
+	public String deleteConfirm(String id, String pwd, Model model, HttpSession session) {
+		
+		Member m = new Member();
+		m.setMemEmail(id);
+		m.setMemPwd(pwd);
+		Member loginUser = mService.searchUser(m);
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			mService.deleteMem(id);
+			model.addAttribute("alertMsg", "성공적으로 탈퇴되었습니다");
+			session.invalidate();
+			return "main";
+		}else {
+			//로그인실패, 에러페이지로 포워딩
+			model.addAttribute("errorMsg", "회원가입 탈퇴 실패");
+			return "redirect:/";
+			
+		}
+		
+		
+	}
 	
 	
 	

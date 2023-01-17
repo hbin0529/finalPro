@@ -43,8 +43,12 @@ public class MemberService {
 	}
 	
 	
-	public int kakaoUserSignChk(String kakaoUserEmail) {
-		int searchResult = mDao.kakaoUserSignChk(sqlSession, kakaoUserEmail);
+	public Member kakaoUserSignChk(String kakaoUserEmail) {
+		Member searchResult = mDao.kakaoUserSignChk(sqlSession, kakaoUserEmail);
+		return searchResult;
+	}
+	public int kakaoUserSignChkCount(String kakaoUserEmail) {
+		int searchResult = mDao.kakaoUserSignChkCount(sqlSession, kakaoUserEmail);
 		return searchResult;
 	}
 	
@@ -80,8 +84,24 @@ public class MemberService {
 	}
 	
 	
+	public int updateMember(Member m) {
+		int updateMemberResult = mDao.updateMember(sqlSession, m);
+		return updateMemberResult;
+	}
 	
 	
+	public boolean isKakao(String id) {
+		int isKakaoResult = mDao.isKakao(sqlSession, id);
+		if(isKakaoResult > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public void deleteMem(String id) {
+		mDao.deleteMem(sqlSession, id);
+	}
 	
 	
 }

@@ -24,10 +24,24 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.searchUser", m);
 	}
 	
-	public int kakaoUserSignChk(SqlSessionTemplate sqlSession, String kakaoUserEmail) {
+	public Member kakaoUserSignChk(SqlSessionTemplate sqlSession, String kakaoUserEmail) {
 		return sqlSession.selectOne("memberMapper.kakaoUserSignChk", kakaoUserEmail);
 	}
 	
+	public int kakaoUserSignChkCount(SqlSessionTemplate sqlSession, String kakaoUserEmail) {
+		return sqlSession.selectOne("memberMapper.kakaoUserSignChkCount", kakaoUserEmail);
+	}
 	
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateMember", m);
+	}
+	
+	public int isKakao(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.isKakao", id);
+	}
+	
+	public void deleteMem(SqlSessionTemplate sqlSession, String id) {
+		sqlSession.update("memberMapper.deleteMem", id);
+	}
 	
 }
