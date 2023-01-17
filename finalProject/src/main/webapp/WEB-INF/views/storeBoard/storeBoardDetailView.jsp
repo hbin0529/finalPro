@@ -11,6 +11,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(function() {
+	$("#proCnt").change(function(e){
+		$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
+		if( $("#proCnt").val() == "add" ) { 
+			$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
+		};
+	})
+})
+</script>
 <style>
     /* 로고폰트 */
         @font-face {
@@ -205,8 +215,8 @@
                     <div class="intro_btn">
                     	<c:choose>
 	                    	<c:when test="${selNo eq p.selNo }">
-		                        <div id="btnbtn1""><a onClick="postFormSubmit(1);"><p id="delete">수정하기</p></a></div>
-		                        <div id="btnbtn1""><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
+		                        <div id="btnbtn1"><a onClick="postFormSubmit(1);"><p id="delete">수정하기</p></a></div>
+		                        <div id="btnbtn1"><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
 		                        
 		                    </c:when>
 	                        <c:otherwise>
@@ -567,14 +577,12 @@
     				data: {
     					memNick:${p.memNick},
     					proQueDate:${p.proQueDate},
-    					proQueContent:${p.proQueContent},
-    					proQueType:$("#content").val(),
-    					replyWriter:"${loginUser.userId}" //String이라 쌍따옴표로 감싸야함
+    					proQueContent:$("#proQueContent").val(),
     				},
     				success:function(result){
     					if(result == "success") {
-    						selectReplyList(); //결과가 성공하면 데이터 다시검색
-    						$("#content").val(""); //댓글창에 댓글내용 비워주기!!!
+    						selectQuestionList(); //결과가 성공하면 데이터 다시검색
+    						$("#proQueContent").val(""); //댓글창에 댓글내용 비워주기!!!
     					}
     				},
     				error:function(){
@@ -586,18 +594,8 @@
     		}
     	}
 		
-	    $(function() {
-    		$("#proCnt").change(function(e){
-    			$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
-    			if( $("#proCnt").val() == "add" ) { 
-    				$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
-    			};
-    		})
-    	})
-    	
-    	
-    	
-    	
+	    
+
     
     </script>
     
