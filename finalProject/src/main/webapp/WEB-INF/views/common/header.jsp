@@ -100,7 +100,7 @@
                 <ul>
                      <li><a href="list.bo">집들이</a></li>
                      <li id="header_store"><a href="storelist.bo" >스토어</a></li>
-                     <li><a href="">인테리어</a></li>
+                     <li><a href="interrior.in">인테리어</a></li>
                  </ul>
              </div>
              <div class="main_search">
