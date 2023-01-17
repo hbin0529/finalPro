@@ -74,6 +74,7 @@
     .detail_img div:nth-child(2){margin-left: 53px;}
     .btn{display: flex; margin-top: 50px; padding-left: 350px; border: none;}
     .btn button{background-color: #21d9cb; border: 1px solid #21d9cb; color: white; font-size: 20px; width: 200px; padding-top: 10px; padding-bottom: 10px; margin-left: 20px; border-radius: 5px; cursor:pointer;}
+    .main_img1{display:flex; margin-left:358px; margin-top:10px;}
 </style>
 <body>
     <header class="top_box">
@@ -100,7 +101,7 @@
                         <div><p>✔ 등록하는 상품의 카테고리를 선택해주세요</p></div>
                         <div>
                             <select name="cateNo" required>
-                                <option disabled>카테고리</option>
+                                <option value="${ p.cateNo }" disabled>현재 카테고리 [${ p.cateName }]</option>
                                 <option value="1">침대</option>
                                 <option value="2">쇼파</option>
                                 <option value="3">식탁</option>
@@ -129,14 +130,17 @@
                     </div>
                     <div class="main_img">
                         <div><label for="upfile">✔ 메인 이미지를 두 장 선택해주세요</label></div>
-                        <div><input type="file" class="main_file_1" name="upfile" required></div>
+                        <div><input type="file" class="main_file_1" name="reupfile" required></div>
                         <div><p>🎨 현재 업로드된 사진 : ${ p.proOriginImg } </p></div>
-                        <div><input type="file" class="main_file_2" name="upfile" required></div>
+                    </div>
+                    <div class="main_img1">
+                        <label for="upfile"></label>
+                        <div><input type="file" class="main_file_2" name="reupfile1" required></div>
                         <div><p>🎨 현재 업로드된 사진 : ${ p.proOriginImg1 } </p></div>
                     </div>
                     <div class="detail_img">
                         <div><label for="upfile">✔ 상품의 상세 이미지를 한 장 선택해주세요</label></div>
-                        <div><input type="file" class="main_file_3" name="upfile" required></div>
+                        <div><input type="file" class="main_file_3" name="reupfile2" required></div>
                         <div><p>🎨 현재 업로드된 사진 : ${ p.proOriginDetailimg } </p></div>
                     </div>
                     <div class="btn">

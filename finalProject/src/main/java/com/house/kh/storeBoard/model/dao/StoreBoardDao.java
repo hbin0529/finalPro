@@ -54,4 +54,8 @@ public class StoreBoardDao {
 		return sqlSession.update("storeBoardMapper.proUpdateBoard", p); 
 	}
 	
+	public int insertQuestion(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("storeBoardMapper.insertQuestion", p);
+	}
+	
 }
