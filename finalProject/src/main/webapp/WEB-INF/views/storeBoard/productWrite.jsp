@@ -129,11 +129,11 @@
                     <div class="main_img">
                         <div><label for="upfile">✔ 메인 이미지를 두 장 선택해주세요</label></div>
                         <div><input type="file" class="main_file_1" name="upfile" required></div>
-                        <div><input type="file" class="main_file_2" name="upfile" required></div>
+                        <div><input type="file" class="main_file_2" name="upfile1" required></div>
                     </div>
                     <div class="detail_img">
                         <div><label for="upfile">✔ 상품의 상세 이미지를 한 장 선택해주세요</label></div>
-                        <div><input type="file" class="main_file_3" name="upfile" required></div>
+                        <div><input type="file" class="main_file_3" name="upfile2" required></div>
                     </div>
                     <div class="btn">
                         <button type="submit">등록하기</button>

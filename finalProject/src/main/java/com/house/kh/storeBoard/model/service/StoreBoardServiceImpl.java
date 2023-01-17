@@ -73,6 +73,10 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 		return sbDao.proUpdateBoard(sqlSession, p);
 	}
 
+	@Override
+	public int insertQuestion(Product p) {
+		return sbDao.insertQuestion(sqlSession, p);
+	}
 
 	
 

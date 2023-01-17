@@ -125,6 +125,7 @@
       #replyArea tbody{ border: 1px solid #444444; }
       #replyArea tbody td:last-child{width: 130px;  font-size: 15px; display: inline-block; margin-top: 25px;}
       .testSpan{ padding:5px; background-color: #21d9cb; color:white;  border: 1px solid rgb(243, 242, 242); border-radius: 5px;  cursor: pointer;}
+     
         /*-------------------------글쓰기스타일모음--------------------------- */
         .write_content{ display: block; margin-bottom: 20px;}
         .content_title{width: 140px;}

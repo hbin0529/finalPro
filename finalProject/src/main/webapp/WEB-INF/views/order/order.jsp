@@ -62,7 +62,7 @@
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 	    <!-- 주문결제 -->
-    <form action="" method="post">
+    <form action="orderSheet.or" method="post">
     <div class="main_wrap">
         <!-- 왼쪽 상품 주문창 -->
         <div class="left_wrap" style="flex: 1 0 0px; box-sizing: border-box;">
@@ -78,10 +78,10 @@
                     <div style="overflow: hidden; margin: -3px; padding: 23px 3px 3px; box-sizing: border-box;">
                         <div style="margin: 0px auto; box-sizing: border-box; width: auto; max-width: 100%; min-height: 1px;">
                             <div style="display: flex; -webkit-box-align: center; align-items: center; font-weight: bold; font-size: 18px; line-height: 20px; color: rgb(41, 41, 41);">배송지명</div>
-                            <div style="margin-top: 10px;">서울 동작구 알마타길 37 (대방동) 대방1차e-편한세상</div>
+                            <div style="margin-top: 10px;">${ m.memAddr }, ${ m.memDetailAddr }</div>
                             <div style="display: flex;; line-height: 2rem; font-size: 15px;">
-                                <div style="max-width: calc(100% - 130px); text-overflow: ellipsis; white-space: nowrap; overflow-wrap: normal; overflow: hidden;">이형빈</div>
-                                <div style="width: 120px; margin-left: 8px;">010-1234-1234</div>
+                                <div style="max-width: calc(100% - 130px); text-overflow: ellipsis; white-space: nowrap; overflow-wrap: normal; overflow: hidden;">${ m.memName }</div>
+                                <div style="width: 120px; margin-left: 8px;">${ m.memPhone }</div>
                             </div>
                             <div style="padding: 20px 10px 0px 0px; max-width: 642px;">
                                 <div style="position: relative; display: inline-block; width: 100%;">
@@ -111,7 +111,7 @@
                                 <div style="display: flex; padding: 0px 0px 8px;">
                                     <div style="display: flex; align-items: center; width: 72px; font-size: 15px;">이름</div>
                                     <div style="flex: 1 0 0px; max-width: 270px;">
-                                        <input class="order_input" type="text">
+                                        <input class="order_input" type="text" value="${ m.memName }">
                                     </div>
                                 </div>
                             </label>
@@ -121,16 +121,7 @@
                                     <div style="display: flex; align-items: center; width: 72px; font-size: 15px;">이메일</div>
                                     <div style="display: flex; flex: 1 0 0px; max-width: 580px;">
                                         <div style="position: relative; display: inline-block; width: 50%;">
-                                            <input class="order_input" type="text">
-                                        </div>
-                                        <span style="display: flex; align-items: center; padding: 10px;">@</span>
-                                        <div style="position: relative; display: inline-block; width: 50%;">
-                                            <select class="order_input">
-                                                <option value="0">naver.com</option>
-                                                <option value="1">gmail.com</option>
-                                                <option value="2">nate.com</option>
-                                                <option value="3">kakao.com</option>
-                                            </select>
+                                            <input class="order_input" type="text" value="${ m.memEmail }" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +131,7 @@
                                 <div style="display: flex; padding: 8px 0px;">
                                     <div style="display: flex; align-items: center; width: 72px; font-size: 15px;">휴대전화</div>
                                     <div>
-                                        <input type="text" class="order_input" placeholder="010-1234-1234">
+                                        <input type="text" class="order_input" placeholder="010-1234-1234" value="${ m.memPhone }">
                                     </div>
                                 </div>
                             </label>
@@ -160,7 +151,7 @@
                                 <div style="padding: 11px 16px 10px; background-color: rgb(247, 248, 250);">
                                     <div style="display: flex; align-items: center;">
                                         <div style="flex: 1 0 0px; font-size: 14px; line-height: 19px; color: rgb(66, 66, 66); font-weight: bold;">
-                                            회사이름
+                                            	${ p.selBusName }
                                         </div>
                                     </div>
                                 </div>
@@ -171,12 +162,12 @@
                                         </picture>
                                         <div style="flex: 1 0 0px; align-items: center; margin-left: 10px;">
                                             <div style="font-size: 15px; line-height: 18px; color: rgb(41, 41, 41); margin: 8px 0;">
-                                                	상품명을 등록하면되는데 이걸 어떻게 해야할까요
+                                                	${ p.proName }
                                             </div>
                                             <div style="display: flex; -webkit-box-align: center; align-items: center; margin-top: 11px;">
-                                                <span style="font-size: 14px; line-height: 17px; color: rgb(41, 41, 41); font-weight: bold;">가격45,000원</span>
+                                                <span style="font-size: 14px; line-height: 17px; color: rgb(41, 41, 41); font-weight: bold;">가격 ${ p.proPrice * countSelect } 원</span>
                                                 <span style="margin: 0px 12px; font-size: 10px;">|</span>
-                                                <span style="font-size: 13px; line-height: 16px; color: rgb(117, 117, 117);">1개</span>
+                                                <span style="font-size: 13px; line-height: 16px; color: rgb(117, 117, 117);">${ colorSelect } ${ countSelect }개</span>
                                             </div>
                                         </div>
                                     </div>
@@ -265,7 +256,7 @@
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">개인정보수집 및 이용동의(필수)</label>
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">결제 서비스 이용약관 동의(필수)</label>
                     </div>
-                    <input type="submit" class="submitbut wid360 bora4" value="45,000원 결제하기">
+                    <input type="submit" onclick="" class="submitbut wid360 bora4" value="45,000원 결제하기">
                 </div>
             </div>
         </div>

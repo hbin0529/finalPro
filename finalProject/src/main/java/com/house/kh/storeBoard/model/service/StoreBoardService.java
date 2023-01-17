@@ -32,10 +32,8 @@ public interface StoreBoardService {
 	// 게시글 수정
 	int proUpdateBoard(Product p);
 	
-	
-	
-	// 7. 댓글작성 (ajax)
-	//int insertReply(Reply r);
+	// 문의작성 (ajax)
+	int insertQuestion(Product p);
 	
 	// 8. Top5 조회수 리스트 (ajax)
 	//ArrayList<Board> selectTopBoardList();

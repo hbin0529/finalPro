@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -87,47 +92,54 @@ public class HomeBoardController {
 	   public void deleteReply(int rbno, HttpSession session, Model model, HomeBoard h, HttpServletResponse response, int bno) throws IOException {  //파일이 있으면 삭제하면 안되기 때문에 파일도 넘겨받아야함
 		   int result = hbService.deleteReply(rbno); 
 		   if(result > 0) { 
+			   session.setAttribute("alertMsg", "성공적으로 댓글이 삭제되었습니다.");
 			   response.sendRedirect("detail.bo?bno="+ bno);
 		   }else {
 			   System.out.println("실패입니다");
 		   }
 		   
-	   }
-	   
-
-	   @ResponseBody
-	   @RequestMapping(value="SummerNoteImageFile", produces="application/json; charset=utf-8")
-	   
-	   public JsonObject SummerNoteImageFile(@RequestParam("file") MultipartFile file) {
-	      JsonObject jsonObject = new JsonObject();
-	      
-	      String fileRoot = "C:\\summernoteImg\\";
-	      String originalFileName = file.getOriginalFilename();
-	      String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-	      
-	      String saveFileName = UUID.randomUUID() + extension;
-	      
-	      File targetFile = new File(fileRoot + saveFileName);
-	      
-	      try {
-	         InputStream inputstream = file.getInputStream();
-	         FileUtils.copyInputStreamToFile(inputstream, targetFile); //파일 저장
-	         jsonObject.addProperty("url", "/summernoteImage/"+saveFileName);
-	         jsonObject.addProperty("responseCode", "success");
-	         
-	      } catch(IOException e) {
-	         FileUtils.deleteQuietly(targetFile);
-	         jsonObject.addProperty("responseCode", "error");
-	         e.printStackTrace();
-	      } 
-	      
-	      return jsonObject;
-	   }
+	   } 
 	   
 	   @RequestMapping("enrollForm.bo") //페이지로 넘겨주기
 	   public String enrollForm() {
 	      return "homeBoard/boardEnrollForm";
 	   }
+	   
+	   
+	   
+	   @RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+		@ResponseBody
+		public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
+			JsonObject jsonObject = new JsonObject();
+			
+	        
+			 String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때. 
+			// 내부경로로 저장
+			String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		/*	String fileRoot = contextRoot+"resources/fileupload/";*/
+			
+			String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+			
+			File targetFile = new File(fileRoot + savedFileName);	
+			try {
+				InputStream fileStream = multipartFile.getInputStream();
+				FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+				  jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
+			      jsonObject.addProperty("responseCode", "success");
+
+					
+			} catch (IOException e) {
+				FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+				jsonObject.addProperty("responseCode", "error");
+				e.printStackTrace();
+			}
+			String a = jsonObject.toString();
+			
+			return a;
+		}
+		   
 	   
 	   @RequestMapping("insert.bo")
 	   public String insertBoard(HomeBoard h, MultipartFile upfile, HttpSession session, Model model) {
@@ -143,7 +155,8 @@ public class HomeBoardController {
 	      } else {
 	         return "common/errorPage";
 	      }
-	   }
+	   } 
+	  
 	   
 	   public String changeFilename(MultipartFile upfile, HttpSession session) {
 		      String originName = upfile.getOriginalFilename();
@@ -181,7 +194,35 @@ public class HomeBoardController {
 	       } 	
 	   
 	   
-	  
+	   @RequestMapping("updateForm.bo") 
+	   public String updateForm(int bno, Model model) {
+		   model.addAttribute("h", hbService.selectBoard(bno));
+	      return "homeBoard/boardUpdateForm";
+	   }
 	   
-  }
+	   @RequestMapping("update.bo") 
+	   public String updateBoard(HomeBoard h, MultipartFile reupfile, HttpSession session, Model model) {
+		   if(!reupfile.getOriginalFilename().equals("")) {
+			  if(h.getBoardMainimgOrigin() != null) {
+				  new File(session.getServletContext().getRealPath(h.getBoardMainimgChange())).delete();
+			  }
+			  String changeName = changeFilename(reupfile, session);
+			   h.setBoardMainimgOrigin(reupfile.getOriginalFilename());
+			   h.setBoardMainimgChange("/resources/uploadFile/" + changeName);
+			    
+		   
+		   
+		   }	
+		   int result = hbService.updateBoard(h);
+		   
+		   if(result > 0) { //업데이트가 잘 되었으면
+			  session.setAttribute("alertMsg", "성공적으로 게시글이 수정되었습니다.");
+			  return "redirect:detail.bo?bno=" + h.getBoardNo();
+		   }else {
+			   model.addAttribute("errorMsg","게시글 수정 실패");
+			   return "common/errorPage";
+		   } 
+	   } 
+	}
+	    
  

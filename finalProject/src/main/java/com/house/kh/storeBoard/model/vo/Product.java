@@ -18,6 +18,7 @@ public class Product {
 	private int proNo;
 	private int selNo;
 	private int cateNo;
+	private String cateName;
 	private int proWhiteStock;
 	private int proBlackStock;
 	private String proName;
@@ -59,7 +60,8 @@ public class Product {
 	private String proQueType;
 	private String proQueContent;
 	private String proQueResult;
-	private String proQueDate;	
+	private String proQueDate;
+	private String proQueIspublic;
 	
 	// 답변테이블
 	private int queReplyNo;
