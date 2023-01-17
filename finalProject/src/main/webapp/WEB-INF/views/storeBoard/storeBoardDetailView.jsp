@@ -154,7 +154,7 @@
                         <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">${ p.selBusName }</a></p></div>
                     </div>
                     <div>
-                        <select>
+                        <select name="colorSelect">
                             <option>색상선택</option>
                             <option value="BLACK">BLACK</option>
                             <option value="WHITE">WHITE</option>
