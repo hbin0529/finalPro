@@ -36,5 +36,12 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
 	
+	public int isKakao(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.isKakao", id);
+	}
+	
+	public void deleteMem(SqlSessionTemplate sqlSession, String id) {
+		sqlSession.update("memberMapper.deleteMem", id);
+	}
 	
 }

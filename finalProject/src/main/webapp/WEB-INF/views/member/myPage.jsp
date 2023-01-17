@@ -26,6 +26,44 @@
         //     $(this).css({"borderColor":"black", "outline":"black"})
         // })
     })
+    function goSubmit(){
+   		
+       	var pass = document.getElementById("pass").value;
+	   	var rePass = document.getElementById("repass").value;
+	   	if(pass==rePass&&pass!=null&&pass!=""){
+	   	}else{
+	   		alert("비밀번호를 확인해주세요");
+	   		return;
+	   	}
+   		
+	   	var phoneNum = document.getElementById("phoneNum").value;
+	   	var phoneRegExp = /^(010|011)-[0-9]{4}-[0-9]{4}$/
+		if(phoneRegExp.test(phoneNum)){
+		}else{
+			alert("핸드폰 번호를 올바르게 입력해주세요")
+	   		return;
+		}
+	   	
+	   	var userNick = document.getElementById("userNick").value;
+	   	var userNickRegExp = /^[a-zA-Z0-9가-힣]{2,15}$/
+	   	if(userNickRegExp.test(userNick)){
+	   	}else{
+	   		alert("닉네임을 올바르게 입력해주세요")
+	   		return;
+	   	}
+	   	
+	   	
+	   	var userDetail = document.getElementById("userDetail").value;
+	   	if(userDetail!=null&&userDetail!=""){
+	   	}else{
+	   		alert('상세주소를 입력해주세요')
+	   		return;
+	   	}
+   		
+   		
+   		
+    	regFrm.submit();
+    }
     function readURL(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
@@ -38,10 +76,6 @@
 	  }
 	}
     
-    function goSubmit(){
-    	console.log("눌리긴하냐이거")
-    	regFrm.submit();
-    }
 </script>
 <!--카카오 주소 api-->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -238,7 +272,7 @@
         <div class="userInfo">
             <div class="FrmHead">
                 <h1 style="float: left;">회원 정보 수정</h1>
-                <a href="탈퇴처리할곳" style="float: right;">탈퇴하기</a>
+                <a href="delete.me?id=${ id }" style="float: right;">탈퇴하기</a>
             </div>
             <div class="Frm">
                 <form action="updateMem.me" name="regFrm" method="post" enctype="multipart/form-data">
@@ -253,44 +287,44 @@
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">별명</div>
                         <div>
-                            <input type="text" name="memNick" class="wid400 bdradi4" value="${ nick }">
+                            <input type="text" name="memNick" id="userNick" class="wid400 bdradi4" value="${ nick }">
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">비밀번호</div>
                         <div>
-                            <input type="password" name="memPwd" class="wid400 bdradi4" value="">
+                            <input type="password" name="memPwd" id="pass" class="wid400 bdradi4" value="">
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">비밀번호확인(아직정규식안넣음)</div>
                         <div>
-                            <input type="password" name="memRePwd" class="wid400 bdradi4" value="">
+                            <input type="password" name="memRePwd" id="repass" class="wid400 bdradi4" value="">
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">우편번호</div>
                         <div>
                             <input type="text" name="memZipcode" id="postcode" class="wid400 bdradi4" value="${ m.memZipcode }"  style="width: 120px;">
-                            <input class="sz50p kakaobut" type="button" value="우편번호찾기" onclick="findAddr()">
+                            <input class="sz50p kakaobut" type="button" value="우편번호찾기" onclick="findAddr()" readonly required>
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">주소</div>
                         <div>
-                            <input type="text" name="memAddr" id="addr" class="wid400 bdradi4" value="${ m.memAddr }">
+                            <input type="text" name="memAddr" id="addr" class="wid400 bdradi4" value="${ m.memAddr }" readonly required>
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">상세주소</div>
                         <div>
-                            <input type="text" name="memDetailAddr" class="wid400 bdradi4" value="${ m.memDetailAddr }">
+                            <input type="text" name="memDetailAddr" id="userDetail" class="wid400 bdradi4" value="${ m.memDetailAddr }">
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">전화번호</div>
                         <div>
-                            <input type="text" name="memPhone" class="wid400 bdradi4" value="${ m.memPhone }">
+                            <input type="text" name="memPhone" id="phoneNum" class="wid400 bdradi4" value="${ m.memPhone }" required>
                         </div>
                     </div>
                     <div class="formElement">
@@ -302,7 +336,9 @@
                         </div>
                     </div>
                     <div class="formElement">
-                        <button class="bdradi4" onclick="goSubmit();">회원 정보 수정</button>
+                    <input type="hidden" name="memEmail" id="fullEmail" value="${ id }">
+                    <input type="hidden" name="existImg" value="${m.memImg}">
+                        <button type="button" class="bdradi4" onclick="goSubmit();">회원 정보 수정</button>
                     </div>
                 </form>
             </div>

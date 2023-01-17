@@ -109,7 +109,7 @@
 		            callbacks : { 
 		               onImageUpload : function(files) {
 		            // 파일 업로드(다중업로드를 위해 반복문 사용)
-		                  
+		                  	console.log('되는중');	
 		                     console.log(files[0]);                     
 		                     sendFile(files[0], this);
 		               }

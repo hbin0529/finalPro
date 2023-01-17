@@ -1,6 +1,9 @@
 package com.house.kh.member.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,7 +61,7 @@ public class MemberController {
 			return "redirect:/";
 		}else {
 			//로그인실패, 에러페이지로 포워딩
-			model.addAttribute("errorMsg", "로그인 실패");
+			model.addAttribute("alertMsg", "로그인 실패");
 			return "member/login";
 			
 		}
@@ -91,7 +94,6 @@ public class MemberController {
 	//회원가입처리
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, Model md, HttpSession session) {
-		System.out.println("m  ====== "+m);
 		//kakaoSnsLoginUser
 		if(!m.getMemPwd().equals("kakaoSnsLoginUser")) {
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
@@ -105,15 +107,13 @@ public class MemberController {
 		}
 		m.setMemEmail(memberFullEmail);
 		
-		System.out.println("m  ====== "+m);
 		
 		int insertMemResult = mService.insertMember(m);
-		System.out.println("m  ====== "+m);
 		if(insertMemResult > 0) {
 			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
 			return "member/login";
 		}else {
-			//md.addAttribute("error", "회원가입실패");
+			md.addAttribute("alertMsg", "회원가입에 실패하셨습니다.");
 			return "redirect:/";
 		}
 		
@@ -196,12 +196,32 @@ public class MemberController {
 	
 	
 	@RequestMapping("updateMem.me")
-	public String updateMem(Member inputM, HttpSession session, Model model, MultipartFile upfile) {
+	public String updateMem(Member inputM, HttpSession session, Model model, MultipartFile upfile, String existImg) {
 		
 		
-		System.out.println(inputM);
-		//파일명 유저닉네임이랑 같게
-		
+		if(!upfile.getOriginalFilename().equals("")) {
+			new File(session.getServletContext().getRealPath(existImg)).delete();
+			String originName = upfile.getOriginalFilename(); 
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); 
+			int ranNum = (int)(Math.random() * 90000 + 10000); 
+			String ext = originName.substring(originName.lastIndexOf(".")); // .jpg .png 이런 확장자만 따로발라낸거 
+			String changeName = currentTime + ranNum + ext;
+			  
+			//업로드시키고자 하는 폴더의 물리적 경로 알아오기(세션에있음) 
+			String savePath = session.getServletContext().getRealPath("/resources/userImg/");
+			  
+			try { 
+				upfile.transferTo(new File(savePath + changeName)); 
+			} catch(IllegalStateException e) {
+				e.printStackTrace(); 
+			} catch (IOException e) {
+				e.printStackTrace(); 
+			}
+			 
+			inputM.setMemImg("/resources/userImg/" + changeName);
+		}else {
+			inputM.setMemImg(existImg);
+		}
 		
 		
 		
@@ -213,6 +233,7 @@ public class MemberController {
 		int updateMemberResult = mService.updateMember(inputM);
 		if(updateMemberResult>0) {
 			model.addAttribute("alertMsg", "정상적으로 수정되었습니다. 다시 로그인해주세요");
+			session.invalidate();
 			return "main";
 		}else {
 			return "redirect:/";
@@ -221,6 +242,50 @@ public class MemberController {
 		
 	}
 	
+	
+	
+	
+	
+	@RequestMapping("delete.me")
+	public String deleteMember(String id, String pwd, Model model, HttpSession session) {
+		boolean isKakao = mService.isKakao(id); 
+		if(isKakao) {
+			//카카오유저일때
+			//그냥탈퇴
+			//탈퇴메소드실행
+			mService.deleteMem(id);
+			model.addAttribute("alertMsg", "성공적으로 탈퇴되었습니다.");
+			session.invalidate();
+			return "main";
+		}else{
+			//카카오아닐때
+			model.addAttribute("id", id);
+			return "member/deleteMem";
+		}
+	}
+	
+	@RequestMapping("deleteConfirm.me")
+	public String deleteConfirm(String id, String pwd, Model model, HttpSession session) {
+		
+		Member m = new Member();
+		m.setMemEmail(id);
+		m.setMemPwd(pwd);
+		Member loginUser = mService.searchUser(m);
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
+			mService.deleteMem(id);
+			model.addAttribute("alertMsg", "성공적으로 탈퇴되었습니다");
+			session.invalidate();
+			return "main";
+		}else {
+			//로그인실패, 에러페이지로 포워딩
+			model.addAttribute("errorMsg", "회원가입 탈퇴 실패");
+			return "redirect:/";
+			
+		}
+		
+		
+	}
 	
 	
 	

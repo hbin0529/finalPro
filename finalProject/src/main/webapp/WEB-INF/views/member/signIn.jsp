@@ -36,6 +36,12 @@
 			})
 		}
 	</script>
+		<c:if test="${ not empty alertMsg }">
+		<script>
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session" />
+	</c:if> 
     <style>
         /* 로고폰트 */
         @font-face {

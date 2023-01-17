@@ -90,5 +90,18 @@ public class MemberService {
 	}
 	
 	
+	public boolean isKakao(String id) {
+		int isKakaoResult = mDao.isKakao(sqlSession, id);
+		if(isKakaoResult > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public void deleteMem(String id) {
+		mDao.deleteMem(sqlSession, id);
+	}
+	
 	
 }
