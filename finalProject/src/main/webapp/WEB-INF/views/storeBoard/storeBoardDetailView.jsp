@@ -8,6 +8,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(function() {
+	$("#proCnt").change(function(e){
+		$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
+		if( $("#proCnt").val() == "add" ) { 
+			$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
+		};
+	})
+})
+</script>
 <style>
     /* 로고폰트 */
         @font-face {
@@ -32,20 +45,24 @@
         }
 	a{text-decoration:none; color:black;}
    /*----------------------------------- 상품 헤더 스타일모음-------------------------------------------- */
-    .main_body{width: 1400px; margin: 0 auto;}
+    .main_body{width: 1400px; margin: 0 auto; }
     .product_header{display: flex; width: 1200px; margin: 0 auto; padding-top: 100px;}
     .product_small_img img{width: 100px; margin-bottom: 10px; margin-right: 20px; border-radius: 5px;}
     .product_main_img img{width: 600px; border-radius: 5px; margin-right: 40px; margin-bottom: 100px;}
     .product_intro{margin-top: 10px; font-family: 'Pretendard-Regular';}
-    .intro_review{display: flex; margin-bottom: 10px; font-family: 'Pretendard-Regular';}
+    .intro_review{display: flex; margin-bottom: 10px;}
     .intro_review div:nth-child(1){color: #21d9cb; font-size: 25px;}
     .intro_review div:nth-child(2){font-size: 14px; height: 35px; color: rgb(131, 131, 131); margin-left: 5px; margin-top: 7px;}
     .intro_home_img{display: flex;}
     .product_header select{width: 400px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;}
     .order_price{display: flex;}
-    .intro_btn{display: flex;}
-    .intro_btn button{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: #21d9cb; border: 1px solid #21d9cb; color: white; cursor: pointer; border-radius: 5px;}
-
+    .intro_btn{display: flex; font-family: 'Pretendard-Regular';}
+    #btnbtn{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: #21d9cb; 
+    border: 1px solid #21d9cb; color: white; cursor: pointer; border-radius: 5px; text-align:center;}
+    #btnbtn1{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: black; 
+    border: 1px solid rgb(185, 14, 14); color: white; cursor: pointer; border-radius: 5px; text-align:center;}
+    #buy{margin-top:15px; color:white; font-size: 18px;}
+    #delete{margin-top:15px; color:white; font-size: 18px;}
    /*----------------------------------- 상품 바디 카테고리 바 -----------------------------------*/
     .product_body{}
     .body_category{height: 60px;}
@@ -112,18 +129,36 @@
     .bottom_answer_title div:nth-child(3){font-size: 13px; color:gray; margin-top: 3px;}
     .bottom_answer{font-size: 15px; margin-left: 20px; margin-bottom: 10px; font-family: 'Pretendard-Regular';}
     .question_paiging{text-align: center; margin-bottom: 30px; margin-top: 20px;}
-    
     /*----------------------------------- 판매자정보 -----------------------------------*/
     .seller_information_table{width: 800px; text-align: left; font-size: 13px; margin-bottom: 100px; height: 300px; border-collapse: collapse; font-family: 'Pretendard-Regular';}
     .seller_information_table td:nth-child(1){width: 180px; color: gray;}
     .seller_information_table tr td{border-bottom: 1px solid rgb(224, 224, 224);}
     #seller_information{padding-bottom: 30px; padding-top: 50px; font-size: 20px; font-weight: bolder; font-family: 'GmarketSansMedium';}
-
+    /*----------------------------------- 모달창 -----------------------------------*/
+	.modal-body{ font-family: 'Pretendard-Regular'; color: black;}
+    .modal-title{text-align: center; font-weight: bolder;}
+    .product-question__wrap__type-select__box--select { color: #21d9cb;background-color: white;font-weight: 700;border-color: rgb(222, 222, 222);}
+    .inquire_option_title, .inquire_content_title{font-size: 16px; font-weight: bold;}
+    .product-question__wrap__type-select__box {margin-top: 13px;display: inline-block;width: 160px;margin-left: 10px;box-sizing: border-box;border: 1px solid #dcdcdc;text-align: center;
+    height: 40px;line-height: 40px;color: #424242;cursor: pointer;border-radius: 3px;font-size: 15px;}
+    .product-question__wrap__type-select__box:hover{background-color: #21d9cb;color: white;}
+    .inquire_content{margin-top: 20px;}
+    .product-question__wrap__type-select{text-align: center;}
+    .inquire_content_detail textarea{width: 560px; height: 250px; padding: 6px; margin-top: 10px; border-color: #d3d3d3; border-radius: 3px;}
+    .inquire_content_detail input{width: 560px; height: 50px; background-color: #21d9cb; color: white; border-style: none; border-radius: 5px; font-weight: bold; font-size: 16px;}
+    .modal-footer_text{text-align: left; font-size: 13px;}
+    .type_label{margin-right: 40px;}
+    .type_label input{ background-color: #21d9cb; color: #21d9cb; width: 20px; margin-right: 10px; text-align: center;}
+    .type_label input:nth-child(1){margin-left: 12px;}
+    .type_label span{cursor: pointer; font-size: 20px; text-align: center; text-align: center; vertical-align: middle;}
+    .modal-footer_text{text-align: left; font-size: 13px;}
 </style>
+
 <body>
 	<jsp:include page="../common/header.jsp" />
 
     <!---------------------------------- 상품 메인 사진 ---------------------------------->
+    <form action="">
     <section>
         <div class="main_body">
             <div class="product_header">
@@ -149,15 +184,16 @@
                         <div><img src="${path}/resources/img/logo_user.png" style="width: 30px; margin-left: 10px;"></div>
                         <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">${ p.selBusName }</a></p></div>
                     </div>
+                    <form name="hbInfo" action="order.or">
                     <div>
-                        <select>
+                        <select name="colorSelect">
                             <option>색상선택</option>
                             <option value="BLACK">BLACK</option>
                             <option value="WHITE">WHITE</option>
                         </select>
                     </div>
                     <div id="proCntBox">
-                        <select id="proCnt" style="margin-bottom: 30px;">
+                        <select id="proCnt" style="margin-bottom: 30px;" name="countSelect">
                             <option>수량선택</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -174,12 +210,49 @@
                     </div>
                     <div class="order_price">
                         <div><p style="font-size: 13px; font-weight: bolder; margin-top: 5px; margin-bottom: 30px;">주문금액</p></div>
-                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;" id="sumPrice"></p></div>
+                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;" id="sumPrice">0</p></div>
                     </div>
                     <div class="intro_btn">
-                        <div><button>장바구니</button></div>
-                        <div><button>바로구매</button></div>
-                        <div><a href="productWrite.bo">상품올리기</a></div>
+                    	<c:choose>
+	                    	<c:when test="${selNo eq p.selNo }">
+		                        <div id="btnbtn1"><a onClick="postFormSubmit(1);"><p id="delete">수정하기</p></a></div>
+		                        <div id="btnbtn1"><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
+		                        
+		                    </c:when>
+	                        <c:otherwise>
+	                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
+	                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
+	                              <script type="text/javascript">
+	                                 function directBuy() {                                    
+	                                    hbInfo.submit();
+	                                 }
+	                              </script>
+                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
+                                 <input type="hidden" value="${ p.proName }" name="proName">
+                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
+                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
+                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
+	                        </c:otherwise>
+                        </c:choose>
+						</form>
+						
+						<!-- 수정, 삭제시 post방식으로 넘겨주기 -->
+						<form action="" method="post" id="postForm">
+							<input type="hidden" name="proNo" value="${ p.proNo }">
+							<input type="hidden" name="filePath" value="${ p.proChangeImg }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
+						</form>
+						<script>
+							function postFormSubmit(num) {
+								if(num == 1) {
+									$("#postForm").attr("action" , "productUpdate.bo").submit();
+								} else {
+									$("#postForm").attr("action" , "productDelete.bo").submit();
+								}
+							}
+						</script>
+                        <c:if test="${selNo eq p.selNo }">
+			            	<a href="productWrite.bo">상품올리기</a>
+			            </c:if>
                     </div>
                 </div>
             </div>
@@ -280,15 +353,64 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <!--리뷰상세-->
                         <div class="review_detail">
                             <table>
 							<!-- 자바스크립트 reviewList -->
                             </table>
-                            
-                           
-                           
                         </div>
+                        
+						<!-- 부트스트랩의 모달 창을 사용할려면 아래의 class 이름들을 그대로 사용해야 한다. 변경하면 모양이 달라진다.-->
+						<!-- Modal -->
+				            <div class="modal fade" id="myModal" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
+				              <div class="modal-dialog">
+				                <!-- Modal content-->
+				                <div class="modal-content">
+				                  <div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal">×</button>
+				                    <h4 class="modal-title">상품 문의하기</h4> <!-- 사용자 지정 부분② : 타이틀 -->
+				                  </div>
+				                  <form action="qinsert.bo" id="queWrite" method="post">
+				                  	<input type="hidden" value="${ id }" name="memId">
+				                  	<input type="hidden" value="${ p.proNo }" name="proNo">
+				                    <div class="modal-body">
+				                      <div class="inquire_option">
+				                        <h5 class="inquire_option_title">문의유형</h5>
+				                        <div class="product-question__wrap__type-select" >
+				                          <label class="type_label">
+				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
+				                              type="radio" value="상품" name="proQueType" style="vertical-align: middle;"><span>상품</span>
+				                          </label>
+				                          <label class="type_label">
+				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
+				                              type="radio" value="배송" name="proQueType" style="vertical-align: middle;"><span>배송</span>
+				                          </label>
+				                          <label class="type_label">
+				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
+				                              type="radio" value="기타" name="proQueType" style="vertical-align: middle;"><span>기타</span>
+				                          </label>
+				                        </div>
+				                      </div><!--inquire_option 까지-->
+				          				
+				                      <div class="inquire_content">
+				                        <h5 class="inquire_content_title">문의내용</h5>
+				                        <div class="inquire_content_detail">
+				                          <textarea id="proQueContent" placeholder="문의내용을 자세하게 작성해주시면 답변에 큰 도움이 됩니다.(최소 20자 이상)" name="proQueContent"></textarea>
+				                          <input type="submit" value="완료">
+				                        </div>
+				                      </div>
+				                    </div><!--review_write 까지-->
+				                  </form>
+				          
+				                  <div class="modal-footer">
+				                    <div class="modal-footer_text">- 문의내용에 대한 답변은 ‘마이페이지 > 나의리뷰 > 문의내역’ 또는 ‘상품 상세페이지’에서 확인 가능합니다.</div>
+				                    <div class="modal-footer_text">- 배송,결제,교환/반품 문의는 각 제품의 판매처로 문의 바랍니다.</div>
+				                    <div class="modal-footer_text">- 상품과 관련 없거나 부적합한 내용을 기재하시는 경우, 사전 고지 없이 삭제 또는 차단될 수 있습니다.</div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
 
                         <!--문의-->
                         <div>
@@ -296,20 +418,19 @@
                             <div class="bottom_question_title">
                                 <p>문의</p>
                                 <p id="qcount1">0</p>
-                                <div><button type="button" data-toggle="modal" data-target="#myModal">문의하기</button></div>
+                                	<c:choose>
+	                                	<c:when test="${ empty id }">
+	                                		<div><button type="button" data-toggle="modal" data-target="#myModal" style="display:none;">문의하기</button></div>
+	                                	</c:when> 
+	                                	<c:otherwise>
+	                                		<div><button type="button" data-toggle="modal" data-target="#myModal">문의하기</button></div>
+	                                	</c:otherwise>		
+                                	</c:choose>
                             </div>
+                            
                             <!--질문답변-->
                              <div class="question_answer">
-                                <!-- <div class="user_question">
-                                    	
-                                    	문의 ajax
-                                    	
-                                </div>
-                                <div class="seller_answer">
-                               
-                               			
-                                    
-                                </div> -->
+                                
                             </div>
                             
                            
@@ -351,7 +472,7 @@
             </div>
         </div>
     </section>
-    
+    </form>
     
     <script>
 	    $(function(){
@@ -448,17 +569,33 @@
 				}
 			});
 	    }
+	    
+	    function addQuestion(){
+    		if($("#proQueContent").val().trim().length != 0) {
+    			$.ajax({
+    				url:"qinsert.bo",
+    				data: {
+    					memNick:${p.memNick},
+    					proQueDate:${p.proQueDate},
+    					proQueContent:$("#proQueContent").val(),
+    				},
+    				success:function(result){
+    					if(result == "success") {
+    						selectQuestionList(); //결과가 성공하면 데이터 다시검색
+    						$("#proQueContent").val(""); //댓글창에 댓글내용 비워주기!!!
+    					}
+    				},
+    				error:function(){
+    					console.log("댓글작성 ajax 통신 실패")
+    				}
+    			});
+    		} else {
+    			alertify.alert("내용을 작성해주세요")
+    		}
+    	}
 		
-	    $(function() {
-    		$("#proCnt").change(function(e){
-    			$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
-    			if( $("#proCnt").val() == "add" ) { 
-    				$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
-    			};
-    		})
-    	})
-    	
-    	
+	    
+
     
     </script>
     

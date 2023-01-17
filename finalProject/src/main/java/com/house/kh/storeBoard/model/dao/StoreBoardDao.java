@@ -43,8 +43,19 @@ public class StoreBoardDao {
 	}
 	
 	public int insertProduct(SqlSessionTemplate sqlSession, Product p) {
-		return sqlSession.insert("boardMapper.insertProduct", p); 
+		return sqlSession.insert("storeBoardMapper.insertProduct", p); 
+	}
+	
+	public int proDeleteBoard(SqlSessionTemplate sqlSession, int proNo) {
+		return sqlSession.update("storeBoardMapper.proDeleteBoard", proNo); 
 	}
 
+	public int proUpdateBoard(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.update("storeBoardMapper.proUpdateBoard", p); 
+	}
+	
+	public int insertQuestion(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("storeBoardMapper.insertQuestion", p);
+	}
 	
 }

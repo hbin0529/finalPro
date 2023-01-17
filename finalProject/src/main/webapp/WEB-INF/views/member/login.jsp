@@ -151,6 +151,19 @@
         	border:none;
         	background-color: white;
         }
+        #choiceLogin{
+        	display:flex;
+        	width: 300px; justify-content:space-between;
+        	position:relative; top:40px;
+        	border-bottom:1px solid rgb(33, 217, 203)
+        }
+        #choiceLogin label{
+        	margin:10px 10px 0px 10px; padding:15px;
+        }
+        .selectLogin{
+        	border : 2px solid rgb(33, 217, 203);
+        	border-bottom:0px solid
+        }
     </style>
 	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -197,12 +210,34 @@
 	<script type="text/javascript">
 	$(function(){
 		$("#randomComment").html('${randomComment}');
+		$("#mLogChoice").on("click", function(){
+			$("#memberLog").show();
+			$("#sellerLog").hide();
+			$("#sLogChoice").toggleClass("selectLogin")
+			$("#mLogChoice").toggleClass("selectLogin")
+		})
+		$("#sLogChoice").on("click", function(){
+			$("#sellerLog").show();
+			$("#memberLog").hide();
+			$("#sLogChoice").toggleClass("selectLogin")
+			$("#mLogChoice").toggleClass("selectLogin")
+		})
 	})
 	</script>
+	<c:if test="${ not empty alertMsg }">
+		<script>
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session" />
+	</c:if> 
 </head>
 <body>
     <div class="flex2 wrap">
-        <div class="flex1 d1">
+	    <div id="choiceLogin">
+		    <label id="mLogChoice" class="selectLogin">일반회원</label>
+		    <label id="sLogChoice">판매자회원</label>
+	    </div>
+        <div class="flex1 d1" id="memberLog">
             
             <a href="home.com" class="logoa">
                 <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
@@ -235,6 +270,34 @@
                 <a href="#" id="randomComment"></a>
             </div>
         </div>
+        <div class="flex1 d1" id="sellerLog" style="display:none;">
+            
+            <a href="home.com" class="logoa">
+                <img src="${path}/resources/img/logo1.gif" alt="" class="logoimg"><span class="logotxt">오구싶은집</span>
+            </a>
+            <form action="loginUser.se" class="wid300">
+                <div class="border1 inputUser1">
+                    <input type="text" placeholder="이메일" name="selEmail">
+                </div>
+                <div class="border1 inputUser2">
+                    <input type="password" placeholder="비밀번호" name="selPwd">
+                </div>
+                <button class="wid300 but">
+                    판매자 로그인
+                </button>
+            </form>
+            <section class="underInp">
+                <a href="sellerSignIn.se">판매자 회원가입</a>
+            </section>
+            <section class="mt40">로그인에 문제가 있으신가요?</section>
+            <hr class="hrwd">
+            <div class="underInp">
+                <a href="#" id="randomComment"></a>
+            </div>
+        </div>
+        
+        
+        
         <footer>
             ©  bucketplace, Co., Ltd.. All Rights Reserved
         </footer>

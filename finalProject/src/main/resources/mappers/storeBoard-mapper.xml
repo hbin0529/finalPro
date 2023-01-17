@@ -5,6 +5,7 @@
 		<result column="pro_no" property="proNo" />
 		<result column="sel_no" property="selNo" />
 		<result column="cate_no" property="cateNo" />
+		<result column="cate_name" property="cateName" />
 		<result column="pro_white_stock" property="proWhiteStock" />
 		<result column="pro_black_stock" property="proBlackStock" />
 		<result column="pro_name" property="proName" />
@@ -44,6 +45,7 @@
 		<result column="pro_que_content" property="proQueContent" />
 		<result column="pro_que_result" property="proQueResult" />
 		<result column="pro_que_date" property="proQueDate" />
+		<result column="pro_que_ispublic" property="proQueIspublic" />
 		<!-- ANSWER -->
 		<result column="que_reply_no" property="queReplyNo" />
 		<result column="que_reply_content" property="queReplyContent" />
@@ -67,6 +69,7 @@
 	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> 
 		select pro_no
 			 , pro.pro_origin_img
+			 , sb.sel_no
 			 , sb.sel_bus_name
 			 , sb.sel_name
 			 , sb.sel_email
@@ -117,14 +120,20 @@
 			 , s.sel_addr
 			 , s.sel_detail_addr
 			 , s.sel_email
+			 , p.cate_no
+			 , c.cate_name
 			 , p.pro_name
 			 , p.pro_price
 			 , p.pro_origin_img
 			 , p.pro_change_img
+			 , p.pro_origin_img1
+			 , p.pro_change_img1
 			 , p.pro_origin_detailimg
 			 , p.pro_change_detailimg
-		  from product p, seller_base s
-		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no
+			 , p.pro_white_stock
+			 , p.pro_black_stock
+		  from product p, seller_base s, category c
+		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no and c.cate_no = p.cate_no
 	</select>
 	
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
@@ -135,23 +144,53 @@
 	</select>
 	
 	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
-		select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content, a.status
+		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content, a.status, pq.status
+			   ,pq.status, a.sel_no, pq.pro_que_type
 			from member_base m, product_question pq, product p, seller_base s, pro_question_reply a
 		  where m.mem_email = pq.mem_id 
 		  		and p.pro_no = pq.pro_no 
+		  		and p.status = 'Y'
 		  		and pq.status = 'Y' 
-		  		and pq.pro_no = #{proNo} 
+		  		and a.status = 'Y'
+		  		and pq.pro_no = #{proNo}
 		  		and a.pro_no = #{proNo} 
-		  		and pq.pro_que_no = a.pro_que_no 
+		  		and a.sel_no = s.sel_No
+		  		and a.pro_que_no = pq.pro_que_no
 		  order by pq.pro_que_date, a.que_reply_date desc
 	</select>
 	
 	
 	<insert id="insertProduct">
-		insert into product(board_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
+		insert into product(pro_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
 							pro_change_img, pro_origin_detailimg, pro_change_detailimg, pro_origin_img1, pro_change_img1)
 					values(pro_no_seq.nextval, #{selNo}, #{cateNo}, #{proWhiteStock}, #{proBlackStock}, #{proName}, #{proPrice}
-							, #{proOriginIimg}, #{proChangeImg}, #{proOriginDetailimg}, #{proChangeDetailimg}, #{proOriginImg1}, #{proChangeImg1})
+							, #{proOriginImg}, #{proChangeImg}, #{proOriginDetailimg}, #{proChangeDetailimg}, #{proOriginImg1}, #{proChangeImg1})
+	</insert>
+	
+	<update id="proDeleteBoard">
+		update product
+			set status = 'N'
+		  where pro_no = #{proNo}
+	</update>
+	
+	<update id="proUpdateBoard">
+		update product
+			set cate_no = #{cateNo}
+				,pro_white_stock = #{proWhiteStock}
+				,pro_black_stock = #{proBlackStock}
+				,pro_name = #{proName}
+				,pro_price = #{proPrice}
+				,pro_origin_img = #{proOriginImg}
+				,pro_change_img = #{proChangeImg}
+				,pro_origin_detailimg = #{proOriginDetailimg}
+				,pro_change_detailimg = #{proChangeDetailimg}
+				,pro_origin_img1 = #{proOriginImg1}
+		   where pro_no = #{proNo}
+	</update>
+	
+	<insert id="insertQuestion">
+		insert into product_question(pro_que_no, pro_no, mem_id, pro_que_type, pro_que_content)
+				   values(proque_seq.nextval, #{proNo}, #{memId}, #{proQueType}, #{proQueContent})
 	</insert>
 
 </mapper>

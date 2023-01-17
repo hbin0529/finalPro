@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="orderMapper">
+	<!-- 주문 -->
 	<resultMap type="Order" id="orderResult">
 	  	<result column="ord_no" property="orderNo"/>
 		<result column="ord_email" property="orderEmail"/>
@@ -12,14 +13,103 @@
 		<result column="cus_phone" property="cusPhone"/>
 		<result column="ord_request" property="orderRequest"/>
 	  </resultMap>
+	  
+	  <!-- 멤버 포인트 -->
 	  <resultMap type="Member" id="memberPoint">
 	  	<result column="mem_point" property="memPoint"/>
 	  </resultMap>
-	 
 	  
+	  <!-- 멤버 -->
+	  <resultMap type="Member" id="memberResult">
+	  	<result column="mem_email" property="memEmail"/>
+	 	<result column="mem_pwd" property="memPwd"/>
+	 	<result column="mem_name" property="memName"/>
+	 	<result column="mem_phone" property="memPhone"/>
+	 	<result column="mem_zipcode" property="memZipcode"/>
+	 	<result column="mem_addr" property="memAddr"/>
+	 	<result column="mem_detail_addr" property="memDetailAddr"/>
+	 	<result column="mem_gender" property="memGender"/>
+	 	<result column="mem_permit" property="memPermit"/>
+	 	<result column="mem_status" property="memStatus"/>
+	 	<result column="mem_img" property="memImg"/>
+	 	<result column="mem_point" property="memPoint"/>
+	 	<result column="mem_enroll_date" property="memEnrollDate"/>
+	 	<result column="mem_delete_date" property="memDeleteDate"/>
+	 	<result column="mem_nick" property="memNick"/>
+	  </resultMap>
+	  
+	  <!-- 상품 -->
+	  <resultMap type="Product" id="storeBoardResult">
+		<result column="pro_no" property="proNo" />
+		<result column="sel_no" property="selNo" />
+		<result column="cate_no" property="cateNo" />
+		<result column="pro_white_stock" property="proWhiteStock" />
+		<result column="pro_black_stock" property="proBlackStock" />
+		<result column="pro_name" property="proName" />
+		<result column="pro_price" property="proPrice" />
+		<result column="pro_up_date" property="proUpDate" />
+		<result column="pro_origin_img" property="proOriginImg" />
+		<result column="pro_change_img" property="proChangeImg" />
+		<result column="pro_origin_img1" property="proOriginImg1" />
+		<result column="pro_change_img1" property="proChangeImg1" />
+		<result column="pro_origin_detailimg" property="proOriginDetailimg" />
+		<result column="pro_change_detailimg" property="proChangeDetailimg" />
+		<result column="status" property="status" />
+		<result column="pro_count" property="proCount" />
+		<!-- SELLER -->
+		<result column="sel_bus_name" property="selBusName" />
+		<result column="sel_email" property="selEmail" />
+		<result column="sel_name" property="selName" />
+		<result column="sel_phone" property="selPhone" />
+		<result column="sel_addr" property="selAddr" />
+		<result column="sel_detail_addr" property="selDetailAddr" />
+		<result column="sel_bus_no" property="selBusNo" />
+		<!-- REVIEW -->
+		<result column="review_no" property="reviewNo" />
+		<result column="ord_no" property="ordNo" />
+		<result column="mem_email" property="memEmail" />
+		<result column="review_img_origin" property="reviewImgOrigin" />
+		<result column="review_img_change" property="reviewImgChange" />
+		<result column="review_content" property="reviewContent" />
+		<result column="review_date" property="reviewDate" />
+		<result column="review_star" property="reviewStar" />
+		<result column="mem_nick" property="memNick" />
+		<result column="ord_option" property="ordOption" />
+		<!-- QUESTION -->
+		<result column="pro_que_no" property="proQueNo" />
+		<result column="mem_id" property="memId" />
+		<result column="pro_que_type" property="proQueType" />
+		<result column="pro_que_content" property="proQueContent" />
+		<result column="pro_que_result" property="proQueResult" />
+		<result column="pro_que_date" property="proQueDate" />
+		<!-- ANSWER -->
+		<result column="que_reply_no" property="queReplyNo" />
+		<result column="que_reply_content" property="queReplyContent" />
+		<result column="que_reply_date" property="queReplyDate" />
+	</resultMap>
+	 
+	 
+	<!-- 포인트 조회 -->  
   	<select id="holdPoint" resultMap="memberPoint">
 		select mem_point
 		from member_base
 		where mem_email = #{o}
 	</select>
+	
+	<!-- 구매자 조회 -->
+	<select id="orderSheet" resultMap="memberResult">
+		select mem_addr, mem_detail_addr, mem_name, mem_phone
+		from member_base
+		where mem_email = #{m};
+	</select>
+	
+	<!-- 상품명 조회 -->
+	<!-- <select id="sellerProduct" resultMap="storeBoardResult">
+		select pro_name, pro_price, pro_white_stock
+		from product
+		where pro_no = #{proNo};
+	</select> -->
+	
+	<!-- 주문상품  -->
+	
 </mapper>

@@ -73,6 +73,7 @@
 	
 	</form>
 </div>  
+<<<<<<< HEAD
  <script>
 	// 툴바생략
 	
@@ -130,6 +131,75 @@
 				}
 			});
 		}
+=======
+
+
+		<script>
+
+		$('#summernote').summernote({
+		            height: 400,                 // 에디터 높이
+		            minHeight: 400,             // 최소 높이
+		            maxHeight: 400,             // 최대 높이
+		            focus: true,
+		            toolbar: [
+		                // 글꼴 설정
+		                ['fontname', ['fontname']],
+		                // 글자 크기 설정
+		                ['fontsize', ['fontsize']],
+		                // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		                ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		                // 글자색
+		                ['color', ['forecolor','color']],
+		                // 표만들기
+		                ['table', ['table']],
+		                // 글머리 기호, 번호매기기, 문단정렬
+		                ['para', ['ul', 'ol', 'paragraph']],
+		                // 줄간격
+		                ['height', ['height']],
+		                // 그림첨부, 링크만들기, 동영상첨부
+		                ['insert',['picture','link','video']],
+		                // 코드보기, 확대해서보기, 도움말
+		                ['view', ['codeview','fullscreen', 'help']]
+		            ],
+		            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		            
+		            callbacks : { 
+		               onImageUpload : function(files) {
+		            // 파일 업로드(다중업로드를 위해 반복문 사용)
+		                  	console.log('되는중');	
+		                     console.log(files[0]);                     
+		                     sendFile(files[0], this);
+		               }
+		               
+		            }
+		           
+		      
+		        });
+		
+		function sendFile(file, editor) {
+	           var data = new FormData();
+	           data.append("file", file);
+	           console.log(file);
+	           console.log(editor);
+	           $.ajax({
+	              data: data,
+	              type:"POST",
+	              url: "SummerNoteImageFile",
+	              contentType: false,
+	              processData: false,
+	              success: function(data) {
+	                 console.log(data);
+	                 console.log(editor);
+	                 $(editor).summernote('insertImage', data.url);
+	              },
+	              error: function(e) {
+	                 console.log(e);
+	              }
+	              
+	           })
+	        }
+
+>>>>>>> e614c796f3fe4e0e80399ee1f7f0fe5d40fbea00
 </script>
      
 <jsp:include page="../common/footer.jsp"/>

@@ -6,7 +6,7 @@
   	<result column="sel_email" property="selEmail"/>
   	<result column="sel_pwd" property="selPwd"/>
   	<result column="sel_name" property="selName"/>
-  	<result column="sel_busname" property="selBusName"/>
+  	<result column="sel_bus_name" property="selBusName"/>
   	<result column="sel_phone" property="selPhone"/>
   	<result column="sel_bus_no" property="selBusNo"/>
   	<result column="sel_zipcode" property="selZipcode"/>
@@ -25,8 +25,8 @@
   	<result column="sel_bus_name" property="selBusName"/>
   	<result column="mem_permit" property="memPermit"/>
   </resultMap>
-  <select id="searchUser" resultMap="searchUserResult">
-  	select sel_no, sel_email, sel_pwd, sel_bus_name, mem_permit from seller_base where sel_email = #{selEmail}
+  <select id="searchUser" resultMap="sellerResult">
+  	select * from seller_base where sel_email = #{selEmail}
   </select>
   
   <select id="searchIdVali" resultType="_int">
