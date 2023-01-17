@@ -48,5 +48,9 @@ public class HomeBoardDao {
     	return sqlSession.update("homeBoardMapper.deleteBoard", boardNo);
     }
     
+    public int updateBoard(SqlSessionTemplate sqlSession,HomeBoard h) {
+    	return sqlSession.update("homeBoardMapper.updateBoard", h);
+    }
+    
 
 }

@@ -145,7 +145,7 @@ $(function() {
     .inquire_content{margin-top: 20px;}
     .product-question__wrap__type-select{text-align: center;}
     .inquire_content_detail textarea{width: 560px; height: 250px; padding: 6px; margin-top: 10px; border-color: #d3d3d3; border-radius: 3px;}
-    .inquire_content_detail input{width: 560px; height: 50px; background-color: #21d9cb; color: white; border-style: none; border-radius: 5px; font-weight: bold; font-size: 16px;}
+    .inquire_content_detail button{width: 560px; height: 50px; background-color: #21d9cb; color: white; border-style: none; border-radius: 5px; font-weight: bold; font-size: 16px;}
     .modal-footer_text{text-align: left; font-size: 13px;}
     .type_label{margin-right: 40px;}
     .type_label input{ background-color: #21d9cb; color: #21d9cb; width: 20px; margin-right: 10px; text-align: center;}
@@ -360,6 +360,7 @@ $(function() {
                             </table>
                         </div>
                         
+<<<<<<< HEAD
                   <!-- 부트스트랩의 모달 창을 사용할려면 아래의 class 이름들을 그대로 사용해야 한다. 변경하면 모양이 달라진다.-->
                   <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
@@ -410,6 +411,58 @@ $(function() {
                             </div>
                           </div>
                         </div>
+=======
+						<!-- 부트스트랩의 모달 창을 사용할려면 아래의 class 이름들을 그대로 사용해야 한다. 변경하면 모양이 달라진다.-->
+						<!-- Modal -->
+				            <div class="modal fade" id="myModal" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
+				              <div class="modal-dialog">
+				                <!-- Modal content-->
+				                <div class="modal-content">
+				                  <div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal">×</button>
+				                    <h4 class="modal-title">상품 문의하기</h4> <!-- 사용자 지정 부분② : 타이틀 -->
+				                  </div>
+				                  <form action="qinsert.bo" id="queWrite" method="post">
+				                  	<input type="hidden" value="${ id }" name="memId">
+				                  	<input type="hidden" value="${ p.proNo }" name="proNo">
+				                    <div class="modal-body">
+				                      <div class="inquire_option">
+				                        <h5 class="inquire_option_title">문의유형</h5>
+				                        <div class="product-question__wrap__type-select" >
+				                          <label class="type_label">
+				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
+				                              type="radio" value="상품" name="proQueType" style="vertical-align: middle;" id="proQueType" required><span>상품</span>
+				                          </label>
+				                          <label class="type_label">
+				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
+				                              type="radio" value="배송" name="proQueType" style="vertical-align: middle;" id="proQueType"><span>배송</span>
+				                          </label>
+				                          <label class="type_label">
+				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
+				                              type="radio" value="기타" name="proQueType" style="vertical-align: middle;" id="proQueType"><span>기타</span>
+				                          </label>
+				                        </div>
+				                      </div><!--inquire_option 까지-->
+				          				
+				                      <div class="inquire_content">
+				                        <h5 class="inquire_content_title">문의내용</h5>
+				                        <div class="inquire_content_detail">
+				                          <textarea id="proQueContent" placeholder="문의내용을 자세하게 작성해주시면 답변에 큰 도움이 됩니다.(최소 20자 이상)" name="proQueContent" required></textarea>
+				                          <button onClick="addQuestion();">등록하기</button>
+				                        </div>
+				                      </div>
+				                    </div><!--review_write 까지-->
+				                  </form>
+				          
+				                  <div class="modal-footer">
+				                    <div class="modal-footer_text">- 문의내용에 대한 답변은 ‘마이페이지 > 나의리뷰 > 문의내역’ 또는 ‘상품 상세페이지’에서 확인 가능합니다.</div>
+				                    <div class="modal-footer_text">- 배송,결제,교환/반품 문의는 각 제품의 판매처로 문의 바랍니다.</div>
+				                    <div class="modal-footer_text">- 상품과 관련 없거나 부적합한 내용을 기재하시는 경우, 사전 고지 없이 삭제 또는 차단될 수 있습니다.</div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+>>>>>>> f36d55857d17954e3a5b956df4513f6bf6ad5b21
 
                         <!--문의-->
                         <div>
@@ -474,6 +527,7 @@ $(function() {
     </form>
     
     <script>
+<<<<<<< HEAD
        $(function(){
          selectReviewList();
       })
@@ -590,8 +644,128 @@ $(function() {
        }
       
        
+=======
+	    $(function(){
+			selectReviewList();
+		})
+		
+		function selectReviewList(){
+    		$.ajax({
+				url:"reviewlist.bo",
+				data:{pno:${p.proNo}},
+				success:function(list){
+					let value = "";
+					for(let i in list) {
+						value += "<tbody>"
+							  + 	"<tr>"
+							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/resources/img/logo_user.png' id='user_img'></td>"
+							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
+							  +  	"</tr>"
+							  +  	"<tr>"
+							  +			"<td id='review_option'>" + list[i].reviewStar + "</td>"
+							  +			"<td id='review_date'>" + list[i].reviewDate + "</td>"
+							  +  	"</tr>"
+							  +  	"<tr>"
+							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"
+							  +  	"</tr>"
+							  +  	"<tr>"
+							  +			"<td colspan='3' id='review_main_img'><img src='${path}/resources/img/logo_user.png' id='user_review'></td>"		
+							  +  	"</tr>"
+							  +  	"<tr>"		
+							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  
+							  +	 	"</tr>"
+							  + "</tbody>"
+							  + "<hr>";
+					}
+					$(".review_detail table").html(value);
+					$("#rcount").text(list.length);
+					$("#rcount1").text(list.length);
+					$("#rcount2").text(list.length);
+				},
+				error:function(){
+					console.log("댓글리스트 조회용 ajax 통신 실패");
+				}
+			});
+		}
+	    
+	    
+	    $(function(){
+			selectQuestionList();
+		})
+		
+		function selectQuestionList(){
+    		$.ajax({
+				url:"qlist.bo",
+				data:{pno:${p.proNo}},
+				success:function(list){
+					let value = "";
+					for(let i in list) {
+						value += "<div class='user_question'>"
+							  + 	"<div class='question_nickname_date'>"
+							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
+							  +		"</div>"
+							  + 	"<div class='bottom_question'>"
+							  +			"<div><p>Q</p></div>"
+							  +			"<div>"
+							  +				"<p>" + list[i].proQueContent + "</p>"
+							  +			"</div>"
+							  +		"</div>"
+							  + "</div>" 
+							  + "<div class='seller_answer'>"
+							  if(list[i].status == "Y") {
+						value += 	"<div class='bottom_answer_title'>"
+							  + 		"<div><p>A</p></div>"
+							  + 		"<div><p>" + list[i].selBusName + "</p></div>"
+							  + 		"<div><p>" + list[i].queReplyDate + "</p></div>"
+							  +	 	"</div>"
+							  +	 	"<div class='bottom_answer'>"
+							  + 		"<p>"
+							  + 		list[i].queReplyContent
+							  + 		"</p>"
+							  +	 	"</div>"
+							  + "</div>"
+							  + "<br><br>";
+							  } else {
+						value += "</div>"
+							  + "<br><br>"; 
+							}
+					}
+					$(".question_answer").html(value);
+					$("#qcount").text(list.length);
+					$("#qcount1").text(list.length);
+				},
+				error:function(){
+					console.log("댓글리스트 조회용 ajax 통신 실패");
+				}
+			});
+	    }
+	    
+	    function addQuestion(){
+	    	if($("#proQueContent").val().trim().length != 0) {
+    			$.ajax({
+	    			url:"qinsert.bo",
+	    			data: {
+	    				proNo: ${p.proNo},
+	    				memId: "${id}",
+	    				proQueType: $("#proQueType").val(),
+	    				proQueContent:$("#proQueContent").val()
+	    			},
+	    			success:function(result){
+	    				if(result == "success") {
+	    					selectQuestionList(); //결과가 성공하면 데이터 다시검색
+	    					location.href="/productDetail.bo?pno="+${p.proNo};
+	    				}
+	    			},
+	    			error:function(){
+	    				console.log("댓글작성 ajax 통신 실패")
+	    			}
+    			});
+	    	} else {
+    			alertify.alert("내용을 작성해주세요")
+    		}
+    	}
+>>>>>>> f36d55857d17954e3a5b956df4513f6bf6ad5b21
 
-    
     </script>
     
     

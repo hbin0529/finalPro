@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css">
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <style>
      .form-group{margin-top:20px;}
      
@@ -21,11 +20,10 @@
     } 
      
 </style>
-<body>
-
-<%@ include file="../common/header.jsp"%> 
-
+<body> 
+<%@ include file="../common/header.jsp"%>
 <div class="container" style="width:1300px; margin:50px auto; font-family: 'Pretendard-Regular';">
+
  <form id="enrollForm" method="post" action="insert.bo" enctype="multipart/form-data">
  
   	<div class="form-group"> 
@@ -36,7 +34,7 @@
         <div class="form-group"> 
           <label for="homeFamilyv">가족형태</label>&ensp;&ensp;
              <select name="homeFamilyv"  style="width: 220px; height: 40px; border: 1px solid rgb(218, 218, 218);  border-radius: 4px; color: rgb(139, 138, 138); padding-left: 10px;">
-                 <option value="name">선택해주세요.</option>
+                 <option value="none">선택해주세요.</option>
                  <option value="싱글라이프">싱글라이프</option>
                  <option value="신혼부부">신혼부부</option>
           </select>   
@@ -75,6 +73,65 @@
 	
 	</form>
 </div>  
+<<<<<<< HEAD
+ <script>
+	// 툴바생략
+	
+	$('#summernote').summernote({
+            height: 400,                 // 에디터 높이
+            minHeight: 400,             // 최소 높이
+            maxHeight: 400,             // 최대 높이
+            focus: true,
+            toolbar: [
+                // 글꼴 설정
+                ['fontname', ['fontname']],
+                // 글자 크기 설정
+                ['fontsize', ['fontsize']],
+                // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+                ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                // 글자색
+                ['color', ['forecolor','color']],
+                // 표만들기
+                ['table', ['table']],
+                // 글머리 기호, 번호매기기, 문단정렬
+                ['para', ['ul', 'ol', 'paragraph']],
+                // 줄간격
+                ['height', ['height']],
+                // 그림첨부, 링크만들기, 동영상첨부
+                ['insert',['picture','link','video']],
+                // 코드보기, 확대해서보기, 도움말
+                ['view', ['codeview','fullscreen', 'help']]
+            ],
+            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+            
+            callbacks : { 
+               onImageUpload : function(files) {
+            // 파일 업로드(다중업로드를 위해 반복문 사용)
+                  
+                     console.log(files[0]);                     
+                     uploadSummernoteImageFile(files[0], this);
+               }
+               
+            } 
+      
+        });
+        
+        function uploadSummernoteImageFile(file, el) {
+			data = new FormData();
+			data.append("file", file);
+			$.ajax({
+				data : data,
+				type : "POST",
+				url : "uploadSummernoteImageFile",
+				contentType : false,
+				enctype : 'multipart/form-data',
+				processData : false,
+				success : function(data) {
+					$(el).summernote('editor.insertImage', data.url);
+				}
+			});
+		}
+=======
 
 
 		<script>
@@ -142,6 +199,7 @@
 	           })
 	        }
 
+>>>>>>> e614c796f3fe4e0e80399ee1f7f0fe5d40fbea00
 </script>
      
 <jsp:include page="../common/footer.jsp"/>
