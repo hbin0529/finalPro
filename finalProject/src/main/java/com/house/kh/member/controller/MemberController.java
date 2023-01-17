@@ -200,7 +200,11 @@ public class MemberController {
 		
 		
 		if(!upfile.getOriginalFilename().equals("")) {
-			new File(session.getServletContext().getRealPath(existImg)).delete();
+			if(!existImg.contains("logo_user")) {
+				new File(session.getServletContext().getRealPath(existImg)).delete();
+			}else {
+				//기본이미지는 삭제하면 안돼서 따로 뺌
+			}
 			String originName = upfile.getOriginalFilename(); 
 			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); 
 			int ranNum = (int)(Math.random() * 90000 + 10000); 

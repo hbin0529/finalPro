@@ -22,7 +22,6 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
  
-
 <script>
     $(function(){
         $("#header_store").mouseover(function(){
@@ -100,7 +99,7 @@
                 <ul>
                      <li><a href="list.bo">집들이</a></li>
                      <li id="header_store"><a href="storelist.bo" >스토어</a></li>
-                     <li><a href="">인테리어</a></li>
+                     <li><a href="interrior.in">인테리어</a></li>
                  </ul>
              </div>
              <div class="main_search">

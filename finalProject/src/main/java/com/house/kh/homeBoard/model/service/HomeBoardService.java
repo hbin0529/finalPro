@@ -17,9 +17,7 @@ public interface HomeBoardService {
       //집들이게시글 상세조회
       int increaseCount(int boardNo);
       HomeBoard selectBoard(int boardNo); 
-       
-      //게시글 수정
-      int updateBoard(HomeBoard h);
+        
       
     //댓글 리스트(ajax)
   	ArrayList<HomeReply> selectReplyList(int boardNo);
@@ -33,5 +31,8 @@ public interface HomeBoardService {
     
   //게시글 삭제
   	int deleteBoard(int boardNo);
+  	
+  //게시글 수정
+  	int updateBoard(HomeBoard h);
 
 }

@@ -19,17 +19,18 @@
 
 	<form action="" method="" id="room_select_option">
 		<div>
-			<select name="room_select_option">
-				<option value="none">주거형태</option>
-				<option value="english">원룸&오피스텔</option>
-				<option value="chinese">아파트</option>
+			<select name="homeOption">
+				 <option value="none">선택해주세요.</option>
+                 <option value="원룸">원룸</option>
+                 <option value="오피스텔">오피스텔</option>
+                 <option value="아파트">아파트</option>
 			</select>
 		</div>
 		<div>
-			<select name="family_style">
-				<option value="name">선택해주세요.</option>
-				<option value="single_life">싱글라이프</option>
-				<option value="married">신혼부부</option>
+			<select name="homeFamilyv">
+				<option value="none">선택해주세요.</option>
+		       <option value="싱글라이프">싱글라이프</option>
+                <option value="신혼부부">신혼부부</option>
 			</select>
 		</div>
 		<!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼 -->
