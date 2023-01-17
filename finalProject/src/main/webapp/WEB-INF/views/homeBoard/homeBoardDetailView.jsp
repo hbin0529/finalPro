@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style> 
+</style>
 <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css"> 
 <body>
  <jsp:include page="../common/header.jsp"/> 
@@ -31,17 +33,17 @@
          </c:if>
          
           <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
-         <form action="" method="post" id="postForm">
+          <form action="" method="post" id="postBoard">
             <input type="hidden" name= "bno" value="${ h.boardNo }">
             <input type="hidden" name="filePath" value="${ h.boardMainimgChange }">         
-         </form>
+         </form> 
          
-         <script>
+        <script>
             function postFormSubmit(num) {
                if(num == 1) {
-                  $("#postForm").attr("action", "updateForm.bo").submit();
+                  $("#postBoard").attr("action", "updateForm.bo").submit();
                } else {
-                  $("#postForm").attr("action", "deleteBoard.bo").submit();
+                  $("#postBoard").attr("action", "deleteBoard.bo").submit();
                }
             }
          </script>
@@ -103,13 +105,13 @@
                      <c:when test="${ empty id }">
                           <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
                            <td><textarea class="form-control" id="content" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px; font-family: 'Pretendard-Regular'; font-size:16px">로그인한 사용자만 이용가능합니다.</textarea></td>
-                           <td><button style="padding:15px;" disabled>입력</button></td>
+                           <td><button style="padding:15px; font-size:15px" disabled>입력</button></td>
                      </c:when>
                      <c:otherwise>  
                              <tr>
                                    <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
                                   <td><textarea class="form-control" id="content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px;"></textarea></td>
-                                   <td><button onclick="addReply();" style="padding:15px; font-size:17px">입력</button></td>
+                                   <td><button onclick="addReply();" style="border-style:none; background-color:white; color:black; font-size:18px; cursor: pointer;">입력</button></td>
                                </tr>  
                        </c:otherwise>
                      </c:choose>  
@@ -183,7 +185,7 @@
              } else {
                 alertify.alert("댓글 작성후 등록해 주세요");
              }
-          }  
+          }
        
      	function a(no){
      		

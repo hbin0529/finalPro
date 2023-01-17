@@ -47,10 +47,10 @@ public class HomeBoardServiceImpl implements HomeBoardService {
 		return hbDao.insertBoard(sqlSession, h); 
 	   }
  
-   @Override
-   public int updateBoard(HomeBoard h) {
-      return 0;
-   }
+	@Override
+	public int updateBoard(HomeBoard h) {
+		return hbDao.updateBoard(sqlSession, h);
+	}
 
 	@Override
 	public ArrayList<HomeReply> selectReplyList(int boardNo) {

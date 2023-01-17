@@ -108,5 +108,16 @@
           where board_no = #{boardNo}
   </update>
   
+  <update id="updateBoard"> 
+        update board_home 
+          set home_familyv = #{homeFamilyv}
+              ,home_option = #{homeOption}
+              ,board_title = #{boardTitle} 
+              ,board_content = #{boardContent}
+             ,board_mainimg_origin = #{boardMainimgOrigin}
+             ,board_mainimg_change = #{boardMainimgChange} 
+        where board_no = #{boardNo}
+  </update>
+  
   
 </mapper>
