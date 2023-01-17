@@ -144,19 +144,13 @@
 	</select>
 	
 	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
-		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, s.sel_bus_name, a.que_reply_date, a.que_reply_content, a.status, pq.status
-			   ,pq.status, a.sel_no, pq.pro_que_type
-			from member_base m, product_question pq, product p, seller_base s, pro_question_reply a
-		  where m.mem_email = pq.mem_id 
-		  		and p.pro_no = pq.pro_no 
-		  		and p.status = 'Y'
-		  		and pq.status = 'Y' 
-		  		and a.status = 'Y'
-		  		and pq.pro_no = #{proNo}
-		  		and a.pro_no = #{proNo} 
-		  		and a.sel_no = s.sel_No
-		  		and a.pro_que_no = pq.pro_que_no
-		  order by pq.pro_que_date, a.que_reply_date desc
+		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status
+        		, a.que_reply_date, a.que_reply_content, a.status 
+        		, a.sel_no
+				from product_question pq
+					join product p using (pro_no)
+					join member_base m on (pq.mem_id = m.mem_email)
+					full join pro_question_reply a using (pro_que_no)					
 	</select>
 	
 	

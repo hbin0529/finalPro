@@ -145,7 +145,7 @@ $(function() {
     .inquire_content{margin-top: 20px;}
     .product-question__wrap__type-select{text-align: center;}
     .inquire_content_detail textarea{width: 560px; height: 250px; padding: 6px; margin-top: 10px; border-color: #d3d3d3; border-radius: 3px;}
-    .inquire_content_detail input{width: 560px; height: 50px; background-color: #21d9cb; color: white; border-style: none; border-radius: 5px; font-weight: bold; font-size: 16px;}
+    .inquire_content_detail button{width: 560px; height: 50px; background-color: #21d9cb; color: white; border-style: none; border-radius: 5px; font-weight: bold; font-size: 16px;}
     .modal-footer_text{text-align: left; font-size: 13px;}
     .type_label{margin-right: 40px;}
     .type_label input{ background-color: #21d9cb; color: #21d9cb; width: 20px; margin-right: 10px; text-align: center;}
@@ -158,7 +158,6 @@ $(function() {
 	<jsp:include page="../common/header.jsp" />
 
     <!---------------------------------- 상품 메인 사진 ---------------------------------->
-    <form action="">
     <section>
         <div class="main_body">
             <div class="product_header">
@@ -380,15 +379,15 @@ $(function() {
 				                        <div class="product-question__wrap__type-select" >
 				                          <label class="type_label">
 				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
-				                              type="radio" value="상품" name="proQueType" style="vertical-align: middle;"><span>상품</span>
+				                              type="radio" value="상품" name="proQueType" style="vertical-align: middle;" id="proQueType" required><span>상품</span>
 				                          </label>
 				                          <label class="type_label">
 				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
-				                              type="radio" value="배송" name="proQueType" style="vertical-align: middle;"><span>배송</span>
+				                              type="radio" value="배송" name="proQueType" style="vertical-align: middle;" id="proQueType"><span>배송</span>
 				                          </label>
 				                          <label class="type_label">
 				                            <input class="product-question__wrap__type-select__box product-question__wrap__type-select__box--select"
-				                              type="radio" value="기타" name="proQueType" style="vertical-align: middle;"><span>기타</span>
+				                              type="radio" value="기타" name="proQueType" style="vertical-align: middle;" id="proQueType"><span>기타</span>
 				                          </label>
 				                        </div>
 				                      </div><!--inquire_option 까지-->
@@ -396,8 +395,8 @@ $(function() {
 				                      <div class="inquire_content">
 				                        <h5 class="inquire_content_title">문의내용</h5>
 				                        <div class="inquire_content_detail">
-				                          <textarea id="proQueContent" placeholder="문의내용을 자세하게 작성해주시면 답변에 큰 도움이 됩니다.(최소 20자 이상)" name="proQueContent"></textarea>
-				                          <input type="submit" value="완료">
+				                          <textarea id="proQueContent" placeholder="문의내용을 자세하게 작성해주시면 답변에 큰 도움이 됩니다.(최소 20자 이상)" name="proQueContent" required></textarea>
+				                          <button onClick="addQuestion();">등록하기</button>
 				                        </div>
 				                      </div>
 				                    </div><!--review_write 까지-->
@@ -571,32 +570,30 @@ $(function() {
 	    }
 	    
 	    function addQuestion(){
-    		if($("#proQueContent").val().trim().length != 0) {
+	    	if($("#proQueContent").val().trim().length != 0) {
     			$.ajax({
-    				url:"qinsert.bo",
-    				data: {
-    					memNick:${p.memNick},
-    					proQueDate:${p.proQueDate},
-    					proQueContent:$("#proQueContent").val(),
-    				},
-    				success:function(result){
-    					if(result == "success") {
-    						selectQuestionList(); //결과가 성공하면 데이터 다시검색
-    						$("#proQueContent").val(""); //댓글창에 댓글내용 비워주기!!!
-    					}
-    				},
-    				error:function(){
-    					console.log("댓글작성 ajax 통신 실패")
-    				}
+	    			url:"qinsert.bo",
+	    			data: {
+	    				proNo: ${p.proNo},
+	    				memId: "${id}",
+	    				proQueType: $("#proQueType").val(),
+	    				proQueContent:$("#proQueContent").val()
+	    			},
+	    			success:function(result){
+	    				if(result == "success") {
+	    					selectQuestionList(); //결과가 성공하면 데이터 다시검색
+	    					location.href="/productDetail.bo?pno="+${p.proNo};
+	    				}
+	    			},
+	    			error:function(){
+	    				console.log("댓글작성 ajax 통신 실패")
+	    			}
     			});
-    		} else {
+	    	} else {
     			alertify.alert("내용을 작성해주세요")
     		}
     	}
-		
-	    
 
-    
     </script>
     
     
