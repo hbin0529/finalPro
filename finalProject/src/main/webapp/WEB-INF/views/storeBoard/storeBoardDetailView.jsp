@@ -360,7 +360,6 @@ $(function() {
                             </table>
                         </div>
                         
-<<<<<<< HEAD
                   <!-- 부트스트랩의 모달 창을 사용할려면 아래의 class 이름들을 그대로 사용해야 한다. 변경하면 모양이 달라진다.-->
                   <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
@@ -411,7 +410,6 @@ $(function() {
                             </div>
                           </div>
                         </div>
-=======
 						<!-- 부트스트랩의 모달 창을 사용할려면 아래의 class 이름들을 그대로 사용해야 한다. 변경하면 모양이 달라진다.-->
 						<!-- Modal -->
 				            <div class="modal fade" id="myModal" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
@@ -462,7 +460,6 @@ $(function() {
 				                </div>
 				              </div>
 				            </div>
->>>>>>> f36d55857d17954e3a5b956df4513f6bf6ad5b21
 
                         <!--문의-->
                         <div>
@@ -527,7 +524,6 @@ $(function() {
     </form>
     
     <script>
-<<<<<<< HEAD
        $(function(){
          selectReviewList();
       })
@@ -644,7 +640,6 @@ $(function() {
        }
       
        
-=======
 	    $(function(){
 			selectReviewList();
 		})
@@ -764,7 +759,6 @@ $(function() {
     			alertify.alert("내용을 작성해주세요")
     		}
     	}
->>>>>>> f36d55857d17954e3a5b956df4513f6bf6ad5b21
 
     </script>
     
