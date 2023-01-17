@@ -230,11 +230,11 @@
                         <h2 style="margin-bottom: 20px; font-size: 20px;">결제금액</h2>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>총 상품 금액</div>
-                            <div style="flex: 0px; text-align: right; font-weight: bold;">45,000원</div>
+                            <div style="flex: 0px; text-align: right; font-weight: bold;">${ p.proPrice * countSelect } 포인트</div>
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>배송비</div>
-                            <div style="flex: 0px; text-align: right;">0원</div>
+                            <div style="flex: 0px; text-align: right;">2500 포인트</div>
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>쿠폰 사용</div>
@@ -246,7 +246,7 @@
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; border-top: 1px solid rgb(234, 235, 239); padding-top: 19px; padding-bottom: 19px; margin-top: 20px;">
                             <div style="font-size: 18px; font-weight: bold;">최종 결제 금액</div>
-                            <div style="flex: 0px; text-align: right; font-size: 22px; font-weight: bold; color: #21d9cb;">45,000원</div>
+                            <div style="flex: 0px; text-align: right; font-size: 22px; font-weight: bold; color: #21d9cb;">${ (p.proPrice * countSelect) + 2500 } 포인트</div>
                         </div>
                     </div>
                     <!-- 필수 동의란 -->
@@ -256,7 +256,7 @@
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">개인정보수집 및 이용동의(필수)</label>
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">결제 서비스 이용약관 동의(필수)</label>
                     </div>
-                    <input type="submit" onclick="" class="submitbut wid360 bora4" value="45,000원 결제하기">
+                    <input type="submit" onclick="" class="submitbut wid360 bora4" value="${ (p.proPrice * countSelect) + 2500 } 포인트 결제하기">
                 </div>
             </div>
         </div>

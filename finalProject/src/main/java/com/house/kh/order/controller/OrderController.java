@@ -56,12 +56,13 @@ public class OrderController {
 	
 	@RequestMapping("orderSheet.or")
 	public String selectOrder(Order o, Model model, HttpSession session) {
-		System.out.println("asdasd");
-		Member m = (Member)session.getAttribute("m");
-		Product p = (Product)session.getAttribute("p");
-		Seller s = (Seller)session.getAttribute("s");
-		System.out.println(m);
-		System.out.println(p);
+		//주문테이블에 추가
+		
+		
+		//주문상세 테이블에 추가
+		
+		
+		
 		return "";
 	}
 }
