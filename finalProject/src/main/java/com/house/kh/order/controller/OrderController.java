@@ -27,6 +27,8 @@ public class OrderController {
 		m.addAttribute("p", p);
 		m.addAttribute("colorSelect", colorSelect);
 		m.addAttribute("countSelect", countSelect);
+		System.out.println(colorSelect);
+		System.out.println(colorSelect);
 		return "order/order";
 		
 	}
