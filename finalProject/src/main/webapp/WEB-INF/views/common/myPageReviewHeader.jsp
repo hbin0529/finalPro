@@ -50,8 +50,8 @@
             <table>
                 <tr>
                     <td><a href="" id="mypage_review_menu">상품리뷰</a></td>
-                    <td><a href="" id="mypage_review_menu">집들이</a></td>
-                    <td><a href="" id="mypage_review_menu">문의내역</a></td>
+                    <td><a href="mypagehblist.bo" id="mypage_review_menu">집들이</a></td>
+                    <td><a href="qArrayList.bo" id="mypage_review_menu">문의내역</a></td>
                 </tr>
             </table>
         </div>

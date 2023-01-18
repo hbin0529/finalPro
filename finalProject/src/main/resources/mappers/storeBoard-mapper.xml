@@ -105,11 +105,7 @@
 		 order by pro.pro_no desc
 	</select>
 	
-	<update id="increaseCount">
-		update product
-			set pro_count = pro_count+1
-		  where pro_no = #{proNo} and status = 'Y'
-	</update>
+
 	
 	<select id="selectBoard" resultType="Product" resultMap="storeBoardResult">
 		select p.pro_no
@@ -145,17 +141,22 @@
 	</select>
 	
 	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
-		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status, p.pro_no, pq.pro_que_result
-        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id
+		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, p.pro_no, pq.pro_que_result, pq.status
+        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, pq.mem_id, pq.pro_que_no, m.mem_email
 				from product_question pq
 					join product p on (p.pro_no = pq.pro_no)
 					join member_base m on (pq.mem_id = m.mem_email)
 					join seller_base s on (s.sel_no = pq.sel_no)
 					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
                 where p.pro_no = #{proNo} and pq.status = 'Y'
-                order by pq.pro_que_date desc 				
+                order by pq.pro_que_date desc
 	</select>
 	
+	<update id="increaseCount">
+		update product
+			set pro_count = pro_count+1
+		  where pro_no = #{proNo} and status = 'Y'
+	</update>
 	
 	<insert id="insertProduct">
 		insert into product(pro_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
@@ -187,7 +188,7 @@
 	
 	<insert id="insertQuestion">
 		insert into product_question(pro_que_no, pro_no, mem_id, pro_que_type, pro_que_content, pro_que_result, pro_que_ispublic, pro_que_date, status, sel_no)
-				   values(proque_seq.nextval, #{proNo}, #{memId}, #{proQueType},#{proQueContent},'N','Y',sysdate,'Y',#{selNo})
+				   values(proque_seq.nextval, #{proNo}, #{memId}, #{proQueType},#{proQueContent},'N','Y', sysdate ,'Y', #{selNo})
 	</insert>
 	
 	<update id="queDelete">
@@ -198,7 +199,7 @@
 	
 	<select id="arrayQuestionList" resultType="Product" resultMap="storeBoardResult">
 		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status, p.pro_no, pq.pro_que_result
-        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id
+        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id, p.pro_name
 				from product_question pq
 					join product p on (p.pro_no = pq.pro_no)
 					join member_base m on (pq.mem_id = m.mem_email)

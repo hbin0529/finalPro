@@ -21,9 +21,7 @@
 
 <jsp:include page="../common/header.jsp" /> 
 <jsp:include page="../common/myPageHeader.jsp" /> 
-<jsp:include page="../common/myPageReviewHeader.jsp" /> 
- 
- 
+<jsp:include page="../common/myPageReviewHeader.jsp" />  
 
      
            <section class="mypage_main_body">

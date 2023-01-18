@@ -19,7 +19,13 @@
         <div>
             <div class="detail_title"><h2>${ h.boardTitle }</h2></div> 
                 <div class="detail_title_author_img">
+               <c:if test="${empty h.memImg}"> 
                       <a href="#"><img class="image" src="${path}/resources/img/logo_user.png"></a>
+                </c:if>
+              <c:if test="${!empty h.memImg}"> 
+                       <a href="#"><img class="image" src="${path}${h.memImg}" style="width:50px; height:50px; border-radius: 50%;"></a>
+               </c:if>
+                 
                      <div class="detail_title_author_name">${ h.memNick }</div>
                       <div class="detail_title_author_date">${ h.boardDate }</div> 
                 </div>  

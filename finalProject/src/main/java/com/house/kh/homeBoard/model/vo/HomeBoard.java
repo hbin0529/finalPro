@@ -30,7 +30,7 @@ public class HomeBoard {
    private String memEmail;
    private String memNick;
    private String memAddr; 
-   
+   private String memImg; 
    
    
 

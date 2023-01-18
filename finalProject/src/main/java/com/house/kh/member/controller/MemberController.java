@@ -146,7 +146,7 @@ public class MemberController {
 	//카카오아이디로그인시도가 들어왔을떄 처리
 	@RequestMapping("kakaoIdControll.me")
 	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model) throws IOException{
-		
+		System.out.println(kakaoGender);
 		Member m = mService.kakaoUserSignChk(kakaoUserEmail);
 		int mCount = mService.kakaoUserSignChkCount(kakaoUserEmail);
 		if(mCount>0) {
@@ -167,6 +167,7 @@ public class MemberController {
 			//회원가입처리하기전에 카카오에서 못받은 정보들 마저 입력하게 설정
 			model.addAttribute("kakaoUserEmail", kakaoUserEmail);
 			model.addAttribute("kakaoUserNickname", kakaoUserNickname);
+			System.out.println(kakaoGender);
 			if(kakaoGender=="male") {
 				kakaoGender = "M";
 			}else if(kakaoGender=="female") {

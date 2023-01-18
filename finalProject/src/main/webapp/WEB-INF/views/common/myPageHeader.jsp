@@ -52,7 +52,7 @@
                 <table>
                     <tr>
                         <td><a href="" id="mypage_menu">장바구니</a></td>
-                        <td><a href="" id="mypage_menu">나의쇼핑</a></td>
+                        <td><a href="myPageOrderlist.bo" id="mypage_menu">나의쇼핑</a></td>
                         <td><a href="mypagehblist.bo" id="mypage_menu">나의리뷰</a></td>
                         <td><a href="myPage.me" id="mypage_menu">개인정보수정</a></td>
                     </tr>
