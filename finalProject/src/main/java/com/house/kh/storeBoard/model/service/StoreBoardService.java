@@ -36,7 +36,7 @@ public interface StoreBoardService {
 	int insertQuestion(Product p);
 	
 	// 문의삭제
-	int queDelete(Product p);
+	int queDelete(int proQueNo);
 	
 	// 게시판리스트 페이지
 	ArrayList<Product> arrayQuestionList(Product p); //어떤거 가져올지

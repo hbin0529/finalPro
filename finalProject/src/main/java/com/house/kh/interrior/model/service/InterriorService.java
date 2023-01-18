@@ -1,9 +1,12 @@
 package com.house.kh.interrior.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.interrior.model.dao.InterriorDao;
 import com.house.kh.interrior.model.vo.Interrior;
 import com.house.kh.member.model.dao.MemberDao;
@@ -19,11 +22,25 @@ public class InterriorService {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	public Interrior interriorInfo(int selNo) {
+	public ArrayList<Interrior> interriorInfo(int selNo) {
 		
-		Interrior interriorInfo = iDao.interriorInfo(sqlSession, selNo);
+		ArrayList<Interrior> interriorInfo = iDao.interriorInfo(sqlSession, selNo);
 		
 		return interriorInfo;
+	}
+	
+
+	public int insertInterrior(Interrior i) { 
+		return iDao.insertInterrior(sqlSession, i); 
+	}
+	
+	
+	public int increaseCount(int interNo) {
+		return iDao.increaseCount(sqlSession, interNo);
+	}
+	
+	public Interrior selectInterrior(int interNo) {
+		return iDao.selectInterrior(sqlSession, interNo);
 	}
 	
 	

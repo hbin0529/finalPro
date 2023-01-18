@@ -249,18 +249,13 @@ $(function() {
 								}
 							}
 						</script>
+						
                         <c:if test="${selNo eq p.selNo }">
 			            	<a href="productWrite.bo">상품올리기</a>
 			            </c:if>
                     </div>
                 </div>
             </div>
-            
-         	<!-- 문의 삭제시 post방식으로 넘겨주기 -->
-				<form action="" method="post" id="queForm">
-					<input type="hidden" name="proQueNo" value="${ p.proQueNo }">
-					<input type="hidden" name="queReplyNo" value="${ p.queReplyNo }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
-				</form>
 			<script>
 				function queFormSubmit(num) {
 						if(num == 1) {
@@ -385,6 +380,7 @@ $(function() {
 				                  </div>
 				                  <form action="qinsert.bo" id="queWrite" method="post">
 				                  	<input type="hidden" value="${ id }" name="memId" id="memId">
+				                  	<input type="hidden" value="${ id }" name="memEmail" id="memId">
 				                  	<input type="hidden" value="${ p.proNo }" name="proNo">
 				                  	<input type="hidden" value="${ p.selNo }" name="selNo">
 				                    <div class="modal-body">
@@ -551,9 +547,10 @@ $(function() {
 							  +			"<div style='display:flex;'>"
 							  +				"<p style='color:#21d9cb; width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>답변완료</p>"
 							  		if(list[i].memId == $("#memId").val()){
-					    value +=			"<a href='' onClick='queFormSubmit(1);' style='width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
+					    value +=			"<a onClick='queFormSubmit(1);' style='width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
 							  			} 
-						value +=		"</div>"
+						value +=		"</div>" +list[i].proQueNo + list[i].memEmail 
+						      + 		"<form action='' method='post' id='queForm'><input type='hidden' name='proQueNo' value='" +list[i].proQueNo+ "'></form>"						
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
 							  +		"</div>"
 							  + 	"<div class='bottom_question'>"
@@ -579,18 +576,19 @@ $(function() {
 							  } else {
 					 	value += "<div class='user_question'>"
 							  + 	"<div class='question_nickname_date'>"
-							  +			"<div style='display:flex;'>"
+							  +			"<div style='display:flex;'>"+list[i].proQueNo
 							  +				"<p style='background-color:#21d9cb; color:white;width:40px; text-align:center; border-radius:5px; height:20px; padding-top:2px;' > 미답변</p>"
 							  		if(list[i].memId == $("#memId").val()){
 						value += 		"<a onClick='queFormSubmit(1);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
 							  		} 
 						value +=		"</div>"
+						      + 		"<form action='' method='post' id='queForm'><input type='hidden' name='proQueNo' value='" +list[i].proQueNo+ "'></form>"
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
 							  +		"</div>"
 							  + 	"<div class='bottom_question'>"
 							  +			"<div><p>Q</p></div>"
 							  +			"<div>"
-							  +				"<p>" + list[i].proQueContent + "</p>"
+							  +				"<p>" + list[i].proQueContent + list[i].proQueNo +"</p>"
 							  +			"</div>"
 							  +		"</div>"
 							  + "</div>" 
