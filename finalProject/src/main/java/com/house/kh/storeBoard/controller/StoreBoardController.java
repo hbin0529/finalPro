@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,9 @@ public class StoreBoardController {
 	@RequestMapping(value = "qlist.bo", produces = "application/json; character=utf-8")
 	public String ajaxSelectQuestionList(int pno) {
 		ArrayList<Product> list = sbService.selectQuestionList(pno);
+		/*
+		 * for(int i = 0; i < list.size(); i++) { System.out.println(list.get(i)); }
+		 */
 		return new Gson().toJson(list);
 	}
 
@@ -181,9 +185,13 @@ public class StoreBoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="qinsert.bo")
-	public String ajaxInsertQuestion(Product p) {
+	public void ajaxInsertQuestion(Product p, Model model, HttpServletResponse response) throws IOException {
 		int result = sbService.insertQuestion(p);
-		return result > 0 ? "success" : "fail" ;
+		
+		if(result > 0) {
+			model.addAttribute("alertMsg", "문의 등록이 완료 되었습니다.");
+			response.sendRedirect("productdetail.bo?pno="+ p.getProNo());
+		}
 		
 	}
 
