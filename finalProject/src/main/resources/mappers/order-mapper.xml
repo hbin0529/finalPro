@@ -100,7 +100,7 @@
 	<select id="orderSheet" resultMap="memberResult">
 		select mem_addr, mem_detail_addr, mem_name, mem_phone
 		from member_base
-		where mem_email = #{m};
+		where mem_email = #{m}
 	</select>
 	
 	<!-- 상품명 조회 -->
@@ -110,6 +110,31 @@
 		where pro_no = #{proNo};
 	</select> -->
 	
-	<!-- 주문상품  -->
+	<!-- 주문상품 데이터 추가 -->
+	<insert id="orderSheet2">
+		INSERT INTO ORDER_MAIN VALUES (
+		    ord_seq.nextval,
+		    #{ ordEmail }, 
+		    sysdate, 
+		    #{ ordZipcode }, 
+		    #{ ordAddr }, 
+		    #{ ordDetailAddr }, 
+		    #{ cusName },
+		    #{ cusPhone },
+		    #{ ordRequest }
+		)
+	</insert>
+	
+	<!-- 주문상세 데이터 추가 -->
+	<insert id="">
+		INSERT INTO ORDER_DETAIL VALUES(
+		    14,
+		    1,
+		    5,
+		    1234,
+		    'Y',
+		    'BLACK'
+		);
+	</insert>
 	
 </mapper>
