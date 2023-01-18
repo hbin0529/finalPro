@@ -1,5 +1,7 @@
 package com.house.kh.seller.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +22,12 @@ public class SellerDao {
 	public int searchIdVali(SqlSessionTemplate sqlSession, String id) {
 		return sqlSession.selectOne("sellerMapper.searchIdVali", id);
 	}
+	
+	
+	public ArrayList<Seller> getAllSeller(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("sellerMapper.getAllSeller");
+	}
+	
 	
 	
 }

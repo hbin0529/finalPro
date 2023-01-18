@@ -132,8 +132,8 @@ public class StoreBoardController {
 	}
 	
 	@RequestMapping("productDelete.bo")
-	public String proDeleteBoard(int pno, String filePath, Model model, HttpSession session) {
-		int result = sbService.proDeleteBoard(pno);
+	public String proDeleteBoard(int proNo, String filePath, Model model, HttpSession session) {
+		int result = sbService.proDeleteBoard(proNo);
 		if(result > 0) {
 			if( !filePath.equals("")) { //만약 filePath가 비어있지 않으면(파일이있으면) 같이 삭제해야함
 				new File(session.getServletContext().getRealPath(filePath)).delete(); //파일삭제해주는것
@@ -147,8 +147,8 @@ public class StoreBoardController {
 	}
 
 	@RequestMapping("productUpdate.bo") 
-	public String updateForm(int pno, Model model) {
-		model.addAttribute("p", sbService.selectBoard(pno));
+	public String updateForm(int proNo, Model model) {
+		model.addAttribute("p", sbService.selectBoard(proNo));
 		return "storeBoard/productUpdate";
 	}
 	
@@ -180,12 +180,12 @@ public class StoreBoardController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("qinsert.bo")
+	@RequestMapping(value="qinsert.bo")
 	public String ajaxInsertQuestion(Product p) {
 		int result = sbService.insertQuestion(p);
 		return result > 0 ? "success" : "fail" ;
+		
 	}
-	
-	
+
 	
 }

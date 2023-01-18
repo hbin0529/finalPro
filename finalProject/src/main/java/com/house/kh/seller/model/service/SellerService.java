@@ -1,5 +1,7 @@
 package com.house.kh.seller.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,12 @@ public class SellerService {
 		return searchResult;
 	}
 	
+	
+	//(인테리어)모든 업자 다 가져오기
+	public ArrayList<Seller> getAllSeller(){
+		ArrayList<Seller> sellList = sDao.getAllSeller(sqlSession);
+		return sellList;
+	}
 	
 	
 }
