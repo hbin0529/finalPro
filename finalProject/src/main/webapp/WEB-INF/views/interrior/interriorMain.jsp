@@ -11,10 +11,10 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-        /* 로고폰트 */
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+           /* 로고폰트 */
             @font-face {
             font-family: 'SDSamliphopangche_Outline';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
             font-weight: normal;
             font-style: normal;
             } 
@@ -32,65 +32,7 @@
             font-weight: 400;
             font-style: normal;
         }
-        /*-------------------------헤더스타일모음--------------------------- */
-        *{margin: 0; padding: 0; text-decoration: none; box-sizing: border-box;}
-        a{text-decoration: none; color: black;  cursor: pointer;}
-        .main_logo a {
-            font-family: 'SDSamliphopangche_Outline'; color: #21d9cb; font-size: 38px;}
-        .main_logo li {position: relative; right:70px; list-style: none;} 
-        .top_box{ width: 1400px; height: 120px;  margin: 0 auto; display: flex; justify-content: center; align-items:center;}
-        .main_top {display: flex; height: 40px;  position: relative; font-family: 'GmarketSansMedium';}
-        .main_top ul {list-style: none; text-align: center;} 
-        .logo_name { position: absolute; left: -170px; } 
-        .main_category ul {display: flex; }
-        .main_category ul li {margin-right: 20px; font-size: 18px; font-weight: bold; position: relative; left: 5px; top: 18px;}
-        .main_category ul li a:hover{color: #21d9cb;}
-        .main_search ul{display: flex;}    
-        .main_login ul{display: flex; margin-left: 50px;}
-        .main_login ul li {margin-right: 20px; position: relative; left: 60px; font-size: 14px; top: 12px;}
-        .main_login ul li:first-child{top: 3px;}
-        .main_login ul li:last-child{top: 2px;}
-        .main_login ul li a{cursor: pointer;}
-        .main_login img {width: 26px;}
-        #login_cart{width: 32px;}
-        .main_search input {width: 300px; height: 40px; border: 1px solid rgb(215, 213, 213); border-radius: 5px; font-size: 16px; position: relative; left: 60px; padding-left: 10px;}
-        .main_search button {width: 50px; height: 40px; border: none; background-color: #21d9cb; color: white; border-radius: 3px; position: relative; left: 60px; cursor: pointer;}
-        hr{border-color: white;} 
-        #header_store{ height: 65px; width: 100px;} 
-    
-        /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
-        .mypage_category{width: 1400px; height: 80px; margin: 0 auto;}
-        .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
-        #mypage_menu{font-family: 'GmarketSansMedium';}
-        #mypage_menu:hover{color: #21d9cb;}    
-    
-    
-        /*-------------------------* 드롭다운 스타일모음 /*-------------------------*/
-        .header_store_dropdown{width: 1400px;margin: 0 auto; display: none; }
-        .header_store_dropdown table{width: 700px; margin-left: 380px; }
-        #store_dropdown_img{width: 40px;}
-        .header_store_dropdown tr:first-child{ text-align: center; }
-        .header_store_dropdown tr:last-child{text-align: center; font-family: 'GmarketSansMedium'}
-        .header_store_bar{width: 2500px; margin-left: -900px;}
-    
-        /*----------------------------------- 푸터 스타일 모음-------------------------------------------- */
-        a{text-decoration: none; color: black;}
-        footer {height: 300px; background-color: #f6fdfd;}
-        footer ul li{list-style: none;}
-        .bottom_box{display: flex;  align-items: center;}
-        .footer_wrap{display: flex; margin: 0 auto;}
-        .footer_callcenter{width: 300px; font-size: 12px;}
-        .footer_callcenter ul li{margin-bottom: 5px;}
-        #callcenter{font-size: 22px; font-weight: bold; font-family: 'GmarketSansMedium';} 
-        #callcenter_number{font-family: 'SDSamliphopangche_Outline'; font-size: 30px; color: #21d9cb; padding-top: 10px; padding-bottom: 10px;}
-        .footer_category{width: 700px;display: flex; }
-        .footer_sns{width: 400px; font-size: 12px;}
-        .footer_sns table {margin: 0 auto;}
-        .footer_sns img{width: 30px; height: 30px;padding-left: 20px;}
-        #category_name{text-align: center; font-size: 15px; font-weight: bold; padding-bottom: 20px; font-family: 'GmarketSansMedium';}
-        #category_text{font-size: 11px; padding-bottom: 10px; }
-        #footer_logo_top {font-family: 'SDSamliphopangche_Outline'; font-size: 40px; color: #21d9cb; text-align: center; padding-top: 20px;}
-        #footer_logo_bottom {font-family: 'SDSamliphopangche_Outline'; text-align: center; font-size: 20px;}
+        
     
         /* --------------------- 본문 --------------------- */
         .container{
@@ -104,10 +46,11 @@
             width: 100%;
             padding: 20px 0; display: flex;
             justify-content: space-around;
-            align-items: center;
+            align-items: left;
+            flex-wrap: wrap;
         }
         .item{
-            width: 27%;
+            width: 31%; margin-bottom: 30px;
             height: 350px; border: 1px solid rgba(0, 0, 0, 0.144);
             border-radius: 6px; box-shadow: 0px 0px 10px rgb(218, 216, 216);
         }
@@ -161,29 +104,18 @@
         </form>
         <div class="itemSection">
             <div class="section">
-                <div class="item">
-                    <a href="interior_detail.html">
-                        <img src="img/interior.jpg" alt="" class="itemCardImg">
-                        <div class="itemTxt">
-                            <span class="interiorTitle">인테리어 업체 1</span>
-                            <span class="interiorContent">싱크대/도배 찬장, 모던한 분위기의 색감..</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <img src="img/interior2.jpg" alt="" class="itemCardImg">
-                    <div class="itemTxt">
-                        <span class="interiorTitle">인테리어 업체 1</span>
-                        <span class="interiorContent">싱크대/도배 찬장, 모던한 분위기의 색감..</span>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/interior3.jpg" alt="" class="itemCardImg">
-                    <div class="itemTxt">
-                        <span class="interiorTitle">인테리어 업체 1</span>
-                        <span class="interiorContent">싱크대/도배 찬장, 모던한 분위기의 색감..</span>
-                    </div>
-                </div>
+        <!-- 반복돌릴자리 -->
+	<c:forEach var="s" items="${ sellList }">
+	       	<div class="item">
+	            <a href="interior_detail.in?selNo=${ s.selNo }">
+	                <img src="${ path }/resources/img/logo_user.png" alt="나중에추가" class="itemCardImg">
+	                <div class="itemTxt">
+	                    <span class="interiorTitle">${ s.selBusName }</span>
+	                    <span class="interiorContent">${ s.selInterIntroduce }</span>
+	                </div>
+	            </a>
+	        </div>
+	</c:forEach>
             </div>
         </div>
     </section>
