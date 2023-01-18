@@ -16,10 +16,27 @@
       <result column ="inter_like" property="interLike"/>
       <result column ="inter_home" property="interHome"/>
       <result column ="inter_family" property="interFamily"/>
+      <result column ="sel_email" property="selEmail"/>
   </resultMap> 
   
   <select id="interriorInfo" resultMap="interriorResult">
   	select i.*, sel_bus_name from interrior i join seller_base s on (i.sel_no = s.sel_no) where i.sel_no = #{selNo}
   </select>
+  
+  <select id="selectInterrior" resultMap="interriorResult">
+  	select inter_no, sel_no, sel_bus_name, inter_title, inter_content, inter_mainimg_ori, inter_mainimg_change, inter_date, inter_count, inter_like, inter_home,
+	inter_family, sel_email 
+	from interrior join seller_base using (sel_no) 
+	where inter_no = #{interNo}
+  </select>
+  
+  <insert id="insertInterrior">
+  	insert into interrior values(inter_seq.nextval, #{selNo}, #{interTitle}, #{interContent}, #{interMainimgOri}, #{interMainimgChange}, NULL, NULL, sysdate, 0, 0, #{interHome}, #{interFamily})
+  </insert>
+  
+  <update id="increaseCount">
+  	update interrior set inter_count = inter_count+1 where inter_no = #{interNo}
+  </update>
+
   
 </mapper>
