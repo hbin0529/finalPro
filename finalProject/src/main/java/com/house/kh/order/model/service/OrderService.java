@@ -28,10 +28,16 @@ public class OrderService {
 	}
 	
 	// 주문자 확인
-	public int orderSheet(Order o, Member m, Seller s, Product p) {
-		int searchOrder = oDao.orderSheet(sqlSession, o, m);
-		return searchOrder; 
+	public int orderSheet2(Order o) {
+		int orderSheet2 = oDao.orderSheet2(sqlSession, o);
+		return orderSheet2; 
 	}
+	// 주문 상세 물건 수량 확인 
+	public int orderSheetDetail(Order o) {
+		int orderSheetDetail = oDao.orderSheetDetail(sqlSession, o);
+		return orderSheetDetail; 
+	}
+
 	
 	// 상품 가져오기
 }

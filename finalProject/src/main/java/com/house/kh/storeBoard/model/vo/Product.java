@@ -67,6 +67,7 @@ public class Product {
 	private int queReplyNo;
 	private String queReplyContent;
 	private String queReplyDate;
+	private String pqrStatus;
 }
 
 
