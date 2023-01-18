@@ -55,8 +55,14 @@
 									<div class="card-body">
 										<p class="card-text_title"><strong>${ h.boardTitle }</strong></p>
 										<p class="card-text_name">
-											<img src="${path}/resources/img/logo_user.png" width="22px" style="margin-right: 7px;">${ h.memNick }
+										<c:if test="${empty h.memImg}">  
+											<img src="${path}/resources/img/logo_user.png" width="30px" style="margin-right: 7px;">${ h.memNick }
+										</c:if>
+										<c:if test="${!empty h.memImg}"> 
+										<img src="${path}${h.memImg}" style="margin-right: 7px; width:30px; height:30px; border-radius: 50%;">${ h.memNick }
+										</c:if>
 										</p>
+										
 										<div class="d-flex justify-content-between align-items-center">
 											<small class="text-muted">조회수 : ${ h.boardCount }회</small>
 										</div>
