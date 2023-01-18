@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="interriorMapper">
+  <resultMap type="Interrior" id="interriorResult">
+      <result column ="inter_no" property="interNo"/>
+      <result column ="sel_no" property="selNo"/>
+      <result column ="sel_bus_name" property="selBusName"/>
+      <result column ="inter_title" property="interTitle"/>
+      <result column ="inter_content" property="interContent"/>
+      <result column ="inter_mainimg_ori" property="interMainimgOri"/>
+      <result column ="inter_mainimg_change" property="interMainimgChange"/>
+      <result column ="inter_img_ori" property="interImgOri"/>
+      <result column ="inter_img_change" property="interImgChange"/>
+      <result column ="inter_date" property="interDate"/>
+      <result column ="inter_count" property="interCount"/>
+      <result column ="inter_like" property="interLike"/>
+      <result column ="inter_home" property="interHome"/>
+      <result column ="inter_family" property="interFamily"/>
+  </resultMap> 
+  
+  <select id="interriorInfo" resultMap="interriorResult">
+  	select i.*, sel_bus_name from interrior i join seller_base s on (i.sel_no = s.sel_no) where i.sel_no = #{selNo}
+  </select>
+  
+</mapper>
