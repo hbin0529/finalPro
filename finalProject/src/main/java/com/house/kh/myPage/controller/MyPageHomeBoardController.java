@@ -6,17 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
+import com.house.kh.storeBoard.model.service.StoreBoardService;
+import com.house.kh.storeBoard.model.vo.Product;
 
 @Controller
 public class MyPageHomeBoardController {
 	
 	 @Autowired //객체생성은 알아서 ,,, BoardService 가져오기
-     private HomeBoardService hbService; 
-	 
+     private HomeBoardService hbService;  
+ 	 
 	 @RequestMapping("mypagehblist.bo")
      public ModelAndView selectList(ModelAndView mv, Model model) {
         int listCount = hbService.selectListCount(); 
@@ -47,7 +51,5 @@ public class MyPageHomeBoardController {
              .setViewName("common/errorPage");
         }
         return mv;
-     }
-	  
-
+     }  
 }
