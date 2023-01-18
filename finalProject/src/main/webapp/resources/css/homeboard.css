@@ -132,3 +132,23 @@
         main{font-family: 'Pretendard-Regular';}
         .del_upd_button { width:150px; text-align:center; margin-left:550px; padding-top:60px}
         .del_upd_button :hover{color:red;}
+        
+          /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
+    .mypage_category{width: 1400px; height: 80px; margin: 0 auto;}
+    .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
+    #mypage_menu{font-family: 'GmarketSansMedium';}
+    #mypage_menu:hover{color: #21d9cb;}
+
+    /*------------------------- 마이페이지 나의리뷰 메뉴바 스타일모음------------------------- */
+    .product_review_paging{text-align: center; margin-bottom: 50px; padding-top: 20px;}
+    .mypage_review_category{width: 1400px; height: 70px; margin: 0 auto;}
+    .mypage_review_category table {width: 400px; height: 70px; margin: 0 auto; text-align: center; font-size: 16px;}
+    #mypage_review_menu{font-family: 'GmarketSansMedium';}
+    #mypage_review_menu:hover{color: #21d9cb;}  
+
+    /* -------------------------마이페이지 나의리뷰 집들이 스타일모음------------------------- */
+    .mypage_home_review{display: flex; width:1000px;margin: 0 auto;}
+    .home_review{ width: 300px;  margin: 0 auto; padding-top: 50px; padding-bottom: 50px;} 
+    .home_review_img{text-align: center; width: 300px;}
+    .home_review_card img{width: 300px; height: 200px; border: 1px solid #dee2e6;}
+    .home_review_title{text-align: center; font-family: 'Pretendard-Regular'; font-weight: bolder; font-size: 16px;}  
