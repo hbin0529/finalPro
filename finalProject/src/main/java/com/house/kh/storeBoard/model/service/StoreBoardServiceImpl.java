@@ -78,6 +78,14 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 		return sbDao.insertQuestion(sqlSession, p);
 	}
 
+	@Override
+	public int queDelete(Product p) {
+		return sbDao.queDelete(sqlSession, p);
+	}
 	
+	@Override
+	public ArrayList<Product> arrayQuestionList(Product p) {
+		return sbDao.arrayQuestionList(sqlSession, p);
+	}
 
 }

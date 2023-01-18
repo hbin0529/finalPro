@@ -189,6 +189,24 @@
 		insert into product_question(pro_que_no, pro_no, mem_id, pro_que_type, pro_que_content, pro_que_result, pro_que_ispublic, pro_que_date, status, sel_no)
 				   values(proque_seq.nextval, #{proNo}, #{memId}, #{proQueType},#{proQueContent},'N','Y',sysdate,'Y',#{selNo})
 	</insert>
-
+	
+	<update id="queDelete">
+		update product_question
+			set status = 'N'
+		  where pro_que_no = #{proQueNo}
+	</update>
+	
+	<select id="arrayQuestionList" resultType="Product" resultMap="storeBoardResult">
+		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status, p.pro_no, pq.pro_que_result
+        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id
+				from product_question pq
+					join product p on (p.pro_no = pq.pro_no)
+					join member_base m on (pq.mem_id = m.mem_email)
+					join seller_base s on (s.sel_no = pq.sel_no)
+					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
+                where pq.status = 'Y'
+                order by pq.pro_que_date desc
+	</select>
+	
 </mapper>
 
