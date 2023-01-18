@@ -18,7 +18,7 @@
       <result column ="status" property="status"/>   
       <result column ="mem_email" property="memEmail"/>
       <result column ="mem_nick" property="memNick"/>
-      <result column ="mem_addr" property="memAddr"/>
+      <result column ="mem_addr" property="memAddr"/> 
   </resultMap> 
   
   <resultMap type="HomeReply" id="homeReplyResult">
@@ -39,12 +39,13 @@
   </select> 
   
     <select id="selectList" resultType="HomeBoard" resultMap="homeBoardResult">
-     select board_no
-       , board_title
-       , board_count 
-       , mem_nick 
-       , board_mainimg_origin
-       , board_mainimg_change
+     select h.board_no
+       , h.board_title
+       , h.board_count 
+       , m.mem_nick 
+       , h.mem_id 
+       , h.board_mainimg_origin
+       , h.board_mainimg_change
      from board_home h, member_base m
      where m.mem_email = h.mem_id and status= 'Y' 
      order by board_no desc 
