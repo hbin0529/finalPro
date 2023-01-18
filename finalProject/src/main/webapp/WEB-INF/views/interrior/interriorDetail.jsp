@@ -177,7 +177,8 @@ contentHeader a{
 
 .contentBody a {
 	width: 28%;
-	margin: 20px;
+	margin: 20px; border: 1px solid rgba(0, 0, 0, 0.144);box-shadow: 0px 0px 10px rgb(218, 216, 216);
+	background-color: white;
 }
 
 .contentItem {
@@ -185,16 +186,19 @@ contentHeader a{
 	flex-direction: column;
 	width: 100%;
 	justify-content: space-around;
+	height: 200px
 }
 
 .itemImg {
 	border-radius: 9px;
+	display: flex; flex-direction: column; align-items: center;
+	max-height: 130px
 }
 
 .itemText {
 	text-align: center;
 	font-family: 'Pretendard-Regular';
-	padding: 15px 0px;
+	padding: 15px 5px;
 	font-weight: bold;
 }
 
@@ -225,20 +229,20 @@ contentHeader a{
 		<div class="content">
 			<div class="contentHeader">
 				<div id="ch1">
-					오구싶은집 모든 시공 리뷰는 <span class="contentHeaderSpan">0% 계약사실이 확인된
+					※ 오구싶은집 모든 시공 리뷰는 <span class="contentHeaderSpan">0% 계약사실이 확인된
 						리뷰</span>입니다
 				</div>
 				
-				
+				<c:if test="${ permit eq 2 and s.selNo eq selNo}">
 				<!-- 이부분은 퍼밋 확인한 후 -->
-				<a href="enrollForm.in">
+				<a href="enrollForm.in?selNo=${selNo}">
 					<div id="ch2">
 						<img src="${ path }/resources/img/pencil.png" alt=""
 							class="postImg">| 글작성
 					</div>
 				</a>
 				<!-- ************************************* -->
-				
+				</c:if>
 				
 			</div>
 			<div class="contentHeader2">
@@ -248,7 +252,7 @@ contentHeader a{
 				<c:forEach var="it" items="${ i }">
 					<a>
 						<div class="contentItem">
-							<img src="${ path }/resources/img/interior.jpg" alt=""
+							<img src="${ path }/${ it.interMainimgChange }" alt="interMainimgChange"
 								class="itemImg">
 							<p class="itemText">${ it.interTitle }</p>
 						</div>

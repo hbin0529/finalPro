@@ -58,11 +58,11 @@
      </div>
      
          <div class="form-group">  
-			<input type="text" class="form-control" id="title" name="boardTitle" placeholder="제목을 입력하세요" style="border-radius:5px; width:100%; padding:10px;">
+			<input type="text" class="form-control" id="title" name="interTitle" placeholder="제목을 입력하세요" style="border-radius:5px; width:100%; padding:10px;">
 		</div>
 	
 		<div class="form-group"> 
-  			<textarea id="summernote" name="boardContent"></textarea>
+  			<textarea id="summernote" name="interContent"></textarea>
 		</div>
      
      <div class="pt-1 text-right" style="text-align: right; margin-top:20px;">
@@ -70,7 +70,7 @@
          <button type="reset" class="btn btn-danger" style="cursor: pointer;  width:10%; padding:13px; font-family: 'Pretendard-Regular';background-color: #21d9cb; font-size: 16px; border: 1px solid white; color: white; border-radius: 5px;">취소하기</button>
 	</div>
 
-<input type="hidden" value="${ id }" name="memId">	
+<input type="hidden" value="${ selNo }" name="selNo">	
 	
 	</form>
 </div>  

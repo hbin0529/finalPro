@@ -49,7 +49,9 @@ public class InterriorController {
 	
 	@RequestMapping("interior_detail.in")
 	public String interriorDetail(int selNo, Model model, String selBusName, String selInterIntroduce) {
+		System.out.println(selNo);
 		ArrayList<Interrior> interriorInfo = IService.interriorInfo(selNo);
+		model.addAttribute("selNo", selNo);
 		model.addAttribute("i", interriorInfo);
 		model.addAttribute("selBusName", selBusName);
 		model.addAttribute("selInterIntroduce", selInterIntroduce);
@@ -57,7 +59,8 @@ public class InterriorController {
 	}
 	
 	@RequestMapping("enrollForm.in")
-	   public String enrollForm() {
+	   public String enrollForm(int selNo, Model model) {
+			model.addAttribute("selNo", selNo);
 	      return "interrior/interriorEnrollForm";
 	   }
 	
@@ -94,10 +97,11 @@ public class InterriorController {
 
 	@RequestMapping("insert.in")
 	public String insertBoard(Interrior i, MultipartFile upfile, HttpSession session, Model model) {
+		System.out.println("인설트인의인테리어객체"+i);
 			if(!upfile.getOriginalFilename().equals("")) {
 			  	String changeName = changeFilename(upfile, session);
 		        i.setInterImgOri(upfile.getOriginalFilename());
-		        i.setInterImgChange("resources/uploadFile/" + changeName);
+		        i.setInterMainimgChange("resources/uploadFile/" + changeName);
 		  	}
 		  	int result = IService.insertInterrior(i);
 	      	if(result > 0) { 

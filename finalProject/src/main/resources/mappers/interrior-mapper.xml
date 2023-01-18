@@ -23,7 +23,7 @@
   </select>
   
   <insert id="insertInterrior">
-  	insert into interrior values(inter_seq.nextval, #{업자번호}, #{제목}, #{텍스트내용}, #{메인오리}, #{메인체인지}, #{본문오리}, #{본문체인지}, sysdate, 0, 0, #{아파트}, #{싱글})
+  	insert into interrior values(inter_seq.nextval, #{selNo}, #{interTitle}, #{interContent}, #{interMainimgOri}, #{interMainimgChange}, NULL, NULL, sysdate, 0, 0, #{interHome}, #{interFamily})
   </insert>
   
   

@@ -250,7 +250,7 @@
                     <input type="password" placeholder="비밀번호" name="memPwd">
                 </div>
                 <button class="wid300 but">
-                    로그인
+					로그인
                 </button>
                 <section class="underInp">
                     <a href="signIn.me">회원가입</a>
@@ -283,7 +283,7 @@
                     <input type="password" placeholder="비밀번호" name="selPwd">
                 </div>
                 <button class="wid300 but">
-                    판매자 로그인
+					판매자 로그인
                 </button>
             </form>
             <section class="underInp">
