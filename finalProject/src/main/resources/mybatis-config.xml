@@ -12,6 +12,7 @@
 		<typeAlias type="com.house.kh.homeBoard.model.vo.HomeReply" alias="HomeReply" />
 		<typeAlias type="com.house.kh.charge.model.vo.Charge" alias="Charge" />
 		<typeAlias type="com.house.kh.order.model.vo.Order" alias="Order" />
+		<typeAlias type="com.house.kh.interrior.model.vo.Interrior" alias="Interrior" />
 	</typeAliases> 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
@@ -20,5 +21,6 @@
 		<mapper resource="/mappers/charge-mapper.xml" />
 		<mapper resource="/mappers/seller-mapper.xml" />
 		<mapper resource="/mappers/order-mapper.xml" />
+		<mapper resource="/mappers/interrior-mapper.xml" />
 	</mappers>
 </configuration>

@@ -128,7 +128,7 @@
         <div class="sideSection">
             <div class="sidebar">
                 <div class="sidebarContent">
-                    <span class="inter_title">KH건축디자인</span>
+                    <span class="inter_title">${i.selBusName }</span>
                     <span class="inter_introduce">자재는 최대한 싸게, 시공비는 비싸게!</span>
                     <hr>
                     <span class="inter_content">전체시공횟수</span>

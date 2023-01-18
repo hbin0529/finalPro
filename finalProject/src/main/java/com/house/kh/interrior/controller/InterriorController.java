@@ -30,8 +30,9 @@ public class InterriorController {
 	}
 	
 	@RequestMapping("interior_detail.in")
-	public String interriorDetail(int selNo) {
+	public String interriorDetail(int selNo, Model model) {
 		Interrior interriorInfo = IService.interriorInfo(selNo);
+		model.addAttribute("i", interriorInfo);
 		return "interrior/interriorDetail";
 	}
 	
