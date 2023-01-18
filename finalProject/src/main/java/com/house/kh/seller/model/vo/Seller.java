@@ -1,5 +1,7 @@
 package com.house.kh.seller.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -32,6 +34,8 @@ public class Seller {
 	private String selStatus;
 	private String selInter;
 	private String selInterIntroduce;
+	private String interMainimgChange;
+	private Date interDate;
 	
 	//사라짐?
 	

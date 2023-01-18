@@ -107,8 +107,13 @@
         <!-- 반복돌릴자리 -->
 	<c:forEach var="s" items="${ sellList }">
 	       	<div class="item">
-	            <a href="interior_detail.in?selNo=${ s.selNo }">
+	            <a href="interior_detail.in?selNo=${ s.selNo }&selBusName=${s.selBusName}&selInterIntroduce=${s.selInterIntroduce}">
+	            <c:if test="${ not empty s.interMainimgChange}">
+	                <img src="${ path }/${s.interMainimgChange}" alt="나중에추가" class="itemCardImg">
+                </c:if>
+                <c:if test="${ empty s.interMainimgChange}">
 	                <img src="${ path }/resources/img/logo_user.png" alt="나중에추가" class="itemCardImg">
+                </c:if>
 	                <div class="itemTxt">
 	                    <span class="interiorTitle">${ s.selBusName }</span>
 	                    <span class="interiorContent">${ s.selInterIntroduce }</span>
