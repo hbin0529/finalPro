@@ -118,10 +118,9 @@ $(function() {
     .bottom_question{display: flex;}
     .bottom_answer_title{display: flex;}
     .question_answer{padding: 15px; margin-bottom: 30px;}
-    .question_nickname_date{padding-bottom: 10px; font-family: 'Pretendard-Regular';}
-    .bottom_question{padding-bottom: 10px; font-family: 'Pretendard-Regular';}
-    .bottom_answer_title{padding-bottom: 10px; font-family: 'Pretendard-Regular';}
-    .question_nickname_date{font-size: 12px; color: gray; }
+    .question_nickname_date{font-family: 'Pretendard-Regular'; font-size: 12px; color: gray; }
+    .bottom_question{font-family: 'Pretendard-Regular';}
+    .bottom_answer_title{font-family: 'Pretendard-Regular';}
     .bottom_question div:nth-child(1){color: #21d9cb; font-weight: bolder; margin-right: 10px;}
     .bottom_question div:nth-child(2){ font-size: 15px; margin-bottom: 10px;}
     .bottom_answer_title div:nth-child(1){color: #21d9cb; font-weight: bolder; margin-right: 10px;}
@@ -371,8 +370,9 @@ $(function() {
 				                    <h4 class="modal-title">상품 문의하기</h4> <!-- 사용자 지정 부분② : 타이틀 -->
 				                  </div>
 				                  <form action="qinsert.bo" id="queWrite" method="post">
-				                  	<input type="hidden" value="${ id }" name="memId">
+				                  	<input type="hidden" value="${ id }" name="memId" id="memId">
 				                  	<input type="hidden" value="${ p.proNo }" name="proNo">
+				                  	<input type="hidden" value="${ p.selNo }" name="selNo">
 				                    <div class="modal-body">
 				                      <div class="inquire_option">
 				                        <h5 class="inquire_option_title">문의유형</h5>
@@ -529,8 +529,10 @@ $(function() {
 				success:function(list){
 					let value = "";
 					for(let i in list) {
+						if (list[i].proQueResult == "Y" /* && list[i].memId == $("#memId").val() */ ) {
 						value += "<div class='user_question'>"
 							  + 	"<div class='question_nickname_date'>"
+							  +			"<p style='color:#21d9cb; width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>답변완료</p>"
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
 							  +		"</div>"
 							  + 	"<div class='bottom_question'>"
@@ -541,8 +543,7 @@ $(function() {
 							  +		"</div>"
 							  + "</div>" 
 							  + "<div class='seller_answer'>"
-							  if(list[i].status == "Y") {
-						value += 	"<div class='bottom_answer_title'>"
+							  + 	"<div class='bottom_answer_title'>"
 							  + 		"<div><p>A</p></div>"
 							  + 		"<div><p>" + list[i].selBusName + "</p></div>"
 							  + 		"<div><p>" + list[i].queReplyDate + "</p></div>"
@@ -555,9 +556,20 @@ $(function() {
 							  + "</div>"
 							  + "<br><br>";
 							  } else {
-						value += "</div>"
-							  + "<br><br>"; 
-							}
+						  value += "<div class='user_question'>"
+							  + 	"<div class='question_nickname_date'>"
+							  +			"<p style='background-color:#21d9cb; color:white;width:40px; text-align:center; border-radius:5px; height:20px; padding-top:2px;' > 미답변</p>"
+							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
+							  +		"</div>"
+							  + 	"<div class='bottom_question'>"
+							  +			"<div><p>Q</p></div>"
+							  +			"<div>"
+							  +				"<p>" + list[i].proQueContent + "</p>"
+							  +			"</div>"
+							  +		"</div>"
+							  + "</div>" 
+							  + "<br>";
+							  } 
 					}
 					$(".question_answer").html(value);
 					$("#qcount").text(list.length);
