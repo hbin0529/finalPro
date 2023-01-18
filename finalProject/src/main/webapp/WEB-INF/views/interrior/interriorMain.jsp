@@ -107,7 +107,7 @@
         <!-- 반복돌릴자리 -->
 	<c:forEach var="s" items="${ sellList }">
 	       	<div class="item">
-	            <a href="interior_detail.in?selNo=${ s.selNo }">
+	            <a href="interior_detail.in?selNo=${ s.selNo }&selBusName=${s.selBusName}&selInterIntroduce=${s.selInterIntroduce}">
 	                <img src="${ path }/resources/img/logo_user.png" alt="나중에추가" class="itemCardImg">
 	                <div class="itemTxt">
 	                    <span class="interiorTitle">${ s.selBusName }</span>

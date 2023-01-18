@@ -22,4 +22,9 @@
   	select i.*, sel_bus_name from interrior i join seller_base s on (i.sel_no = s.sel_no) where i.sel_no = #{selNo}
   </select>
   
+  <insert id="insertInterrior">
+  	insert into interrior values(inter_seq.nextval, #{업자번호}, #{제목}, #{텍스트내용}, #{메인오리}, #{메인체인지}, #{본문오리}, #{본문체인지}, sysdate, 0, 0, #{아파트}, #{싱글})
+  </insert>
+  
+  
 </mapper>
