@@ -69,15 +69,18 @@ public class StoreBoardController {
 		return new Gson().toJson(list);
 	}
 
-	/* 문의리스트 불러오기 */
-	@ResponseBody
-	@RequestMapping(value = "qlist.bo", produces = "application/json; character=utf-8")
-	public String ajaxSelectQuestionList(int pno) {
-		ArrayList<Product> list = sbService.selectQuestionList(pno);
-		/*
-		 * for(int i = 0; i < list.size(); i++) { System.out.println(list.get(i)); }
-		 */
-		return new Gson().toJson(list);
+	
+	/* 문의리스트 어레이리스트 불러오기 */
+	@RequestMapping("qArrayList.bo")
+	public ModelAndView arrayQuestionList(int proNo, ModelAndView mv, Model model) {
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		list = sbService.arrayQuestionList(proNo);	
+
+		mv.addObject("list", list);
+		mv.setViewName("myPage/myPageQuestionView");
+
+		return mv;
 	}
 
 	@RequestMapping("productWrite.bo") // 글쓰는 페이지로 넘겨주기
@@ -192,8 +195,21 @@ public class StoreBoardController {
 			model.addAttribute("alertMsg", "문의 등록이 완료 되었습니다.");
 			response.sendRedirect("productdetail.bo?pno="+ p.getProNo());
 		}
-		
 	}
-
 	
+	@RequestMapping("qdelete.bo")
+	public String queDelete(int proQueNo, int proNo, Model model, HttpSession session) {
+		int result = sbService.queDelete(proQueNo, proNo);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다");
+			return "redirect:productdetail.bo?pno=" + proNo;
+		} else {
+			model.addAttribute("errorMsg" , "문의 삭제 실패");
+			return "common/errorPage";
+		}
+	}	
+	
+	
+	
+
 }

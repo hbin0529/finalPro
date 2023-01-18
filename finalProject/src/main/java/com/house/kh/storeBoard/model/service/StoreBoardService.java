@@ -35,6 +35,13 @@ public interface StoreBoardService {
 	// 문의작성 (ajax)
 	int insertQuestion(Product p);
 	
+	// 문의삭제
+	int queDelete(Product p);
+	
+	// 게시판리스트 페이지
+	ArrayList<Product> arrayQuestionList(int proNo); //어떤거 가져올지
+		
+	
 	// 8. Top5 조회수 리스트 (ajax)
 	//ArrayList<Board> selectTopBoardList();
 
