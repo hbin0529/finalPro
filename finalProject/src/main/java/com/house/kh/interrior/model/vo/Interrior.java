@@ -21,6 +21,7 @@ public class Interrior {
     private int interLike;
     private String interHome;
     private String interFamily;
+    private String selEmail;
     
 	
 }

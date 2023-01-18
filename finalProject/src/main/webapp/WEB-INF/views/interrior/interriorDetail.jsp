@@ -250,7 +250,7 @@ contentHeader a{
 			</div>
 			<div class="contentBody">
 				<c:forEach var="it" items="${ i }">
-					<a>
+					<a href="detail.in?interNo=${ it.interNo }">
 						<div class="contentItem">
 							<img src="${ path }/${ it.interMainimgChange }" alt="interMainimgChange"
 								class="itemImg">

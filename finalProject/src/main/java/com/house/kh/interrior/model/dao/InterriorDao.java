@@ -17,5 +17,14 @@ public class InterriorDao {
 	public int insertInterrior(SqlSession sqlSession, Interrior i) {
 		return sqlSession.insert("interriorMapper.insertInterrior", i);
 	}
+		
+	public int increaseCount(SqlSession sqlSession, int interNo) {
+		return sqlSession.insert("interriorMapper.increaseCount", interNo);
+	}
+	
+	public Interrior selectInterrior(SqlSession sqlSession, int interNo) {
+		return sqlSession.selectOne("interriorMapper.selectInterrior", interNo);
+	}
+
 	
 }

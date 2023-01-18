@@ -35,4 +35,14 @@ public class InterriorService {
 	}
 	
 	
+	public int increaseCount(int interNo) {
+		return iDao.increaseCount(sqlSession, interNo);
+	}
+	
+	public Interrior selectInterrior(int interNo) {
+		return iDao.selectInterrior(sqlSession, interNo);
+	}
+	
+	
+	
 }

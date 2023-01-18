@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
@@ -112,25 +113,40 @@ public class InterriorController {
 	      	}
 	} 
 	
-	   public String changeFilename(MultipartFile upfile, HttpSession session) {
-		      String originName = upfile.getOriginalFilename();
-		      String currentTime = new SimpleDateFormat("yyyyMMdddHHmmss").format(new Date());
-		      int ranNum = (int)(Math.random() * 90000 + 10000); //10000~99999까지 랜덤값
-		      String ext = originName.substring(originName.lastIndexOf(".")); //이름제일 뒤에서 .뒤에있는것 추출하기 (.jpg)
-		      String changeName = currentTime + ranNum + ext;
-		      
-		      //업로드 시키고자하는 폴더의 물리적인 경로 알아오기
-		      String savePath = session.getServletContext().getRealPath("/resources/uploadFile/");
-		      
-		      try {
-		         upfile.transferTo(new File(savePath + changeName));
-		      } catch (IllegalStateException | IOException e) {
-		         e.printStackTrace();
-		      }
-		      
-		      return changeName;
-		   }
+   public String changeFilename(MultipartFile upfile, HttpSession session) {
+	      String originName = upfile.getOriginalFilename();
+	      String currentTime = new SimpleDateFormat("yyyyMMdddHHmmss").format(new Date());
+	      int ranNum = (int)(Math.random() * 90000 + 10000); //10000~99999까지 랜덤값
+	      String ext = originName.substring(originName.lastIndexOf(".")); //이름제일 뒤에서 .뒤에있는것 추출하기 (.jpg)
+	      String changeName = currentTime + ranNum + ext;
+	      
+	      //업로드 시키고자하는 폴더의 물리적인 경로 알아오기
+	      String savePath = session.getServletContext().getRealPath("/resources/uploadFile/");
+	      
+	      try {
+	         upfile.transferTo(new File(savePath + changeName));
+	      } catch (IllegalStateException | IOException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      return changeName;
+   }
 	
+   
+   @RequestMapping("detail.in")
+   public ModelAndView selectBoard(int interNo, ModelAndView mv) {
+      int result = IService.increaseCount(interNo); 
+      if(result > 0) {
+         Interrior i = IService.selectInterrior(interNo);
+         mv.addObject("i", i).setViewName("interrior/interriorDetailView");
+      } else {
+         mv.addObject("errorMsg", "상세조회 실패")
+           .setViewName("common/errorPage");
+      }
+      return mv;
+   }
+   
+   
 	
 	
 }
