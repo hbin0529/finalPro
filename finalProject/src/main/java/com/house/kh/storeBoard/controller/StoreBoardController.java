@@ -72,10 +72,10 @@ public class StoreBoardController {
 	
 	/* 문의리스트 어레이리스트 불러오기 */
 	@RequestMapping("qArrayList.bo")
-	public ModelAndView arrayQuestionList(int proNo, ModelAndView mv, Model model) {
+	public ModelAndView arrayQuestionList(Product p, ModelAndView mv, Model model) {
 		ArrayList<Product> list = new ArrayList<Product>();
 		
-		list = sbService.arrayQuestionList(proNo);	
+		list = sbService.arrayQuestionList(p);	
 
 		mv.addObject("list", list);
 		mv.setViewName("myPage/myPageQuestionView");
@@ -198,11 +198,11 @@ public class StoreBoardController {
 	}
 	
 	@RequestMapping("qdelete.bo")
-	public String queDelete(int proQueNo, int proNo, Model model, HttpSession session) {
-		int result = sbService.queDelete(proQueNo, proNo);
+	public String queDelete(int proQueNo, Model model, HttpSession session) {
+		int result = sbService.queDelete(proQueNo);
 		if(result > 0) {
 			session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다");
-			return "redirect:productdetail.bo?pno=" + proNo;
+			return "storeBoard/storeBoardListView";
 		} else {
 			model.addAttribute("errorMsg" , "문의 삭제 실패");
 			return "common/errorPage";

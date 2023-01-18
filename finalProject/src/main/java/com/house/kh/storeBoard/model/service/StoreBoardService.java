@@ -39,7 +39,7 @@ public interface StoreBoardService {
 	int queDelete(Product p);
 	
 	// 게시판리스트 페이지
-	ArrayList<Product> arrayQuestionList(int proNo); //어떤거 가져올지
+	ArrayList<Product> arrayQuestionList(Product p); //어떤거 가져올지
 		
 	
 	// 8. Top5 조회수 리스트 (ajax)

@@ -84,8 +84,8 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	}
 	
 	@Override
-	public ArrayList<Product> arrayQuestionList(int proNo) {
-		return sbDao.arrayQuestionList(sqlSession, proNo);
+	public ArrayList<Product> arrayQuestionList(Product p) {
+		return sbDao.arrayQuestionList(sqlSession, p);
 	}
 
 }

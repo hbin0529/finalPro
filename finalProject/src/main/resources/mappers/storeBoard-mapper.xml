@@ -204,8 +204,8 @@
 					join member_base m on (pq.mem_id = m.mem_email)
 					join seller_base s on (s.sel_no = pq.sel_no)
 					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
-                where p.pro_no = #{proNo} and pq.status = 'Y'
-                order by pq.pro_que_date desc 				
+                where pq.status = 'Y'
+                order by pq.pro_que_date desc
 	</select>
 	
 </mapper>
