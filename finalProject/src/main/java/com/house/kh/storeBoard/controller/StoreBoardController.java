@@ -197,17 +197,14 @@ public class StoreBoardController {
 		}
 	}
 	
-	@RequestMapping("qdelete.bo")
-	public String queDelete(int proQueNo, int proNo, Model model, HttpSession session) {
-		int result = sbService.queDelete(proQueNo, proNo);
-		if(result > 0) {
-			session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다");
-			return "redirect:productdetail.bo?pno=" + proNo;
-		} else {
-			model.addAttribute("errorMsg" , "문의 삭제 실패");
-			return "common/errorPage";
-		}
-	}	
+	/*
+	 * @RequestMapping("qdelete.bo") public String queDelete(int proQueNo, int
+	 * proNo, Model model, HttpSession session) { int result =
+	 * sbService.queDelete(proQueNo, proNo); if(result > 0) {
+	 * session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다"); return
+	 * "redirect:productdetail.bo?pno=" + proNo; } else {
+	 * model.addAttribute("errorMsg" , "문의 삭제 실패"); return "common/errorPage"; } }
+	 */
 	
 	
 	

@@ -17,39 +17,39 @@ import com.house.kh.storeBoard.model.vo.Product;
 
 @Controller
 public class MyPageHomeBoardController {
+
+	@Autowired // 객체생성은 알아서 ,,, BoardService 가져오기
+	private HomeBoardService hbService;
+	private StoreBoardService sbService;
+
+	@RequestMapping("mypagehblist.bo")
+	public ModelAndView selectList(ModelAndView mv, Model model) {
+		int listCount = hbService.selectListCount();
+		ArrayList<HomeBoard> list = hbService.selectList();
+
+		mv.addObject("list", list);
+		model.addAttribute("listCount", listCount);
+		mv.setViewName("myPage/myPageHomeListView");
+
+		return mv;
+	}
+
+	@RequestMapping("mypagehbdetail.bo")
+	public ModelAndView selectBoard(int bno, ModelAndView mv) {
+		int result = hbService.increaseCount(bno);
+		if (result > 0) {
+			HomeBoard h = hbService.selectBoard(bno);
+
+			String addr = h.getMemAddr(); // 경기도 광명시 하안동 어어엉
+			String[] addrSplit = addr.split(" ");// [경기도, 광명시, 하안, ㅣㅇ네ㅣ]
+			String outputAddr = addrSplit[0] + " " + addrSplit[1];
+
+			mv.addObject("h", h).setViewName("myPage/myPagehomeBoardDetailView");
+			mv.addObject("outputAddr", outputAddr).setViewName("myPage/myPagehomeBoardDetailView");
+		} else {
+			mv.addObject("errorMsg", "상세조회 실패").setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	
-	 @Autowired //객체생성은 알아서 ,,, BoardService 가져오기
-     private HomeBoardService hbService;  
- 	 
-	 @RequestMapping("mypagehblist.bo")
-     public ModelAndView selectList(ModelAndView mv, Model model) {
-        int listCount = hbService.selectListCount(); 
-         ArrayList<HomeBoard> list = hbService.selectList(); 
-     
-         mv.addObject("list",list);  
-         model.addAttribute("listCount",listCount);
-         mv.setViewName("myPage/myPageHomeListView");
-         
-        return mv;
-     }   
-	 
-	 
-	 @RequestMapping("mypagehbdetail.bo")
-     public ModelAndView selectBoard(int bno, ModelAndView mv) {
-        int result = hbService.increaseCount(bno); 
-        if(result > 0) {
-           HomeBoard h = hbService.selectBoard(bno);
-           
-           String addr = h.getMemAddr(); //경기도 광명시 하안동 어어엉
-           String[] addrSplit = addr.split(" ");// [경기도, 광명시, 하안, ㅣㅇ네ㅣ]
-           String outputAddr = addrSplit[0]+" "+addrSplit[1];
-           
-           mv.addObject("h", h).setViewName("myPage/myPagehomeBoardDetailView");
-           mv.addObject("outputAddr", outputAddr).setViewName("myPage/myPagehomeBoardDetailView");
-        } else {
-           mv.addObject("errorMsg", "상세조회 실패")
-             .setViewName("common/errorPage");
-        }
-        return mv;
-     }  
 }
