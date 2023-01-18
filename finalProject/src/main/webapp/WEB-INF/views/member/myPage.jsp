@@ -265,7 +265,8 @@
     .bdradi4{border-radius: 4px;}
 </style>
 <body>
-    <jsp:include page="../common/header.jsp"/>
+    <jsp:include page="../common/header.jsp"/> 
+    <jsp:include page="../common/myPageHeader.jsp"/> 
 
     <!-- 본문 -->
     <section class="container">

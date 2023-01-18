@@ -17,7 +17,7 @@
 <body>
 	<jsp:include page="../common/header.jsp" />
 
-	<form action="" method="" id="room_select_option">
+	<!-- <form action="" method="" id="room_select_option">
 		<div>
 			<select name="homeOption">
 				 <option value="none">선택해주세요.</option>
@@ -32,15 +32,15 @@
 		       <option value="싱글라이프">싱글라이프</option>
                 <option value="신혼부부">신혼부부</option>
 			</select>
-		</div>
+		</div> -->
 		<!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼 -->
 		<c:if test="${ not empty id }">
-		<a class="btn btn-outline-primary" style="padding:10px 30px; margin:20px 0  0 860px;" href="enrollForm.bo">글쓰기</a> 
+		<a class="btn btn-outline-primary" style="padding:10px 30px; margin:10px 0 0 1480px;" href="enrollForm.bo">글쓰기</a> 
 		</c:if>
 	</form>
 
 	<main>
-		<div class="total_count" style="position: relative; left: 1px; top:50px;">전체
+		<div class="total_count" style="position: relative; left: 1px; top:40px;">전체
 			${ listCount }</div>
 
 		<div class="album py-5 bg-light">
@@ -53,7 +53,7 @@
 									<p id="bno" style="display:none;">${ h.boardNo }</p>
 									<img src="${path}/${ h.boardMainimgChange }" width="100%" height="225">
 									<div class="card-body">
-										<p class="card-text_title">${ h.boardTitle }</p>
+										<p class="card-text_title"><strong>${ h.boardTitle }</strong></p>
 										<p class="card-text_name">
 											<img src="${path}/resources/img/logo_user.png" width="22px" style="margin-right: 7px;">${ h.memNick }
 										</p>

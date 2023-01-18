@@ -51,7 +51,7 @@
         <div class="project-detail-metadata">
           <table class="project-detail-metadata_table"> 
                 <tr class="project-detail-metadata_table_detail_1">
-                  <td><img src="${path}/resources/img/apart_img.png" width="25px"></td>
+                  <td><img src="${path}/resources/img/apart_img.png" width="25px" ></td>
                   <td>${ h.homeOption }</td>
               </tr>
          
@@ -63,7 +63,7 @@
               <tr class="project-detail-metadata_table_detail_3">
                 <td><img src="${path}/resources/img/married_img.png" width="25px"></td>
                   <td>${ h.homeFamilyv }</td>
-                </tr> 
+                </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         </table>
       </div>
        
