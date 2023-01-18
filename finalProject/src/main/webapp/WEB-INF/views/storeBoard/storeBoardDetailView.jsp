@@ -21,13 +21,7 @@ $(function() {
 	})
 })
 
-function postFormSubmit(num) {
-					if(num == 1) {
-						$("#postForm").attr("action" , "updateForm.bo").submit(); //submit 넣어줘야 이동함
-					} else {
-						$("#postForm").attr("action" , "delete.bo").submit();
-					}
-				}
+
 </script>
 <style>
     /* 로고폰트 */
@@ -223,7 +217,6 @@ function postFormSubmit(num) {
 	                    	<c:when test="${selNo eq p.selNo }">
 		                        <div id="btnbtn1"><a onClick="postFormSubmit(1);"><p id="delete">수정하기</p></a></div>
 		                        <div id="btnbtn1"><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
-		                        
 		                    </c:when>
 	                        <c:otherwise>
 	                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
@@ -242,7 +235,7 @@ function postFormSubmit(num) {
                         </c:choose>
 						</form>
 						
-						<!-- 수정, 삭제시 post방식으로 넘겨주기 -->
+						<!-- 상품수정, 삭제시 post방식으로 넘겨주기 -->
 						<form action="" method="post" id="postForm">
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="filePath" value="${ p.proChangeImg }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
@@ -263,6 +256,19 @@ function postFormSubmit(num) {
                 </div>
             </div>
             
+         	<!-- 문의 삭제시 post방식으로 넘겨주기 -->
+				<form action="" method="post" id="queForm">
+					<input type="hidden" name="proQueNo" value="${ p.proQueNo }">
+					<input type="hidden" name="queReplyNo" value="${ p.queReplyNo }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
+				</form>
+			<script>
+				function queFormSubmit(num) {
+						if(num == 1) {
+							$("#queForm").attr("action" , "qdelete.bo").submit(); //submit 넣어줘야 이동함
+						}
+					}
+			</script>
+			
             <div class="product_body">
                 <!--메뉴바-->
                 <div class="body_category">
@@ -409,6 +415,8 @@ function postFormSubmit(num) {
 				                      </div>
 				                    </div><!--review_write 까지-->
 				                  </form>
+				                  
+				                  
 				          
 				                  <div class="modal-footer">
 				                    <div class="modal-footer_text">- 문의내용에 대한 답변은 ‘마이페이지 > 나의리뷰 > 문의내역’ 또는 ‘상품 상세페이지’에서 확인 가능합니다.</div>
@@ -543,8 +551,7 @@ function postFormSubmit(num) {
 							  +			"<div style='display:flex;'>"
 							  +				"<p style='color:#21d9cb; width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>답변완료</p>"
 							  		if(list[i].memId == $("#memId").val()){
-						value +=			"<a onClick='queFormSubmit(1);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder; padding-left:20px;'>수정</a>"
-							  +				"<a onClick='queFormSubmit(2);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
+					    value +=			"<a href='' onClick='queFormSubmit(1);' style='width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
 							  			} 
 						value +=		"</div>"
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
@@ -575,8 +582,7 @@ function postFormSubmit(num) {
 							  +			"<div style='display:flex;'>"
 							  +				"<p style='background-color:#21d9cb; color:white;width:40px; text-align:center; border-radius:5px; height:20px; padding-top:2px;' > 미답변</p>"
 							  		if(list[i].memId == $("#memId").val()){
-					    value += 			"<a onClick='queFormSubmit(1);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder; padding-left:20px;'>수정</a>"
-							  +				"<a onClick='queFormSubmit(2);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
+						value += 		"<a onClick='queFormSubmit(1);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
 							  		} 
 						value +=		"</div>"
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
