@@ -62,8 +62,8 @@ public class StoreBoardDao {
 		return sqlSession.update("storeBoardMapper.queDelete", p); 
 	}
 	
-	public ArrayList<Product> arrayQuestionList(SqlSessionTemplate sqlSession, int proNo) {
-		return (ArrayList)sqlSession.selectList("storeBoardMapper.arrayQuestionList", proNo); 
+	public ArrayList<Product> arrayQuestionList(SqlSessionTemplate sqlSession, Product p) {
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.arrayQuestionList", p); 
 	}
 	
 }
