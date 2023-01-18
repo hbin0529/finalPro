@@ -19,7 +19,13 @@ public class OrderDao {
 		return sqlSession.selectOne("orderMapper.orderSheet");
 	}
 	
-	public int sellerProduct(SqlSessionTemplate sqlSession, Seller s, Product p) {
-		return sqlSession.selectOne("orderMapper.sellerProduct");
+	public int orderSheet2(SqlSessionTemplate sqlSession, Order o) {
+		return sqlSession.insert("orderMapper.orderSheet2", o);
 	}
+	
+	public int orderSheetDetail(SqlSessionTemplate sqlSession, Order o) {
+		return sqlSession.insert("orderMapper.orderSheetDetail", o);
+	}
+	
+
 }

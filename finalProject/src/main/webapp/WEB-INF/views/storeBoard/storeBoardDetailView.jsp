@@ -14,7 +14,7 @@
 <script>
 $(function() {
    $("#proCnt").change(function(e){
-      $("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
+      $("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val()) + " POINT") );
       if( $("#proCnt").val() == "add" ) { 
          $("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
       };
@@ -175,7 +175,7 @@ $(function() {
                         <div><p>★★★★★</p></div>
                         <div><p><span id="rcount">0</span>개 리뷰</p></div>
                     </div>
-                    <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;" >${ p.proPrice } 원</p></div>
+                    <div><p style="margin-bottom: 10px; font-size: 35px; font-weight: bolder;" >${ p.proPrice } POINT</p></div>
                     <input type="hidden" value="${ p.proPrice }" id = "proPrice">
                     <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div><br>
                     <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div><br>
@@ -209,7 +209,7 @@ $(function() {
                     </div>
                     <div class="order_price">
                         <div><p style="font-size: 13px; font-weight: bolder; margin-top: 5px; margin-bottom: 30px;">주문금액</p></div>
-                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;" id="sumPrice">0</p></div>
+                        <div><p style="width:350px; text-align: right; font-size: 25px; font-weight: bolder;" id="sumPrice">0 POINT</p></div>
                     </div>
                     <div class="intro_btn">
                        <c:choose>

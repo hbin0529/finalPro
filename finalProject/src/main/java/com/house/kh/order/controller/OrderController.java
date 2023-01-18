@@ -1,5 +1,7 @@
 package com.house.kh.order.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +35,6 @@ public class OrderController {
 		
 	}
 	
-	/*
-	 * @RequestMapping("order.or") public String order(int proBlackStock) {
-	 * proBlackStock = ; return "order/order"; }
-	 */
-	
 	// 충전페이지 이동
 	@RequestMapping("charge.or")
 	public String charge() {
@@ -55,15 +52,29 @@ public class OrderController {
 	}
 	
 	@RequestMapping("orderSheet.or")
-	public String selectOrder(Order o, Model model, HttpSession session) {
+	public String orderSheet2(Order o, Model model, HttpSession session, String ordEmail, Date ordDate, String ordZipcode, String ordAddr, String ordDetailAddr, String cusName, String cusPhone, String ordRequest) {
 		//주문테이블에 추가
+		System.out.println(o);
+		o.setOrdEmail(ordEmail);
+		o.setOrdDate(ordDate);
+		o.setOrdZipcode(ordZipcode);
+		o.setOrdAddr(ordAddr);
+		o.setOrdDetailAddr(ordDetailAddr);
+		o.setCusName(cusName);
+		o.setCusPhone(cusPhone);
+		o.setOrdRequest(ordRequest);
 		
-		
+		int orderSheetResult = oService.orderSheet2(o);
+		/* int orderDetailSheetReulst = oService.orderSheet2(o); */
+		if(orderSheetResult > 0) {
+			model.addAttribute("alertMsg", "결제가 완료되었습니다.");
+			return "order/orderDetailView";
+		} else {
+			return "";
+		}
 		//주문상세 테이블에 추가
 		
 		
-		
-		return "";
 	}
 }
 
