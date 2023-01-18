@@ -32,8 +32,8 @@
         });
 
         // 보유 포인트가 0보다 크면 색상 변함
-        if($("#point_level").val() > 0) {
-            $("#point_level").css({"background-color" : "#fff", "color":"#333"})
+        if($("#point_level").val(point) > 0) {
+            $("#point_level").css({"background-color" : "#fff", "color":"red"})
         }
     })
 
@@ -56,6 +56,7 @@
     .order_input{display: inline-block; width: 100%; margin: 0; padding: 8px 15px 9px; border: 1px solid #dbdbdb; background-color: #fff; 
         color: #000; border-radius: 4px; box-sizing: border-box; font-size: 15px; font-weight: bold; line-height: 21px; 
         transition: border-color .1s,background-color .1s;}
+    #point_level{background-color: rgb(250, 250, 250); border-color: rgb(219, 219, 219); color: #bdbdbd; flex: 1 0 0px;}
 </style>
 </head>
 <body>
@@ -85,13 +86,13 @@
                             </div>
                             <div style="padding: 20px 10px 0px 0px; max-width: 642px;">
                                 <div style="position: relative; display: inline-block; width: 100%;">
-                                    <select class="order_input">
-                                        <option value="0">나중에 직접입력 구현하기</option>
-                                        <option value="1">부재시 문앞에 놓아주세요</option>
-                                        <option value="2">배송전에 미리 연락주세요</option>
-                                        <option value="3">부재시 경비실에 맡겨 주세요</option>
-                                        <option value="4">부재시 전화주시거나 문자 남겨 주세요</option>
-                                        <option value="5">배송시 요청사항을 선택해주세요</option>
+                                    <select class="order_input" name="ordRequest">
+                                        <option value="나중에 직접입력 구현하기">나중에 직접입력 구현하기</option>
+                                        <option value="부재시 문앞에 놓아주세요">부재시 문앞에 놓아주세요</option>
+                                        <option value="배송전에 미리 연락주세요">배송전에 미리 연락주세요</option>
+                                        <option value="부재시 경비실에 맡겨 주세요">부재시 경비실에 맡겨 주세요</option>
+                                        <option value="부재시 전화주시거나 문자 남겨 주세요">부재시 전화주시거나 문자 남겨 주세요</option>
+                                        <option value="배송시 요청사항을 선택해주세요">배송시 요청사항을 선택해주세요</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,7 +112,7 @@
                                 <div style="display: flex; padding: 0px 0px 8px;">
                                     <div style="display: flex; align-items: center; width: 72px; font-size: 15px;">이름</div>
                                     <div style="flex: 1 0 0px; max-width: 270px;">
-                                        <input class="order_input" type="text" value="${ m.memName }">
+                                        <input class="order_input" type="text" value="${ m.memName }" name="cusName">
                                     </div>
                                 </div>
                             </label>
@@ -121,7 +122,7 @@
                                     <div style="display: flex; align-items: center; width: 72px; font-size: 15px;">이메일</div>
                                     <div style="display: flex; flex: 1 0 0px; max-width: 580px;">
                                         <div style="position: relative; display: inline-block; width: 50%;">
-                                            <input class="order_input" type="text" value="${ m.memEmail }" readonly>
+                                            <input class="order_input" type="text" value="${ m.memEmail }" name="ordEmail" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +132,7 @@
                                 <div style="display: flex; padding: 8px 0px;">
                                     <div style="display: flex; align-items: center; width: 72px; font-size: 15px;">휴대전화</div>
                                     <div>
-                                        <input type="text" class="order_input" placeholder="010-1234-1234" value="${ m.memPhone }">
+                                        <input type="text" class="order_input" placeholder="010-1234-1234" value="${ m.memPhone }" name="cusPhone">
                                     </div>
                                 </div>
                             </label>
@@ -207,7 +208,7 @@
                     <div style="overflow: hidden; margin: -3px; padding: 23px 3px 3px; box-sizing: border-box;"> 
                         <div style="margin: 0px auto; box-sizing: border-box; width: auto; max-width: 100%; min-height: 1px;">
                             <div style="display: flex; margin-bottom: 12px; max-width: 322px;">
-                                <input id="point_level" class="order_input" type="number" value="0" disabled style="background-color: rgb(250, 250, 250); border-color: rgb(219, 219, 219); color: #bdbdbd; flex: 1 0 0px;">
+                                <input id="point_level" class="order_input" type="number" value="0" disabled>
                                 <button class="wid360 bora4" type="button" onclick="charge()" style="background-color: #fff; border: 1px solid transparent; border-radius: 3px;
                                             border-color: #21d9cb; color: #21d9cb; margin-left: 8px; padding: 11px 10px; min-height: 40px; cursor: pointer;">
                                         	충전하기
@@ -230,11 +231,11 @@
                         <h2 style="margin-bottom: 20px; font-size: 20px;">결제금액</h2>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>총 상품 금액</div>
-                            <div style="flex: 0px; text-align: right; font-weight: bold;">45,000원</div>
+                            <div style="flex: 0px; text-align: right; font-weight: bold;">${ p.proPrice * countSelect } 포인트</div>
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>배송비</div>
-                            <div style="flex: 0px; text-align: right;">0원</div>
+                            <div style="flex: 0px; text-align: right;">2500 포인트</div>
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>쿠폰 사용</div>
@@ -246,7 +247,7 @@
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; border-top: 1px solid rgb(234, 235, 239); padding-top: 19px; padding-bottom: 19px; margin-top: 20px;">
                             <div style="font-size: 18px; font-weight: bold;">최종 결제 금액</div>
-                            <div style="flex: 0px; text-align: right; font-size: 22px; font-weight: bold; color: #21d9cb;">45,000원</div>
+                            <div style="flex: 0px; text-align: right; font-size: 22px; font-weight: bold; color: #21d9cb;">${ (p.proPrice * countSelect) + 2500 } 포인트</div>
                         </div>
                     </div>
                     <!-- 필수 동의란 -->
@@ -256,8 +257,12 @@
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">개인정보수집 및 이용동의(필수)</label>
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">결제 서비스 이용약관 동의(필수)</label>
                     </div>
-                    <input type="submit" onclick="" class="submitbut wid360 bora4" value="45,000원 결제하기">
+                    <input type="submit" onclick="" class="submitbut wid360 bora4" value="${ (p.proPrice * countSelect) + 2500 } 포인트 결제하기">
                 </div>
+                	<input type="hidden" value="${ m.memZipcode }" name="ordZipcode">
+                	<input type="hidden" value="${ m.memAddr }" name="ordAddr">
+                	<input type="hidden" value="${ m.memDetailAddr }" name="ordDetailAddr">
+                	<input type="hidden" value="${ m.memDetailAddr }" name="ordDetailAddr">
             </div>
         </div>
     </div>

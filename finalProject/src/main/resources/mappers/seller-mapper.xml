@@ -33,6 +33,12 @@
   	select count(*) from seller_base where sel_email = #{id}
   </select>
   
+  <select id="getAllSeller" resultMap="sellerResult">
+  	select * from seller_base where sel_inter = 'Y' order by DBMS_RANDOM.RANDOM
+  </select>
+  
+  
+  
   <insert id="insertMember">
   	insert into seller_base values(sel_seq.nextval, #{selEmail}, #{selPwd}, #{selName}, #{selBusName}, #{selPhone}, #{selBusNo}, #{selZipcode}, #{selAddr}, #{selDetailAddr}, default, 0, default, #{selInter}, #{selInterIntroduce})
   </insert>
