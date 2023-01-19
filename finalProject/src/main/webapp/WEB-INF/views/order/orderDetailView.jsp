@@ -109,7 +109,9 @@ at('woff');
     .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 70px;}
     .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
     .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
-    
+    .detail_body div img{
+    	max-height: 150px;
+    }
 </style>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -136,6 +138,13 @@ at('woff');
     </section>
 
     <section class="sellerpage_main_body">
+    	
+    	<div class="order_count">
+            <div><p>총 보유 포인트</p></div>
+            <div><p style="font-size:30px">${ s.selPoint } POINT</p></div>
+        </div>
+    
+    
         <div class="order_count">
             <div><p>주문내역</p></div>
             <div><p>1,234</p></div>
@@ -210,7 +219,7 @@ at('woff');
 	                    <div>판매요청</div>
 	                </div>
 	                <div class="detail_body">
-	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div><img src="${ path }/${ order.proChangeImg }"></div>
 	                    <div class="detail_body_category">
 	                        <div>카테고리 | ${ order.cateName }</div>
 	                        <div>${ order.proName }</div>
@@ -242,7 +251,7 @@ at('woff');
 	                    <div style="background-color: #21d9cb; color: white;">판매완료</div>
 	                </div>
 	                <div class="detail_body">
-	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div><img src="${ path }/${ order.proChangeImg }"></div>
 	                    <div class="detail_body_category">
 	                        <div>카테고리 | ${ order.cateName }</div>
 	                        <div>${ order.proName }</div>
@@ -269,7 +278,7 @@ at('woff');
 	                    <div style="color: red;">판매취소</div>
 	                </div>
 	                <div class="detail_body">
-	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div><img src="${ path }/${ order.proChangeImg }"></div>
 	                    <div class="detail_body_category">
 	                        <div>카테고리 | ${ order.cateName }</div>
 	                        <div>${ order.proName }</div>

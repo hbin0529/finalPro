@@ -96,6 +96,7 @@
 	 	<result column="ord_addr" property="ordAddr"/>
 		<result column="ord_detail_addr" property="ordDetailAddr"/>
 	 	<result column="pro_change_detailimg" property="proChangeDetailimg" />
+		<result column="pro_change_img" property="proChangeImg" />
 	 	<result column="ord_option" property="ordOption" />
 	 	<result column="ord_price" property="ordPrice" />
 	 	<result column="ord_request" property="ordRequest" />
@@ -154,7 +155,7 @@
 	
 	<!-- 판매자에게 들어온 오더리스트 보여주기 -->	
 	<select id="sellersOrderList" resultMap="sellersOrderListMap">
-		select to_char(ord_date, 'YY/MM/DD') as "ord_date", pro_change_detailimg, ord_option, ord_price, ord_request, ord_addr, ord_detail_addr, pro_no,
+		select to_char(ord_date, 'YY/MM/DD') as "ord_date", pro_change_detailimg, ord_option, ord_price, ord_request, ord_addr, ord_detail_addr, pro_no, pro_change_img,
 		 sel_no, ord_no, ord_count, cus_name, cus_phone, ord_status, cate_name, pro_white_stock, pro_black_stock, pro_name, ord_email
 		 from order_main
          join order_detail using (ord_no) join product using (pro_no) join category using (cate_no) 

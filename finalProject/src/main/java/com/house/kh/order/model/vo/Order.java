@@ -54,6 +54,7 @@ public class Order {
 	
 	//판매자에게 보여줄 주문신청 목록
 	private String proChangeDetailimg;
+	private String proChangeImg;
 	private String cateName;
 	private int proWhiteStock;
 	private int proBlackStock;
