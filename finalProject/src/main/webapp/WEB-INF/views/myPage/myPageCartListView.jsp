@@ -37,8 +37,8 @@
     .mypage_cart_table tr td{font-family: 'Pretendard-Regular';}
     .mypage_cart_table hr{margin-top: 10px;}
     .mypage_cart_table img{margin-top: 10px; width: 100px;}
-    .mypage_cart_table button{width: 30px; color: black; background-color: rgb(231, 231, 231); border: 1px solid rgb(231, 231, 231); cursor: pointer;}
-    #cart_table_title{text-align: center; border-bottom: 1px solid rgb(204, 204, 204); height: 50px; font-weight: bolder;}
+    #cart_table_btn a{width: 30px; color: black; cursor: pointer;}
+    #cart_table_title{text-align: center; border-bottom: 1px solid rgb(204, 204, 204); height: 50px; font-weight: bolder; background-color:#f6fdfd;}
     #cart_table_img{width: 100px; padding-left: 10px; padding-right:10px;}
     #cart_table_img img{width:100px; height:90px;}
     #cart_table_product_name{text-align: left; }
@@ -50,11 +50,12 @@
     .mypage_cart_sum table{width: 350px; margin: 0 auto; margin-top: 50px; border: 1px solid rgb(204, 204, 204); padding: 10px; font-family: 'Pretendard-Regular';}
     .mypage_cart_sum table tr td:nth-child(1){font-size: 17px; padding: 5px;}
     .mypage_cart_sum table tr td:nth-child(2){text-align: right;}
-    .mypage_cart_sum button{background-color: #21d9cb; border: 1px solid #21d9cb; color: white; width: 300px; height: 50px; margin-top: 10px; font-size: 18px; font-weight: bolder; cursor: pointer;}
+    .mypage_cart_sum button{background-color: #21d9cb; border: 1px solid #21d9cb; color: white; width: 300px; height: 50px; margin-top: 10px; font-size: 18px; font-weight: bolder; cursor: pointer; text-align: center; margin-left:5px; border-radius:5px;}
     #option{font-size: 14px; padding-top: 10px; margin-top: 10px; padding-left: 20px;}       
     #option span{padding-right:5px; color:gray;}
     #amount{font-size: 14px; padding-left: 20px;}
     #amount span{padding-right:5px; color:gray;}
+    #bottom_table{background-color:#f6fdfd;}
     
 </style>
 
@@ -64,7 +65,23 @@
 
 <section class="mypage_main_body">
     <div class="mypage_cart">
+    	<input type="hidden">
+    	<script>
+    		var sumP = 0
+	    	<c:forEach var="c" items="${ list }">
+	    		$(function(){
+	    			sumP += ${ c.proPrice * c.cartAmount };
+	    			$("#orderPrice").text(sumP);
+	    			$("#allPrice").text(sumP);
+	    		})
+	    	</c:forEach>
+    	</script>
     	<c:forEach var="c" items="${ list }">
+    	<form action="" method="post" id="cartDelete">
+    		<input type="hidden" name="proNo" value="${ c.proNo }" >
+    		<input type="hidden" name="selNo" value="${ c.selNo }" >
+    		<input type="hidden" name="cartNo" value="${ c.cartNo }" >
+    		<input type="hidden" name="memEmail" value="${ c.memEmail }" >
 	        <table class="mypage_cart_table">
 	            <tr>
 	                <td colspan="5" id="cart_table_title">${ c.selBusName }</td>
@@ -72,44 +89,55 @@
 	            <tr>
 	                <td id="cart_table_img"><img src="${path}/${ c.proChangeImg }"></td>
 	                <td id="cart_table_product_name"><a href="">${ c.proName }</a><br><span>${ c.proPrice }원</span></td>
-	                <td id="cart_table_btn"><button>X</button></td>
+	                <td id="cart_table_btn"><a onclick="deleteSubmit(1);">X</a></td>
 	            </tr>
 	            <tr>
 	                <td colspan="5"><hr></td>
 	            </tr>
-	            <tr>
+	            <tr id="bottom_table">
 	                <td colspan="4" id="option"><span>옵션 |</span>  ${ c.cartOption }</td>
 	                <td id="realPrice" style="display:none;">${ c.proPrice } </td>
 	            </tr>
-	            <tr>
+	            <tr id="bottom_table">
 	            	<c:set var="sumPrice" value="${ c.proPrice  * c.cartAmount}" />
 	                <td colspan="2" id="amount"><span>수량 |</span>  ${ c.cartAmount } 개</td>
 	                <td colspan="3" id="cart_table_price">합계 | &ensp;<c:out value="${ sumPrice }"/> 원</td>
 	            </tr>
 	        </table>
+	    </form>
         </c:forEach>
+        <script>
+        	function deleteSubmit(num) {
+        		if(num==1)
+        			$("#cartDelete").attr("action" , "cartDelete.ca").submit();
+        	}
+        </script>
     </div>
 
     <div class="mypage_cart_sum">
         <table>
             <tr>
                 <td>총 상품금액</td>
-                <td>10,000 원</td>
+                <td id="allPrice"></td>
+                <td>원</td>
             </tr>
             <tr>
                 <td>총 배송비</td>
-                <td>+ 0 원</td>
+                <td>+ 0 </td>
+                <td>원</td>
             </tr>
             <tr>
                 <td>총 할인금액</td>
-                <td>- 0 원</td>
+                <td>- 0 </td>
+                <td>원</td>
             </tr>
             <tr>
                 <td>결제금액</td>
-                <td>10,000 원</td>
+                <td id="orderPrice"></td>
+                <td>원</td>
             </tr>
             <tr>
-                <td colspan="2" style="text-align: center;">
+                <td colspan="3">
                     <button>${ cartCount } 개 상품 구매하기</button>
                 </td>
             </tr>
