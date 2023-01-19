@@ -33,7 +33,7 @@
                       <div class="detail_title_author_date">${ i.interDate }</div> 
                 </div>  
         </div>
-          <c:if test="${ id eq h.memId }">
+          <c:if test="${ id eq h.memId and not empty id }">
                <div class="del_upd_button">
                    <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
                    <a class="update_button" onclick="postFormSubmit(1);">수정하기</a>&ensp;

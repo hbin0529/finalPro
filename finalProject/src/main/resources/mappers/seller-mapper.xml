@@ -39,7 +39,7 @@
 	select sel_no, sel_email, sel_pwd, sel_name, sel_bus_name, sel_phone, sel_bus_no, sel_zipcode, sel_addr,
 	sel_detail_addr, mem_permit, sel_point, sel_status, sel_inter, sel_inter_introduce, inter_mainimg_change, inter_date
 	from seller_base s 
-	left join (select * from interrior where(sel_no, inter_date) in (select sel_no, min(inter_date) from interrior group by sel_no)) using (sel_no)
+	left join (select * from interrior where(sel_no, inter_date) in (select sel_no, max(inter_date) from interrior group by sel_no)) using (sel_no)
 	where sel_inter = 'Y' order by DBMS_RANDOM.RANDOM
   </select>
   
