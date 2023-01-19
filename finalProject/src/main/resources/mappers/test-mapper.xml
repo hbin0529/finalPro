@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="storeBoardMapper">
-	<resultMap type="Product" id="storeBoardResult">
+<mapper namespace="testMapper">
+	<resultMap type="Test" id="storeBoardResult">
 		<result column="pro_no" property="proNo" />
 		<result column="sel_no" property="selNo" />
 		<result column="cate_no" property="cateNo" />
@@ -54,163 +54,9 @@
 	</resultMap>
 	
 
-	<select id="selectListCount" resultType="_int">
-		select count(*)
-			from product
-		  where status = 'Y'
-	</select>
-	
-	<select id="selectCateListCount" resultType="_int">
-		select count(*)
-			from product pro
-		  where pro.status = 'Y'
-		  and pro.cate_no = #{cateNo}
-	</select>
-	
-	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> 
-		select pro_no
-			 , pro.pro_origin_img
-			 , sb.sel_no
-			 , sb.sel_bus_name
-			 , sb.sel_name
-			 , sb.sel_email
-			 , sb.sel_bus_no
-			 , sb.sel_addr
-			 , sb.sel_detail_addr
-			 , pro.pro_name
-			 , pro.pro_price
-			 , pro.cate_no
-		  from product pro, seller_base sb
-		  where pro.sel_no = sb.sel_no 
-		  and pro.status = 'Y'
-		 order by pro.pro_no desc
-	</select>
-	
-	<select id="selectCateList" resultType="Product" resultMap="storeBoardResult"> 
-		 select pro_no
-			 , pro.pro_origin_img
-			 , sb.sel_bus_name
-			 , sb.sel_name
-			 , sb.sel_email
-			 , sb.sel_bus_no
-			 , sb.sel_addr
-			 , sb.sel_detail_addr
-			 , pro.pro_name
-			 , pro.pro_price
-			 , pro.cate_no
-		  from product pro, seller_base sb
-		  where pro.sel_no = sb.sel_no 
-		  and pro.status = 'Y'
-		  and pro.cate_no = #{cateNo}
-		 order by pro.pro_no desc
-	</select>
-	
 
-	
-	<select id="selectBoard" resultType="Product" resultMap="storeBoardResult">
-		select p.pro_no
-			 , s.sel_bus_name
-			 , s.sel_no
-			 , s.sel_phone
-			 , s.sel_bus_no
-			 , s.sel_name
-			 , s.sel_addr
-			 , s.sel_detail_addr
-			 , s.sel_email
-			 , p.cate_no
-			 , c.cate_name
-			 , p.pro_name
-			 , p.pro_price
-			 , p.pro_origin_img
-			 , p.pro_change_img
-			 , p.pro_origin_img1
-			 , p.pro_change_img1
-			 , p.pro_origin_detailimg
-			 , p.pro_change_detailimg
-			 , p.pro_white_stock
-			 , p.pro_black_stock
-		  from product p, seller_base s, category c
-		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no and c.cate_no = p.cate_no
-	</select>
-	
-	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
-		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option
-			from product p, review r, member_base m, order_detail o
-		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y' and r.pro_no = #{proNo}
-		  order by r.review_date desc
-	</select>
-	
-	<select id="selectQuestionList" resultType="Product" resultMap="storeBoardResult">
-		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, p.pro_no, pq.pro_que_result, pq.status
-        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, pq.mem_id, pq.pro_que_no, m.mem_email
-				from product_question pq
-					join product p on (p.pro_no = pq.pro_no)
-					join member_base m on (pq.mem_id = m.mem_email)
-					join seller_base s on (s.sel_no = pq.sel_no)
-					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
-                where p.pro_no = #{proNo} and pq.status = 'Y'
-                order by pq.pro_que_date desc
-	</select>
-	
-	<update id="increaseCount">
-		update product
-			set pro_count = pro_count+1
-		  where pro_no = #{proNo} and status = 'Y'
-	</update>
-	
-	<insert id="insertProduct">
-		insert into product(pro_no, sel_no, cate_no, pro_white_stock, pro_black_stock, pro_name, pro_price, pro_origin_img,
-							pro_change_img, pro_origin_detailimg, pro_change_detailimg, pro_origin_img1, pro_change_img1)
-					values(pro_no_seq.nextval, #{selNo}, #{cateNo}, #{proWhiteStock}, #{proBlackStock}, #{proName}, #{proPrice}
-							, #{proOriginImg}, #{proChangeImg}, #{proOriginDetailimg}, #{proChangeDetailimg}, #{proOriginImg1}, #{proChangeImg1})
-	</insert>
-	
-	<update id="proDeleteBoard">
-		update product
-			set status = 'N'
-		  where pro_no = #{proNo}
-	</update>
-	
-	<update id="proUpdateBoard">
-		update product
-			set cate_no = #{cateNo}
-				,pro_white_stock = #{proWhiteStock}
-				,pro_black_stock = #{proBlackStock}
-				,pro_name = #{proName}
-				,pro_price = #{proPrice}
-				,pro_origin_img = #{proOriginImg}
-				,pro_change_img = #{proChangeImg}
-				,pro_origin_detailimg = #{proOriginDetailimg}
-				,pro_change_detailimg = #{proChangeDetailimg}
-				,pro_origin_img1 = #{proOriginImg1}
-		   where pro_no = #{proNo}
-	</update>
-	
-	<insert id="insertQuestion">
-		insert into product_question(pro_que_no, pro_no, mem_id, pro_que_type, pro_que_content, pro_que_result, pro_que_ispublic, pro_que_date, status, sel_no)
-				   values(proque_seq.nextval, #{proNo}, #{memId}, #{proQueType},#{proQueContent},'N','Y', sysdate ,'Y', #{selNo})
-	</insert>
-	
-	<update id="queDelete">
-		update product_question
-			set status = 'N'
-		  where pro_que_no = #{proQueNo}
-	</update>
-	
-	<select id="arrayQuestionList" resultType="Product" resultMap="storeBoardResult">
-		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status, p.pro_no, pq.pro_que_result
-        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id, p.pro_name
-				from product_question pq
-					join product p on (p.pro_no = pq.pro_no)
-					join member_base m on (pq.mem_id = m.mem_email)
-					join seller_base s on (s.sel_no = pq.sel_no)
-					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
-                where pq.status = 'Y'
-                order by pq.pro_que_date desc
-	</select>
-	
 	<!-- TOP 리스트 조회 -->
-	<select id="" resultMap="storeBoardResult">
+	<select id="topStoreBoardList" resultMap="storeBoardResult">
 		select * 
 		from (select pro_change_img
 				   , sel_bus_name
