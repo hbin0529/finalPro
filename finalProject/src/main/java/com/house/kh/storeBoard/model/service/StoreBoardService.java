@@ -44,12 +44,7 @@ public interface StoreBoardService {
 	
 	// 8. Top5 조회수 리스트 (ajax)
 	//ArrayList<Board> selectTopBoardList();
-	
-	/* --------------------------리뷰 추가하기 (김수연)---------------------------------------- */
-	int insertReview(Product p);
-	   
-	   
-	   
+	    
 
 
 }
