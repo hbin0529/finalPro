@@ -3,6 +3,7 @@ package com.house.kh.test.model.service;
 import java.util.ArrayList;
 
 import com.house.kh.storeBoard.model.vo.Product;
+import com.house.kh.test.model.vo.Test;
 
 public interface TestService {
 	// 게시판리스트 카운트
@@ -43,6 +44,6 @@ public interface TestService {
 		
 	
 	// 8. Top5 조회수 리스트 (ajax)
-	ArrayList<Product> topStoreBoardList();
+	ArrayList<Test> topStoreBoardList();
 
 }
