@@ -58,6 +58,7 @@ public class Order {
 	private int proWhiteStock;
 	private int proBlackStock;
 	private String proName;
+	private int selNo;
 	
 	
 	//판매자정보

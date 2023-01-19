@@ -1,10 +1,11 @@
-package com.house.kh.storeBoard.model.service;
+package com.house.kh.test.model.service;
 
 import java.util.ArrayList;
 
 import com.house.kh.storeBoard.model.vo.Product;
+import com.house.kh.test.model.vo.Test;
 
-public interface StoreBoardService {
+public interface TestService {
 	// 게시판리스트 카운트
 	int selectListCount();
 	int selectCateListCount(Product product);
@@ -40,14 +41,9 @@ public interface StoreBoardService {
 	
 	// 게시판리스트 페이지
 	ArrayList<Product> arrayQuestionList(Product p); //어떤거 가져올지
+		
 	
-
 	// 8. Top5 조회수 리스트 (ajax)
-	//ArrayList<Board> selectTopBoardList();
-	    
-
-	/* --------------------------리뷰 추가하기 (김수연)---------------------------------------- */
-	int insertReview(Product p);
-
+	ArrayList<Test> topStoreBoardList();
 
 }

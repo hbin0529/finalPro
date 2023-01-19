@@ -292,6 +292,12 @@ public class MemberController {
 		
 	}
 	
+	// 형빈 메인 ajax 테스트(유튜브에 태그 걸어놓음 YOUTUBE) 
+	@RequestMapping("mainTest.ma")
+	public String mainTest() {
+		return "main2";
+	}
+	
 	
 	
 }

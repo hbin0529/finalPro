@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="cartMapper">
+	<resultMap type="Cart" id="cartResult">
+		<!-- CART -->
+		<result column="cart_no" property="cartNo" />
+		<result column="mem_email" property="memEmail" />
+		<result column="cart_amount" property="cartAmount" />
+		<result column="cart_option" property="cartOption" />
+		<result column="cart_date" property="cartDate" />
+		<result column="cart_status" property="cartStatus" />
+		<!-- PRODUCT -->
+		<result column="pro_no" property="proNo" />
+		<result column="sel_no" property="selNo" />
+		<result column="cate_no" property="cateNo" />
+		<result column="cate_name" property="cateName" />
+		<result column="pro_white_stock" property="proWhiteStock" />
+		<result column="pro_black_stock" property="proBlackStock" />
+		<result column="pro_name" property="proName" />
+		<result column="pro_price" property="proPrice" />
+		<result column="pro_up_date" property="proUpDate" />
+		<result column="pro_origin_img" property="proOriginImg" />
+		<result column="pro_change_img" property="proChangeImg" />
+		<result column="pro_origin_img1" property="proOriginImg1" />
+		<result column="pro_change_img1" property="proChangeImg1" />
+		<result column="pro_origin_detailimg" property="proOriginDetailimg" />
+		<result column="pro_change_detailimg" property="proChangeDetailimg" />
+		<result column="status" property="status" />
+		<result column="pro_count" property="proCount" />
+		<!-- SELLER -->
+		<result column="sel_bus_name" property="selBusName" />
+		<result column="sel_email" property="selEmail" />
+		<result column="sel_name" property="selName" />
+		<result column="sel_phone" property="selPhone" />
+		<result column="sel_addr" property="selAddr" />
+		<result column="sel_detail_addr" property="selDetailAddr" />
+		<result column="sel_bus_no" property="selBusNo" />
+	</resultMap>
+	
+	<select id="selectCartListCount" resultType="_int">
+		select count(*)
+			from cart
+		  where cart_status = 'Y'
+	</select>
+	
+	<select id="selectCartList" resultType="Cart" resultMap="cartResult">
+		select s.sel_bus_name
+			 , p.pro_origin_img
+			 , p.pro_name
+			 , p.pro_price
+			 , c.cart_option
+			 , c.cart_amount
+			 , c.cart_date
+			 , p.pro_change_img
+			 , p.pro_change_img1
+			 , p.pro_change_detailimg
+			from cart c, product p, seller_base s
+			where p.pro_no = c.pro_no and s.sel_no = c.sel_no
+			order by c.cart_date desc
+	</select>
+	
+	<insert id="insertCart">
+		insert into cart(cart_no, mem_email, pro_no, sel_no, cart_amount, cart_option, pro_price, cart_date, cart_status)
+					values(cart_no_seq.nextval, #{memEmail}, #{proNo}, #{selNo}, #{cartAmount}, #{cartOption}
+							,#{proPrice}, sysdate, 'Y')
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

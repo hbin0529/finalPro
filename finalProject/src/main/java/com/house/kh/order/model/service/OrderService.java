@@ -56,4 +56,60 @@ public class OrderService {
 	 
 	
 	// 상품 가져오기
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public boolean isThereStock(Order o) {
+		boolean isThereStockResult = oDao.isThereStock(sqlSession, o);
+		return isThereStockResult;
+	}
+	
+	
+	
+	
 }
