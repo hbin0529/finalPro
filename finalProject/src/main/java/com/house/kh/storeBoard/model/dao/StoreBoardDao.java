@@ -67,7 +67,6 @@ public class StoreBoardDao {
 	}
 	
 	public int insertReview(SqlSessionTemplate sqlSession, Product p) { 
-	      System.out.println(p);
 	      return sqlSession.insert("storeBoardMapper.insertReview", p);
 	   }
 	
