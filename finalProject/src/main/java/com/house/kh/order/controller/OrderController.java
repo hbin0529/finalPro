@@ -88,7 +88,6 @@ public class OrderController {
 		return "order/orderDetailView";
 	}
 
-}
 	
 	
 	
@@ -206,4 +205,3 @@ public class OrderController {
 	
 	
 }
->>>>>>> 1c3a0ccd82097214a290f2dc324b6f7ca7d11734

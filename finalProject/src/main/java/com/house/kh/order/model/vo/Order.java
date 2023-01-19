@@ -62,7 +62,6 @@ public class Order {
 	
 	
 	//판매자정보
-	private int selNo;
 	private String selBusName; 
 	private String selPhone;
 }
