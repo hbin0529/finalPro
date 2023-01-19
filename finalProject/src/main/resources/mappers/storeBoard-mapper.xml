@@ -199,7 +199,7 @@
 	
 	<select id="arrayQuestionList" resultType="Product" resultMap="storeBoardResult">
 		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status, p.pro_no, pq.pro_que_result
-        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id, p.pro_name
+        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id, p.pro_name, pq.pro_que_no
 				from product_question pq
 					join product p on (p.pro_no = pq.pro_no)
 					join member_base m on (pq.mem_id = m.mem_email)
@@ -207,7 +207,12 @@
 					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
                 where pq.status = 'Y'
                 order by pq.pro_que_date desc
-	</select>
+	</select> 
+	
+	<insert id="insertReview">
+		insert into review(review_no, mem_email, ord_no, review_img_origin, review_img_change, review_content, review_date, review_star)
+				   values(review_seq.nextval, #{memEmail}, #{ordNo}, #{reviewImgOrigin},#{reviewImgChange}, #{reviewContent}, sysdate , #{reviewStar})
+	</insert>
 	
 </mapper>
 

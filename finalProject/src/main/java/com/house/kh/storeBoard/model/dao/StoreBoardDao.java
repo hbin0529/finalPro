@@ -66,4 +66,11 @@ public class StoreBoardDao {
 		return (ArrayList)sqlSession.selectList("storeBoardMapper.arrayQuestionList", p); 
 	}
 	
+	/* --------------------------리뷰 추가하기 (김수연)---------------------------------------- */
+	
+	public int insertReview(SqlSessionTemplate sqlSession, Product p) { 
+		System.out.println(p);
+		return sqlSession.insert("storeBoardMapper.insertReview", p);
+	}
+	
 }

@@ -216,9 +216,5 @@ public class StoreBoardController {
          model.addAttribute("errorMsg" , "문의 삭제 실패");
          return "common/errorPage";
       }
-   }   
-   
-   
-   
-
+   }  
 }

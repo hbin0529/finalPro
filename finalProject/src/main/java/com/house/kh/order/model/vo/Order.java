@@ -9,7 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Order {
 
 	// 주문번호
@@ -24,6 +28,7 @@ public class Order {
 	private String ordAddr;
 	// 상세주소
 	private String ordDetailAddr;
+	 
 	// 수령자 이름
 	private String cusName;
 	// 수령자 전화번호
@@ -55,6 +60,8 @@ public class Order {
 	private String proName;
 	
 	
-	
-	
+	//판매자정보
+	private int selNo;
+	private String selBusName; 
+	private String selPhone;
 }

@@ -38,6 +38,12 @@ public class OrderDao {
 		return (ArrayList)sqlSession.selectList("orderMapper.sellersOrderList", selNo);
 	}
 	
+	public ArrayList<Order> usersOrderList(SqlSessionTemplate sqlSession, String id){
+		return (ArrayList)sqlSession.selectList("orderMapper.usersOrderList", id);
+	}
+	
+	
+	
 	
 	
 	

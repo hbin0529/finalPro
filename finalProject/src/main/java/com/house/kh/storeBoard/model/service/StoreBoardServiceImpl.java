@@ -89,4 +89,10 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 		return sbDao.arrayQuestionList(sqlSession, p);
 	}
 
+	/* --------------------------리뷰 추가하기 (김수연)---------------------------------------- */
+ 	@Override
+	public int insertReview(Product p) {
+ 		return sbDao.insertReview(sqlSession, p);
+	}
+
 }

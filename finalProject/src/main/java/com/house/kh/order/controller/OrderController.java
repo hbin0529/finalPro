@@ -79,10 +79,7 @@ public class OrderController {
 			return "main";
 		}
 		//주문상세 테이블에 추가
-	}
-	
-	
-	
+	} 
 	
 	@RequestMapping("sellerOrderList.or")
 	public String sellerOrderList(int selNo, Model model) {
@@ -90,13 +87,5 @@ public class OrderController {
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
 	}
-	
-	
-	
-	
-	
-	
-	
-		
+	 
 }
-
