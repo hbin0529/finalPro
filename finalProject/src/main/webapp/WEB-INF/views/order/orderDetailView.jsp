@@ -194,6 +194,10 @@ at('woff');
         		var ordEmail = document.getElementById("ordEmail").value
         		location.href="orderCancel.or?ordNo="+b+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo="+proNo+"&ordEmail="+ordEmail;
         	}
+        	
+        	$(function(){
+        		
+        	})
         </script>
         
         <div class="order_list">
