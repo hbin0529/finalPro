@@ -8,90 +8,135 @@ import org.springframework.stereotype.Service;
 
 import com.house.kh.storeBoard.model.dao.StoreBoardDao;
 import com.house.kh.storeBoard.model.vo.Product;
+import com.house.kh.test.model.dao.TestDao;
+import com.house.kh.test.model.vo.Test;
 
 @Service
 public class TestServiceImpl implements TestService{
 	
 	@Autowired //객체 자동생성 변수 만들어주기
-	private StoreBoardDao sbDao;
+	private TestDao tDao;
 	
 	@Autowired //객체 자동생성 변수 만들어주기
 	private SqlSessionTemplate sqlSession;
 
-	@Override
-	public int selectListCount() {
-		return sbDao.selectListCount(sqlSession);
-	}
+
 	
 	@Override
-	public int selectCateListCount(Product product) {
-		return sbDao.selectCateListCount(sqlSession, product);
+	public ArrayList<Test> topStoreBoardList() {
+		return tDao.topStoreBoardList(sqlSession);
 	}
+
+
+
+	@Override
+	public int selectListCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public int selectCateListCount(Product product) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 	@Override
 	public ArrayList<Product> selectList() {
-		return sbDao.selectList(sqlSession);
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+
+
 	@Override
 	public ArrayList<Product> selectCateList(Product product) {
-		return sbDao.selectCateList(sqlSession, product);
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	@Override
-	public ArrayList<Product> selectReviewList(int proNo) {
-		return sbDao.selectReviewList(sqlSession, proNo);
-	}
-	
-	@Override
-	public ArrayList<Product> selectQuestionList(int proNo) {
-		return sbDao.selectQuestionList(sqlSession, proNo);
-	}
-	
-	@Override
-	public int insertProduct(Product p) {
-		return sbDao.insertProduct(sqlSession, p);
-	}
+
+
 
 	@Override
 	public int increaseCount(int proNo) {
-		return sbDao.increaseCount(sqlSession, proNo);
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
 
 	@Override
 	public Product selectBoard(int proNo) {
-		return sbDao.selectBoard(sqlSession, proNo);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
+
+	@Override
+	public ArrayList<Product> selectReviewList(int proNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public ArrayList<Product> selectQuestionList(int proNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public int insertProduct(Product p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 	@Override
 	public int proDeleteBoard(int proNo) {
-		return sbDao.proDeleteBoard(sqlSession, proNo);
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
 
 	@Override
 	public int proUpdateBoard(Product p) {
-		return sbDao.proUpdateBoard(sqlSession, p);
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
 
 	@Override
 	public int insertQuestion(Product p) {
-		System.out.println("제발~~");
-		return sbDao.insertQuestion(sqlSession, p);
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
 
 	@Override
 	public int queDelete(int proQueNo) {
-		return sbDao.queDelete(sqlSession, proQueNo);
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
+
+
+
 	@Override
 	public ArrayList<Product> arrayQuestionList(Product p) {
-		return sbDao.arrayQuestionList(sqlSession, p);
-	}
-	
-	@Override
-	public ArrayList<Product> topStoreBoardList() {
-		return sbDao.topStoreBoardList(sqlSession);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
