@@ -50,8 +50,10 @@ public class OrderService {
 		return oDao.sellersOrderList(sqlSession, selNo);
 	}
 	
-	
-	
+	public ArrayList<Order> usersOrderList(String id){
+		return oDao.usersOrderList(sqlSession, id);
+	}
+	 
 	
 	// 상품 가져오기
 	
@@ -107,7 +109,13 @@ public class OrderService {
 		return isThereStockResult;
 	}
 	
+	public void processOrderConfirm(Order o) {
+		oDao.processOrderConfirm(sqlSession, o);
+	}
 	
+	public void orderCancel(Order o) {
+		oDao.orderCancel(sqlSession, o);
+	}
 	
 	
 }
