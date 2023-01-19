@@ -14,6 +14,7 @@
 		<typeAlias type="com.house.kh.order.model.vo.Order" alias="Order" />
 		<typeAlias type="com.house.kh.interrior.model.vo.Interrior" alias="Interrior" />
 		<typeAlias type="com.house.kh.test.model.vo.Test" alias="Test" />
+		<typeAlias type="com.house.kh.cart.model.vo.Cart" alias="Cart" />
 	</typeAliases> 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
@@ -24,5 +25,6 @@
 		<mapper resource="/mappers/order-mapper.xml" />
 		<mapper resource="/mappers/interrior-mapper.xml" />
 		<mapper resource="/mappers/test-mapper.xml" />
+		<mapper resource="/mappers/cart-mapper.xml" />
 	</mappers>
 </configuration>
