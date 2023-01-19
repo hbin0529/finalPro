@@ -9,6 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <c:if test="${ not empty alertMsg }">
+      <script>
+         alert("${ alertMsg }");
+      </script>
+      <c:remove var="alertMsg" scope="session" />
+   </c:if> 
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -177,11 +183,16 @@ at('woff');
         		var ordCount = document.getElementById("oCount").value
         		var ordPrice = document.getElementById("oPrice").value
         		var proNo = document.getElementById("proNo").value
-        		location.href="orderConfirm.or?ordNo="+a+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo"+proNo;
+        		var ordEmail = document.getElementById("ordEmail").value
+        		location.href="orderConfirm.or?ordNo="+a+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo="+proNo+"&ordEmail="+ordEmail;
         	}
         	function orderCancel(b){
-        		//console.log(a+"취소")
-        		location.href="취소로 ㄱㄱ";
+        		var ordOption = document.getElementById("oOption").value
+        		var ordCount = document.getElementById("oCount").value
+        		var ordPrice = document.getElementById("oPrice").value
+        		var proNo = document.getElementById("proNo").value
+        		var ordEmail = document.getElementById("ordEmail").value
+        		location.href="orderCancel.or?ordNo="+b+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo="+proNo+"&ordEmail="+ordEmail;
         	}
         </script>
         
@@ -211,6 +222,7 @@ at('woff');
 	                        <input type="hidden" value="${ order.ordCount }" id="oCount">
 	                        <input type="hidden" value="${ order.ordPrice }" id="oPrice">
 	                        <input type="hidden" value="${ order.proNo }" id="proNo">
+	                        <input type="hidden" value="${ order.ordEmail }" id="ordEmail">
 	                    </div>
 	                </div>
 	                <div class="detail_bottom">
