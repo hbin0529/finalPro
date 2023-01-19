@@ -213,6 +213,16 @@
       insert into review(review_no, mem_email, ord_no, review_img_origin, review_img_change, review_content, review_date, review_star, pro_no)
                values(review_seq.nextval, #{memEmail}, #{ordNo}, #{reviewImgOrigin},#{reviewImgChange}, #{reviewContent}, sysdate , #{reviewStar}, #{proNo})
    </insert>
+   
+   
+   <update id="deleteReview">
+		update review
+			set status = 'N'
+		  where review_no = #{reviewNo}
+	</update>
+   
+   
+   
 	
 	
 	

@@ -70,4 +70,8 @@ public class StoreBoardDao {
 	      return sqlSession.insert("storeBoardMapper.insertReview", p);
 	   }
 	
+	public int deleteReview(SqlSessionTemplate sqlSession, int reviewNo) {
+		return sqlSession.update("storeBoardMapper.deleteReview", reviewNo); 
+	}
+	
 }

@@ -42,6 +42,7 @@
     .detail_top{display: flex; height: 35px;  margin-left: 20px; margin-right: 20px; font-size: 18px; font-weight: bolder; border-bottom: 1px solid lightgray; margin-top: 50px;}
     .detail_top div:nth-child(1){width: 850px;}
     .detail_top div:nth-child(2){width: 100px;      background-color: rgb(224, 224, 224); margin-bottom: 10px;  border-radius: 5px;}
+    .buy_wait {color:red; width:100px}
     .detail_top div{font-size: 17px;}
     .detail_body{display: flex; height: 200px; margin-left: 20px; margin-right: 20px; width: 910px; }
     .detail_body_category{width: 400px; margin-left: 10px; padding-top: 70px; }
@@ -51,13 +52,16 @@
     .detail_body_option div:nth-child(1){margin-bottom: 10px;}
     .detail_body_option div:nth-child(2){font-weight: bolder;}
     .detail_body_button {width: 260px; text-align: right; padding-top: 40px;margin-top: 30px; margin-right: 10px;}
-    .detail_body_button div:nth-child(1){margin-bottom: 20px;}
-    .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
-    .detail_body img{width: 150px; margin-top: 25px;}
+   /*  .detail_body_button div:nth-child(1){margin-bottom: 20px;} */
+/*     .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
+ */     .detail_body img{width: 150px; margin-top: 25px;}
     .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 30px;}
     .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
     .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
      .detail_top p {font-size: 15px;}
+     #review_write_button{font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
+     #review_write_button_no{font-family: 'Pretendard-Regular';  width: 170px; height: 50px;  font-size: 17px; border-radius: 5px; border-style:none;}
+     
      
     /* 맨위에 주문상태 옵션 */
     .order_status{display: flex; height: 30px; margin-left: 20px;}
@@ -176,7 +180,7 @@
                         <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
                     </div>
                     <div class="detail_body_button">
-                       <button type="button" data-toggle="modal" data-target="#myModal">리뷰작성</button>
+                       <button type="button" data-toggle="modal" data-target="#myModal" id="review_write_button">리뷰작성</button>
                     </div>
                 </div>
                 <div class="detail_bottom">
@@ -188,7 +192,7 @@
              <c:if test="${order.ordStatus eq 'N'}">
                 <div class="detail_top">
                     <div>주문일자 ${ order.ordDate }</div>
-                    <p class="buy_over">대기중</p>
+                    <p class="buy_wait">구매대기중</p>
                 </div>
                <div class="detail_body">
                     <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
@@ -201,9 +205,13 @@
                         <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
                     </div>
                     <div class="detail_body_button">
-                        <div><button>리뷰작성</button></div>
+                        <div><button disabled="disabled" id="review_write_button_no">리뷰작성</button></div>
                         
                     </div>
+                </div>
+                <div class="detail_bottom">
+                    <div>판매자 | ${ order.selBusName }</div>
+                    <div>판매자 연락처 | ${ order.selPhone }</div>
                 </div>
               </c:if>  
               
