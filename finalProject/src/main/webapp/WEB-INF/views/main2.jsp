@@ -76,10 +76,11 @@
     .store_product_top table tr td:nth-child(2){font-size: 13px; padding-top: 5px; color: rgb(105, 105, 105); border: 1px solid red;}  */
     .store_product_top table tr td{text-align: right; left: -50px; position: relative;}
     #product_list{border: 1px solid #dee2e6; width: 100px; padding: 5px; border-radius: 6%; color: rgb(105, 105, 105);} 
-    .store_product{display: flex;}
+    .store_product{display: flex; width: 100%;}
     .store_product_list{ padding: 5px; margin-top: 20px;   }
     .store_product_card{ height: 350px; font-family: 'Pretendard-Regular';}
-    .store_product_list:first-child{ margin-left: 80px; ; }
+    .store_product_list:first-child{ margin-left: 80px;}
+    .store_product_list:nth-child(5){ margin-left: 80px;}
     .store_product_list img{width: 240px; height: 240px; margin-left: 15px; margin-top: 30px; border: 1px solid #dee2e6;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 12px;}
     .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold;}
@@ -95,6 +96,9 @@
     #button_left:hover{background-color: #21d9cb; color: white;}
     .store_product_title { font-size: 15px; font-weight: lighter;}
     .store_product_price{font-size: 18px;}  
+    #topBoardList{width:1250px; flex-wrap: wrap;}
+    #topBoardList4{width:1250px; flex-wrap: wrap;}
+    .store_product_img{width:266px}
 </style>
 <body>
 <!-- header -->
@@ -141,342 +145,161 @@
          <div class="store_product_top_title"><h3><img src="../html/img/top_tropli.png" width="25px">가구별 판매량 1위</h3></div>
      
     
-            <div class="store_product">
-                <div class="store_product_list">
-                    <div class="store_product_card" id="topBoardList">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- TOP리스트 ajax -->
+            <div class="store_product" id="topBoardList">
+            
+				<!-- 현재 조회수가 가장 높은 상위 8개를 조회하여 보여주기(ajax) -->
+				
+            </div>
+            
+            	<!-- TOP리스트 ajax -->
                 <script type="text/javascript">
+	                $(function() {
+	                	topStoreBoardList();
+	        		});
                 	function topStoreBoardList() {
             			$.ajax({
             				url: "topStoreBoardList.bo",
             				success:function(list){
             					let value = "";
+            					console.log(list);
             					for(let i in list) {
-            						value += "<tr>"
-            							  + 	"<td>" + list[i].boardNo + "</td>"
-            							  +		"<td>" + list[i].boardTitle + "</td>"
-            							  +		"<td>" + list[i].boardWriter + "</td>"
-            							  +		"<td>" + list[i].count + "</td>"
-            							  +		"<td>" + list[i].createDate + "</td>"
-            							  +		"<td>";
-            							  value += "</td></tr>"
+            						value += "<div class='store_product_list'>"
+            						 	  +		"<div class='store_product_card'>"
+            							  + 		"<a>"
+            							  + 		"<div class='store_product_img'><img src=" + list[i].proChangeImg + "></div>"
+            							  +			"<div class='store_product_seller'><p>" + list[i].selBusName + "</p></div>"
+            							  +			"<div class='store_product_title'><p>" + list[i].proName + "</p></div>"
+            							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 포인트</p></div>"
+            							  +			"</a>"
+            							  +	 	"</div>"
+            							  +	"</div>"
             					}
-            					$("#topBoardList").html(value);
+            					$("#topBoardList ").html(value); 
             				} ,
             				error:function() {
-            					console.log("조회수 top 상품 조회 ajax 통신 오류");
+            					console.log("상품 조회수 top8 상품 조회 ajax 통신 오류");
             				}
             			})
             		}
                 </script>
-    
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형2.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-    
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-<!-- ----------------------------가구별 판매량 1위 두번째행----------------------------------------- -->
+            
+<!-- ----------------------------집들이 조회수 탑쓰리---------------------------------------- -->            
 
-            <div class="store_product">
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-    
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-    
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
+	<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">집들이 조회수 TOP3</h3></div>
+	<div class="store_product" id="topBoardList2">
+	
+		<!-- 집들이 조회수가 가장 높은 상위 3개를 조회하여 보여주기(ajax) -->
+		
+    <script type="text/javascript">
+		$(function() {
+			topStoreBoardList2();
+		});
+		function topStoreBoardList2() {
+			$.ajax({
+				url: "topStoreBoardList2.bo",
+				success:function(list){
+					let value = "";
+					console.log(list);
+					for(let i in list) {
+						value += "<div class='store_product_list'>"
+						 	  +		"<div class='store_product_card_top3'>"
+							  + 		"<a>"
+							  + 		"<div class='store_product_img'><img src=" + list[i].boardMainImgChange + "></div>"
+							  +			"<div class='store_product_seller'><p>" + list[i].homeFamily + "</p></div>"
+							  +			"<div class='store_product_title'><p>" + list[i].homeOption + "</p></div>"
+							  +			"<div class='store_product_price'><p>" + list[i].boardTitle + " </p></div>"
+							  +			"</a>"
+							  +	 	"</div>"
+							  +	"</div>"
+					}
+					$("#topBoardList2 ").html(value); 
+				} ,
+				error:function() {
+					console.log("집들이 조회수 TOP3 조회 ajax 통신 오류");
+				}
+			})
+		}
+	</script>
+	
+	    
+	</div>
 
-                <div class="store_product_list">
-                    <div class="store_product_card">
-                        <a href="">
-                        <div class="store_product_img"><img src="../오늘의집_데이터/오늘의집_데이터/의자/메인사진/5%쿠폰쫀득말랑빈백특대형1.jpeg"></div>
-                        <div class="store_product_seller">판매처</p></div>
-                        <div class="store_product_title"><p>가구이름 가구이름</p></div>
-                        <div class="store_product_price"><p>10,000</p></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-<!-- ----------------------------집들이 조회수 탑스리---------------------------------------- -->            
+<!-- ---------------------------상품 조회 탑3----------------------------------------- --> 
+	<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">가구 조회수 TOP3</h3></div>
+	<div class="store_product" id="topBoardList3">
+		
+		<!-- 현재 조회수가 가장 높은 상품 상위 3개를 조회하여 보여주기(ajax) -->
+		
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			topStoreBoardList3();
+		});
+		function topStoreBoardList3() {
+			$.ajax({
+				url: "topStoreBoardList3.bo",
+				success:function(list){
+					let value = "";
+					console.log(list);
+					for(let i in list) {
+						value += "<div class='store_product_list'>"
+						 	  +		"<div class='store_product_card_top3'>"
+							  + 		"<a>"
+							  + 		"<div class='store_product_img'><img src=" + list[i].proChangeImg + "></div>"
+							  +			"<div class='store_product_seller'><p>" + list[i].selBusName + "</p></div>"
+							  +			"<div class='store_product_title'><p>" + list[i].proName + "</p></div>"
+							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 포인트</p></div>"
+							  +			"</a>"
+							  +	 	"</div>"
+							  +	"</div>"
+					}
+					$("#topBoardList3 ").html(value); 
+				} ,
+				error:function() {
+					console.log("전체 상품 조회수 top3 상품 조회 ajax 통신 오류");
+				}
+			})
+		}
+	</script>
+	<hr style="margin: 50px 0;">
 
-<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">집들이 조회수 TOP3</h3></div>
-<div class="store_product">
-    <div class="store_product_list">
-        <div class="store_product_card_top3">
-            <a name="target">
-            <div class="store_product_img"><img src="../html/img/house_img1.png"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card_top3">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/house_img2.png"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card_top3">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/house_img3.png"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div> 
-</div>
-
-<!-- ---------------------------가구 조회 탑3----------------------------------------- --> 
-<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">가구 조회수 TOP3</h3></div>
-<div class="store_product">
-    <div class="store_product_list">
-        <div class="store_product_card_top3">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card_top3">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card_top3">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div> 
-</div>
-<hr style="margin: 50px 0;">
-
-<!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함----------------------------------------- --> 
-<div class="store_product_top_title"><h3>⚡️모든제품</h3></div> 
-<div class="store_product">
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>  
-</div> 
-  
-<!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함----------------------------------------- --> 
-
-<div class="store_product">
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>  
-</div>
-
-<!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함----------------------------------------- --> 
-<div class="store_product">
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>
-
-    <div class="store_product_list">
-        <div class="store_product_card">
-            <a href="">
-            <div class="store_product_img"><img src="../html/img/store_img01.jpeg"></div>
-            <div class="store_product_seller">판매처</p></div>
-            <div class="store_product_title"><p>가구이름 가구이름</p></div>
-            <div class="store_product_price"><p>10,000</p></div>
-            </a>
-        </div>
-    </div>  
-</div>
+<!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함-------------------------------------------> 
+	<div class="store_product_top_title"><h3>⚡️신규제품</h3></div> 
+	<div class="store_product" id="topBoardList4" style="margin-bottom: 80px">
+		<!-- 전체 상품 리스트(ajax) -->
+	</div> 
+	
+  	<script type="text/javascript">
+		$(function() {
+			topStoreBoardList4();
+		});
+		function topStoreBoardList4() {
+			$.ajax({
+				url: "topStoreBoardList4.bo",
+				success:function(list){
+					let value = "";
+					console.log(list);
+					for(let i in list) {
+						value += "<div class='store_product_list'>"
+						 	  +		"<div class='store_product_card'>"
+							  + 		"<a>"
+							  + 		"<div class='store_product_img'><img src=" + list[i].proChangeImg + "></div>"
+							  +			"<div class='store_product_seller'><p>" + list[i].selBusName + "</p></div>"
+							  +			"<div class='store_product_title'><p>" + list[i].proName + "</p></div>"
+							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 포인트</p></div>"
+							  +			"</a>"
+							  +	 	"</div>"
+							  +	"</div>"
+					}
+					$("#topBoardList4 ").html(value); 
+				} ,
+				error:function() {
+					console.log("전체 상품 조회 ajax 통신 오류");
+				}
+			})
+		}
+	</script>
 
 </section> 
 <!-- footer -->	

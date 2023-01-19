@@ -52,20 +52,52 @@
 		<result column="que_reply_date" property="queReplyDate" />
 		<result column="pqr_status" property="pqrStatus" />
 	</resultMap>
-	
 
-
-	<!-- TOP 리스트 조회 -->
+	<!-- 카테고리별 조회수 TOP1 리스트 조회 -->
 	<select id="topStoreBoardList" resultMap="storeBoardResult">
-		select * 
+		select a.*, b.sel_bus_name
+		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no,
+		rank() OVER (PARTITION BY cate_no ORDER BY pro_count desc, pro_price desc) as ranking
+		from product) a,
+		seller_base b
+		where a.sel_no = b.sel_no
+		and ranking = 1
+	</select>
+	
+	<!-- 집들이 조회수 TOP3 리스트 조회 -->
+	<select id="topStoreBoardList2" resultMap="storeBoardResult">
+		select BOARD_MAINIMG_CHANGE, HOME_FAMILYV, HOME_OPTION, BOARD_TITLE, board_count
+		from (select r.*, rownum from board_home r order by board_count desc)
+		where rownum between 1 and 3
+	</select>
+	
+	<!-- 전체상품 조회수 TOP3 리스트 조회 -->
+	<select id="topStoreBoardList3" resultMap="storeBoardResult">
+		select *
 		from (select pro_change_img
-				   , sel_bus_name
-				   , pro_name
-				   , pro_price
-			  from product
-			  where status = 'Y'
-			  order by pro_count desc)
-		where rownum between 1 and 6
+				   , sb.sel_bus_name
+				   , pro.pro_name
+				   , pro.pro_price
+			  from product pro, seller_base sb
+			  where pro.sel_no = sb.sel_no
+			  and status = 'Y'
+			  order by pro.pro_count desc)
+		where rownum between 1 and 3
+	</select>
+	
+	<!-- 상품 신규 리스트 8개 조회(최신순으로 정렬) -->
+	<select id="topStoreBoardList4" resultMap="storeBoardResult">
+		select *
+		from (select pro_change_img
+			  , sb.sel_bus_name
+			   , pro.pro_name
+			   , pro.pro_price
+		       , pro.pro_up_date
+			from product pro, seller_base sb
+			where pro.sel_no = sb.sel_no
+			and status = 'Y'
+			order by pro.pro_up_date desc)
+		where rownum between 1 and 8
 	</select>
 	
 </mapper>

@@ -26,6 +26,21 @@ public class TestServiceImpl implements TestService{
 	public ArrayList<Test> topStoreBoardList() {
 		return tDao.topStoreBoardList(sqlSession);
 	}
+	
+	@Override
+	public ArrayList<Test> topStoreBoardList2() {
+		return tDao.topStoreBoardList2(sqlSession);
+	}
+	
+	@Override
+	public ArrayList<Test> topStoreBoardList3() {
+		return tDao.topStoreBoardList3(sqlSession);
+	}
+	
+	@Override
+	public ArrayList<Test> topStoreBoardList4() {
+		return tDao.topStoreBoardList4(sqlSession);
+	}
 
 
 
