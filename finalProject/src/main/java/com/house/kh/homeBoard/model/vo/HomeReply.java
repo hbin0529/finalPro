@@ -21,5 +21,4 @@ public class HomeReply {
 	private String status;
 	private String memEmail;
 	private String memNick;
-	 
 }

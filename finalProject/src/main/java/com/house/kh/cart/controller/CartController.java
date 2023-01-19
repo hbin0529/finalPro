@@ -24,19 +24,19 @@ public class CartController {
    /* 카트 리스트 불러오기 */
    @RequestMapping("cartlist.ca")
    public ModelAndView selectCartList(Cart cart, ModelAndView mv, Model model) {
+	  int cartCount = 0;
       ArrayList<Cart> list = new ArrayList<Cart>();
-      	 System.out.println(list);
          list = cartService.selectCartList();
-
+         cartCount = cartService.selectCartListCount();
       mv.addObject("list", list);
+      model.addAttribute("cartCount", cartCount);
       mv.setViewName("myPage/myPageCartListView");
-      
       return mv;
    }
    
+	/* 카트 담기 */
    @RequestMapping("cartInsert.ca")
    public String insertCart(Product p, Cart cart, HttpSession session, Model model, HttpServletResponse response) {
-	   
 	   int result = cartService.insertCart(cart);
 	   if(result > 0) {
 		   session.setAttribute("alertMsg", "장바구니에 추가되었습니다");
@@ -45,7 +45,6 @@ public class CartController {
 	         model.addAttribute("errorMsg" , "장바구니 추가 실패");
 	         return "common/errorPage";
 	   }
-   
    }
 
 }

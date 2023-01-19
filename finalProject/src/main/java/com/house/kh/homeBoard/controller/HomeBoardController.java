@@ -208,10 +208,7 @@ public class HomeBoardController {
 			  }
 			  String changeName = changeFilename(reupfile, session);
 			   h.setBoardMainimgOrigin(reupfile.getOriginalFilename());
-			   h.setBoardMainimgChange("/resources/uploadFile/" + changeName);
-			    
-		   
-		   
+			   h.setBoardMainimgChange("/resources/uploadFile/" + changeName); 
 		   }	
 		   int result = hbService.updateBoard(h);
 		   

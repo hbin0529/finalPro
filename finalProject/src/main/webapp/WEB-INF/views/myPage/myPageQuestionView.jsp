@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <style>
 
     /* -------------------------마이페이지 나의리뷰 문의내역 스타일모음------------------------- */
@@ -29,8 +29,10 @@
 <jsp:include page="../common/myPageReviewHeader.jsp" /> 
  
    <section class="mypage_main_body">
+ <form method="post" action="qdelete.bo"> 
         <div class="mypage_question_review">
    <c:forEach var="p" items="${ list }">   
+   <input type="hidden" name="proQueNo" value="${ p.proQueNo }">
       <c:if test="${ id eq p.memId }">
        <c:choose>
 		 <c:when test="${  p.proQueResult eq 'Y' }">
@@ -56,7 +58,7 @@
                 </tr> 
                 <tr>
                     <td colspan="3" id="update_delete">
-                        <button>삭제</button>
+                        <button type="submit">삭제</button>
                     </td>
                 </tr>
             </table>			        
@@ -80,16 +82,17 @@
                 </tr>
                 <tr>
                     <td colspan="3" id="update_delete">
-                        <button>삭제</button>
+                        <button type="submit">삭제</button>
                     </td>
                 </tr>
             </table> 
 				    </c:otherwise>
-				</c:choose>
-				                 
+				</c:choose>           
           </c:if>     
-         </c:forEach> 
+         </c:forEach>  
+         
         </div> 
+   </form>       
     </section>
 
 <jsp:include page="../common/footer.jsp"/>   

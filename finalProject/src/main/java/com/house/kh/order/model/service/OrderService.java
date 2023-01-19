@@ -50,8 +50,10 @@ public class OrderService {
 		return oDao.sellersOrderList(sqlSession, selNo);
 	}
 	
-	
-	
+	public ArrayList<Order> usersOrderList(String id){
+		return oDao.usersOrderList(sqlSession, id);
+	}
+	 
 	
 	// 상품 가져오기
 	

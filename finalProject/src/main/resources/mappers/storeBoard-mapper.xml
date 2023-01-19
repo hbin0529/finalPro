@@ -206,7 +206,15 @@
 					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
                 where pq.status = 'Y'
                 order by pq.pro_que_date desc
-	</select>
+ 	</select> 
+	 
+ 	
+	<insert id="insertReview">
+      insert into review(review_no, mem_email, ord_no, review_img_origin, review_img_change, review_content, review_date, review_star)
+               values(review_seq.nextval, #{memEmail}, #{ordNo}, #{reviewImgOrigin},#{reviewImgChange}, #{reviewContent}, sysdate , #{reviewStar})
+   </insert>
 	
-</mapper>
+	
+	
+ </mapper>
 

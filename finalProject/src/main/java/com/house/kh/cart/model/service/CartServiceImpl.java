@@ -28,4 +28,9 @@ public class CartServiceImpl implements CartService {
 		return cDao.insertCart(sqlSession, cart);
 	}
 
+	@Override
+	public int selectCartListCount() {
+		return cDao.selectCartListCount(sqlSession);
+	}
+
 }
