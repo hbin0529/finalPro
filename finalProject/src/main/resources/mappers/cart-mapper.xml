@@ -46,17 +46,22 @@
 	
 	<select id="selectCartList" resultType="Cart" resultMap="cartResult">
 		select s.sel_bus_name
+			 , s.sel_no
+			 , m.mem_email
+			 , p.pro_no
 			 , p.pro_origin_img
 			 , p.pro_name
 			 , p.pro_price
 			 , c.cart_option
 			 , c.cart_amount
 			 , c.cart_date
+			 , c.cart_no
 			 , p.pro_change_img
 			 , p.pro_change_img1
 			 , p.pro_change_detailimg
-			from cart c, product p, seller_base s
-			where p.pro_no = c.pro_no and s.sel_no = c.sel_no
+			from cart c, product p, seller_base s, member_base m
+			where p.pro_no = c.pro_no and s.sel_no = c.sel_no and m.mem_email=c.mem_email
+				  and c.cart_status = 'Y'
 			order by c.cart_date desc
 	</select>
 	
@@ -66,13 +71,9 @@
 							,#{proPrice}, sysdate, 'Y')
 	</insert>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<update id="cartDelete">
+		update cart
+			set cart_status = 'N'
+		  where cart_no = #{cartNo}
+	</update>
 </mapper>

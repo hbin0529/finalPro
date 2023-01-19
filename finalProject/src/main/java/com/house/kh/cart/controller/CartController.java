@@ -46,6 +46,20 @@ public class CartController {
 	         return "common/errorPage";
 	   }
    }
+   
+   /* 카트 삭제하기 */
+   @RequestMapping("cartDelete.ca")
+   public String cartDelete(int cartNo, Model model, HttpSession session) {
+      int result = cartService.cartDelete(cartNo);
+      if(result > 0) {
+         session.setAttribute("alertMsg", "장바구니에서 삭제되었습니다");
+         return "redirect:cartlist.ca";
+      } else {
+         model.addAttribute("errorMsg" , "장바구니 삭제실패");
+         return "common/errorPage";
+      }
+   }  
+   
 
 }
 

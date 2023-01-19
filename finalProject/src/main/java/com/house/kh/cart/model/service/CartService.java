@@ -15,5 +15,6 @@ public interface CartService {
 	// 장바구니 작성
 	int insertCart(Cart cart);
 	
-	
+	// 장바구니 삭제
+	int cartDelete(int cartNo);
 }

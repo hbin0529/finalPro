@@ -22,4 +22,8 @@ public class CartDao {
 		return sqlSession.insert("cartMapper.insertCart", cart);
 	}
 	
+	public int cartDelete(SqlSessionTemplate sqlSession,  int cartNo) {
+		return sqlSession.update("cartMapper.cartDelete", cartNo); 
+	}
+	
 }

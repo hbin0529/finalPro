@@ -33,4 +33,11 @@ public class CartServiceImpl implements CartService {
 		return cDao.selectCartListCount(sqlSession);
 	}
 
+	@Override
+	public int cartDelete(int cartNo) {
+		return cDao.cartDelete(sqlSession, cartNo);
+	}
+	
+	
+
 }

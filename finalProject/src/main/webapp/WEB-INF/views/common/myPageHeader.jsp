@@ -51,7 +51,7 @@
             <div class="mypage_category">
                 <table>
                     <tr>
-                        <td><a href="" id="mypage_menu">장바구니</a></td>
+                        <td><a href="cartlist.ca" id="mypage_menu">장바구니</a></td>
                         
                         <td><a href="myPageOrderlist.bo?id=${ id }" id="mypage_menu">나의쇼핑</a></td>
                         
