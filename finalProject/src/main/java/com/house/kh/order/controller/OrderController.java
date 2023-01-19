@@ -1,6 +1,7 @@
 package com.house.kh.order.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,11 +27,10 @@ public class OrderController {
 	// 상품 정보 p에 담음
 	@RequestMapping("order.or")
 	public String order(Product p, Model m, String colorSelect, int countSelect) {
+		System.out.println(p);
 		m.addAttribute("p", p);
 		m.addAttribute("colorSelect", colorSelect);
 		m.addAttribute("countSelect", countSelect);
-		System.out.println(colorSelect);
-		System.out.println(colorSelect);
 		return "order/order";
 		
 	}
@@ -52,9 +52,9 @@ public class OrderController {
 	}
 	
 	@RequestMapping("orderSheet.or")
-	public String orderSheet2(Order o, Model model, HttpSession session, String ordEmail, Date ordDate, String ordZipcode, String ordAddr, String ordDetailAddr, String cusName, String cusPhone, String ordRequest) {
+	public String orderSheet2(Order o, Model model, HttpSession session) {
 		//주문테이블에 추가
-		System.out.println(o);
+		/*
 		o.setOrdEmail(ordEmail);
 		o.setOrdDate(ordDate);
 		o.setOrdZipcode(ordZipcode);
@@ -63,18 +63,40 @@ public class OrderController {
 		o.setCusName(cusName);
 		o.setCusPhone(cusPhone);
 		o.setOrdRequest(ordRequest);
+		*/
+		
+		
+		System.out.println(o);
 		
 		int orderSheetResult = oService.orderSheet2(o);
+		oService.insertDetail(o);
 		/* int orderDetailSheetReulst = oService.orderSheet2(o); */
 		if(orderSheetResult > 0) {
 			model.addAttribute("alertMsg", "결제가 완료되었습니다.");
 			return "order/orderDetailView";
 		} else {
-			return "";
+			model.addAttribute("alertMsg", "결제가 취소되었습니다.");
+			return "main";
 		}
 		//주문상세 테이블에 추가
-		
-		
 	}
+	
+	
+	
+	
+	@RequestMapping("sellerOrderList.or")
+	public String sellerOrderList(int selNo, Model model) {
+		ArrayList<Order> getSellersOrderList = oService.sellersOrderList(selNo);
+		model.addAttribute("o", getSellersOrderList);
+		return "order/orderDetailView";
+	}
+	
+	
+	
+	
+	
+	
+	
+		
 }
 

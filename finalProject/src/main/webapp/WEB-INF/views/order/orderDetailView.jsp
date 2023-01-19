@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +12,6 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
-	/* alert("${alertMsg}"); */
-
     $(function(){
         $("#header_store").mouseover(function(){
             $(".header_store_dropdown").stop().fadeIn(300);
@@ -23,6 +22,37 @@
     })
 </script>
 <style>
+    /* 로고폰트 */
+        @font-face {
+        font-family: 'SDSamliphopangche_Outline';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        } 
+    /* 메뉴폰트 */
+        @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+    /* 본문내용폰트 */
+        @font-face {
+        font-family: 'Pretendard-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        }
+
+    /*------------------------- 드롭다운 스타일모음 -------------------------*/
+    .header_store_dropdown{width: 1400px;margin: 0 auto; display: none; }
+    .header_store_dropdown table{width: 700px; margin-left: 380px; }
+    #store_dropdown_img{width: 40px;}
+    .header_store_dropdown tr:first-child{ text-align: center; }
+    .header_store_dropdown tr:last-child{text-align: center; font-family: 'GmarketSansMedium'}
+    .header_store_bar{width: 2500px; margin-left: -900px;}
+
+
     /*------------------------- 판매자페이지 메뉴바 스타일모음------------------------- */
     .mypage_category{width: 1400px; height: 80px; margin: 0 auto;} 
     .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
@@ -72,97 +102,162 @@
     .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 70px;}
     .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
     .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
-
-    /* 맨위에 주문상태 옵션 */
-    .order_status{display: flex; height: 30px; margin-left: 20px;}
-    .order_status select{background-color: rgb(247, 248, 250); font-weight: bold; color: rgba(0, 0, 0, 0.7); border: none; font-family: 'Pretendard-Regular'; border-radius: 3px; box-shadow: 0px 0px 1px #555;}
     
 </style>
 <body>
-	<!-- header -->
-	<jsp:include page="../common/header.jsp" />
-    <section class="sellerpage_main_body">      
+    <jsp:include page="../common/header.jsp"/>
+
+
+
+	
+
+    <!--마이페이지 메뉴바-->
+    <section>
+        <div class="mypage_body">
+            <div class="mypage_category">
+                <table>
+                    <tr>
+                        <td><a href="" id="mypage_menu">판매상품</a></td>
+                        <td><a href="" id="mypage_menu" style="color: #21d9cb;">주문내역</a></td>
+                        <td><a href="" id="mypage_menu">답변내역</a></td>
+                        <td><a href="" id="mypage_menu">개인정보수정</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+    </section>
+
+    <section class="sellerpage_main_body">
+        <div class="order_count">
+            <div><p>주문내역</p></div>
+            <div><p>1,234</p></div>
+        </div>
+
+        <!--통계테이블-->
+        <div class="order_sum">
+            <div class="order_sum_table">
+                <table>
+                    <thead>
+                        <tr id="order_sum_table_1row">
+                            <td id="table_border">통계표</td>
+                            <td id="table_border">건수</td>
+                            <td>금액</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="order_sum_table_2row">
+                            <td id="table_border">판매</td>
+                            <td id="table_border">3</td>
+                            <td>30,000</td>
+                        </tr>
+                        <tr id="order_sum_table_3row">
+                            <td id="table_border">취소</td>
+                            <td id="table_border">3</td>
+                            <td>30000</td>
+                        </tr>
+                        <tr id="order_sum_table_4row">
+                            <td id="table_border">총 주문</td>
+                            <td id="table_border">6</td>
+                            <td>60,000</td>
+                        </tr>
+                        <tr id="order_sum_table_5row">
+                            <td id="table_border">실 매출</td>
+                            <td id="table_border">3</td>
+                            <td>30,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
         <div class="order_list">
             <div class="order_list_detail">
-                <div class="order_status">
-                    <select name="" id="">
-                        <option value="0">주문상태</option>
-                        <option value="1">구매 대기중</option>
-                        <option value="1">구매확정</option>
-                    </select>
-                </div>
-                <div class="detail_top">
-                    <div>주문일자 2022.01.06</div>
-                    <div style="background-color: #21d9cb; color: white;">구매완료</div>
-                </div>
-                <div class="detail_body">
-                    <div><img src="resource/img/MASS아쿠아텍스2인소파2.jpg"></div>
-                    <div class="detail_body_category">
-                        <div>카테고리 | 쇼파</div>
-                        <div>상품이름 상품이름 상품이름</div>
-                    </div>
-                    <div class="detail_body_option">
-                        <div>옵션 | 블랙</div>
-                        <div>10,000원 | 1개</div>
-                    </div>
-                    <div class="detail_body_button">
-                        <div><button>리뷰작성</button></div>
-                    </div>
-                </div>
-                <div class="detail_bottom">
-                    <div>판매자 | ${ p.selBusName }</div>
-                    <div>판매자 연락처 | ${ p.selPhone }</div>
-                </div>
-
-                <div class="detail_top">
-                    <div>주문일자 2022.01.06</div>
-                    <div style="background-color: #21d9cb; color: white;">구매완료</div>
-                </div>
-                <div class="detail_body">
-                    <div><img src="resource/img/MASS아쿠아텍스2인소파2.jpg"></div>
-                    <div class="detail_body_category">
-                        <div>카테고리 | 식탁</div>
-                        <div>상품이름 상품이름 상품이름</div>
-                    </div>
-                    <div class="detail_body_option">
-                        <div>옵션 | 블랙</div>
-                        <div>10,000원 | 1개</div>
-                    </div>
-                    <div class="detail_body_button">
-                        <div><button>구매확정</button></div>
-                        <div><button style="color: #21d9cb; background-color: #fff;">주문취소</button></div>
-                    </div>
-                </div>
-                <div class="detail_bottom">
-                    <div>판매자 | 한샘샘</div>
-                    <div>판매자 연락처 | 010-7925-7631</div>
-                </div>
-
-
-                <div class="detail_top">
-                    <div>주문일자 2022.01.06</div>
-                    <div style="color: red;">구매철회</div>
-                </div>
-                <div class="detail_body">
-                    <div><img src="resource/img/MASS아쿠아텍스2인소파2.jpg"></div>
-                    <div class="detail_body_category">
-                        <div>카테고리 | 식탁</div>
-                        <div>상품이름 상품이름 상품이름</div>
-                    </div>
-                    <div class="detail_body_option">
-                        <div>옵션 | 블랙</div>
-                        <div>10,000원 | 1개</div>
-                    </div>
-                    <div class="detail_body_button">
-                        <div><button style="display: none;">판매확정</button></div>
-                        <div><button style="display: none;">주문취소</button></div>
-                    </div>
-                </div>
-                <div class="detail_bottom">
-                    <div>판매자 | 한샘샘</div>
-                    <div>판매자 연락처 | 010-7925-7631</div>
-                </div>
-
+            
+            <c:forEach var="order" items="${ o }">
+            	<c:if test="${order.ordStatus eq 'N'}">
+					<div class="detail_top">
+	                    <div>주문일자 ${ order.ordDate }</div>
+	                    <div>판매요청</div>
+	                </div>
+	                <div class="detail_body">
+	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div class="detail_body_category">
+	                        <div>카테고리 | ${ order.cateName }</div>
+	                        <div>${ order.proName }</div>
+	                    </div>
+	                    <div class="detail_body_option">
+	                        <div>옵션 | ${ order.ordOption }</div>
+	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                    </div>
+	                    <div class="detail_body_button">
+	                        <div><button>판매확정</button></div>
+	                        <div><button>주문취소</button></div>
+	                    </div>
+	                </div>
+	                <div class="detail_bottom">
+	                    <div>고객이름 | ${ order.cusName }</div>
+	                    <div>고객연락처 | ${ order.cusPhone }</div>
+	                    <div style="font-size:smaller;">배송주소 | ${ order.ordAddr }, ${ order.ordDetailAddr }</div>
+	                </div>
+            	</c:if>
+            	<!-- 주문확정했을떄 -->
+            	<c:if test="${order.ordStatus eq 'Y'}">
+            		<div class="detail_top">
+	                    <div>주문일자 ${ order.ordDate }</div>
+	                    <div style="background-color: #21d9cb; color: white;">판매완료</div>
+	                </div>
+	                <div class="detail_body">
+	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div class="detail_body_category">
+	                        <div>카테고리 | ${ order.cateName }</div>
+	                        <div>${ order.proName }</div>
+	                    </div>
+	                    <div class="detail_body_option">
+	                        <div>옵션 | ${ order.ordOption }</div>
+	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                    </div>
+	                    <div class="detail_body_button">
+	                        <div><button style="display: none;">판매확정</button></div>
+                       		<div><button style="display: none;">주문취소</button></div>
+	                    </div>
+	                </div>
+	                <div class="detail_bottom">
+	                    <div>고객이름 | ${ order.cusName }</div>
+	                    <div>고객연락처 | ${ order.cusPhone }</div>
+	                    <div style="font-size:smaller;">배송주소 | ${ order.ordAddr }, ${ order.ordDetailAddr }</div>
+	                </div>
+            	</c:if>
+            	<!-- 주문취소했을떄 -->
+            	<c:if test="${order.ordStatus eq 'F'}">
+            		<div class="detail_top">
+	                    <div>주문일자 ${ order.ordDate }</div>
+	                    <div style="color: red;">판매취소</div>
+	                </div>
+	                <div class="detail_body">
+	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div class="detail_body_category">
+	                        <div>카테고리 | ${ order.cateName }</div>
+	                        <div>${ order.proName }</div>
+	                    </div>
+	                    <div class="detail_body_option">
+	                        <div>옵션 | ${ order.ordOption }</div>
+	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                    </div>
+	                    <div class="detail_body_button">
+	                        <div><button style="display: none;">판매확정</button></div>
+                       		<div><button style="display: none;">주문취소</button></div>
+	                    </div>
+	                </div>
+	                <div class="detail_bottom">
+	                    <div>고객이름 | ${ order.cusName }</div>
+	                    <div>고객연락처 | ${ order.cusPhone }</div>
+	                    <div style="font-size:smaller;">배송주소 | ${ order.ordAddr }, ${ order.ordDetailAddr }</div>
+	                </div>
+            	</c:if>
+            	
+			</c:forEach>
 
             </div>
         </div>
@@ -177,7 +272,7 @@
         </div>
     </section>
 
-	<!-- footer -->
-	<jsp:include page="../common/footer.jsp" />
+
+    <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

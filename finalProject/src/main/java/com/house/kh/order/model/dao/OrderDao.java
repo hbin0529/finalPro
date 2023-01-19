@@ -1,5 +1,7 @@
 package com.house.kh.order.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,5 +29,16 @@ public class OrderDao {
 		return sqlSession.insert("orderMapper.orderSheetDetail", o);
 	}
 	
-
+	public void insertDetail(SqlSessionTemplate sqlSession, Order o) {
+		sqlSession.insert("orderMapper.insertDetail", o);
+	}
+	
+	
+	public ArrayList<Order> sellersOrderList(SqlSessionTemplate sqlSession, int selNo){
+		return (ArrayList)sqlSession.selectList("orderMapper.sellersOrderList", selNo);
+	}
+	
+	
+	
+	
 }
