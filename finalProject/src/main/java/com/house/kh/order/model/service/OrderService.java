@@ -109,7 +109,13 @@ public class OrderService {
 		return isThereStockResult;
 	}
 	
+	public void processOrderConfirm(Order o) {
+		oDao.processOrderConfirm(sqlSession, o);
+	}
 	
+	public void orderCancel(Order o) {
+		oDao.orderCancel(sqlSession, o);
+	}
 	
 	
 }

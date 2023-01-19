@@ -87,5 +87,122 @@ public class OrderController {
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
 	}
-	 
-}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("orderConfirm.or")
+	public String orderConfirm(Order o, Model model) {
+		//먼저 여분의 재고가 있는지부터 확인
+		boolean isThereStock = oService.isThereStock(o);
+		if(isThereStock) {
+			//있으면 if문을 이용해서 주문처리('Y', 오더디테일) 하고 재고 업데이트(stock, 프로덕트), 판매자한테 포인트 전달(셀러베이스)
+			oService.processOrderConfirm(o);
+			return "redirect:/sellerOrderList.or?selNo="+o.getSelNo();
+		}
+		model.addAttribute("alertMsg", "재고 수량이 부족합니다.");
+		return "redirect:/sellerOrderList.or?selNo="+o.getSelNo();
+	}
+	
+
+	
+	@RequestMapping("orderCancel.or")
+	public String orderCancel(Order o) {
+		//주문취소처리하고('F', 오더디테일) 포인트 일반회원구매자한테 돌려주기(멤버베이스)
+		//아직 멤버가 결제할떄 포인트 안빠지는 상태
+		oService.orderCancel(o);
+		return "redirect:/sellerOrderList.or?selNo="+o.getSelNo();
+	}
+	
+	
+	@RequestMapping("searchResult.or")
+	public String search() {
+		return "common/searchResult";
+	}
+	
+	
+ }
