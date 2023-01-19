@@ -17,7 +17,7 @@ public class Order {
 	// 주문자 이메일(아이디)
 	private String ordEmail;
 	// 주문날짜 
-	private Date ordDate;
+	private String ordDate;
 	// 우편번호
 	private String ordZipcode;
 	// 회원주소
@@ -45,4 +45,16 @@ public class Order {
 	private String ordStatus;
 	// 주문 옵션 블랙 / 화이트
 	private String ordOption;
+	
+	
+	//판매자에게 보여줄 주문신청 목록
+	private String proChangeDetailimg;
+	private String cateName;
+	private int proWhiteStock;
+	private int proBlackStock;
+	private String proName;
+	
+	
+	
+	
 }

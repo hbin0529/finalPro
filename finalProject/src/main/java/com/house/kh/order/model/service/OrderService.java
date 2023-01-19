@@ -1,5 +1,7 @@
 package com.house.kh.order.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,18 @@ public class OrderService {
 		return orderSheetDetail; 
 	}
 
+	
+	public void insertDetail(Order o) {
+		oDao.insertDetail(sqlSession, o);
+	}
+	
+	
+	public ArrayList<Order> sellersOrderList(int selNo){
+		return oDao.sellersOrderList(sqlSession, selNo);
+	}
+	
+	
+	
 	
 	// 상품 가져오기
 }

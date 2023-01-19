@@ -87,14 +87,14 @@
                             <div style="padding: 20px 10px 0px 0px; max-width: 642px;">
                                 <div style="position: relative; display: inline-block; width: 100%;">
                                     <select class="order_input" name="ordRequest">
-                                        <option value="나중에 직접입력 구현하기">나중에 직접입력 구현하기</option>
-                                        <option value="부재시 문앞에 놓아주세요">부재시 문앞에 놓아주세요</option>
+                                        <option value="부재시 문앞에 놓아주세요" selected>부재시 문앞에 놓아주세요</option>
                                         <option value="배송전에 미리 연락주세요">배송전에 미리 연락주세요</option>
                                         <option value="부재시 경비실에 맡겨 주세요">부재시 경비실에 맡겨 주세요</option>
                                         <option value="부재시 전화주시거나 문자 남겨 주세요">부재시 전화주시거나 문자 남겨 주세요</option>
                                         <option value="배송시 요청사항을 선택해주세요">배송시 요청사항을 선택해주세요</option>
                                     </select>
                                 </div>
+                                <input type="hidden" value="${ p.proNo }" name="proNo">
                             </div>
                         </div>
                     </div>
@@ -262,7 +262,9 @@
                 	<input type="hidden" value="${ m.memZipcode }" name="ordZipcode">
                 	<input type="hidden" value="${ m.memAddr }" name="ordAddr">
                 	<input type="hidden" value="${ m.memDetailAddr }" name="ordDetailAddr">
-                	<input type="hidden" value="${ m.memDetailAddr }" name="ordDetailAddr">
+                	<input type="hidden" value="${ countSelect }" name="ordCount">
+                	<input type="hidden" value="${ colorSelect }" name="ordOption">
+                	<input type="hidden" value="${ p.proPrice }" name="ordPrice">
             </div>
         </div>
     </div>

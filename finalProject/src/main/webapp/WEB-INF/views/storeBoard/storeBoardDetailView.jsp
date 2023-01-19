@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
 $(function() {
 	$("#proCnt").change(function(e){
@@ -186,7 +187,7 @@ $(function() {
                     </div>
                     <form name="hbInfo" action="order.or">
                     <div>
-                        <select name="colorSelect">
+                        <select name="colorSelect" id="colorSelect">
                             <option>색상선택</option>
                             <option value="BLACK">BLACK</option>
                             <option value="WHITE">WHITE</option>
@@ -219,18 +220,43 @@ $(function() {
 		                        <div id="btnbtn1"><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
 		                    </c:when>
 	                        <c:otherwise>
-	                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
-	                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
-	                              <script type="text/javascript">
-	                                 function directBuy() {                                    
-	                                    hbInfo.submit();
-	                                 }
-	                              </script>
-                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
-                                 <input type="hidden" value="${ p.proName }" name="proName">
-                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
-                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
-                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
+	                        	<c:if test="${ not empty permit }">
+		                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
+		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
+		                              <script type="text/javascript">
+		                                 function directBuy() {
+		                                	 if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                                		 alert('구매 옵션을 선택해주세요');
+		                                		 return;
+		                                	 }
+		                                    hbInfo.submit();
+		                                 }
+		                            	  
+		                              $(function(){
+		                              })
+		                              </script>
+			                         <input type="hidden" value="${ p.proNo }" name="proNo">
+	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
+	                                 <input type="hidden" value="${ p.proName }" name="proName">
+	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
+	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
+	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
+	                        	</c:if>
+	                        	<c:if test="${ empty permit }">
+		                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
+		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
+		                              <script type="text/javascript">
+		                                 function directBuy() {                                    
+		                                    alert('로그인 후 이용해주세요')
+		                                    return;
+		                                 }
+		                              </script>
+	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
+	                                 <input type="hidden" value="${ p.proName }" name="proName">
+	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
+	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
+	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
+	                        	</c:if>
 	                        </c:otherwise>
                         </c:choose>
 						</form>

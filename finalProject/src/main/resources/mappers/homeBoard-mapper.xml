@@ -19,6 +19,7 @@
       <result column ="mem_email" property="memEmail"/>
       <result column ="mem_nick" property="memNick"/>
       <result column ="mem_addr" property="memAddr"/> 
+      <result column ="mem_img" property="memImg"/>
   </resultMap> 
   
   <resultMap type="HomeReply" id="homeReplyResult">
@@ -44,6 +45,7 @@
        , h.board_count 
        , m.mem_nick 
        , h.mem_id 
+       , m.mem_img
        , h.board_mainimg_origin
        , h.board_mainimg_change
      from board_home h, member_base m
@@ -66,6 +68,7 @@
        , mem_nick
        , mem_id
        , mem_addr
+       , mem_img
        , board_mainimg_origin
        , board_mainimg_change
      from board_home h, member_base m
@@ -75,7 +78,7 @@
   
    <select id="selectReplyList" resultMap="homeReplyResult">
    select home_reply_no
-           , mem_nick
+           , mem_nick 
            , mem_id
 		   , home_reply_content
 		   , to_char(home_reply_date, 'YYYY-MM-DD') as "home_reply_date" 

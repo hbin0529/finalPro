@@ -85,7 +85,7 @@
             <div class="footer_sns">
                 <table>
                     <tr>
-                        <td id=""><a href="#"><img src="${path}/resources/img/sns_instagram.png"></a></td>
+                        <td id=""><a href="sellerOrderList.or?selNo=${ s.selNo }"><img src="${path}/resources/img/sns_instagram.png"></a></td>
                         <td id=""><a href="#"><img src="${path}/resources/img/sns_facebook.png"></a></td>
                         <td id=""><a href="#"><img src="${path}/resources/img/sns_youtube.png"></a></td>
                         <td id=""><a href="chat.in"><img src="${path}/resources/img/sns_twitter.png"></a></td>
