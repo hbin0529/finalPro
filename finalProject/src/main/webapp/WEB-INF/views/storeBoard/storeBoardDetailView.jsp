@@ -103,7 +103,7 @@ $(function() {
     .review_detail table{ width: 800px; border-collapse: collapse; border-top: 1px solid gray;  border-top: 1px solid rgb(221, 221, 221); font-family: 'Pretendard-Regular';}
     #review_user_img{width: 25px; padding-left: 10px; padding-top: 20px;}
     #review_nickname{padding-left: 10px; padding-top: 20px; width: 40px; font-size: 13px; font-weight: bolder; color: rgb(77, 76, 76);;}
-    #review_date{font-size: 12px; color: rgb(77, 76, 76); padding-top: 3px;}
+    #review_date{font-size: 12px; color: rgb(77, 76, 76); padding-top: 3px; padding-left:10px;}
     #review_option{font-size: 13px; padding-left: 10px; padding-top: 5px; color: rgb(77, 76, 76);}
     #review_main_img{padding-left: 10px; width: 130px; padding-top: 10px;}
     #user_review{width: 130px; border-radius: 5px;}
@@ -553,14 +553,13 @@ $(function() {
 							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
-							  +			"<td id='review_option'>" + list[i].reviewStar + "</td>"
 							  +			"<td id='review_date'>" + list[i].reviewDate + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
 							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
-							  +			"<td colspan='3' id='review_main_img'><img src='${path}/resources/img/logo_user.png' id='user_review'></td>"		
+							  +			"<td colspan='3' id='review_main_img'><img src='${path}/" + list[i].reviewImgChange + "' id='user_review'></td>"		
 							  +  	"</tr>"
 							  +  	"<tr>"		
 							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  
