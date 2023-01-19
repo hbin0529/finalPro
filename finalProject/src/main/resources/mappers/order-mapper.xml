@@ -225,10 +225,10 @@
 	
 	
 	<select id="isThereStock">
-		<if test="">
+		<if test="ordOption == 'WHITE'">
 			select pro_white_stock
 		</if>
-		<if test="">
+		<if test="ordOption == 'BLACK'">
 			select pro_black_stock
 		</if>
 		from product 
