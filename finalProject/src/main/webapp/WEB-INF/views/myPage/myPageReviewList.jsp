@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <style>
 
-       /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
-    .mypage_category{width: 1400px; height: 80px; margin: 0 auto;}
+  /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
+    .mypage_category{ height: 80px; margin: 0 auto;}
     .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
     #mypage_menu{font-family: 'GmarketSansMedium';}
     #mypage_menu:hover{color: #21d9cb;}
@@ -52,10 +52,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="font-size: 20px; font-weight: bolder;"><a href="">${ p.proName }</a></td>
+                    <td colspan="2" style="font-size: 20px; font-weight: bolder;"><a href="">${ order.proName }</a></td>
                 </tr>
                 <tr>
-                    <td colspan="2" >옵션 | ${ order.ordOption }</td>
+                    <td colspan="2" >색상 : ${ order.ordOption }</td>
                 </tr>
                 <tr>
                     <td width="25px" style="font-size: 25px; color: #21d9cb;">${ order.reviewStar }</td>

@@ -66,7 +66,7 @@
     /* 맨위에 주문상태 옵션 */
     .order_status{display: flex; height: 30px; margin-left: 20px;}
     .order_status select{background-color: rgb(247, 248, 250); font-weight: bold; color: rgba(0, 0, 0, 0.7); border: none; font-family: 'Pretendard-Regular'; border-radius: 3px; box-shadow: 0px 0px 1px #555;}
-    .buy_back{color: red;}
+    .buy_back{color: red; width:100px; text-size:18px}
     
      /* -------------------------모달창------------------------- */
      .modal-body{ font-family: 'Pretendard-Regular'; color: black; font-style:normal;}
@@ -232,7 +232,7 @@
                         <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
                     </div>
                     <div class="detail_body_button">
-                        <div><button>리뷰작성</button></div>
+                        <div><button id="review_write_button_no">리뷰작성</button></div>
                     </div>
                 </div>
             </c:if> 

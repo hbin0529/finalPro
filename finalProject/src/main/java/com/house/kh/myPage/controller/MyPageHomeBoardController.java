@@ -128,18 +128,18 @@ public class MyPageHomeBoardController {
 		   }
 		   
 	   }
-	   
-	   @ResponseBody
+	    
 	   @RequestMapping("mypagereviewlist.bo")
-	   public String usersReviewList(String id, Model model){
+	   public ModelAndView usersReviewList(String id, ModelAndView mv, Model model){
 			
 			ArrayList<Order> reviewList = oService.usersReviewList(id);
-			for(int i=0; i<reviewList.size(); i++) {
-				System.out.println(reviewList.get(i));
-			}
-			model.addAttribute("o", reviewList);
-			return "myPage/myPageOrderListView";
+			mv.addObject("o", reviewList);
+			mv.setViewName("myPage/myPageReviewList");
+			 
+			 return mv;
 		
 		}
+	  
+	   
 	   
 }
