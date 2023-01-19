@@ -117,5 +117,9 @@ public class OrderService {
 		oDao.orderCancel(sqlSession, o);
 	}
 	
+	public void payUserPoint(Order o) {
+		oDao.payUserPoint(sqlSession, o);
+	}
+	
 	
 }

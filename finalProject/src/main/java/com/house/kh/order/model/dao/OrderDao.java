@@ -133,7 +133,9 @@ public class OrderDao {
 	}
 	
 	
-	
+	public void payUserPoint(SqlSessionTemplate sqlSession, Order o) {
+		sqlSession.update("orderMapper.payUserPoint", o);
+	}
 	
 	
 	

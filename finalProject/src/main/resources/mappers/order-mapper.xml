@@ -300,16 +300,18 @@
 		where pro_no = #{proNo}
 	</update>
 	<update id="sendPointToSeller">
-		update seller_base set sel_point = sel_point + (#{ordCount}*#{ordPrice}) where sel_no = #{selNo}
+		update seller_base set sel_point = sel_point + (#{ordCount}*#{ordPrice}+50000) where sel_no = #{selNo}
 	</update>
 	
 	<update id="statusUpdateF">
 		update order_detail set ord_status = 'F' where ord_no = #{ ordNo }
 	</update>
 	<update id="refundPointToUser">
-		update member_base set mem_point = mem_point + (#{ordCount}*#{ordPrice}) where mem_email = #{ordEmail}
+		update member_base set mem_point = mem_point + (#{ordCount}*#{ordPrice}+50000) where mem_email = #{ordEmail}
 	</update>
-	
+	<update id="payUserPoint">
+		update member_base set mem_point = mem_point - (#{ordCount}*#{ordPrice}+50000) where mem_email = #{ordEmail}
+	</update>
 	
 	
 </mapper>

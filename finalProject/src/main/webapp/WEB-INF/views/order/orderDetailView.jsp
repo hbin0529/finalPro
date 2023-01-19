@@ -112,6 +112,9 @@ at('woff');
     .detail_body div img{
     	max-height: 150px;
     }
+    .order_count button{
+    	background-color: rgb(33, 217, 203); color:white;
+    }
 </style>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -141,7 +144,7 @@ at('woff');
     	
     	<div class="order_count">
             <div><p>총 보유 포인트</p></div>
-            <div><p style="font-size:30px">${ s.selPoint } POINT</p></div>
+            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;">${ s.selPoint } POINT <button>환전하기</button></p></div>
         </div>
     
     
