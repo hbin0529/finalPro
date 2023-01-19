@@ -25,7 +25,8 @@
     /* 로고폰트 */
         @font-face {
         font-family: 'SDSamliphopangche_Outline';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') 
+at('woff');
         font-weight: normal;
         font-style: normal;
         } 
@@ -170,7 +171,19 @@
                 </table>
             </div>
         </div>
-
+		<script>
+        	function orderConfirm(a){
+        		var ordOption = document.getElementById("oOption").value
+        		var ordCount = document.getElementById("oCount").value
+        		var ordPrice = document.getElementById("oPrice").value
+        		var proNo = document.getElementById("proNo").value
+        		location.href="orderConfirm.or?ordNo="+a+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo"+proNo;
+        	}
+        	function orderCancel(b){
+        		//console.log(a+"취소")
+        		location.href="취소로 ㄱㄱ";
+        	}
+        </script>
         
         <div class="order_list">
             <div class="order_list_detail">
@@ -192,8 +205,12 @@
 	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
-	                        <div><button>판매확정</button></div>
-	                        <div><button>주문취소</button></div>
+	                        <div><button type="button" value="${ order.ordNo }" onclick="orderConfirm(this.value);">판매확정</button></div>
+	                        <div><button type="button" value="${ order.ordNo }" onclick="orderCancel(this.value);">주문취소</button></div>
+	                        <input type="hidden" value="${ order.ordOption }" id="oOption">
+	                        <input type="hidden" value="${ order.ordCount }" id="oCount">
+	                        <input type="hidden" value="${ order.ordPrice }" id="oPrice">
+	                        <input type="hidden" value="${ order.proNo }" id="proNo">
 	                    </div>
 	                </div>
 	                <div class="detail_bottom">
