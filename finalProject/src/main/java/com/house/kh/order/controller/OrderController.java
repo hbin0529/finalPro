@@ -53,22 +53,11 @@ public class OrderController {
 	
 	@RequestMapping("orderSheet.or")
 	public String orderSheet2(Order o, Model model, HttpSession session) {
-		//주문테이블에 추가
-		/*
-		o.setOrdEmail(ordEmail);
-		o.setOrdDate(ordDate);
-		o.setOrdZipcode(ordZipcode);
-		o.setOrdAddr(ordAddr);
-		o.setOrdDetailAddr(ordDetailAddr);
-		o.setCusName(cusName);
-		o.setCusPhone(cusPhone);
-		o.setOrdRequest(ordRequest);
-		*/
-		
 		
 		System.out.println(o);
 		
 		int orderSheetResult = oService.orderSheet2(o);
+		oService.payUserPoint(o); 
 		oService.insertDetail(o);
 		/* int orderDetailSheetReulst = oService.orderSheet2(o); */
 		if(orderSheetResult > 0) {

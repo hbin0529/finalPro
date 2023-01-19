@@ -192,7 +192,7 @@ contentHeader a{
 .itemImg {
 	border-radius: 9px;
 	display: flex; flex-direction: column; align-items: center;
-	max-height: 130px
+	height: 130px
 }
 
 .itemText {
