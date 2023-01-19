@@ -53,6 +53,7 @@ public class Order {
 	private int proWhiteStock;
 	private int proBlackStock;
 	private String proName;
+	private int selNo;
 	
 	
 	
