@@ -252,6 +252,7 @@
              <form action="reviewinsert.bo" method="post" enctype="multipart/form-data">
                <input type="hidden" name="memEmail" value="${ id }">
                <input type="hidden" name="ordNo" value="${ order.ordNo }">
+               <input type="hidden" name="proNo" value="${ order.proNo }">
                 <div class="review_buy_star"> 
                     <h5 class="review_title">별점평가</h5> 
                     <div class="review_buy_star_detail">

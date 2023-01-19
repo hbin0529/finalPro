@@ -135,6 +135,7 @@
 	 	<result column="sel_phone" property="selPhone" />
 	 	<result column="cate_name" property="cateName" />
 	 	<result column="ord_no" property="ordNo" /> 
+	 	<result column="pro_no" property="proNo" /> 
 	 </resultMap>
 	 
 	 
@@ -166,6 +167,7 @@
 	<select id="usersOrderList" resultMap="usersOrderListMap">
 		select to_char(ord_date, 'YYYY.MM.DD') as "ord_date"
       , pro_change_detailimg
+      , pro_no
       , ord_email
       , ord_no
       , ord_option

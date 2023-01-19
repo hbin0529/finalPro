@@ -133,7 +133,7 @@
 	</select>
 	
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
-		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option
+		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option, r.review_img_change
 			from product p, review r, member_base m, order_detail o
 		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y' and r.pro_no = #{proNo}
 		  order by r.review_date desc
@@ -210,8 +210,8 @@
 	 
  	
 	<insert id="insertReview">
-      insert into review(review_no, mem_email, ord_no, review_img_origin, review_img_change, review_content, review_date, review_star)
-               values(review_seq.nextval, #{memEmail}, #{ordNo}, #{reviewImgOrigin},#{reviewImgChange}, #{reviewContent}, sysdate , #{reviewStar})
+      insert into review(review_no, mem_email, ord_no, review_img_origin, review_img_change, review_content, review_date, review_star, pro_no)
+               values(review_seq.nextval, #{memEmail}, #{ordNo}, #{reviewImgOrigin},#{reviewImgChange}, #{reviewContent}, sysdate , #{reviewStar}, #{proNo})
    </insert>
 	
 	
