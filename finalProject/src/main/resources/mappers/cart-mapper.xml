@@ -8,7 +8,6 @@
 		<result column="mem_email" property="memEmail" />
 		<result column="cart_amount" property="cartAmount" />
 		<result column="cart_option" property="cartOption" />
-		<result column="cart_price" property="cartPrice" />
 		<result column="cart_date" property="cartDate" />
 		<result column="cart_status" property="cartStatus" />
 		<!-- PRODUCT -->
@@ -43,9 +42,9 @@
 		select s.sel_bus_name
 			 , p.pro_origin_img
 			 , p.pro_name
+			 , p.pro_price
 			 , c.cart_option
 			 , c.cart_amount
-			 , c.cart_price
 			 , c.cart_date
 			from cart c, product p, seller_base s
 			where p.pro_no = c.pro_no and s.sel_no = c.sel_no
@@ -53,9 +52,9 @@
 	</select>
 	
 	<insert id="insertCart">
-		insert into cart(cart_no, mem_email, pro_no, sel_no, cart_amount, cart_option, cart_price, cart_date, cart_status)
+		insert into cart(cart_no, mem_email, pro_no, sel_no, cart_amount, cart_option, pro_price, cart_date, cart_status)
 					values(cart_no_seq.nextval, #{memEmail}, #{proNo}, #{selNo}, #{cartAmount}, #{cartOption}
-							,#{cartPrice}, sysdate, 'Y')
+							,#{proPrice}, sysdate, 'Y')
 	</insert>
 	
 	

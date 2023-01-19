@@ -193,7 +193,7 @@ $(function() {
                             <option value="WHITE">WHITE</option>
                         </select>
                     </div>
-                    <div id="proCntBox">
+                    <div id="proCntBox"> 
                         <select id="proCnt" style="margin-bottom: 30px;" name="countSelect">
                             <option>수량선택</option>
                             <option value="1">1</option>
@@ -221,8 +221,8 @@ $(function() {
 		                    </c:when>
 	                        <c:otherwise>
 	                        	<c:if test="${ not empty permit }">
-		                        	 <div id="btnbtn"><a onClick="cartInsert();"><p id="buy">장바구니</p></a></div>
-		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
+		                        	 <div id="btnbtn"><a onclick="cartInsert()"><p id="buy">장바구니</p></a></div>
+		                             <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
 		                              <script type="text/javascript">
 		                                 function directBuy() {
 		                                	 if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
@@ -232,23 +232,21 @@ $(function() {
 		                                    hbInfo.submit();
 		                                 }
 		                                 
-		                                 function cartInsert(){
-		                                	 if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                               	function cartInsert() {
+		                               		if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
 		                                		 alert('옵션을 선택해주세요');
 		                                		 return;
-		                                	 }
-		                                	 var color = document.getEmlementById("colorSelect").value
+		                                	 } else {
+		                                	console.log("안녕");
+		                                	 var color = document.getElementById("colorSelect").value
 		                                	 document.getElementById("color_otp").value = color;
 		                                	 
 		                                	 var amount = document.getElementById("proCnt").value
 		                                	 document.getElementById("cart_amount").value = amount;
 		                                	 
-		                                	 var price = document.getElementById("sumPrice").value
-		                                	 document.getElementById("cart_price").value = price;
-		                                	 
-		                                	 cart.submit();
-		                                 }
-		                            	  
+		                                	 cartForm.submit();
+		                                 	}
+		                               	} 
 		                              $(function(){
 		                              })
 		                              </script>
@@ -260,16 +258,12 @@ $(function() {
 	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
 	                        	</c:if>
 	                        	<c:if test="${ empty permit }">
-		                        	 <div id="btnbtn"><a onClick="cartInsert();"><p id="buy">장바구니</p></a></div>
+		                        	 <div id="btnbtn"><a onClick="directBuy()"><p id="buy">장바구니</p></a></div>
 		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
 		                              <script type="text/javascript">
 		                                 function directBuy() {                                    
 		                                    alert('로그인 후 이용해주세요')
 		                                    return;
-		                                 }
-		                                 function cartInsert() {
-		                                	 alert('로그인 후 이용해주세요')
-		                                	 return;
 		                                 }
 		                              </script>
 	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
@@ -286,7 +280,7 @@ $(function() {
 						<form name="cartForm" action="cartInsert.ca" method="post" id="cartForm">
 							<input type="hidden" value="" id="color_otp" name="cartOption">
 							<input type="hidden" value="" id="cart_amount" name="cartAmount">
-							<input type="hidden" value="" id="cart_price" name="cartPrice">
+							<input type="hidden" name="proPrice" value="${ p.proPrice }" >
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="selNo" value="${ p.selNo }">
 							<input type="hidden" name="memEmail" value="${ id }">
