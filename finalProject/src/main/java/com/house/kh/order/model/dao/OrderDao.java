@@ -41,4 +41,58 @@ public class OrderDao {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public boolean isThereStock(SqlSessionTemplate sqlSession, Order o) {
+		int result = sqlSession.selectOne("orderMapper.isThereStock", o);
+		System.out.println(result);
+		//남은수량 꺼낸게 result, 이게 주문하려는 수량보다 크면 통과 아니면 false
+		if(result > o.getOrdCount()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 }

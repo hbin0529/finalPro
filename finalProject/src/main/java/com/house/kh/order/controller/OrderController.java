@@ -81,6 +81,7 @@ public class OrderController {
 		//주문상세 테이블에 추가
 	}
 	
+
 	
 	
 	
@@ -97,6 +98,103 @@ public class OrderController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("orderConfirm.or")
+	public String orderConfirm(Order o) {
+		//먼저 여분의 재고가 있는지부터 확인
+		//System.out.println(o);
+		boolean isThereStock = oService.isThereStock(o);
+		//System.out.println(isThereStock);
 		
-}
+		
+		//있으면 if문을 이용해서 주문처리('Y') 하고 재고 업데이트(stock), 판매자한테 포인트 전달
+		return "redirect:/";
+	}
+	
 
+	/*
+	@RequestMapping()
+	public String orderCancel(int orderNo) {
+		return "redirect:/";
+	}
+	 */
+	
+}
