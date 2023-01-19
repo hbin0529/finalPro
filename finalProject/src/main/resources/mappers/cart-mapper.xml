@@ -38,6 +38,12 @@
 		<result column="sel_bus_no" property="selBusNo" />
 	</resultMap>
 	
+	<select id="selectCartListCount" resultType="_int">
+		select count(*)
+			from cart
+		  where cart_status = 'Y'
+	</select>
+	
 	<select id="selectCartList" resultType="Cart" resultMap="cartResult">
 		select s.sel_bus_name
 			 , p.pro_origin_img
@@ -46,6 +52,9 @@
 			 , c.cart_option
 			 , c.cart_amount
 			 , c.cart_date
+			 , p.pro_change_img
+			 , p.pro_change_img1
+			 , p.pro_change_detailimg
 			from cart c, product p, seller_base s
 			where p.pro_no = c.pro_no and s.sel_no = c.sel_no
 			order by c.cart_date desc

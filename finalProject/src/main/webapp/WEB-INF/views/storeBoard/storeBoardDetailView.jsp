@@ -237,7 +237,6 @@ $(function() {
 		                                		 alert('옵션을 선택해주세요');
 		                                		 return;
 		                                	 } else {
-		                                	console.log("안녕");
 		                                	 var color = document.getElementById("colorSelect").value
 		                                	 document.getElementById("color_otp").value = color;
 		                                	 

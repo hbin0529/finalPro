@@ -9,7 +9,11 @@ import com.house.kh.cart.model.vo.Cart;
 
 @Repository
 public class CartDao {
-
+	
+	public int selectCartListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("cartMapper.selectCartListCount");
+	}
+	
 	public ArrayList<Cart> selectCartList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectCartList");
 	}
