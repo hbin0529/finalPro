@@ -17,7 +17,6 @@ public class Cart {
 	private String memEmail;
 	private int cartAmount;
 	private String cartOption;
-	private int cartPrice;
 	private String cartDate;
 	private String cartStatus;
 	
