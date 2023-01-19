@@ -118,7 +118,6 @@
 			 , s.sel_detail_addr
 			 , s.sel_email
 			 , p.cate_no
-			 , c.cate_name
 			 , p.pro_name
 			 , p.pro_price
 			 , p.pro_origin_img
@@ -129,12 +128,12 @@
 			 , p.pro_change_detailimg
 			 , p.pro_white_stock
 			 , p.pro_black_stock
-		  from product p, seller_base s, category c
-		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no and c.cate_no = p.cate_no
+		  from product p, seller_base s
+		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no
 	</select>
 	
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
-		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option
+		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option, r.review_img_change
 			from product p, review r, member_base m, order_detail o
 		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y' and r.pro_no = #{proNo}
 		  order by r.review_date desc
@@ -199,7 +198,7 @@
 	
 	<select id="arrayQuestionList" resultType="Product" resultMap="storeBoardResult">
 		 select m.mem_nick, pq.pro_que_date, pq.pro_que_content, pq.pro_que_type, pq.status, p.pro_no, pq.pro_que_result
-        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id, p.pro_name
+        		,a.que_reply_date, a.que_reply_content, a.pqr_status, a.sel_no, s.sel_bus_name, m.mem_email, pq.mem_id, p.pro_name, pq.pro_que_no
 				from product_question pq
 					join product p on (p.pro_no = pq.pro_no)
 					join member_base m on (pq.mem_id = m.mem_email)
@@ -207,7 +206,25 @@
 					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
                 where pq.status = 'Y'
                 order by pq.pro_que_date desc
-	</select>
+ 	</select> 
+	 
+ 	
+	<insert id="insertReview">
+      insert into review(review_no, mem_email, ord_no, review_img_origin, review_img_change, review_content, review_date, review_star, pro_no)
+               values(review_seq.nextval, #{memEmail}, #{ordNo}, #{reviewImgOrigin},#{reviewImgChange}, #{reviewContent}, sysdate , #{reviewStar}, #{proNo})
+   </insert>
+   
+   
+   <update id="deleteReview">
+		update review
+			set status = 'N'
+		  where review_no = #{reviewNo}
+	</update>
+   
+   
+   
 	
-</mapper>
+	
+	
+ </mapper>
 

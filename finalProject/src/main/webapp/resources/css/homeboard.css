@@ -134,7 +134,7 @@
         .del_upd_button :hover{color:red;}
         
           /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
-    .mypage_category{width: 1400px; height: 80px; margin: 0 auto;}
+    .mypage_category{height: 80px; margin: 0 auto;}
     .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
     #mypage_menu{font-family: 'GmarketSansMedium';}
     #mypage_menu:hover{color: #21d9cb;}
@@ -152,3 +152,39 @@
     .home_review_img{text-align: center; width: 300px;}
     .home_review_card img{width: 300px; height: 200px; border: 1px solid #dee2e6;}
     .home_review_title{text-align: center; font-family: 'Pretendard-Regular'; font-weight: bolder; font-size: 16px;}  
+    
+     /* -------------------------판매자페이지 판매상품 스타일모음------------------------- */
+    .order_count{width: 950px; margin: 0 auto; display: flex; margin-top: 30px; font-weight: bolder; font-size: 18px; margin-bottom: 50px;}
+    .order_count div:nth-child(1){font-family: 'GmarketSansMedium';}
+    .order_count div:nth-child(2){font-family: 'GmarketSansMedium'; color: #21d9cb; margin-left: 5px;}
+    .sellerpage_main_body{padding-top: 20px; width: 950px; margin: 0 auto;}
+    .order_list_paging{width: 950px; margin: 0 auto; text-align: center; margin-top: 60px; margin-bottom: 60px;}
+    
+    
+   /* -------------------------판매자페이지 판매내역 리스트------------------------- */
+    section{ font-family: 'Pretendard-Regular';}
+    .order_list{width: 950px; margin: 0 auto; border: 1px solid lightgray; border-radius: 5px; margin-top: 70px; font-family: 'Pretendard-Regular'; padding-top:10px; padding-bottom:10px; margin-bottom: 100px;}
+    .detail_top{display: flex; height: 35px;  margin-left: 20px; margin-right: 20px; font-size: 18px; font-weight: bolder; border-bottom: 1px solid lightgray; margin-top: 50px;}
+    .detail_top div:nth-child(1){width: 850px;}
+    .detail_top div:nth-child(2){width: 100px;      background-color: rgb(224, 224, 224); margin-bottom: 10px;  border-radius: 5px;}
+    .detail_top div{font-size: 17px;}
+    .detail_body{display: flex; height: 200px; margin-left: 20px; margin-right: 20px; width: 910px; }
+    .detail_body_category{width: 400px; margin-left: 10px; padding-top: 70px; }
+    .detail_body_category div:nth-child(1){margin-bottom: 10px;}
+    .detail_body_category div:nth-child(2){font-weight: bolder;}
+    .detail_body_option{width: 250px; padding-top: 70px;}
+    .detail_body_option div:nth-child(1){margin-bottom: 10px;}
+    .detail_body_option div:nth-child(2){font-weight: bolder;}
+    .detail_body_button {width: 260px; text-align: right; padding-top: 40px;margin-top: 30px; margin-right: 10px;}
+    .detail_body_button div:nth-child(1){margin-bottom: 20px;}
+    .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
+    .detail_body img{width: 150px; margin-top: 25px;}
+    .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 30px;}
+    .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
+    .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
+     .detail_top p {font-size: 15px;}
+     
+    /* 맨위에 주문상태 옵션 */
+    .order_status{display: flex; height: 30px; margin-left: 20px;}
+    .order_status select{background-color: rgb(247, 248, 250); font-weight: bold; color: rgba(0, 0, 0, 0.7); border: none; font-family: 'Pretendard-Regular'; border-radius: 3px; box-shadow: 0px 0px 1px #555;}
+    .buy_back{color: red;}  

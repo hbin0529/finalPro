@@ -63,7 +63,7 @@
 	<!-- header -->
 	<jsp:include page="../common/header.jsp" />
 	    <!-- 주문결제 -->
-    <form action="orderSheet.or" method="post">
+    <form action="orderSheet.or" method="post" name="buyInfo">
     <div class="main_wrap">
         <!-- 왼쪽 상품 주문창 -->
         <div class="left_wrap" style="flex: 1 0 0px; box-sizing: border-box;">
@@ -188,7 +188,7 @@
                         	// setInterval(showUserPoint, 500)
                         	showUserPoint();
                         })
-                        
+                        var chkUserPoint = 0;
                         function showUserPoint() {
                         	console.log("asdasd");
                 			$.ajax({
@@ -196,15 +196,25 @@
                 				data:{userEmail:"${id}"},
                 				success:function(point){
                						$("#point_level").val(point);
-               						
+               						chkUserPoint = point;
                 				},
                 				error:function() {
                 					console.log("보유포인트 조회 ajax 통신 오류");
                 				}
                 			})
                 		}
-                        </script>
                         
+                       	function buyIt(){
+                       		showUserPoint();
+                       		if(chkUserPoint < ${ (p.proPrice * countSelect) + 50000 }){
+                       			alert('보유한 포인트가 부족합니다.')
+                       			return;
+                       		}else{
+                       			alert('정상적으로 결제되었습니다.');
+                       			buyInfo.submit();
+                       		}
+                       	}
+                        </script>
                     </div>
                     <div style="overflow: hidden; margin: -3px; padding: 23px 3px 3px; box-sizing: border-box;"> 
                         <div style="margin: 0px auto; box-sizing: border-box; width: auto; max-width: 100%; min-height: 1px;">
@@ -236,7 +246,7 @@
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>배송비</div>
-                            <div style="flex: 0px; text-align: right;">2500 포인트</div>
+                            <div style="flex: 0px; text-align: right;">50000 포인트</div>
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; font-size: 15px;">
                             <div>쿠폰 사용</div>
@@ -248,7 +258,7 @@
                         </div>
                         <div style="display: flex; align-items: center; line-height: 2rem; border-top: 1px solid rgb(234, 235, 239); padding-top: 19px; padding-bottom: 19px; margin-top: 20px;">
                             <div style="font-size: 18px; font-weight: bold;">최종 결제 금액</div>
-                            <div style="flex: 0px; text-align: right; font-size: 22px; font-weight: bold; color: #21d9cb;">${ (p.proPrice * countSelect) + 2500 } 포인트</div>
+                            <div style="flex: 0px; text-align: right; font-size: 22px; font-weight: bold; color: #21d9cb;">${ (p.proPrice * countSelect) + 50000 } 포인트</div>
                         </div>
                     </div>
                     <!-- 필수 동의란 -->
@@ -258,7 +268,7 @@
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">개인정보수집 및 이용동의(필수)</label>
                         <label for="" class="necessary"><input type="checkbox" class="chkbox">결제 서비스 이용약관 동의(필수)</label>
                     </div>
-                    <input type="submit" onclick="" class="submitbut wid360 bora4" value="${ (p.proPrice * countSelect) + 2500 } 포인트 결제하기">
+                    <button type="button" onclick="buyIt()" class="submitbut wid360 bora4" value="">${ (p.proPrice * countSelect) + 50000 } 포인트 결제하기</button>
                 </div>
                 	<input type="hidden" value="${ m.memZipcode }" name="ordZipcode">
                 	<input type="hidden" value="${ m.memAddr }" name="ordAddr">

@@ -40,9 +40,16 @@ public interface StoreBoardService {
 	
 	// 게시판리스트 페이지
 	ArrayList<Product> arrayQuestionList(Product p); //어떤거 가져올지
-		
 	
+
 	// 8. Top5 조회수 리스트 (ajax)
 	//ArrayList<Board> selectTopBoardList();
+	    
 
+	/* --------------------------리뷰 추가하기 (김수연)---------------------------------------- */
+	int insertReview(Product p);
+	
+	/* --------------------------리뷰 삭제하기 (김수연)--------------------------------*/
+
+	int deleteReview(int reviewNo);
 }

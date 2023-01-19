@@ -109,18 +109,24 @@
             <div class="main_login">
             <c:if test="${ empty id }">
                 <ul>
-                    <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
+                    <li><a onClick="loginChk();"><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
                     <li><a href="login.me">로그인</a></li>
                     <li>|</li>
                     <li><a href="signIn.me">회원가입</a></li>
-                    <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
+                    <li><a onClick="loginChk();"><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
+                <script type="text/javascript">
+                	function loginChk() {
+                		alert('로그인 후 이용해주세요')
+                		return;
+                	}
+                </script>
             </c:if>
             <c:if test="${ not empty id }">
                 <ul>
-                    <li><a href=""><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
+                    <li><a href="cartlist.ca"><img id="login_cart" src="${path}/resources/img/main_cart.png"></a></li>
                   <c:if test="${ permit > 1 }">
-                    <li><a href="myPage.se">${ nick }</a></li>
+                    <li><a href="sellerOrderList.or?selNo=${ s.selNo }">${ nick }</a></li>
                   </c:if>
                   <c:if test="${ permit eq 1 }">
    	                <li><a href="myPage.me">${ nick }</a></li>

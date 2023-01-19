@@ -87,6 +87,18 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	@Override
 	public ArrayList<Product> arrayQuestionList(Product p) {
 		return sbDao.arrayQuestionList(sqlSession, p);
+
+	}  
+	
+    @Override
+    public int insertReview(Product p) {
+       return sbDao.insertReview(sqlSession, p);
+   }
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		return sbDao.deleteReview(sqlSession, reviewNo);
+		 
 	}
 
 }

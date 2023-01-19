@@ -39,7 +39,7 @@
 	    }
 	     
 	    /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
-	    .mypage_category{width: 1400px; height: 80px; margin: 0 auto;}
+	    .mypage_category{ height: 80px; margin: 0 auto;}
 	    .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
 	    #mypage_menu{font-family: 'GmarketSansMedium';}
 	    #mypage_menu:hover{color: #21d9cb;}
@@ -51,8 +51,10 @@
             <div class="mypage_category">
                 <table>
                     <tr>
-                        <td><a href="" id="mypage_menu">장바구니</a></td>
-                        <td><a href="myPageOrderlist.bo" id="mypage_menu">나의쇼핑</a></td>
+                        <td><a href="cartlist.ca" id="mypage_menu">장바구니</a></td>
+                        
+                        <td><a href="myPageOrderlist.bo?id=${ id }" id="mypage_menu">나의쇼핑</a></td>
+                        
                         <td><a href="mypagehblist.bo" id="mypage_menu">나의리뷰</a></td>
                         <td><a href="myPage.me" id="mypage_menu">개인정보수정</a></td>
                     </tr>

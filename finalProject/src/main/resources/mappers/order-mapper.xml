@@ -4,10 +4,11 @@
 	<!-- 주문 -->
 	<resultMap type="Order" id="orderResult">
 	  	<result column="ord_no" property="orderNo"/>
-		<result column="ord_email" property="orderEmail"/>
+		<result column="ord_email" property="ordEmail"/>
 		<result column="ord_date" property="orderDate"/>
 		<result column="ord_zipcode" property="orderZipcode"/>
 		<result column="ord_addr" property="orderAddr"/>
+		<result column="ord_count" property="orderCount"/>
 		<result column="ord_detail_addr" property="orderDetailAddr"/>
 		<result column="cus_name" property="cusName"/>
 		<result column="cus_phone" property="cusPhone"/>
@@ -95,6 +96,7 @@
 	 	<result column="ord_addr" property="ordAddr"/>
 		<result column="ord_detail_addr" property="ordDetailAddr"/>
 	 	<result column="pro_change_detailimg" property="proChangeDetailimg" />
+		<result column="pro_change_img" property="proChangeImg" />
 	 	<result column="ord_option" property="ordOption" />
 	 	<result column="ord_price" property="ordPrice" />
 	 	<result column="ord_request" property="ordRequest" />
@@ -107,6 +109,50 @@
 	 	<result column="pro_black_stock" property="proBlackStock" />
 	 	<result column="pro_name" property="proName" />
 	 	<result column="sel_no" property="selNo" />
+	 	<result column="pro_no" property="proNo" />
+	 	<result column="ord_email" property="ordEmail" />
+	 </resultMap>
+	 
+	 <resultMap type="Order" id="usersOrderListMap">
+	    <result column="ord_email" property="ordEmail"/>
+	 	<result column="ord_date" property="ordDate" />
+	 	<result column="ord_addr" property="ordAddr"/>
+		<result column="ord_detail_addr" property="ordDetailAddr"/>
+	 	<result column="pro_change_detailimg" property="proChangeDetailimg" />
+	 	<result column="ord_option" property="ordOption" />
+	 	<result column="ord_price" property="ordPrice" />
+	 	<result column="ord_request" property="ordRequest" />
+	 	<result column="ord_count" property="ordCount" />
+	 	<result column="cus_name" property="cusName" />
+	 	<result column="cus_phone" property="cusPhone" />
+	 	<result column="ord_status" property="ordStatus" />
+	 	<result column="cate_name" property="cateName" />
+	 	<result column="pro_white_stock" property="proWhiteStock" />
+	 	<result column="pro_black_stock" property="proBlackStock" />
+	 	<result column="pro_name" property="proName" />
+	 	<result column="sel_no" property="selNo" />
+	 	<result column="sel_bus_name" property="selBusName" />
+	 	<result column="sel_phone" property="selPhone" />
+	 	<result column="cate_name" property="cateName" />
+	 	<result column="ord_no" property="ordNo" /> 
+	 	<result column="pro_no" property="proNo" /> 
+	 </resultMap>
+	 
+	  <resultMap type="Order" id="usersReviewListMap">
+	   <result column="review_no" property="reviewNo" />
+		<result column="ord_no" property="ordNo" />
+		<result column="mem_email" property="memEmail" />
+		<result column="review_img_origin" property="reviewImgOrigin" />
+		<result column="review_img_change" property="reviewImgChange" />
+		<result column="review_content" property="reviewContent" />
+		<result column="review_date" property="reviewDate" />
+		<result column="review_star" property="reviewStar" />
+		<result column="mem_nick" property="memNick" />
+		<result column="ord_option" property="ordOption" />
+		<result column="pro_name" property="proName" />
+		<result column="ord_option" property="ordOption" />
+		<result column="pro_no" property="proNo" />
+		<result column="mem_email" property="memEmail"/>
 	 </resultMap>
 	 
 	 
@@ -127,15 +173,36 @@
 	
 	<!-- 판매자에게 들어온 오더리스트 보여주기 -->	
 	<select id="sellersOrderList" resultMap="sellersOrderListMap">
-		select to_char(ord_date, 'YY/MM/DD') as "ord_date", pro_change_detailimg, ord_option, ord_price, ord_request, ord_addr, ord_detail_addr,
-		 sel_no, ord_no, ord_count, cus_name, cus_phone, ord_status, cate_name, pro_white_stock, pro_black_stock, pro_name 
-		 from order_main join order_detail using (ord_no) join product using (pro_no) join category using (cate_no) where sel_no = #{selNo} order by ord_date desc
+		select to_char(ord_date, 'YY/MM/DD') as "ord_date", pro_change_detailimg, ord_option, ord_price, ord_request, ord_addr, ord_detail_addr, pro_no, pro_change_img,
+		 sel_no, ord_no, ord_count, cus_name, cus_phone, ord_status, cate_name, pro_white_stock, pro_black_stock, pro_name, ord_email
+		 from order_main
+         join order_detail using (ord_no) join product using (pro_no) join category using (cate_no) 
+         where sel_no = #{selNo} order by ord_date desc
 	</select>
 	
+	<!-- 구매자의 주문리스트 보여주기 -->	
+	<select id="usersOrderList" resultMap="usersOrderListMap">
+		select to_char(ord_date, 'YYYY.MM.DD') as "ord_date"
+      , pro_change_detailimg
+      , pro_no
+      , ord_email
+      , ord_no
+      , ord_option
+      , ord_count 
+      , ord_price 
+      , ord_status
+      , cate_name
+      , pro_name  
+      , sel_bus_name
+      , sel_phone
+       from order_main 
+       join order_detail using (ord_no)  
+       join product using (pro_no) 
+       join seller_base using (sel_no)
+       join category using (cate_no)
+	  where ord_email = #{id}  
 	
-	
-	
-	
+	</select> 
 	<!-- 주문상품 데이터 추가 -->
 	<insert id="orderSheet2">
 		INSERT INTO ORDER_MAIN VALUES (
@@ -164,6 +231,20 @@
 	</insert>
 	
 	
+	<select id="usersReviewList" resultMap="usersReviewListMap">  
+		   select r.pro_no
+			, p.pro_name
+			, o.ord_option
+			, r.review_date
+			, r.review_content
+			, r.review_star
+			, r.mem_email
+		from product p, review r, member_base m, order_detail o
+		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and 
+		  o.ord_no=r.ord_no and r.status ='Y' and r.pro_no = p.pro_no
+		  and r.mem_email = m.mem_email
+		  order by r.review_date desc 
+	</select> 
 	
 	
 	
@@ -223,18 +304,44 @@
 	
 	
 	
-	
-	<select id="isThereStock">
-		<if test="">
+	<select id="isThereStock" resultMap="sellersOrderListMap">
+		<if test="ordOption == 'WHITE'">
 			select pro_white_stock
 		</if>
-		<if test="">
+		<if test="ordOption == 'BLACK'">
 			select pro_black_stock
 		</if>
 		from product 
 		where pro_no = #{proNo}
 	</select>
 	
+	<update id="statusUpdate">
+		update order_detail set ord_status = 'Y' where ord_no = #{ ordNo }
+	</update>
+	
+	<update id="stockUpdate">
+		update product set
+		<if test="ordOption.equals('WHITE')">
+			pro_white_stock = pro_white_stock-#{ordCount}
+		</if>
+		<if test="ordOption.equals('BLACK')">
+			pro_black_stock = pro_black_stock-#{ordCount}
+		</if>
+		where pro_no = #{proNo}
+	</update>
+	<update id="sendPointToSeller">
+		update seller_base set sel_point = sel_point + (#{ordCount}*#{ordPrice}+50000) where sel_no = #{selNo}
+	</update>
+	
+	<update id="statusUpdateF">
+		update order_detail set ord_status = 'F' where ord_no = #{ ordNo }
+	</update>
+	<update id="refundPointToUser">
+		update member_base set mem_point = mem_point + (#{ordCount}*#{ordPrice}+50000) where mem_email = #{ordEmail}
+	</update>
+	<update id="payUserPoint">
+		update member_base set mem_point = mem_point - (#{ordCount}*#{ordPrice}+50000) where mem_email = #{ordEmail}
+	</update>
 	
 	
 </mapper>

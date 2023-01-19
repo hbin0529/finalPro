@@ -66,4 +66,12 @@ public class StoreBoardDao {
 		return (ArrayList)sqlSession.selectList("storeBoardMapper.arrayQuestionList", p); 
 	}
 	
+	public int insertReview(SqlSessionTemplate sqlSession, Product p) { 
+	      return sqlSession.insert("storeBoardMapper.insertReview", p);
+	   }
+	
+	public int deleteReview(SqlSessionTemplate sqlSession, int reviewNo) {
+		return sqlSession.update("storeBoardMapper.deleteReview", reviewNo); 
+	}
+	
 }

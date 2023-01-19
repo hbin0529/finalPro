@@ -103,7 +103,7 @@ $(function() {
     .review_detail table{ width: 800px; border-collapse: collapse; border-top: 1px solid gray;  border-top: 1px solid rgb(221, 221, 221); font-family: 'Pretendard-Regular';}
     #review_user_img{width: 25px; padding-left: 10px; padding-top: 20px;}
     #review_nickname{padding-left: 10px; padding-top: 20px; width: 40px; font-size: 13px; font-weight: bolder; color: rgb(77, 76, 76);;}
-    #review_date{font-size: 12px; color: rgb(77, 76, 76); padding-top: 3px;}
+    #review_date{font-size: 12px; color: rgb(77, 76, 76); padding-top: 3px; padding-left:10px;}
     #review_option{font-size: 13px; padding-left: 10px; padding-top: 5px; color: rgb(77, 76, 76);}
     #review_main_img{padding-left: 10px; width: 130px; padding-top: 10px;}
     #user_review{width: 130px; border-radius: 5px;}
@@ -193,7 +193,7 @@ $(function() {
                             <option value="WHITE">WHITE</option>
                         </select>
                     </div>
-                    <div id="proCntBox">
+                    <div id="proCntBox"> 
                         <select id="proCnt" style="margin-bottom: 30px;" name="countSelect">
                             <option>수량선택</option>
                             <option value="1">1</option>
@@ -221,8 +221,8 @@ $(function() {
 		                    </c:when>
 	                        <c:otherwise>
 	                        	<c:if test="${ not empty permit }">
-		                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
-		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
+		                        	 <div id="btnbtn"><a onclick="cartInsert()"><p id="buy">장바구니</p></a></div>
+		                             <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
 		                              <script type="text/javascript">
 		                                 function directBuy() {
 		                                	 if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
@@ -231,7 +231,21 @@ $(function() {
 		                                	 }
 		                                    hbInfo.submit();
 		                                 }
-		                            	  
+		                                 
+		                               	function cartInsert() {
+		                               		if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                                		 alert('옵션을 선택해주세요');
+		                                		 return;
+		                                	 } else {
+		                                	 var color = document.getElementById("colorSelect").value
+		                                	 document.getElementById("color_otp").value = color;
+		                                	 
+		                                	 var amount = document.getElementById("proCnt").value
+		                                	 document.getElementById("cart_amount").value = amount;
+		                                	 
+		                                	 cartForm.submit();
+		                                 	}
+		                               	} 
 		                              $(function(){
 		                              })
 		                              </script>
@@ -243,7 +257,7 @@ $(function() {
 	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
 	                        	</c:if>
 	                        	<c:if test="${ empty permit }">
-		                        	 <div id="btnbtn"><a href=""><p id="buy">장바구니</p></a></div>
+		                        	 <div id="btnbtn"><a onClick="directBuy()"><p id="buy">장바구니</p></a></div>
 		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
 		                              <script type="text/javascript">
 		                                 function directBuy() {                                    
@@ -259,6 +273,16 @@ $(function() {
 	                        	</c:if>
 	                        </c:otherwise>
                         </c:choose>
+						</form>
+						
+						<!-- 장바구니 누르면 아래것들 넘겨줘야함 -->
+						<form name="cartForm" action="cartInsert.ca" method="post" id="cartForm">
+							<input type="hidden" value="" id="color_otp" name="cartOption">
+							<input type="hidden" value="" id="cart_amount" name="cartAmount">
+							<input type="hidden" name="proPrice" value="${ p.proPrice }" >
+							<input type="hidden" name="proNo" value="${ p.proNo }">
+							<input type="hidden" name="selNo" value="${ p.selNo }">
+							<input type="hidden" name="memEmail" value="${ id }">
 						</form>
 						
 						<!-- 상품수정, 삭제시 post방식으로 넘겨주기 -->
@@ -529,14 +553,13 @@ $(function() {
 							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
-							  +			"<td id='review_option'>" + list[i].reviewStar + "</td>"
 							  +			"<td id='review_date'>" + list[i].reviewDate + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
 							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
-							  +			"<td colspan='3' id='review_main_img'><img src='${path}/resources/img/logo_user.png' id='user_review'></td>"		
+							  +			"<td colspan='3' id='review_main_img'><img src='${path}/" + list[i].reviewImgChange + "' id='user_review'></td>"		
 							  +  	"</tr>"
 							  +  	"<tr>"		
 							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  

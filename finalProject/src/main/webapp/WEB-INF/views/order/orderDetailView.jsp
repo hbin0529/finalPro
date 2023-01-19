@@ -9,6 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <c:if test="${ not empty alertMsg }">
+      <script>
+         alert("${ alertMsg }");
+      </script>
+      <c:remove var="alertMsg" scope="session" />
+   </c:if> 
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -103,7 +109,12 @@ at('woff');
     .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 70px;}
     .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
     .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
-    
+    .detail_body div img{
+    	max-height: 150px;
+    }
+    .order_count button{
+    	background-color: rgb(33, 217, 203); color:white;
+    }
 </style>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -130,6 +141,13 @@ at('woff');
     </section>
 
     <section class="sellerpage_main_body">
+    	
+    	<div class="order_count">
+            <div><p>총 보유 포인트</p></div>
+            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;">${ s.selPoint } POINT <button>환전하기</button></p></div>
+        </div>
+    
+    
         <div class="order_count">
             <div><p>주문내역</p></div>
             <div><p>1,234</p></div>
@@ -177,12 +195,21 @@ at('woff');
         		var ordCount = document.getElementById("oCount").value
         		var ordPrice = document.getElementById("oPrice").value
         		var proNo = document.getElementById("proNo").value
-        		location.href="orderConfirm.or?ordNo="+a+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo"+proNo;
+        		var ordEmail = document.getElementById("ordEmail").value
+        		location.href="orderConfirm.or?ordNo="+a+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo="+proNo+"&ordEmail="+ordEmail;
         	}
         	function orderCancel(b){
-        		//console.log(a+"취소")
-        		location.href="취소로 ㄱㄱ";
+        		var ordOption = document.getElementById("oOption").value
+        		var ordCount = document.getElementById("oCount").value
+        		var ordPrice = document.getElementById("oPrice").value
+        		var proNo = document.getElementById("proNo").value
+        		var ordEmail = document.getElementById("ordEmail").value
+        		location.href="orderCancel.or?ordNo="+b+"&selNo="+${selNo}+"&ordOption="+ordOption+"&ordCount="+ordCount+"&ordPrice="+ordPrice+"&proNo="+proNo+"&ordEmail="+ordEmail;
         	}
+        	
+        	$(function(){
+        		
+        	})
         </script>
         
         <div class="order_list">
@@ -195,7 +222,7 @@ at('woff');
 	                    <div>판매요청</div>
 	                </div>
 	                <div class="detail_body">
-	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div><img src="${ path }/${ order.proChangeImg }"></div>
 	                    <div class="detail_body_category">
 	                        <div>카테고리 | ${ order.cateName }</div>
 	                        <div>${ order.proName }</div>
@@ -211,6 +238,7 @@ at('woff');
 	                        <input type="hidden" value="${ order.ordCount }" id="oCount">
 	                        <input type="hidden" value="${ order.ordPrice }" id="oPrice">
 	                        <input type="hidden" value="${ order.proNo }" id="proNo">
+	                        <input type="hidden" value="${ order.ordEmail }" id="ordEmail">
 	                    </div>
 	                </div>
 	                <div class="detail_bottom">
@@ -226,7 +254,7 @@ at('woff');
 	                    <div style="background-color: #21d9cb; color: white;">판매완료</div>
 	                </div>
 	                <div class="detail_body">
-	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div><img src="${ path }/${ order.proChangeImg }"></div>
 	                    <div class="detail_body_category">
 	                        <div>카테고리 | ${ order.cateName }</div>
 	                        <div>${ order.proName }</div>
@@ -253,7 +281,7 @@ at('woff');
 	                    <div style="color: red;">판매취소</div>
 	                </div>
 	                <div class="detail_body">
-	                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+	                    <div><img src="${ path }/${ order.proChangeImg }"></div>
 	                    <div class="detail_body_category">
 	                        <div>카테고리 | ${ order.cateName }</div>
 	                        <div>${ order.proName }</div>

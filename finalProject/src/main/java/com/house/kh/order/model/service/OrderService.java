@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.order.model.dao.OrderDao;
 import com.house.kh.order.model.vo.Order;
@@ -50,8 +51,10 @@ public class OrderService {
 		return oDao.sellersOrderList(sqlSession, selNo);
 	}
 	
-	
-	
+	public ArrayList<Order> usersOrderList(String id){
+		return oDao.usersOrderList(sqlSession, id);
+	}
+	 
 	
 	// 상품 가져오기
 	
@@ -106,6 +109,28 @@ public class OrderService {
 		boolean isThereStockResult = oDao.isThereStock(sqlSession, o);
 		return isThereStockResult;
 	}
+	
+	public void processOrderConfirm(Order o) {
+		oDao.processOrderConfirm(sqlSession, o);
+	}
+	
+	public void orderCancel(Order o) {
+		oDao.orderCancel(sqlSession, o);
+	}
+	
+	public void payUserPoint(Order o) {
+		oDao.payUserPoint(sqlSession, o);
+	}
+	
+	
+	
+	
+	public ArrayList<Order> usersReviewList(String id){
+		return oDao.usersReviewList(sqlSession, id);
+	}
+	
+	
+	
 	
 	
 	
