@@ -77,5 +77,7 @@ public class Order {
 		private String reviewDate;
 		private String reviewStar;
 		private String memNick;
+		
+		private int aaa;
  
 }

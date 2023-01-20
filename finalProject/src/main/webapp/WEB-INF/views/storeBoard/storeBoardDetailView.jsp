@@ -156,6 +156,14 @@ $(function() {
     .type_label span{cursor: pointer; font-size: 20px; text-align: center; text-align: center; vertical-align: middle;}
     .modal-footer_text{text-align: left; font-size: 13px;}
 </style>
+<script>
+	function myPicture(itSrc){
+		$(function(){
+			$("#thisPlace").attr("src",itSrc);
+		})
+	}
+</script>
+
 
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -165,11 +173,11 @@ $(function() {
         <div class="main_body">
             <div class="product_header">
                 <div class="product_small_img">
-                    <div><img src="${path}/${p.proChangeImg}"></div>
-                    <div><img src="${path}/${p.proChangeImg1}"></div>
+                    <div><img src="${path}/${p.proChangeImg}" onclick="myPicture(this.src)"></div>
+                    <div><img src="${path}/${p.proChangeImg1}" onclick="myPicture(this.src)"></div>
                 </div>
                 <div class="product_main_img">
-                    <div><img src="${path}/${p.proChangeImg}"></div>
+                    <div><img src="${path}/${p.proChangeImg}" id="thisPlace"></div>
                 </div>
                 <div class="product_intro">
                     <div><p style="margin-bottom: 10px; color: rgb(109, 108, 108); font-size: 15px; font-weight: bold;">카테고리 | ${ p.cateName }</p></div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.order.model.service.OrderService;
@@ -71,15 +72,23 @@ public class OrderController {
 	} 
 	
 	@RequestMapping("sellerOrderList.or")
-	public String sellerOrderList(int selNo, Model model) {
+	public String sellerOrderList(int selNo, Model model,ModelAndView mv, Order order) {
+		System.out.println("메소드 실행 전");
+		/*
+		Order orderListCount = oService.orderListCount(selNo);
+		System.out.println(orderListCount.getAaa());
+		System.out.println("메소드 실행 후");
+		System.out.println(orderListCount);
+		*/
 		ArrayList<Order> getSellersOrderList = oService.sellersOrderList(selNo);
+		//model.addAttribute("orderListCount", orderListCount);
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
 		
 		
 	}
-
-
+	
+		
 	
 	
 	
@@ -194,6 +203,9 @@ public class OrderController {
 	public String search() {
 		return "common/searchResult";
 	}
+	
+	
+	
 	
 	
  }

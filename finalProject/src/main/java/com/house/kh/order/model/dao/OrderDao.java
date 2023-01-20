@@ -146,7 +146,12 @@ public class OrderDao {
 	
 	
 	
-	
-	
+	//오더 카운트세기
+	public Order orderListCount(SqlSessionTemplate sqlSession, int selNo) {
+		System.out.println("마이바티스 들어가기 전 selNo = " + selNo);
+		return sqlSession.selectOne("orderMapper.orderListCount", selNo);
+	}
+
+
 	
 }

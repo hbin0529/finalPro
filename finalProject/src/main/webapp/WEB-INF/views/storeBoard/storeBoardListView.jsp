@@ -27,7 +27,7 @@
     .store_product{display: flex; width:1000px; flex-wrap:wrap; padding-left:60px; padding-bottom:100px;}
     .store_product_list{ margin-top: 10px; margin-left: 50px; }
     .store_product_list img{width: 270px; height: 270px; margin-left: 15px; margin-top: 30px; border: 1px solid #dee2e6;}
-    .store_product_card{width: 290px; height: 380px; margin-left: -10px; font-family: 'Pretendard-Regular'; margin-bottom:30px;}
+    .store_product_card{width: 290px; height: 380px; margin-left: -10px; font-family: 'Pretendard-Regular'; margin-bottom:30px; cursor:pointer;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 14px;}
     .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; margin-top: 3px;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold; margin-top: 3px;}
@@ -74,7 +74,7 @@
 		                        <div class="store_product_img"><img src="${path}/${ p.proChangeImg }"></div>
 		                        <div class="store_product_seller"><p>${ p.selBusName }</p></div>
 		                        <div class="store_product_title"><p>${ p.proName }</p></div>
-		                        <div class="store_product_price"><p>${ p.proPrice }</p></div>
+		                        <div class="store_product_price"><p>${ p.proPrice } 원</p></div>
 		                        <div class="pcate" style="display:none;"><p>${ p.cateNo }</p></div>
 		                    </div>
 	                </div>
