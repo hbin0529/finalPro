@@ -142,7 +142,7 @@
 
  <!-- ----------------------------가구별 판매량 1위 첫번째행----------------------------------------- -->        
 
-         <div class="store_product_top_title"><h3><img src="../html/img/top_tropli.png" width="25px">가구별 판매량 1위</h3></div>
+         <div class="store_product_top_title"><h3><img src="${ path }/resources/img/top_tropli.png" width="25px">가구별 판매량 1위</h3></div>
      
     
             <div class="store_product" id="topBoardList">
@@ -170,7 +170,7 @@
             							  + 			"<div class='store_product_img'><img src=" + list[i].proChangeImg + "></div>"
             							  +				"<div class='store_product_seller'><p>" + list[i].selBusName + "</p></div>"
             							  +				"<div class='store_product_title'><p>" + list[i].proName + "</p></div>"
-            							  +				"<div class='store_product_price'><p>" + list[i].proPrice + " 포인트</p></div>"
+            							  +				"<div class='store_product_price'><p>" + list[i].proPrice + " 원</p></div>"
             							  +			"</a>"
             							  +	 	"</div>"
             							  +	"</div>"
@@ -187,7 +187,7 @@
             
 <!-- ----------------------------집들이 조회수 탑쓰리---------------------------------------- -->            
 
-	<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">집들이 조회수 TOP3</h3></div>
+	<div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="25px">집들이 조회수 TOP3</h3></div>
 	<div class="store_product" id="topBoardList2">
 	
 		<!-- 집들이 조회수가 가장 높은 상위 3개를 조회하여 보여주기(ajax) -->
@@ -229,7 +229,7 @@
 
 
 <!-- ---------------------------상품 조회 탑3----------------------------------------- --> 
-	<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">가구 조회수 TOP3</h3></div>
+	<div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="25px">가구 조회수 TOP3</h3></div>
 	<div class="store_product" id="topBoardList3">
 		
 		<!-- 현재 조회수가 가장 높은 상품 상위 3개를 조회하여 보여주기(ajax) -->
@@ -252,7 +252,7 @@
 							  + 		"<div class='store_product_img'><img src=" + list[i].proChangeImg + "></div>"
 							  +			"<div class='store_product_seller'><p>" + list[i].selBusName + "</p></div>"
 							  +			"<div class='store_product_title'><p>" + list[i].proName + "</p></div>"
-							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 포인트</p></div>"
+							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 원</p></div>"
 							  +			"</a>"
 							  +	 	"</div>"
 							  +	"</div>"
@@ -291,7 +291,7 @@
 							  + 		"<div class='store_product_img'><img src=" + list[i].proChangeImg + "></div>"
 							  +			"<div class='store_product_seller'><p>" + list[i].selBusName + "</p></div>"
 							  +			"<div class='store_product_title'><p>" + list[i].proName + "</p></div>"
-							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 포인트</p></div>"
+							  +			"<div class='store_product_price'><p>" + list[i].proPrice + " 원</p></div>"
 							  +			"</a>"
 							  +	 	"</div>"
 							  +	"</div>"
