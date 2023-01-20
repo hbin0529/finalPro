@@ -183,6 +183,7 @@
 				,pro_origin_detailimg = #{proOriginDetailimg}
 				,pro_change_detailimg = #{proChangeDetailimg}
 				,pro_origin_img1 = #{proOriginImg1}
+				,pro_change_img1 = #{proChangeImg1}
 		   where pro_no = #{proNo}
 	</update>
 	
