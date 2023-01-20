@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -178,11 +180,11 @@ public class StoreBoardController {
          String[] changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
          
          p.setProOriginImg(reupfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile" + changeName[0]);
+         p.setProChangeImg("resources/uploadFile/" + changeName[0]);
          p.setProOriginImg1(reupfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile" + changeName[1]);
+         p.setProChangeImg1("resources/uploadFile/" + changeName[1]);
          p.setProOriginDetailimg(reupfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile" + changeName[2]);
+         p.setProChangeDetailimg("resources/uploadFile/" + changeName[2]);
       }
       int result = sbService.proUpdateBoard(p);
       if(result > 0) {
@@ -218,4 +220,7 @@ public class StoreBoardController {
          return "common/errorPage";
       }
    }  
+
+   
+   
 }
