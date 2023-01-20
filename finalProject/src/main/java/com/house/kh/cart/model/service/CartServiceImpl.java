@@ -48,7 +48,14 @@ public class CartServiceImpl implements CartService {
 	public ArrayList<Cart> selectProList() {
 		return cDao.selectProList(sqlSession);
 	}
-	
-	
+
+	/*
+	 * @Override public int increaseProCount(int proNo) { return
+	 * cDao.increaseCount(sqlSession, proNo); }
+	 * 
+	 * @Override public Cart selectProBoard(int proNo) { return
+	 * cDao.selectProBoard(sqlSession, proNo); }
+	 */
+
 
 }

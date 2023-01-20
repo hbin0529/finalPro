@@ -37,4 +37,13 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectProList");
 	}
 	
+	/*
+	 * //셀러페이지>클릭시 조회수올리기 public int increaseCount(SqlSessionTemplate sqlSession,
+	 * int proNo) { return sqlSession.update("cartMapper.increaseProCount", proNo);
+	 * }
+	 * 
+	 * //셀러페이지>클릭시 디테일보여주기 public Cart selectProBoard(SqlSessionTemplate sqlSession,
+	 * int proNo) { return sqlSession.selectOne("cartMapper.selectProBoard", proNo);
+	 * }
+	 */
 }
