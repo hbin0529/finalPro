@@ -191,6 +191,10 @@
 	
 		<!-- 집들이 조회수가 가장 높은 상위 3개를 조회하여 보여주기(ajax) -->
 		
+	</div>
+	
+	
+	
     <script type="text/javascript">
 		$(function() {
 			topStoreBoardList2();
@@ -222,8 +226,7 @@
 		}
 	</script>
 	
-	    
-	</div>
+
 
 <!-- ---------------------------상품 조회 탑3----------------------------------------- --> 
 	<div class="store_product_top_title"><h3><img src="../html/img/greate_img.png" width="25px">가구 조회수 TOP3</h3></div>

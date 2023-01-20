@@ -1,4 +1,4 @@
-package com.house.kh.test.model.vo;
+package com.house.kh.main.model.vo;
 
 import com.house.kh.seller.model.vo.Seller;
 
@@ -10,7 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Data
-public class Test {
+public class Main {
 	private int proNo;
 	private int selNo;
 	private int cateNo;

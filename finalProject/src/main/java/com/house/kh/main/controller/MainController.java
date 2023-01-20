@@ -1,4 +1,4 @@
-package com.house.kh.test.controller;
+package com.house.kh.main.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,22 +18,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.house.kh.main.model.service.MainService;
+import com.house.kh.main.model.vo.Main;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
 import com.house.kh.storeBoard.model.vo.Product;
-import com.house.kh.test.model.service.TestService;
-import com.house.kh.test.model.vo.Test;
 
 @Controller
-public class TestController {
+public class MainController {
    @Autowired
-   private TestService tService;
+   private MainService mService;
 
 
    /* 메인페이지 카테고리별 상품 TOP1 리스트 불러오기 sbService*/
    @ResponseBody
 	@RequestMapping(value="topStoreBoardList.bo", produces="application/json; charset=UTF-8")
 	public String ajaxTopStoreBoardList() {
-		ArrayList<Test> list = tService.topStoreBoardList();
+		ArrayList<Main> list = mService.topStoreBoardList();
 		return new Gson().toJson(list);
 	}
    
@@ -41,7 +41,7 @@ public class TestController {
    @ResponseBody
 	@RequestMapping(value="topStoreBoardList2.bo", produces="application/json; charset=UTF-8")
 	public String ajaxTopStoreBoardList2() {
-		ArrayList<Test> list = tService.topStoreBoardList2();
+		ArrayList<Main> list = mService.topStoreBoardList2();
 		return new Gson().toJson(list);
 	}
    
@@ -50,7 +50,7 @@ public class TestController {
 	@RequestMapping(value="topStoreBoardList3.bo", produces="application/json; charset=UTF-8")
 	public String ajaxTopStoreBoardList3() {
 	   System.out.println("왜안되나요?");
-		ArrayList<Test> list = tService.topStoreBoardList3();
+		ArrayList<Main> list = mService.topStoreBoardList3();
 		return new Gson().toJson(list);
 	}
    
@@ -58,7 +58,7 @@ public class TestController {
    @ResponseBody
 	@RequestMapping(value="topStoreBoardList4.bo", produces="application/json; charset=UTF-8")
 	public String ajaxTopStoreBoardList4() {
-		ArrayList<Test> list = tService.topStoreBoardList4();
+		ArrayList<Main> list = mService.topStoreBoardList4();
 		return new Gson().toJson(list);
 	}
    
