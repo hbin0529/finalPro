@@ -1,11 +1,11 @@
-package com.house.kh.test.model.service;
+package com.house.kh.main.model.service;
 
 import java.util.ArrayList;
 
+import com.house.kh.main.model.vo.Main;
 import com.house.kh.storeBoard.model.vo.Product;
-import com.house.kh.test.model.vo.Test;
 
-public interface TestService {
+public interface MainService {
 	// 게시판리스트 카운트
 	int selectListCount();
 	int selectCateListCount(Product product);
@@ -44,18 +44,18 @@ public interface TestService {
 		
 	
 	// 카테고리별 Top1(8개) 조회수 리스트 (ajax)
-	ArrayList<Test> topStoreBoardList();
+	ArrayList<Main> topStoreBoardList();
 	
 	
 	// 집들이 조회수 TOP3 리스트 (ajax)
-	ArrayList<Test> topStoreBoardList2();
+	ArrayList<Main> topStoreBoardList2();
 	
 	
 	// 전체상품 조회수 Top3 리스트 (ajax)	
-	ArrayList<Test> topStoreBoardList3();
+	ArrayList<Main> topStoreBoardList3();
 	
 	
 	// 전체 상품 리스트 (ajax)	
-	ArrayList<Test> topStoreBoardList4();
+	ArrayList<Main> topStoreBoardList4();
 
 }

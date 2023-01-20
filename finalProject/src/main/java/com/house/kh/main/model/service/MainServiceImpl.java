@@ -1,4 +1,4 @@
-package com.house.kh.test.model.service;
+package com.house.kh.main.model.service;
 
 import java.util.ArrayList;
 
@@ -6,16 +6,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.main.model.dao.MainDao;
+import com.house.kh.main.model.vo.Main;
 import com.house.kh.storeBoard.model.dao.StoreBoardDao;
 import com.house.kh.storeBoard.model.vo.Product;
-import com.house.kh.test.model.dao.TestDao;
-import com.house.kh.test.model.vo.Test;
 
 @Service
-public class TestServiceImpl implements TestService{
+public class MainServiceImpl implements MainService{
 	
 	@Autowired //객체 자동생성 변수 만들어주기
-	private TestDao tDao;
+	private MainDao mDao;
 	
 	@Autowired //객체 자동생성 변수 만들어주기
 	private SqlSessionTemplate sqlSession;
@@ -23,23 +23,23 @@ public class TestServiceImpl implements TestService{
 
 	
 	@Override
-	public ArrayList<Test> topStoreBoardList() {
-		return tDao.topStoreBoardList(sqlSession);
+	public ArrayList<Main> topStoreBoardList() {
+		return mDao.topStoreBoardList(sqlSession);
 	}
 	
 	@Override
-	public ArrayList<Test> topStoreBoardList2() {
-		return tDao.topStoreBoardList2(sqlSession);
+	public ArrayList<Main> topStoreBoardList2() {
+		return mDao.topStoreBoardList2(sqlSession);
 	}
 	
 	@Override
-	public ArrayList<Test> topStoreBoardList3() {
-		return tDao.topStoreBoardList3(sqlSession);
+	public ArrayList<Main> topStoreBoardList3() {
+		return mDao.topStoreBoardList3(sqlSession);
 	}
 	
 	@Override
-	public ArrayList<Test> topStoreBoardList4() {
-		return tDao.topStoreBoardList4(sqlSession);
+	public ArrayList<Main> topStoreBoardList4() {
+		return mDao.topStoreBoardList4(sqlSession);
 	}
 
 

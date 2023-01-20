@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="testMapper">
-	<resultMap type="Test" id="storeBoardResult">
+<mapper namespace="mainMapper">
+	<resultMap type="Main" id="storeBoardResult">
 		<result column="pro_no" property="proNo" />
 		<result column="sel_no" property="selNo" />
 		<result column="cate_no" property="cateNo" />
@@ -51,12 +51,19 @@
 		<result column="que_reply_content" property="queReplyContent" />
 		<result column="que_reply_date" property="queReplyDate" />
 		<result column="pqr_status" property="pqrStatus" />
+		<!-- 집들이 -->
+		<result column="board_no" property="boardNo" />
+		<result column="board_mainimg_change" property="boardMainImgChange" />
+		<result column="home_familyv" property="homeFamily" />
+		<result column="home_option" property="homeOption" />
+		<result column="board_title" property="boardTitle" />
+		<result column="board_count" property="boardCount" />
 	</resultMap>
 
 	<!-- 카테고리별 조회수 TOP1 리스트 조회 -->
 	<select id="topStoreBoardList" resultMap="storeBoardResult">
 		select a.*, b.sel_bus_name
-		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no,
+		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no, pro_no,
 		rank() OVER (PARTITION BY cate_no ORDER BY pro_count desc, pro_price desc) as ranking
 		from product) a,
 		seller_base b
@@ -66,7 +73,7 @@
 	
 	<!-- 집들이 조회수 TOP3 리스트 조회 -->
 	<select id="topStoreBoardList2" resultMap="storeBoardResult">
-		select BOARD_MAINIMG_CHANGE, HOME_FAMILYV, HOME_OPTION, BOARD_TITLE, board_count
+		select BOARD_MAINIMG_CHANGE, HOME_FAMILYV, HOME_OPTION, BOARD_TITLE, board_count, board_no
 		from (select r.*, rownum from board_home r order by board_count desc)
 		where rownum between 1 and 3
 	</select>
@@ -78,6 +85,7 @@
 				   , sb.sel_bus_name
 				   , pro.pro_name
 				   , pro.pro_price
+				   , pro.pro_no
 			  from product pro, seller_base sb
 			  where pro.sel_no = sb.sel_no
 			  and status = 'Y'
@@ -93,6 +101,7 @@
 			   , pro.pro_name
 			   , pro.pro_price
 		       , pro.pro_up_date
+		       , pro.pro_no
 			from product pro, seller_base sb
 			where pro.sel_no = sb.sel_no
 			and status = 'Y'
