@@ -71,11 +71,11 @@
 	                <div class="store_product_list">
 		            		<div class="store_product_card">
 		                        <div class="pno" style="display:none ">${ p.proNo }</div>
-		                        <div class="store_product_img"><img src="${path}/resources/img/product/${ p.proName }1.png"></div>
+		                        <div class="store_product_img"><img src="${path}/${ p.proChangeImg }"></div>
 		                        <div class="store_product_seller"><p>${ p.selBusName }</p></div>
 		                        <div class="store_product_title"><p>${ p.proName }</p></div>
 		                        <div class="store_product_price"><p>${ p.proPrice }</p></div>
-		                        <div class="pcate"><p>${ p.cateNo }</p></div>
+		                        <div class="pcate" style="display:none;"><p>${ p.cateNo }</p></div>
 		                    </div>
 	                </div>
 				</c:forEach>
@@ -96,25 +96,7 @@
             		})
             	})
             </script>
-            
-         	<!-- 무한스크롤 -->
-            <script>
-	            $(document).ready(function () {
-	            	  $(document).scroll(function() {
-	            	    var maxHeight = $(document).height();
-	            	    var currentScroll = $(window).scrollTop() + $(window).height();
-	
-	            	    if (maxHeight <= currentScroll + 100) {
-	            	      $.ajax({
-	            	        url: 'http://webisfree.com/test_api/',
-	            	        success: function (html, status) {
-	            	          // Append next contents
-	            	        }
-	            	      })
-	            	    }
-	            	  })
-	            	});
-            </script>
+
      
     </section>
     

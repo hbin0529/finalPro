@@ -19,6 +19,7 @@
 		<result column="pro_change_detailimg" property="proChangeDetailimg" />
 		<result column="status" property="status" />
 		<result column="pro_count" property="proCount" />
+		<result column="mem_img" property="memImg" />
 		<!-- SELLER -->
 		<result column="sel_bus_name" property="selBusName" />
 		<result column="sel_email" property="selEmail" />
@@ -70,6 +71,7 @@
 	<select id="selectList" resultType="Product" resultMap="storeBoardResult"> 
 		select pro_no
 			 , pro.pro_origin_img
+			 , pro.pro_change_img
 			 , sb.sel_no
 			 , sb.sel_bus_name
 			 , sb.sel_name
@@ -134,7 +136,7 @@
 	</select>
 	
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
-		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option, r.review_img_change
+		select r.pro_no, m.mem_nick, m.mem_img, r.review_date, r.review_img_origin, r.review_content, r.review_star, o.ord_option, r.review_img_change, m.mem_img
 			from product p, review r, member_base m, order_detail o
 		  where r.pro_no=p.pro_no and m.mem_email=r.mem_email and o.ord_no=r.ord_no and r.status ='Y' and r.pro_no = #{proNo}
 		  order by r.review_date desc
