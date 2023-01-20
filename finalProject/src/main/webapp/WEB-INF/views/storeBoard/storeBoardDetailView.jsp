@@ -107,10 +107,10 @@ $(function() {
     #review_date{font-size: 12px; color: rgb(77, 76, 76); padding-top: 3px; padding-left:10px;}
     #review_option{font-size: 13px; padding-left: 10px; padding-top: 5px; color: rgb(77, 76, 76);}
     #review_main_img{padding-left: 10px; width: 130px; padding-top: 10px;}
-    #user_review{width: 130px; border-radius: 5px;}
+    #user_review{border-radius: 5px;   width: 150px; height: 150px;}
     #review_text{font-size: 15px; padding-left: 10px; padding-top: 10px; padding-bottom: 40px;}
     #user_review_star{padding-left: 10px; width: 90px; color: #21d9cb; font-size: 16px;}
-    #user_img{width: 25px;}
+    #user_img{width: 40px; width: 40px; border-radius:50%;}
     .review_paiging{text-align: center; margin-bottom: 30px; margin-top: 20px; font-family: 'Pretendard-Regular';}
     
     /*-----------------------------------  문의하기 -----------------------------------*/
@@ -316,13 +316,13 @@ $(function() {
                 <!--메뉴바-->
                 <div class="body_category">
                     <div class="product_body_category">
-                            <div><p style="width: 220px; margin-left: 680px; "><a href="">상품정보</a></p></div>
+                            <div><p style="width: 220px; margin-left: 680px; "><a href="#tag3">상품정보</a></p></div>
                             <div class="product_body_category_review" style="width: 220px;">
-                                <div><p style="margin-right: 10px;">리뷰</p></div>
+                                <div><a href="#tag2"><p style="margin-right: 10px;">리뷰</p></div>
                                 <div><p style="color: gray;"><span id="rcount1">0</span></p></div>
                             </div>
                             <div class="product_body_category_question" style="width: 220px;">
-                                <div><a href=""><p style="margin-right: 10px;">문의</p></div>
+                                <div><a href="#tag1"><p style="margin-right: 10px;">문의</p></div>
                                 <div><p style="color: gray;" id="qcount">0</p></a></div>
                             </div>
                         </div>
@@ -334,7 +334,7 @@ $(function() {
                     <!--왼쪽 상품정보-->
                     <div class="left_detail_img">
                         <!--상품정보-->
-                        <p style="font-weight: bolder; font-size: 20px;">상품정보</p><br><br>
+                        <a id="tag3"><p style="font-weight: bolder; font-size: 20px;">상품정보</p><br><br></a>
                         <div style="text-align: center;"><img src="${path}/${p.proChangeDetailimg }" id="detail_img"></div>
                         <table class="detail_information_table">
                             <tr>
@@ -366,8 +366,8 @@ $(function() {
 
                         <!--리뷰별점-->
                         <div class="bottom_review">
-                            <div class="bottom_review_star">
-                                <p>리뷰</p>
+                            <div class="bottom_review_star"> 
+                                <a id="tag2"><p>리뷰</p></a>
                                 <p style="color: #21d9cb; padding-left: 10px;"><span id="rcount2">0</span></p>
                             </div>
                             <div style="display: flex;">
@@ -381,32 +381,32 @@ $(function() {
                                             <tr>
                                                 <td>5점</td>
                                                 <td>★★★★★</td>
-                                                <td>10</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>4점</td>
                                                 <td>★★★★</td>
-                                                <td>10</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>3점</td>
                                                 <td>★★★</td>
-                                                <td>10</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>2점</td>
                                                 <td>★★</td>
-                                                <td>10</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>1점</td>
                                                 <td>★</td>
-                                                <td>10</td>
+                                                <td>10개</td>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                         
                         <!--리뷰상세-->
@@ -474,8 +474,8 @@ $(function() {
                         <!--문의-->
                         <div>
                             <!--문의상단 바-->
-                            <div class="bottom_question_title">
-                                <p>문의</p>
+                           <div class="bottom_question_title">
+                                <a id="tag1"><p>문의</p></a>
                                 <p id="qcount1">0</p>
                                 	<c:choose>
 	                                	<c:when test="${ empty id }">
@@ -485,6 +485,7 @@ $(function() {
 	                                		<div><button type="button" data-toggle="modal" data-target="#myModal">문의하기</button></div>
 	                                	</c:otherwise>		
                                 	</c:choose>
+                                 	
                             </div>
                             
                             <!--질문답변-->
@@ -550,8 +551,8 @@ $(function() {
 							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/" + list[i].memImg + " ' id='user_img'></td>"
 							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
 							  +  	"</tr>"
-							  +  	"<tr>"
-							  +			"<td id='review_date'>" + list[i].reviewStar + "&ensp;" + list[i].reviewDate + "</td>"
+							  +  	"<tr>" 
+							  +  "<td id='review_date'>"  +list[i].reviewDate + "</td>"     
 							  +  	"</tr>"
 							  +  	"<tr>"
 							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"

@@ -52,4 +52,5 @@ public interface StoreBoardService {
 	/* --------------------------리뷰 삭제하기 (김수연)--------------------------------*/
 
 	int deleteReview(int reviewNo);
+	
 }
