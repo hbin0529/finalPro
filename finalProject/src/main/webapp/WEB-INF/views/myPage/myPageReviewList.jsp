@@ -41,10 +41,10 @@
 
 <section class="mypage_main_body">
 <form action="reviewdelete.bo" method="post">
-        <div class="mypage_product_review">
-           
+        <div class="mypage_product_review"> 
       <c:forEach var="order" items="${ o }">
         <input type="hidden" name="reviewNo" value="${ order.reviewNo }">   
+           <c:if test="${ id eq order.memEmail }">
             <table class="mypage_product_review_table">
                 <tr>
                     <td colspan="2" style="text-align: right;">
@@ -57,15 +57,30 @@
                 <tr>
                     <td colspan="2" >색상 : ${ order.ordOption }</td>
                 </tr>
-                <tr>
-                    <td width="25px" style="font-size: 25px; color: #21d9cb;">${ order.reviewStar }</td>
-                    <td style="padding-top: 5px; color: rgb(172, 172, 172);">주문일자 ${ order.reviewDate }</td>
+                <tr> 
+	          	 <c:if test="${  order.reviewStar eq '5' }">
+                    <td width="25px" style="font-size: 25px; color: #21d9cb;">★★★★★</td>
+                  </c:if>  
+                  <c:if test="${  order.reviewStar eq '4' }">
+                    <td width="25px" style="font-size: 25px; color: #21d9cb;">★★★★</td>
+                  </c:if>  
+                  <c:if test="${  order.reviewStar eq '3' }">
+                    <td width="25px" style="font-size: 25px; color: #21d9cb;">★★★</td>
+                  </c:if>  
+                  <c:if test="${  order.reviewStar eq '2' }">
+                    <td width="25px" style="font-size: 25px; color: #21d9cb;">★★</td>
+                  </c:if>  
+                  <c:if test="${  order.reviewStar eq '1' }">
+                    <td width="25px" style="font-size: 25px; color: #21d9cb;">★</td>
+                  </c:if>   
+                    <td style="padding-top: 5px; color: rgb(172, 172, 172);">작성일자 ${ order.reviewDate }</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top: 10px; padding-bottom: 20px;">${ order.reviewContent }
                     </td>
                 </tr>
             </table>
+            </c:if>
            </c:forEach>  
         </div>  
       </form>  
