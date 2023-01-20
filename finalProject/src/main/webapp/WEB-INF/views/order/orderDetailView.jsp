@@ -118,27 +118,7 @@ at('woff');
 </style>
 <body>
     <jsp:include page="../common/header.jsp"/>
-
-
-
-	
-
-    <!--마이페이지 메뉴바-->
-    <section>
-        <div class="mypage_body">
-            <div class="mypage_category">
-                <table>
-                    <tr>
-                        <td><a href="" id="mypage_menu">판매상품</a></td>
-                        <td><a href="" id="mypage_menu" style="color: #21d9cb;">주문내역</a></td>
-                        <td><a href="" id="mypage_menu">답변내역</a></td>
-                        <td><a href="" id="mypage_menu">개인정보수정</a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <hr>
-    </section>
+	<jsp:include page="../common/sellerPageHeader.jsp"/>
 
     <section class="sellerpage_main_body">
     	
