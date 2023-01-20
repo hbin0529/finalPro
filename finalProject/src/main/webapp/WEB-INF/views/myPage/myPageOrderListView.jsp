@@ -149,6 +149,68 @@
     } 
     
 </style> 
+<script>
+	function insertInfoToModal(clickNum){
+		
+		var n = Number(clickNum);
+		<c:set var="modalInfo" value="${ o }"/>
+		
+		var cateName = [
+		<c:forEach var="mm" items="${o}">	
+		'카테고리 | ${ mm.cateName}',
+		</c:forEach>
+			's'
+		]
+		
+		var proName = [
+		<c:forEach var="mm" items="${o}">		
+			'${mm.proName}',
+		</c:forEach>
+			's'
+		]
+		
+		var priceAndCount = [
+		<c:forEach var="mm" items="${o}">		
+			'${ mm.ordPrice } POINT | ${ mm.ordCount } 개',
+		</c:forEach>
+			's'
+		]
+		
+		var ordNo = [
+		<c:forEach var="mm" items="${o}">		
+			'${mm.ordNo}',
+		</c:forEach>
+			's'
+		]
+		
+		var proNo = [
+		<c:forEach var="mm" items="${o}">		
+			'${mm.proNo}',
+		</c:forEach>
+			's'
+		]
+		
+		var proImg = [
+		<c:forEach var="mm" items="${o}">
+			'${mm.proChangeDetailimg}',
+		</c:forEach>
+			's'
+		]
+		
+		
+		$(function(){
+			$("#cateName").text(cateName[clickNum-1]);
+			$("#proName").text(proName[clickNum-1]);
+			$("#priceAndCount").text(priceAndCount[clickNum-1]);
+			$("#ordNo").val(ordNo[clickNum-1]);
+			$("#proNo").val(proNo[clickNum-1]);
+			$("#proImg").attr("src","${ path }/"+proImg[clickNum-1])
+		})
+		
+		
+		//document.getElementById("proName").value = 'x[clickNum-1]';
+	}
+</script>
   
   <body>
 
@@ -160,7 +222,7 @@
         <div class="order_list">
             <div class="order_list_detail"> 
             
-        <c:forEach var="order" items="${ o }">
+        <c:forEach var="order" items="${ o }" varStatus="status">
         
              <!-- 주문확정했을떄 -->
             	<c:if test="${ order.ordStatus eq 'Y'}">      
@@ -170,7 +232,7 @@
                     
                 </div>
                 <div class="detail_body">
-                    <div><img src="${ path }/resources/img/detail_content_buy_img01.jpeg"></div>
+                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
                     <div class="detail_body_category">
                         <div>카테고리 | ${ order.cateName }</div>
                         <div>${ order.proName }</div>
@@ -180,7 +242,7 @@
                         <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
                     </div>
                     <div class="detail_body_button">
-                       <button type="button" data-toggle="modal" data-target="#myModal" id="review_write_button">리뷰작성</button>
+                       <button type="button" data-toggle="modal" data-target="#myModal" id="review_write_button" onclick="insertInfoToModal(this.value);" value="<c:out value="${status.count}" />">리뷰작성</button>
                     </div>
                 </div>
                 <div class="detail_bottom">
@@ -250,17 +312,17 @@
        </div> 
         <div class="modal-body">
            <div class="review_top_buyimg">
-              <img src="${ path }/resources/img/detail_content_buy_img01.jpeg">
+              <img src="${ path }/resources/img/detail_content_buy_img01.jpeg" id="proImg">
                   <div class="review_top_buy_text"> 
-                     <div class="review_top_buy_seller">카테고리 | ${ order.cateName }</p></div>
-                     <div class="review_top_buy_title"><p>${ order.proName }</p></div>
-                     <div class="review_top_buy_price"><p>${ order.ordPrice } POINT | ${ order.ordCount } 개</p></div>
+                     <div class="review_top_buy_seller"><p id="cateName">카테고리 | ${ order.cateName }</p></div>
+                     <div class="review_top_buy_title"><p id="proName">${ order.proName }</p></div>
+                     <div class="review_top_buy_price"><p id="priceAndCount">${ order.ordPrice } POINT | ${ order.ordCount } 개</p></div>
                    </div>  
              </div>  <!--review_top_buyimg까지-->
              <form action="reviewinsert.bo" method="post" enctype="multipart/form-data">
                <input type="hidden" name="memEmail" value="${ id }">
-               <input type="hidden" name="ordNo" value="${ order.ordNo }">
-               <input type="hidden" name="proNo" value="${ order.proNo }">
+               <input type="hidden" name="ordNo" id="ordNo" value="${ order.ordNo }">
+               <input type="hidden" name="proNo" id="proNo" value="${ order.proNo }">
                 <div class="review_buy_star"> 
                     <h5 class="review_title">별점평가</h5> 
                     <div class="review_buy_star_detail">

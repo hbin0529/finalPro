@@ -75,6 +75,8 @@ public class OrderController {
 		ArrayList<Order> getSellersOrderList = oService.sellersOrderList(selNo);
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
+		
+		
 	}
 
 
