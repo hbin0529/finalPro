@@ -76,4 +76,26 @@
 			set cart_status = 'N'
 		  where cart_no = #{cartNo}
 	</update>
+	
+	<select id="selectProListCount" resultType="_int">
+		select count(*)
+			from product p, seller_base s
+		  where p.status = 'Y' and p.sel_no = s.sel_no
+	</select>
+	
+	<select id="selectProList" resultType="Cart" resultMap="cartResult"> 
+		select p.pro_no
+			 , p.pro_origin_img
+			 , p.pro_change_img
+			 , p.pro_name
+			 , p.pro_price
+			 , p.cate_no
+			 , s.sel_no
+			 , s.sel_bus_name
+		  from product p, seller_base s
+		  where p.sel_no = s.sel_no 
+		  and p.status = 'Y'
+		 order by pro.pro_no desc
+	</select>
+	
 </mapper>

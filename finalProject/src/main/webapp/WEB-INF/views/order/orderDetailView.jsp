@@ -191,6 +191,7 @@ at('woff');
         </div>
 		<script>
         	function orderConfirm(a){
+        		
         		var ordOption = document.getElementById("oOption").value
         		var ordCount = document.getElementById("oCount").value
         		var ordPrice = document.getElementById("oPrice").value

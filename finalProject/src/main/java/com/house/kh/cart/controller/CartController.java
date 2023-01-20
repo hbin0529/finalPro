@@ -60,6 +60,19 @@ public class CartController {
       }
    }  
    
+   /* 셀러페이지 상품리스트 */
+   @RequestMapping("sellerProduct.se")
+   public ModelAndView selectList(Cart cart,ModelAndView mv, Model model) {
+      int listCount = 0;
+      ArrayList<Cart> list = new ArrayList<Cart>();
+         list = cartService.selectProList();
+         listCount = cartService.selectProListCount();
+      mv.addObject("list", list);
+      model.addAttribute("listCount", listCount);
+      mv.setViewName("sellerPage/sellerPageProduct");
+
+      return mv;
+   }
 
 }
 
