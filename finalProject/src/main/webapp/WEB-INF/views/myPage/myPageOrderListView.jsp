@@ -294,7 +294,7 @@
                         <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
                     </div>
                     <div class="detail_body_button">
-                        <div><button id="review_write_button_no">리뷰작성</button></div>
+                        <div><button id="review_write_button_no">취소</button></div>
                     </div>
                 </div>
             </c:if> 

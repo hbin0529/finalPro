@@ -137,6 +137,20 @@
 	 	<result column="cate_name" property="cateName" />
 	 	<result column="ord_no" property="ordNo" /> 
 	 	<result column="pro_no" property="proNo" /> 
+	 	<result column="review_no" property="reviewNo" />
+		<result column="ord_no" property="ordNo" />
+		<result column="mem_email" property="memEmail" />
+		<result column="review_img_origin" property="reviewImgOrigin" />
+		<result column="review_img_change" property="reviewImgChange" />
+		<result column="review_content" property="reviewContent" />
+		<result column="review_date" property="reviewDate" />
+		<result column="review_star" property="reviewStar" />
+		<result column="mem_nick" property="memNick" />
+		<result column="ord_option" property="ordOption" />
+		<result column="pro_name" property="proName" />
+		<result column="ord_option" property="ordOption" />
+		<result column="pro_no" property="proNo" />
+		<result column="mem_email" property="memEmail"/>
 	 </resultMap>
 	 
 	  <resultMap type="Order" id="usersReviewListMap">
@@ -237,7 +251,8 @@
 		   select r.pro_no
 			, p.pro_name
 			, o.ord_option
-			, r.review_date
+			, r.review_date 
+			, r.review_no 
 			, r.review_content
 			, r.review_star
 			, r.mem_email

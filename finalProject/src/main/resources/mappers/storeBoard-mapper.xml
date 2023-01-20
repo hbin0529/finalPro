@@ -223,11 +223,7 @@
 			set status = 'N'
 		  where review_no = #{reviewNo}
 	</update>
-   
-   
-   
-	
-	
+    
 	
  </mapper>
 
