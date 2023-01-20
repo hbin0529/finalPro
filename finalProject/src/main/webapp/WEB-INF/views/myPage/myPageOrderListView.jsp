@@ -210,6 +210,7 @@
 		
 		//document.getElementById("proName").value = 'x[clickNum-1]';
 	}
+	
 </script>
   
   <body>
@@ -241,7 +242,7 @@
                         <div>옵션 | ${ order.ordOption }</div>
                         <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
                     </div>
-                    <div class="detail_body_button">
+                    <div class="detail_body_button order${ order.ordNo }">
                        <button type="button" data-toggle="modal" data-target="#myModal" id="review_write_button" onclick="insertInfoToModal(this.value);" value="<c:out value="${status.count}" />">리뷰작성</button>
                     </div>
                 </div>
