@@ -99,9 +99,8 @@
 	                <td id="realPrice" style="display:none;">${ c.proPrice } </td>
 	            </tr>
 	            <tr id="bottom_table">
-	            	<c:set var="sumPrice" value="${ c.proPrice  * c.cartAmount}" />
 	                <td colspan="2" id="amount"><span>수량 |</span>  ${ c.cartAmount } 개</td>
-	                <td colspan="3" id="cart_table_price">합계 | &ensp;<c:out value="${ sumPrice }"/> 원</td>
+	                <td colspan="3" id="cart_table_price">합계 | &ensp;${ c.proPrice  * c.cartAmount} 원</td>
 	            </tr>
 	        </table>
 	    </form>
