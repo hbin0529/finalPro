@@ -96,7 +96,7 @@ public class StoreBoardController {
    }
    
    // 파일 이름바꾸는거 메소드로 정의한것 !
-      public String changeFilename(MultipartFile upfile,MultipartFile upfile1, MultipartFile upfile2, HttpSession session) {
+      public String[] changeFilename(MultipartFile upfile,MultipartFile upfile1, MultipartFile upfile2, HttpSession session) {
          String originName = upfile.getOriginalFilename();
                          upfile1.getOriginalFilename();
                          upfile2.getOriginalFilename();
@@ -104,34 +104,39 @@ public class StoreBoardController {
          String currentTime = new SimpleDateFormat("yyyyMMdddHHmmss").format(new Date());
          int ranNum = (int)(Math.random() * 90000 + 10000); //10000~99999까지 랜덤값
          String ext = originName.substring(originName.lastIndexOf(".")); //이름제일 뒤에서 .뒤에있는것 추출하기 (.jpg)
-         String changeName = currentTime + ranNum + ext;
+         String changeName = currentTime + ranNum + "0" + ext;
+         String changeName1 = currentTime + ranNum + "1" + ext;
+         String changeName2 = currentTime + ranNum + "2" + ext;
          
          //업로드 시키고자하는 폴더의 물리적인 경로 알아오기
          String savePath = session.getServletContext().getRealPath("/resources/uploadFile/");
-         
+         String[] changeNameArray = {changeName, changeName1, changeName2};
          try {
             upfile.transferTo(new File(savePath + changeName));
-            upfile1.transferTo(new File(savePath + changeName));
-            upfile2.transferTo(new File(savePath + changeName));
+            upfile1.transferTo(new File(savePath + changeName1));
+            upfile2.transferTo(new File(savePath + changeName2));
          } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
          }
-         return changeName;
+         return changeNameArray;
       }
    
    
    @RequestMapping("proInsert.bo") //게시글 입력후 데이터에 넣어주기
-   public String insertProduct(Product p, MultipartFile upfile,MultipartFile upfile1, MultipartFile upfile2, HttpSession session, Model model, String selNo2) {
-      p.setSelNo(Integer.parseInt(selNo2));
+   public String insertProduct(Product p, MultipartFile upfile, MultipartFile upfile1, MultipartFile upfile2, HttpSession session, Model model, String selNo2) {
+	   System.out.println(upfile);
+	   System.out.println(upfile1);
+	   System.out.println(upfile2);
          
-         String changeName = changeFilename(upfile, upfile1, upfile2, session);
+	   p.setSelNo(Integer.parseInt(selNo2));
+         String[] changeName = changeFilename(upfile, upfile1, upfile2, session);
 
          p.setProOriginImg(upfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile/" + changeName);
+         p.setProChangeImg("resources/uploadFile/" + changeName[0]);
          p.setProOriginImg1(upfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile/" + changeName);
+         p.setProChangeImg1("resources/uploadFile/" + changeName[1]);
          p.setProOriginDetailimg(upfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile/" + changeName);
+         p.setProChangeDetailimg("resources/uploadFile/" + changeName[2]);
       
       // 넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로가 있는 바뀐이름
       // 넘어온 파일이 없으면 : 제목, 작성자, 내용
@@ -174,14 +179,14 @@ public class StoreBoardController {
             new File(session.getServletContext().getRealPath(p.getProChangeImg1())).delete();
             new File(session.getServletContext().getRealPath(p.getProChangeDetailimg())).delete();
          }
-         String changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
+         String[] changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
          
          p.setProOriginImg(reupfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile" + changeName);
+         p.setProChangeImg("resources/uploadFile" + changeName[0]);
          p.setProOriginImg1(reupfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile" + changeName);
+         p.setProChangeImg1("resources/uploadFile" + changeName[1]);
          p.setProOriginDetailimg(reupfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile" + changeName);
+         p.setProChangeDetailimg("resources/uploadFile" + changeName[2]);
       }
       int result = sbService.proUpdateBoard(p);
       if(result > 0) {

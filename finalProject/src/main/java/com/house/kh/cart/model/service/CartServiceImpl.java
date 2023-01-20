@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.house.kh.cart.model.dao.CartDao;
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.storeBoard.model.vo.Product;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -37,7 +38,24 @@ public class CartServiceImpl implements CartService {
 	public int cartDelete(int cartNo) {
 		return cDao.cartDelete(sqlSession, cartNo);
 	}
-	
-	
+
+	@Override
+	public int selectProListCount() {
+		return cDao.selectProListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Cart> selectProList() {
+		return cDao.selectProList(sqlSession);
+	}
+
+	/*
+	 * @Override public int increaseProCount(int proNo) { return
+	 * cDao.increaseCount(sqlSession, proNo); }
+	 * 
+	 * @Override public Cart selectProBoard(int proNo) { return
+	 * cDao.selectProBoard(sqlSession, proNo); }
+	 */
+
 
 }
