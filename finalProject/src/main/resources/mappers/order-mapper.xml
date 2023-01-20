@@ -249,7 +249,8 @@
 		   select r.pro_no
 			, p.pro_name
 			, o.ord_option
-			, r.review_date  
+			, r.review_date 
+			, r.review_no 
 			, r.review_content
 			, r.review_star
 			, r.mem_email
