@@ -63,9 +63,10 @@
 	<!-- 카테고리별 조회수 TOP1 리스트 조회 -->
 	<select id="topStoreBoardList" resultMap="storeBoardResult">
 		select a.*, b.sel_bus_name
-		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no, pro_no,
+		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no, pro_no, status,
 		rank() OVER (PARTITION BY cate_no ORDER BY pro_count desc, pro_price desc) as ranking
-		from product) a,
+		from product
+		where status = 'Y') a,
 		seller_base b
 		where a.sel_no = b.sel_no
 		and ranking = 1
