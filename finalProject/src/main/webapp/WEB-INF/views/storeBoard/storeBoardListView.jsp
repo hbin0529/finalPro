@@ -99,36 +99,21 @@
             
          	<!-- 무한스크롤 -->
             <script>
-	            var loading = false;
-	            var scrollPage = 1;
+	            $(document).ready(function () {
+	            	  $(document).scroll(function() {
+	            	    var maxHeight = $(document).height();
+	            	    var currentScroll = $(window).scrollTop() + $(window).height();
 	
-	            $(document).ready(function(){  
-	                surveyList(scrollPage);
-	                // Scroll
-	                $(window).scroll(function(){
-	                    var scrollNow = $(window).scrollTop();
-	                    if (scrollNow + $(window).height() + 100 >= $('.store_body').height()){
-	                        surveyList(scrollPage);
-	                    }
-	                })
-	            })
-	
-	            function surveyList(page){
-	                if (!loading){
-	                    loading = true;
-	                    $.ajax({
-	                        url:"http://localhost:8050/api/storelist.bo",
-	                        type:"get",
-	                        data:{"page":page},
-	                        dataType:"html",
-	                        success:function(res){
-	                            $(".store_body).append(res);
-	                            loading = false;
-	                            scrollPage += 1;
-	                        }
-	                    })
-	                }
-	            }
+	            	    if (maxHeight <= currentScroll + 100) {
+	            	      $.ajax({
+	            	        url: 'http://webisfree.com/test_api/',
+	            	        success: function (html, status) {
+	            	          // Append next contents
+	            	        }
+	            	      })
+	            	    }
+	            	  })
+	            	});
             </script>
      
     </section>
