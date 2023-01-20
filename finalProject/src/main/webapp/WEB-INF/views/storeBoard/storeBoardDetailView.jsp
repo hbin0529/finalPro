@@ -547,11 +547,11 @@ $(function() {
 					for(let i in list) {
 						value += "<tbody>"
 							  + 	"<tr>"
-							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/" + list[i].reviewImgChange + " ' id='user_img'></td>"
+							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/" + list[i].memImg + " ' id='user_img'></td>"
 							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
-							  +			"<td id='review_date'>" + list[i].reviewDate + "</td>"
+							  +			"<td id='review_date'>" + list[i].reviewStar + "&ensp;" + list[i].reviewDate + "</td>"
 							  +  	"</tr>"
 							  +  	"<tr>"
 							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"
