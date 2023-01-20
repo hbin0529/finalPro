@@ -124,10 +124,6 @@ public class StoreBoardController {
    
    @RequestMapping("proInsert.bo") //게시글 입력후 데이터에 넣어주기
    public String insertProduct(Product p, MultipartFile upfile, MultipartFile upfile1, MultipartFile upfile2, HttpSession session, Model model, String selNo2) {
-	   System.out.println(upfile);
-	   System.out.println(upfile1);
-	   System.out.println(upfile2);
-         
 	   p.setSelNo(Integer.parseInt(selNo2));
          String[] changeName = changeFilename(upfile, upfile1, upfile2, session);
 
