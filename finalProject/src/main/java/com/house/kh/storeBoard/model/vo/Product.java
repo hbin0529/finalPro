@@ -53,6 +53,7 @@ public class Product {
 	private String reviewStar;
 	private String memNick;
 	private String ordOption;
+	private String memImg;
 	
 	// 문의테이블
 	private int proQueNo;
