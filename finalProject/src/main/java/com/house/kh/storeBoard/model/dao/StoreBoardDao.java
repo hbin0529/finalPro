@@ -72,6 +72,6 @@ public class StoreBoardDao {
 	
 	public int deleteReview(SqlSessionTemplate sqlSession, int reviewNo) {
 		return sqlSession.update("storeBoardMapper.deleteReview", reviewNo); 
-	}
+	} 
 	
 }

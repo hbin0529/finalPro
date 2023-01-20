@@ -31,8 +31,7 @@
     /* 로고폰트 */
         @font-face {
         font-family: 'SDSamliphopangche_Outline';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') 
-at('woff');
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') at('woff');
         font-weight: normal;
         font-style: normal;
         } 
@@ -129,8 +128,9 @@ at('woff');
     
     
         <div class="order_count">
-            <div><p>주문내역</p></div>
-            <div><p>1,234</p></div>
+            <div><p>주문내역</p></div>&ensp;
+            <div><p>${ orderListCount }건</p></div>
+            
         </div>
 
         <!--통계테이블-->

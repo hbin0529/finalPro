@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.house.kh.homeBoard.model.service.HomeBoardService;
+import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -219,8 +221,6 @@ public class StoreBoardController {
          model.addAttribute("errorMsg" , "문의 삭제 실패");
          return "common/errorPage";
       }
-   }  
-
-   
+   }    
    
 }
