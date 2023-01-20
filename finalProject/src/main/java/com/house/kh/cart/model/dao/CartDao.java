@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.storeBoard.model.vo.Product;
 
 @Repository
 public class CartDao {
@@ -24,6 +25,16 @@ public class CartDao {
 	
 	public int cartDelete(SqlSessionTemplate sqlSession,  int cartNo) {
 		return sqlSession.update("cartMapper.cartDelete", cartNo); 
+	}
+	
+	//셀러페이지 상품리스트 카운트
+	public int selectProListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("cartMapper.selectProListCount");
+	}
+
+	//셀러페이지 상품리스트
+	public ArrayList<Cart> selectProList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectProList");
 	}
 	
 }
