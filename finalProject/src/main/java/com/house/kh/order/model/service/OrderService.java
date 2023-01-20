@@ -130,6 +130,13 @@ public class OrderService {
 	}
 	
 	
+	//주문내역 카운트세기
+	public Order orderListCount(int selNo) {
+		System.out.println("서비스");
+		Order o = oDao.orderListCount(sqlSession, selNo);
+		System.out.println("서비스 후");
+		return o;
+	};
 	
 	
 	

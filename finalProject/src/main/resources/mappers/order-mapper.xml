@@ -111,6 +111,7 @@
 	 	<result column="sel_no" property="selNo" />
 	 	<result column="pro_no" property="proNo" />
 	 	<result column="ord_email" property="ordEmail" />
+	 	<result column="aaa" property="aaa" />
 	 </resultMap>
 	 
 	 <resultMap type="Order" id="usersOrderListMap">
@@ -360,6 +361,18 @@
 	<update id="payUserPoint">
 		update member_base set mem_point = mem_point - (#{ordCount}*#{ordPrice}+50000) where mem_email = #{ordEmail}
 	</update>
+	
+	
+	
+	<select id="orderListCount" resultMap="sellersOrderListMap">
+		select sel_no, sum(ord_count) as aaa from order_detail 
+			join order_main using (ord_no) 
+			join product using (pro_no) 
+			join seller_base using (sel_no)
+			where ord_status = 'Y'
+			and sel_no = #{selNo}
+		  group by sel_no
+	</select>
 	
 	
 </mapper>
