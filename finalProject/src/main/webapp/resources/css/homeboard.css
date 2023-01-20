@@ -134,7 +134,7 @@
         .del_upd_button :hover{color:red;}
         
           /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
-    .mypage_category{width: 1400px; height: 80px; margin: 0 auto;}
+    .mypage_category{height: 80px; margin: 0 auto;}
     .mypage_category table {width: 700px; height: 80px; margin: 0 auto; text-align: center; font-weight: bolder;}
     #mypage_menu{font-family: 'GmarketSansMedium';}
     #mypage_menu:hover{color: #21d9cb;}

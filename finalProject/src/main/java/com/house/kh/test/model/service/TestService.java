@@ -43,7 +43,19 @@ public interface TestService {
 	ArrayList<Product> arrayQuestionList(Product p); //어떤거 가져올지
 		
 	
-	// 8. Top5 조회수 리스트 (ajax)
+	// 카테고리별 Top1(8개) 조회수 리스트 (ajax)
 	ArrayList<Test> topStoreBoardList();
+	
+	
+	// 집들이 조회수 TOP3 리스트 (ajax)
+	ArrayList<Test> topStoreBoardList2();
+	
+	
+	// 전체상품 조회수 Top3 리스트 (ajax)	
+	ArrayList<Test> topStoreBoardList3();
+	
+	
+	// 전체 상품 리스트 (ajax)	
+	ArrayList<Test> topStoreBoardList4();
 
 }

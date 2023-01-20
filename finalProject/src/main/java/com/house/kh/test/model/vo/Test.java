@@ -64,6 +64,17 @@ public class Test {
 	private String queReplyContent;
 	private String queReplyDate;
 	private String pqrStatus;
+	
+	// BOARD_HOME 집들이 테이블
+	private int boardNo;
+	private String boardMainImgOrigin;
+	private String boardMainImgChange;
+	private String boardTitle;
+	private String boardDate;
+	private int boardCount;
+	private String homeOption;
+	private String homeFamily;
+	private String homeStatus;
 }
 
 

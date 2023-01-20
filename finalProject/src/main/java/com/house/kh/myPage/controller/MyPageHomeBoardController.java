@@ -116,5 +116,30 @@ public class MyPageHomeBoardController {
 		      
 		      return changeName;
 		   } 
+	     
+	   @ResponseBody
+	   @RequestMapping("reviewdelete.bo")
+	   public void deleteReview(int reviewNo, HttpSession session, Model model, Product p, HttpServletResponse response, int pno) throws IOException {  //파일이 있으면 삭제하면 안되기 때문에 파일도 넘겨받아야함
+		   int result = sbService.deleteReview(reviewNo); 
+		   if(result > 0) { 
+			   session.setAttribute("alertMsg", "성공적으로 리뷰가 삭제되었습니다."); 
+		   }else {
+			   System.out.println("실패입니다");
+		   }
+		   
+	   }
+	    
+	   @RequestMapping("mypagereviewlist.bo")
+	   public ModelAndView usersReviewList(String id, ModelAndView mv, Model model){
+			
+			ArrayList<Order> reviewList = oService.usersReviewList(id);
+			mv.addObject("o", reviewList);
+			mv.setViewName("myPage/myPageReviewList");
+			 
+			 return mv;
+		
+		}
+	  
+	   
 	   
 }

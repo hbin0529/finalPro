@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.order.model.dao.OrderDao;
 import com.house.kh.order.model.vo.Order;
@@ -120,6 +121,18 @@ public class OrderService {
 	public void payUserPoint(Order o) {
 		oDao.payUserPoint(sqlSession, o);
 	}
+	
+	
+	
+	
+	public ArrayList<Order> usersReviewList(String id){
+		return oDao.usersReviewList(sqlSession, id);
+	}
+	
+	
+	
+	
+	
 	
 	
 }

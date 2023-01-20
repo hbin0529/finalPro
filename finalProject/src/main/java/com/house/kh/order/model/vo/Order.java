@@ -28,6 +28,8 @@ public class Order {
 	private String ordAddr;
 	// 상세주소
 	private String ordDetailAddr;
+	
+	private String memEmail;
 	 
 	// 수령자 이름
 	private String cusName;
@@ -59,10 +61,21 @@ public class Order {
 	private int proWhiteStock;
 	private int proBlackStock;
 	private String proName;
-	private int selNo;
+	
 	
 	
 	//판매자정보
+	private int selNo;
 	private String selBusName; 
 	private String selPhone;
+	
+	//리뷰테이블
+		private int reviewNo; 
+		private String reviewImgOrigin;
+		private String reviewImgChange;
+		private String reviewContent;
+		private String reviewDate;
+		private String reviewStar;
+		private String memNick;
+ 
 }

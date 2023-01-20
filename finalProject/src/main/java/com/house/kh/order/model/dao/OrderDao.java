@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.order.model.vo.Order;
 import com.house.kh.seller.model.vo.Seller;
@@ -136,6 +137,14 @@ public class OrderDao {
 	public void payUserPoint(SqlSessionTemplate sqlSession, Order o) {
 		sqlSession.update("orderMapper.payUserPoint", o);
 	}
+	
+	 
+	
+	public ArrayList<Order> usersReviewList(SqlSessionTemplate sqlSession, String id){
+        return (ArrayList)sqlSession.selectList("orderMapper.usersReviewList", id); 
+    }
+	
+	
 	
 	
 	

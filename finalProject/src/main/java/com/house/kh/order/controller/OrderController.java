@@ -67,8 +67,8 @@ public class OrderController {
 			model.addAttribute("alertMsg", "결제가 취소되었습니다.");
 			return "main";
 		}
-	}	
 		//주문상세 테이블에 추가
+	} 
 	
 	@RequestMapping("sellerOrderList.or")
 	public String sellerOrderList(int selNo, Model model) {
@@ -76,6 +76,7 @@ public class OrderController {
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
 	}
+
 
 	
 	
@@ -193,4 +194,4 @@ public class OrderController {
 	}
 	
 	
-}
+ }
