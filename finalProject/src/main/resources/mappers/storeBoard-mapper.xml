@@ -128,8 +128,9 @@
 			 , p.pro_change_detailimg
 			 , p.pro_white_stock
 			 , p.pro_black_stock
-		  from product p, seller_base s
-		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no
+			 , c.cate_name
+		  from product p, seller_base s, category c
+		 where p.pro_no = #{proNo} and p.sel_no = s.sel_no and p.cate_no = c.cate_no
 	</select>
 	
 	<select id="selectReviewList" resultType="Product" resultMap="storeBoardResult">
@@ -204,7 +205,7 @@
 					join member_base m on (pq.mem_id = m.mem_email)
 					join seller_base s on (s.sel_no = pq.sel_no)
 					full join pro_question_reply a on (a.pro_que_no = pq.pro_que_no)
-                where pq.status = 'Y'
+                where pq.status = 'Y' and p.status = 'Y'
                 order by pq.pro_que_date desc
  	</select> 
 	 

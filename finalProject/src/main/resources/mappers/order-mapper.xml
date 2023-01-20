@@ -119,6 +119,7 @@
 	 	<result column="ord_addr" property="ordAddr"/>
 		<result column="ord_detail_addr" property="ordDetailAddr"/>
 	 	<result column="pro_change_detailimg" property="proChangeDetailimg" />
+	 	<result column="pro_change_img" property="proChangeImg" />
 	 	<result column="ord_option" property="ordOption" />
 	 	<result column="ord_price" property="ordPrice" />
 	 	<result column="ord_request" property="ordRequest" />
@@ -198,6 +199,7 @@
 	<select id="usersOrderList" resultMap="usersOrderListMap">
 		select to_char(ord_date, 'YYYY.MM.DD') as "ord_date"
       , pro_change_detailimg
+      , pro_change_img
       , pro_no
       , ord_email
       , ord_no

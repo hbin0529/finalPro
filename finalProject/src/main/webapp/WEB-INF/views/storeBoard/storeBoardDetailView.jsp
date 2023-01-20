@@ -102,7 +102,7 @@ $(function() {
 
     /*-----------------------------------  리뷰 상세 -----------------------------------*/
     .review_detail table{ width: 800px; border-collapse: collapse; border-top: 1px solid gray;  border-top: 1px solid rgb(221, 221, 221); font-family: 'Pretendard-Regular';}
-    #review_user_img{width: 25px; padding-left: 10px; padding-top: 20px;}
+    #review_user_img{width: 30px; height:30px; border-radius:50%; padding-left: 10px; padding-top: 15px;}
     #review_nickname{padding-left: 10px; padding-top: 20px; width: 40px; font-size: 13px; font-weight: bolder; color: rgb(77, 76, 76);;}
     #review_date{font-size: 12px; color: rgb(77, 76, 76); padding-top: 3px; padding-left:10px;}
     #review_option{font-size: 13px; padding-left: 10px; padding-top: 5px; color: rgb(77, 76, 76);}
@@ -172,7 +172,7 @@ $(function() {
                     <div><img src="${path}/${p.proChangeImg}"></div>
                 </div>
                 <div class="product_intro">
-                    <div><p style="margin-bottom: 10px;"><a href="" style="color: rgb(109, 108, 108); font-size: 15px; font-weight: bold;">${ p.selBusName }</a></p></div>
+                    <div><p style="margin-bottom: 10px; color: rgb(109, 108, 108); font-size: 15px; font-weight: bold;">카테고리 | ${ p.cateName }</p></div>
                     <div><p style="margin-bottom: 10px; font-size: 25px; font-weight: bolder;" >${ p.proName }</p></div>
                     <div class="intro_review">
                         <div><p>★★★★★</p></div>
@@ -183,8 +183,8 @@ $(function() {
                     <div><p style="margin-bottom: 10px; font-size: 15px;">&ensp;업체직접배송</p></div><br>
                     <div style="margin-bottom: 10px;"><hr style="width: 400px;"></div><br>
                     <div class="intro_home_img" style="margin-bottom: 30px;">
-                        <div><img src="${path}/${p.proChangeImg}" style="width: 30px; margin-left: 10px;"></div>
-                        <div><p style="margin-top: 4px;">&ensp;<a href="" style="color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">${ p.selBusName }</a></p></div>
+                        <div><img src="${path}/resources/img/logo_home.png" style="width: 30px; margin-left: 10px;"></div>
+                        <div><p style="margin-top: 4px; color: rgb(109, 108, 108); font-size: 17px; font-weight: bold;">&ensp;${ p.selBusName }</p></div>
                     </div>
                     <form name="hbInfo" action="order.or">
                     <div>

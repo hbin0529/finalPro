@@ -192,7 +192,7 @@
 		
 		var proImg = [
 		<c:forEach var="mm" items="${o}">
-			'${mm.proChangeDetailimg}',
+			'${mm.proChangeImg}',
 		</c:forEach>
 			's'
 		]
@@ -232,7 +232,7 @@
                     
                 </div>
                 <div class="detail_body">
-                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+                    <div><img src="${ path }/${ order.proChangeImg }"></div>
                     <div class="detail_body_category">
                         <div>카테고리 | ${ order.cateName }</div>
                         <div>${ order.proName }</div>
@@ -257,7 +257,7 @@
                     <p class="buy_wait">구매대기중</p>
                 </div>
                <div class="detail_body">
-                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+                    <div><img src="${ path }/${ order.proChangeImg }"></div>
                     <div class="detail_body_category">
                         <div>카테고리 | ${ order.cateName }</div>
                         <div>${ order.proName }</div>
@@ -284,7 +284,7 @@
                     <p class="buy_back">판매자취소</p>
                 </div>
                  <div class="detail_body">
-                    <div><img src="${ path }/${ order.proChangeDetailimg }"></div>
+                    <div><img src="${ path }/${ order.proChangeImg }"></div>
                     <div class="detail_body_category">
                         <div>카테고리 | ${ order.cateName }</div>
                         <div>${ order.proName }</div>

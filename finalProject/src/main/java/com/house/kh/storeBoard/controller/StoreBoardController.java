@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -124,10 +126,6 @@ public class StoreBoardController {
    
    @RequestMapping("proInsert.bo") //게시글 입력후 데이터에 넣어주기
    public String insertProduct(Product p, MultipartFile upfile, MultipartFile upfile1, MultipartFile upfile2, HttpSession session, Model model, String selNo2) {
-	   System.out.println(upfile);
-	   System.out.println(upfile1);
-	   System.out.println(upfile2);
-         
 	   p.setSelNo(Integer.parseInt(selNo2));
          String[] changeName = changeFilename(upfile, upfile1, upfile2, session);
 
@@ -222,4 +220,7 @@ public class StoreBoardController {
          return "common/errorPage";
       }
    }  
+
+   
+   
 }

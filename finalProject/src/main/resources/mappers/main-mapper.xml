@@ -63,9 +63,10 @@
 	<!-- 카테고리별 조회수 TOP1 리스트 조회 -->
 	<select id="topStoreBoardList" resultMap="storeBoardResult">
 		select a.*, b.sel_bus_name
-		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no, pro_no,
+		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no, pro_no, status,
 		rank() OVER (PARTITION BY cate_no ORDER BY pro_count desc, pro_price desc) as ranking
-		from product) a,
+		from product
+		where status = 'Y') a,
 		seller_base b
 		where a.sel_no = b.sel_no
 		and ranking = 1
@@ -74,7 +75,11 @@
 	<!-- 집들이 조회수 TOP3 리스트 조회 -->
 	<select id="topStoreBoardList2" resultMap="storeBoardResult">
 		select BOARD_MAINIMG_CHANGE, HOME_FAMILYV, HOME_OPTION, BOARD_TITLE, board_count, board_no
-		from (select r.*, rownum from board_home r order by board_count desc)
+		from (select r.*
+				   , rownum 
+			  from board_home r 
+			  where r.status = 'Y' 
+			  order by board_count desc)
 		where rownum between 1 and 3
 	</select>
 	

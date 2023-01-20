@@ -96,6 +96,25 @@
             		})
             	})
             </script>
+            
+         	<!-- 무한스크롤 -->
+            <script>
+	            $(document).ready(function () {
+	            	  $(document).scroll(function() {
+	            	    var maxHeight = $(document).height();
+	            	    var currentScroll = $(window).scrollTop() + $(window).height();
+	
+	            	    if (maxHeight <= currentScroll + 100) {
+	            	      $.ajax({
+	            	        url: 'http://webisfree.com/test_api/',
+	            	        success: function (html, status) {
+	            	          // Append next contents
+	            	        }
+	            	      })
+	            	    }
+	            	  })
+	            	});
+            </script>
      
     </section>
     
