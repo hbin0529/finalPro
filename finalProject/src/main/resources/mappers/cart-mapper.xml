@@ -95,7 +95,8 @@
 		  from product p, seller_base s
 		  where p.sel_no = s.sel_no 
 		  and p.status = 'Y'
-		 order by pro.pro_no desc
+		 order by p.pro_no desc
 	</select>
+	
 	
 </mapper>

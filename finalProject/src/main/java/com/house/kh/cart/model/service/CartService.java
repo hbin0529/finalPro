@@ -24,4 +24,9 @@ public interface CartService {
 	
 	// 셀러페이지 상품리스트
 	ArrayList<Cart> selectProList(); 
+	
+	/*
+	 * // 게시글 상세조회 int increaseProCount(int proNo); //조회수올리기 Cart selectProBoard(int
+	 * proNo);
+	 */
 }
