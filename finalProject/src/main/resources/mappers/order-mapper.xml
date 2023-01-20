@@ -216,7 +216,8 @@
        join product using (pro_no) 
        join seller_base using (sel_no)
        join category using (cate_no)
-	  where ord_email = #{id}  
+	  where ord_email = #{id} order by ord_date desc
+	  
 	
 	</select> 
 	<!-- 주문상품 데이터 추가 -->
