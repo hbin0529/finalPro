@@ -15,11 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.house.kh.common.model.vo.PageInfo;
+import com.house.kh.common.template.Pagination;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
@@ -32,17 +35,21 @@ public class StoreBoardController {
 
    /* 스토어리스트 불러오기 */
    @RequestMapping("storelist.bo")
-   public ModelAndView selectList(Product product,ModelAndView mv, Model model) {
-      int listCount = 0;
+   public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, Product product,ModelAndView mv, Model model) {
+      int listCount = sbService.selectListCount();
+	  													// 페이지갯수 10, 게시글갯수 12
+      PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
+      
       ArrayList<Product> list = new ArrayList<Product>();
       if((product.getCateNo() > 0)) {
-         list = sbService.selectCateList(product);
+         list = sbService.selectCateList(product, pi);
          listCount = sbService.selectCateListCount(product);
       }else {
-         list = sbService.selectList();
+         list = sbService.selectList(pi);
          listCount = sbService.selectListCount();
       }   
 
+      mv.addObject("pi", pi);
       mv.addObject("list", list);
       model.addAttribute("listCount", listCount);
       mv.setViewName("storeBoard/storeBoardListView");
