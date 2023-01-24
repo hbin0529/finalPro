@@ -8,6 +8,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+#pagingArea{width:fit-content; margin: auto;}
+    .pagination{display: flex; list-style: none; font-family: 'Pretendard-Regular'; margin-bottom:50px;}
+    .page-pre{background-color: #21d9cb; width: 25px; height: 25px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
+    .page-pre a{color: white; text-decoration: none;}
+    .page-next{background-color: #21d9cb; width: 25px; height: 25px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
+    .page-next a{color: white; text-decoration: none;}
+    .page-number{margin-right: 20px;}
+</style>
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -74,6 +83,34 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- 페이징처리 -->
+       <div id="pagingArea">
+           <ul class="pagination">
+           	<!-- 만약에 1페이지면 안보이고 1페이지가 아니면 보여지게하기 -->
+	           	<c:choose>
+	           		<c:when test="${ pi.nowPage eq 1 }">
+					<li class="page-pre disabled"><a class="pageLink" href="#"><</a></li>
+	               	</c:when>
+	               	<c:otherwise>										<!-- cpage=현재페이지 (현재페이지-1)을 해서 바로전페이지를 보여준다 -->
+	               		<li class="page-pre"><a class="pageLink" href="list.bo?cpage=${ pi.nowPage-1 }"><</a></li>
+	               	</c:otherwise>
+	            </c:choose>
+            				<!-- 시작페이지부터 끝페이지까지 출력하시오 -->
+	            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <li class="page-number"><a class="pageLink" href="list.bo?cpage=${p}">${p}</a></li>
+	            </c:forEach>
+            
+	            <c:choose>
+	            	<c:when test="${ pi.nowPage eq pi.maxPage }">  <!-- 현재페이지가 끝페이지이면 넥스트가 안보이게 -->
+	                	<li class="page-next disabled"><a class="pageLink" href="#">></a></li>
+	                </c:when>
+	               	<c:otherwise>										<!-- cpage=현재페이지 (현재페이지+1)을 해서 바로 다음페이지를 보여준다 -->
+	               		<li class="page-next"><a class="pageLink" href="list.bo?cpage=${ pi.nowPage+1 }">></a></li>
+	               	</c:otherwise>
+	            </c:choose>
+           </ul>
+       </div>
 
 		<!-- 상세페이지 -->
 		<script>

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.homeBoard.model.dao.HomeBoardDao;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.homeBoard.model.vo.HomeReply;
@@ -27,8 +28,8 @@ public class HomeBoardServiceImpl implements HomeBoardService {
    }
 
    @Override
-   public ArrayList<HomeBoard> selectList() {
-      return hbDao.selectList(sqlSession);
+   public ArrayList<HomeBoard> selectList(PageInfo pi) {
+      return hbDao.selectList(sqlSession, pi);
    }
   
 

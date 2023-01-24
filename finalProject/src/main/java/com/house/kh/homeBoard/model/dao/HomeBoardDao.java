@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.homeBoard.model.vo.HomeReply;
 
@@ -15,8 +16,11 @@ public class HomeBoardDao {
        return sqlSession.selectOne("homeBoardMapper.selectListCount");
     }
     
-    public ArrayList<HomeBoard> selectList(SqlSessionTemplate sqlSession){
-        return (ArrayList)sqlSession.selectList("homeBoardMapper.selectList"); 
+    public ArrayList<HomeBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
+    	int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+        return (ArrayList)sqlSession.selectList("homeBoardMapper.selectList", null, rowBounds); 
     }
     
     public int increaseCount(SqlSessionTemplate sqlSession, int boardNo) {

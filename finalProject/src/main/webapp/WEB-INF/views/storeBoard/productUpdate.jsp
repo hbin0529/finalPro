@@ -100,8 +100,8 @@
                     <div class="category_form">
                         <div><p>✔ 등록하는 상품의 카테고리를 선택해주세요</p></div>
                         <div>
-                            <select name="cateNo" required>
-                                <option value="${ p.cateNo }" disabled>현재 카테고리 [${ p.cateName }]</option>
+                            <select name="cateNo">
+                                <option value="${ p.cateNo }">현재 카테고리 [${ p.cateName }]</option>
                                 <option value="1">침대</option>
                                 <option value="2">쇼파</option>
                                 <option value="3">식탁</option>
@@ -115,17 +115,17 @@
                     </div>
                     <div class="product_name">
                         <div><p>✔ 등록하는 상품의 타이틀을 입력해주세요</p></div>
-                        <div><textarea name="proName" placeholder="${ p.proName }" row="2" style="margin-top:3px; resize:none;" value="${ p.proName }" required></textarea></div>
+                        <div><textarea name="proName" placeholder="${ p.proName }" row="2" style="margin-top:3px; resize:none;" value="${ p.proName }"></textarea></div>
                     </div>
                     <div class="option">
                         <div><p id="option_text">✔ 등록하는 상품의 색상별 수량을 입력해주세요</p></div>
                         <div class="option_number">
                             <div><p>□ WHITE</p></div>
-                            <div><input type="number" name="proWhiteStock"  value="${ p.proWhiteStock }" required></div>
+                            <div><input type="number" name="proWhiteStock" placeholder="${ p.proWhiteStock }" value="${ p.proWhiteStock }"></div>
                             <div><p>■ BLACK</p></div>
-                            <div><input type="number" name="proBlackStock"  value="${ p.proBlackStock }" required></div>
+                            <div><input type="number" name="proBlackStock" placeholder="${ p.proBlackStock }"  value="${ p.proBlackStock }"></div>
                             <div><p>💲 개당 가격</p></div>
-                            <div><input type="number" name="proPrice" placeholder="${ p.proPrice }" value="${ p.proPrice }" required></div>
+                            <div><input type="number" name="proPrice" placeholder="${ p.proPrice }" value="${ p.proPrice }"></div>
                         </div>
                     </div>
                     <div class="main_img">
