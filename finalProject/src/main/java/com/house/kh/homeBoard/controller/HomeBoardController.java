@@ -31,6 +31,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.house.kh.common.model.vo.PageInfo;
+import com.house.kh.common.template.Pagination;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.homeBoard.model.vo.HomeReply;
@@ -41,14 +43,16 @@ public class HomeBoardController {
       private HomeBoardService hbService; 
    
       @RequestMapping("list.bo")
-      public ModelAndView selectList(ModelAndView mv, Model model) {
+      public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, ModelAndView mv, Model model) {
          int listCount = hbService.selectListCount(); 
          
-          ArrayList<HomeBoard> list = hbService.selectList(); 
+         PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
+         ArrayList<HomeBoard> list = hbService.selectList(pi); 
       
-          mv.addObject("list",list);  
-          model.addAttribute("listCount",listCount);
-          mv.setViewName("homeBoard/homeBoardListView");
+         mv.addObject("pi", pi);
+         mv.addObject("list",list);  
+         model.addAttribute("listCount",listCount);
+         mv.setViewName("homeBoard/homeBoardListView");
           
          return mv;
       }   
