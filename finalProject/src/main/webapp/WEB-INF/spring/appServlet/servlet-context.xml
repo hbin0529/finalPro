@@ -28,6 +28,15 @@
 	
 	<context:component-scan base-package="com.house.kh" />
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="enrollForm.bo"/>
+			<mapping path="productWrite.bo"/>
+			<mapping path="productUpdate.bo"/>
+			<mapping path="updateForm.bo"/>
+			<beans:bean class="com.house.kh.common.interceptor.LoginInterceptor" id="LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>
