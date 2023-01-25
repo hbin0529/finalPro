@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.house.kh.cart.model.service.CartService;
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.common.model.vo.PageInfo;
+import com.house.kh.common.template.Pagination;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.seller.model.vo.Seller;
 import com.house.kh.storeBoard.model.vo.Product;
@@ -66,11 +69,13 @@ public class CartController {
 
 	/* 셀러페이지 상품리스트 */
 	@RequestMapping("sellerProduct.se")
-	public ModelAndView selectList(Cart cart, ModelAndView mv, Model model) {
-		int listCount = 0;
-		ArrayList<Cart> list = new ArrayList<Cart>();
-		list = cartService.selectProList();
-		listCount = cartService.selectProListCount();
+	public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, Cart cart, ModelAndView mv, Model model) {
+		int listCount = cartService.selectProListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
+		ArrayList<Cart> list = cartService.selectProList(pi);
+
+		mv.addObject("pi", pi);
 		mv.addObject("list", list);
 		model.addAttribute("listCount", listCount);
 		mv.setViewName("sellerPage/sellerPageProduct");

@@ -268,7 +268,7 @@
 	<hr style="margin: 50px 0 0 0; margin-left: 100px; width: 1065px;">
 
 <!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함-------------------------------------------> 
-	<div class="store_product_top_title"><h3>⚡️신규제품</h3></div> 
+	<div class="store_product_top_title"><h3>⚡️모든제품</h3></div> 
 	<div class="store_product" id="topBoardList4" style="margin-bottom: 80px">
 		<!-- 전체 상품 리스트(ajax) -->
 	</div> 

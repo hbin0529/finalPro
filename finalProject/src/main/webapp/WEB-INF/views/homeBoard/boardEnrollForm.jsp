@@ -9,17 +9,6 @@
 <title>Insert title here</title>
 </head>
 <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css">
-<style>
-     .form-group{margin-top:20px;}
-     
-     @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    } 
-     
-</style>
 <body> 
 <%@ include file="../common/header.jsp"%>
 <div class="container" style="width:1300px; margin:50px auto; font-family: 'Pretendard-Regular';">
