@@ -89,15 +89,7 @@
      </div>  
       <div class="protect_buttom">
            <img src="${path}/resources/img/protect_buttom.PNG"><div>  
-      </div>   
-       
-        <%--  <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
-         <form action="" method="post" id="postForm">
-            <input type="hidden" name= "bno" value="${ b.boardNo }">
-            <input type="hidden" name="filePath" value="${ b.changeName }">         
-         </form>
-      
-       --%> 
+      </div>    
       
        <!-- 댓글 창 -->    
          <table class="table" id="replyArea" style="padding-bottom: 40px;margin-bottom: 5px;">

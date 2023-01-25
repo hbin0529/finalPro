@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.seller.model.vo.Seller;
+import com.house.kh.storeBoard.model.vo.Product;
 
 @Repository
 public class SellerDao {
@@ -27,7 +28,5 @@ public class SellerDao {
 	public ArrayList<Seller> getAllSeller(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("sellerMapper.getAllSeller");
 	}
-	
-	
 	
 }

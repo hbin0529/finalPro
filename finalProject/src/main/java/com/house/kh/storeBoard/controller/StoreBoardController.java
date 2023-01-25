@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.house.kh.cart.model.vo.Cart;
 import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.common.template.Pagination;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
@@ -189,11 +191,11 @@ public class StoreBoardController {
          String[] changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
          
          p.setProOriginImg(reupfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile/" + changeName[0]);
+         p.setProChangeImg("resources/uploadFile" + changeName[0]);
          p.setProOriginImg1(reupfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile/" + changeName[1]);
+         p.setProChangeImg1("resources/uploadFile" + changeName[1]);
          p.setProOriginDetailimg(reupfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile/" + changeName[2]);
+         p.setProChangeDetailimg("resources/uploadFile" + changeName[2]);
       }
       int result = sbService.proUpdateBoard(p);
       if(result > 0) {
@@ -218,8 +220,8 @@ public class StoreBoardController {
    }
    
    /* 문의 삭제하기 */
-   @RequestMapping("qdelete.bo")
-   public String queDelete(int proQueNo, Model model, HttpSession session) {
+   @RequestMapping(value="qdelete.bo" , method = {RequestMethod.GET, RequestMethod.POST}) 
+   public String queDelete(@RequestParam("proQueNo")int proQueNo, Model model, HttpSession session) {
       int result = sbService.queDelete(proQueNo);
       if(result > 0) {
          session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다");
@@ -230,4 +232,39 @@ public class StoreBoardController {
       }
    }    
    
-}
+   /* 답변리스트 어레이리스트 불러오기 */
+   @RequestMapping("rArrayList.bo")
+   public ModelAndView arrayReplyList(Product p, ModelAndView mv, Model model) {
+      ArrayList<Product> list = new ArrayList<Product>();
+     
+      list = sbService.arrayReplyList(p);   
+        System.out.println(list);
+      mv.addObject("list", list);
+      mv.setViewName("sellerPage/sellerPageQuestionView");
+
+      return mv;
+   }
+
+
+   
+   /* 문의에 답변 처리하기 */
+	@RequestMapping("replyinsert.bo")
+	public String insertReply(Product p, Model model, ModelAndView mv , HttpSession session, int proQueNo) {
+		int result = sbService.insertReply(p); 
+		int result2 = sbService.updateReply(proQueNo);
+		if (result > 0) { 
+			if (result2 > 0) {
+				session.setAttribute("alertMsg", "성공적으로 답변이 등록되었습니다");
+				 return  "redirect: rArrayList.bo";
+				 
+			}else {
+				model.addAttribute("errorMsg", "업데이트 실패");
+				return "common/errorPage";
+			} 	 
+		} else {
+			model.addAttribute("errorMsg", "답변 등록 실패");
+			return "common/errorPage";
+		}
+	   }
+	}
+	   
