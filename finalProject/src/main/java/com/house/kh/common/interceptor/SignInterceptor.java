@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-public class LoginInterceptor implements HandlerInterceptor{
+public class SignInterceptor implements HandlerInterceptor{
 	/*
 		Interceptor(HandlerInterceptor)
 		해당 Controller가 실해되기 전, 실행된 후에 낚아채서 실행할 내용 작성
@@ -19,12 +19,17 @@ public class LoginInterceptor implements HandlerInterceptor{
 		// true 리턴이 되면 : 기존 요청의 흐름대로 실행
 		// false 리턴이 되면 : Controller
 		HttpSession session = request.getSession();
+		
 		if(session.getAttribute("m") != null) {
-			return true;
-		} else {
-			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			session.setAttribute("alertMsg", "이미 로그인 되어있습니다. 로그아웃 후 진행해주세요.");
 			response.sendRedirect(request.getContextPath());
 			return false;
+		} else if(session.getAttribute("s") != null) {
+			session.setAttribute("alertMsg", "이미 로그인 되어있습니다. 로그아웃 후 진행해주세요.");
+			response.sendRedirect(request.getContextPath());
+			return false;
+		} else {
+			return true ;
 		}
 	}
 	

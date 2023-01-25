@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.house.kh.member.model.service.MemberService;
 import com.house.kh.member.model.vo.Member;
+import com.house.kh.seller.model.vo.Seller;
 
 @Controller
 public class MemberController {
@@ -46,7 +47,6 @@ public class MemberController {
 	public String login(Member m, HttpSession session, Model model) {
 		
 		Member loginUser = mService.searchUser(m);
-		System.out.println(loginUser);
 		
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {
@@ -88,7 +88,9 @@ public class MemberController {
 	
 	//회원가입페이지로이동
 	@RequestMapping("signIn.me")
-	public String signIn() {
+	public String signIn(HttpSession session, Member m, Seller s) {
+		m = (Member) session.getAttribute("m");
+		s = (Seller) session.getAttribute("s");
 		return "member/signIn";
 	}
 	
@@ -147,7 +149,6 @@ public class MemberController {
 	//카카오아이디로그인시도가 들어왔을떄 처리
 	@RequestMapping("kakaoIdControll.me")
 	public String kakaoIdControll(String kakaoUserEmail, String kakaoUserNickname, String kakaoGender, HttpSession session, Model model) throws IOException{
-		System.out.println(kakaoGender);
 		Member m = mService.kakaoUserSignChk(kakaoUserEmail);
 		int mCount = mService.kakaoUserSignChkCount(kakaoUserEmail);
 		if(mCount>0) {
@@ -168,7 +169,6 @@ public class MemberController {
 			//회원가입처리하기전에 카카오에서 못받은 정보들 마저 입력하게 설정
 			model.addAttribute("kakaoUserEmail", kakaoUserEmail);
 			model.addAttribute("kakaoUserNickname", kakaoUserNickname);
-			System.out.println(kakaoGender);
 			if(kakaoGender=="male") {
 				kakaoGender = "M";
 			}else if(kakaoGender=="female") {

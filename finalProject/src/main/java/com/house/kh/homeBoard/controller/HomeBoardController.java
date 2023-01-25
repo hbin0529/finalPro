@@ -38,6 +38,8 @@ import com.house.kh.common.template.Pagination;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.homeBoard.model.vo.HomeReply;
+import com.house.kh.member.model.vo.Member;
+import com.house.kh.seller.model.vo.Seller;
 
 @Controller
 public class HomeBoardController {
@@ -107,8 +109,10 @@ public class HomeBoardController {
 	   } 
 	   
 	   @RequestMapping("enrollForm.bo") //페이지로 넘겨주기
-	   public String enrollForm() {
-	      return "homeBoard/boardEnrollForm";
+	   public String enrollForm(HttpSession session, Member m, Seller s) {
+		   m = (Member) session.getAttribute("m");
+		   s = (Seller) session.getAttribute("s");
+		   return "homeBoard/boardEnrollForm";
 	   }
 	   
 	   
