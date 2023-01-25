@@ -51,6 +51,9 @@
 			<mapping path="/sellerProduct.se"/>
 			<mapping path="/pointCharge.or"/>
 			<mapping path="/charge.or"/>
+			<mapping path="/sellerInfoUpdate.se"/>
+			<mapping path="/sellerOrderList.or"/>
+			<mapping path="/rArrayList.bo"/>
 			<beans:bean class="com.house.kh.common.interceptor.SellerInterceptor" id="SellerInterceptor" />
 		</interceptor>
 	</interceptors>
