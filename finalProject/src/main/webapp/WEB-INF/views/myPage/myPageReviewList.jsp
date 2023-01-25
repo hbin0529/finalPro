@@ -23,7 +23,7 @@
     
     /* ------------------------- 마이페이지 나의리뷰 상품리뷰 스타일모음-------------------------  */
     .mypage_main_body{width: 1200px; margin: 0 auto; }
-    .mypage_main_body table{ width: 1000px; margin-top: 50px; margin-left: 80px; margin-bottom: 50px; margin: 0 auto; border: 1px solid rgb(212, 212, 212); margin-top: 40px; padding: 20px; margin-bottom: 40px; border-radius: 10px;} 
+    .mypage_main_body table{ width: 1000px; margin-top: 50px; margin-left: 80px; margin-bottom: 50px; margin: 0 auto; border: 1px solid rgb(212, 212, 212); margin-top: 40px; padding: 20px; margin-bottom: 40px; border-radius: 10px; padding-bottom: 40px;} 
     .mypage_product_review_table{font-family: 'Pretendard-Regular';}
     .mypage_product_review_table button{width: 50px; height: 30px; font-size: 15px; color: white; background-color: #21d9cb; border: 1px solid #21d9cb; cursor: pointer; border-radius: 5px; font-family: 'Pretendard-Regular';}
     .mypage_product_review_table button:hover{background-color: #21d9cb; color: white;}
