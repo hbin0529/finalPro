@@ -27,6 +27,9 @@ import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.common.template.Pagination;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
+import com.house.kh.member.model.service.MemberService;
+import com.house.kh.member.model.vo.Member;
+import com.house.kh.seller.model.vo.Seller;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -34,7 +37,10 @@ import com.house.kh.storeBoard.model.vo.Product;
 public class StoreBoardController {
    @Autowired
    private StoreBoardService sbService;
-
+   
+   @Autowired
+   private MemberService mService;
+   
    /* 스토어리스트 불러오기 */
    @RequestMapping("storelist.bo")
    public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, Product product,ModelAndView mv, Model model) {
@@ -63,10 +69,23 @@ public class StoreBoardController {
    @RequestMapping("productdetail.bo")
    public ModelAndView selectBoard(int pno, ModelAndView mv) {
       
+	  ArrayList<Product> starAmount = sbService.StarAmount(pno);
+	  int[] stars = {0, 0, 0, 0, 0};
+	  
+	  
+	  for(int i = 0; i < starAmount.size(); i++) {
+		  if(starAmount.get(i).getStarAmount()>0) {
+			  int thisStar = Integer.parseInt(starAmount.get(i).getReviewStar());
+			  stars[thisStar-1] += starAmount.get(i).getStarAmount();
+		  }
+	  }
+	  
+	  
       int result = sbService.increaseCount(pno);
       if (result > 0) {
          Product p = sbService.selectBoard(pno);
          mv.addObject("p", p).setViewName("storeBoard/storeBoardDetailView");
+         mv.addObject("stars", stars);
       } else {
          mv.addObject("errorMsg", "상세조회 실패").setViewName("common/errorPage");
       }
@@ -104,7 +123,8 @@ public class StoreBoardController {
    }
 
    @RequestMapping("productWrite.bo") // 글쓰는 페이지로 넘겨주기
-   public String productWrite() {
+   public String productWrite(Seller s, HttpSession session) {
+	  s = (Seller) session.getAttribute("s");
       return "storeBoard/productWrite";
    }
    
@@ -191,11 +211,11 @@ public class StoreBoardController {
          String[] changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
          
          p.setProOriginImg(reupfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile" + changeName[0]);
+         p.setProChangeImg("resources/uploadFile/" + changeName[0]);
          p.setProOriginImg1(reupfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile" + changeName[1]);
+         p.setProChangeImg1("resources/uploadFile/" + changeName[1]);
          p.setProOriginDetailimg(reupfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile" + changeName[2]);
+         p.setProChangeDetailimg("resources/uploadFile/" + changeName[2]);
       }
       int result = sbService.proUpdateBoard(p);
       if(result > 0) {
@@ -212,7 +232,6 @@ public class StoreBoardController {
    @RequestMapping(value="qinsert.bo")
    public void ajaxInsertQuestion(Product p, Model model, HttpServletResponse response) throws IOException {
       int result = sbService.insertQuestion(p);
-      System.out.println(result);
       if(result > 0) {
          model.addAttribute("alertMsg", "문의 등록이 완료 되었습니다.");
          response.sendRedirect("productdetail.bo?pno="+ p.getProNo());
@@ -238,7 +257,6 @@ public class StoreBoardController {
       ArrayList<Product> list = new ArrayList<Product>();
      
       list = sbService.arrayReplyList(p);   
-        System.out.println(list);
       mv.addObject("list", list);
       mv.setViewName("sellerPage/sellerPageQuestionView");
 

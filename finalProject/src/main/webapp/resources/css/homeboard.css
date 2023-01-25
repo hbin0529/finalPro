@@ -111,8 +111,7 @@
       .project-detail-metadata_table_detail td{margin-left: 5px; display: inline; }
       .detail_content_img{margin-top:80px;}
       .detail_content_img h3{font-size:20px}
-      .detail_content_text{margin-top:20px; font-family: 'Pretendard-Regular'; line-height:30px;} 
-       .protect_buttom{margin-top: 60px;}
+      .detail_content_text{margin-top:20px; font-family: 'Pretendard-Regular'; line-height:30px;}  
       .detail_content_like{margin-top: 110px; font-family: 'Pretendard-Regular';}
       .detail_content_comment, .detail_content_comment_detail{margin-top: 30px;}
       .detail_content_comment_1 {display: inline-block;  margin-bottom: 25px; width: 50px;} 
@@ -125,7 +124,7 @@
       #replyArea tbody{ border: 1px solid #444444; }
       #replyArea tbody td:last-child{width: 130px;  font-size: 15px; display: inline-block; margin-top: 25px;}
       .testSpan{ padding:5px; background-color: #21d9cb; color:white;  border: 1px solid rgb(243, 242, 242); border-radius: 5px;  cursor: pointer;}
-     
+      .form-group{margin-top:20px;}
         /*-------------------------글쓰기스타일모음--------------------------- */
         .write_content{ display: block; margin-bottom: 20px;}
         .content_title{width: 140px;}
@@ -195,5 +194,15 @@
     .page-pre{background-color: #21d9cb; width: 25px; height: 20px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
     .page-pre a{color: white; text-decoration: none;}
     .page-next{background-color: #21d9cb; width: 25px; height: 20px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
+    .page-next a{color: white; text-decoration: none;}
+    .page-number{margin-right: 20px;}
+  
+    /* -----------------------------------homeBoardListView 집들이 리스트 스타일모음----------------------------------- */
+    
+    #pagingArea{width:fit-content; margin: auto;}
+    .pagination{display: flex; list-style: none; font-family: 'Pretendard-Regular'; margin-bottom:50px;}
+    .page-pre{background-color: #21d9cb; width: 25px; height: 25px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
+    .page-pre a{color: white; text-decoration: none;}
+    .page-next{background-color: #21d9cb; width: 25px; height: 25px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
     .page-next a{color: white; text-decoration: none;}
     .page-number{margin-right: 20px;}

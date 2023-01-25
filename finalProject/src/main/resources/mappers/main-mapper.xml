@@ -58,9 +58,20 @@
 		<result column="home_option" property="homeOption" />
 		<result column="board_title" property="boardTitle" />
 		<result column="board_count" property="boardCount" />
+		
+		<result column="ord_no" property="orderNo"/>
+		<result column="ord_email" property="ordEmail"/>
+		<result column="ord_date" property="orderDate"/>
+		<result column="ord_zipcode" property="orderZipcode"/>
+		<result column="ord_addr" property="orderAddr"/>
+		<result column="ord_count" property="orderCount"/>
+		<result column="ord_detail_addr" property="orderDetailAddr"/>
+		<result column="cus_name" property="cusName"/>
+		<result column="cus_phone" property="cusPhone"/>
+		<result column="ord_request" property="orderRequest"/>
 	</resultMap>
 
-	<!-- 카테고리별 판매량 TOP1 리스트 조회 -->
+	<!-- 카테고리별 조회수 TOP1(8개) 리스트 조회 -->
 	<select id="topStoreBoardList" resultMap="storeBoardResult">
 		select a.*, b.sel_bus_name
 		from(select cate_no, pro_count, pro_change_img, pro_name, pro_price, sel_no, pro_no, status,

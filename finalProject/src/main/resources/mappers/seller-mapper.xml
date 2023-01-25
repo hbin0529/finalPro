@@ -55,4 +55,20 @@
   </select>
   
   
+  
+  <select id="getSellerInfo" resultMap="sellerResult">
+  	select * from seller_base where sel_no = #{selNo}
+  </select>
+  
+  
+  <update id="doUpdate">
+  	update seller_base set sel_name = #{selName}, sel_zipcode = #{selZipcode}, sel_addr = #{selAddr}, sel_detail_addr = #{selDetailAddr}, sel_phone = #{selPhone}
+  	, sel_inter_introduce = #{ selInterIntroduce } where sel_no = #{selNo}
+  </update>
+  
+  
+  
+  
+  
+  
 </mapper>

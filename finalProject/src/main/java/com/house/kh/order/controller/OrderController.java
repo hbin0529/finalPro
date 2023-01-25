@@ -7,11 +7,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.house.kh.member.model.service.MemberService;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.order.model.service.OrderService;
 import com.house.kh.order.model.vo.Order;
@@ -24,19 +26,24 @@ public class OrderController {
 	@Autowired
 	private OrderService oService;
 	
+	@Autowired
+	private MemberService mService;
+	
+	
 	// 주문결제페이지 이동
 	// 상품 정보 p에 담음
 	@RequestMapping("order.or")
-	public String order(Product p, Model m, String colorSelect, int countSelect) {
-		System.out.println(p);
-		m.addAttribute("p", p);
-		m.addAttribute("colorSelect", colorSelect);
-		m.addAttribute("countSelect", countSelect);
+	public String order(Member m, Product p, Model model, String colorSelect, int countSelect, HttpSession session) {
+		m = (Member) session.getAttribute("m");
+		model.addAttribute("p", p);
+		model.addAttribute("colorSelect", colorSelect);
+		model.addAttribute("countSelect", countSelect);
 		return "order/order";
 		
 	}
 	
 	// 충전페이지 이동
+	@Transactional
 	@RequestMapping("charge.or")
 	public String charge() {
 		return "order/charge";
@@ -55,15 +62,13 @@ public class OrderController {
 	@RequestMapping("orderSheet.or")
 	public String orderSheet2(Order o, Model model, HttpSession session) {
 		
-		System.out.println(o);
-		
 		int orderSheetResult = oService.orderSheet2(o);
 		oService.payUserPoint(o); 
 		oService.insertDetail(o);
 		/* int orderDetailSheetReulst = oService.orderSheet2(o); */
 		if(orderSheetResult > 0) {
 			model.addAttribute("alertMsg", "결제가 완료되었습니다.");
-			return "order/orderDetailView";
+			return "main";
 		} else {
 			model.addAttribute("alertMsg", "결제가 취소되었습니다.");
 			return "main";
@@ -73,15 +78,7 @@ public class OrderController {
 	
 	@RequestMapping("sellerOrderList.or")
 	public String sellerOrderList(int selNo, Model model,ModelAndView mv, Order order) {
-		System.out.println("메소드 실행 전");
-		/*
-		Order orderListCount = oService.orderListCount(selNo);
-		System.out.println(orderListCount.getAaa());
-		System.out.println("메소드 실행 후");
-		System.out.println(orderListCount);
-		*/
 		ArrayList<Order> getSellersOrderList = oService.sellersOrderList(selNo);
-		//model.addAttribute("orderListCount", orderListCount);
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
 		
@@ -198,7 +195,7 @@ public class OrderController {
 	
 	
 	
-	
+	@Transactional
 	@RequestMapping("orderConfirm.or")
 	public String orderConfirm(Order o, Model model) {
 		//먼저 여분의 재고가 있는지부터 확인
@@ -213,7 +210,7 @@ public class OrderController {
 	}
 	
 
-	
+	@Transactional
 	@RequestMapping("orderCancel.or")
 	public String orderCancel(Order o) {
 		//주문취소처리하고('F', 오더디테일) 포인트 일반회원구매자한테 돌려주기(멤버베이스)

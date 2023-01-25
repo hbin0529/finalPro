@@ -36,4 +36,13 @@ public class SellerDao {
 		return sellerPoint;
 	}
 	
+	public Seller getSellerInfo(SqlSessionTemplate sqlSession, int selNo) {
+		return sqlSession.selectOne("sellerMapper.getSellerInfo", selNo);
+	}
+	
+	public int doUpdate(SqlSessionTemplate sqlSession, Seller seller) {
+		return sqlSession.update("sellerMapper.doUpdate", seller);
+	}
+	
+	
 }

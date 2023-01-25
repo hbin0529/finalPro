@@ -46,7 +46,7 @@
             <table class="mypage_product_review_table">
                 <tr>
                     <td colspan="2" style="text-align: right;">
-                    	<input type="button" value="삭제" onclick="del(${ order.reviewNo })"   style="width:100px; height:40px; background-color:white; color: #21d9cb; border:1px solid  #21d9cb; border-radius:4px; cursor:pointer;"> 
+                    	<input type="button" value="삭제" onclick="del(${ order.reviewNo })"   style="font-family: 'Pretendard-Regular';    width:100px; height:40px; background-color:#21d9cb; color: white; border:1px solid  #21d9cb; border-radius:4px; cursor:pointer; font-size:16px;"> 
                      </td>
                 </tr>
                 <tr>

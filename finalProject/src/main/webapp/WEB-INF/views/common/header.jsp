@@ -52,7 +52,7 @@
     *{margin: 0; padding: 0; text-decoration: none;}
     a{text-decoration: none; color: black;  cursor: pointer;}
     .main_logo a {
-        font-family: 'SDSamliphopangche_Outline'; color: #21d9cb; font-size: 38px;}
+        font-family: 'SDSamliphopangche_Outline'; color: #21d9cb; font-size: 38px; text-decoration-line: none;}
     .main_logo li {position: relative; right:70px; list-style: none;} 
     .main_logo li:last-child{top: -2px;}
     .top_box{ width: 1200px; height: 120px;  margin: 0 auto; display: flex; justify-content: center; align-items:center;}
@@ -132,7 +132,7 @@
    	                <li><a href="myPage.me">${ nick }</a></li>
                   </c:if>
                     <li><a href="logout.me">로그아웃</a></li>
-                    <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
+                    <li><a href="chat.in"><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
             </c:if>
             </div> 
@@ -141,7 +141,7 @@
     <hr> 
     <div class="header_store_dropdown" >
       <table class="">
-          <tr class="">
+          <tr class="cateImg">
               <td><a href="storelist.bo?cateNo=1"><img src="${path}/resources/img/category_bed.png" id="store_dropdown_img"></a></td>
               <td><a href="storelist.bo?cateNo=2"><img src="${path}/resources/img/category_sofa.png" id="store_dropdown_img"></a></td>
               <td><a href="storelist.bo?cateNo=3"><img src="${path}/resources/img/category_table.png" id="store_dropdown_img"></a></td>

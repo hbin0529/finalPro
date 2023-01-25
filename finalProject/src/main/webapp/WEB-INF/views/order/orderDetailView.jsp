@@ -90,10 +90,16 @@
     #table_border{border-right: 1px solid rgb(204, 204, 204);}
 
     /* -------------------------판매자페이지 판매내역 리스트------------------------- */
-    .order_list{width: 950px; margin: 0 auto; border: 1px solid lightgray; border-radius: 5px; margin-top: 70px; font-family: 'Pretendard-Regular'; padding-top: 30px; padding-bottom: 30px;}
-    .detail_top{display: flex; height: 50px;  margin-left: 20px; margin-right: 20px; font-size: 18px; font-weight: bolder; border-bottom: 1px solid lightgray; margin-top: 50px;}
+     *{font-style:normal;}
+    section{ font-family: 'Pretendard-Regular';}
+    .order_list{width: 950px; margin: 0 auto; border: 1px solid lightgray; border-radius: 5px; margin-top: 70px; font-family: 'Pretendard-Regular'; padding-top:10px; padding-bottom:10px; margin-bottom: 100px;}
+    .detail_top{display: flex; height: 35px;  margin-left: 20px; margin-right: 20px; font-size: 18px; font-weight: bolder; border-bottom: 1px solid lightgray; margin-top: 50px;}
     .detail_top div:nth-child(1){width: 850px;}
-    .detail_top div:nth-child(2){width: 100px; text-align: center; background-color: rgb(224, 224, 224); margin-bottom: 10px; padding-top: 7px; border-radius: 5px;}
+    .detail_top div:nth-child(2){width: 90px; font-size:16px; border-radius: 5px; text-align:center; padding-top:8px;}
+    .buy_wait {color:red; width:100px}
+    .detail_top div{font-size: 17px;}
+      
+   
     .detail_body{display: flex; height: 200px; margin-left: 20px; margin-right: 20px; width: 910px; }
     .detail_body_category{width: 400px; margin-left: 10px; padding-top: 70px; }
     .detail_body_category div:nth-child(1){margin-bottom: 10px;}
@@ -101,19 +107,16 @@
     .detail_body_option{width: 250px; padding-top: 70px;}
     .detail_body_option div:nth-child(1){margin-bottom: 10px;}
     .detail_body_option div:nth-child(2){font-weight: bolder;}
-    .detail_body_button {width: 260px; text-align: right; padding-top: 40px;}
-    .detail_body_button div:nth-child(1){margin-bottom: 20px;}
-    .detail_body_button button{background-color: #21d9cb; border: 1px solid #21d9cb; width: 200px; height: 50px; color: white; font-size: 18px; font-weight: bolder;cursor: pointer; border-radius: 5px;}
-    .detail_body img{width: 150px; margin-top: 25px;}
-    .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 70px;}
-    .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
-    .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
-    .detail_body div img{
-    	max-height: 150px;
-    }
-    .order_count button{
-    	background-color: rgb(33, 217, 203); color:white;
-    }
+    .detail_body_button {width: 260px; text-align: right; padding-top: 40px; margin-right: 10px;}
+   /*  .detail_body_button div:nth-child(1){margin-bottom: 20px;} */
+/*     .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
+ */     .detail_body img{width: 150px; margin-top: 25px;}
+    .detail_bottom{line-height: 133%; height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 30px;}
+    .detail_bottom div:nth-child(1){padding-top: 20px;  }
+    .detail_bottom div:nth-child(2){font-size: 16px; }
+     .detail_top p {font-size: 15px;}
+     #sell_ok, #order_cancle {font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
+     #order_cancle{margin-top:10px}
 </style>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -123,7 +126,7 @@
     	
     	<div class="order_count">
             <div><p>총 보유 포인트</p></div>
-            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;" class="sellerPoint">0 POINT <button>환전하기</button></p></div>
+            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;" class="sellerPoint">0 원 <button>환전하기</button></p></div>
         </div>
     
     
@@ -170,15 +173,15 @@
     	    				for(i in list){
     	    					if(list[i].ordStatus == 'Y'){
     	    						$(".sellYcount").text(list[i].statCount)
-    	    						$(".sellYprice").text(list[i].statPrice+" point")
+    	    						$(".sellYprice").text(list[i].statPrice+" 원")
     	    					}
     	    					if(list[i].ordStatus == 'N'){
     	    						$(".sellNcount").text(list[i].statCount)
-    	    						$(".sellNprice").text(list[i].statPrice+" point")
+    	    						$(".sellNprice").text(list[i].statPrice+" 원")
     	    					}
     	    					if(list[i].ordStatus == 'F'){
     	    						$(".sellFcount").text(list[i].statCount)
-    	    						$(".sellFprice").text(list[i].statPrice+" point")
+    	    						$(".sellFprice").text(list[i].statPrice+" 원")
     	    					}
     	    					allCount += list[i].statCount;
     	    					$(".allCount").text(allCount+" 건")
@@ -202,7 +205,7 @@
         			},
         			success:function(sellerPoint){
         				$(function(){
-        					$(".sellerPoint").text(sellerPoint+' POINT')
+        					$(".sellerPoint").text(sellerPoint+' 원')
         				})
         			},
         			error:function(){
@@ -260,11 +263,11 @@
 	                    </div>
 	                    <div class="detail_body_option">
 	                        <div>옵션 | ${ order.ordOption }</div>
-	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                        <div>${ order.ordPrice } 원 | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
-	                        <div><button type="button" value="${ order.ordNo }" onclick="orderConfirm(this.value);">판매확정</button></div>
-	                        <div><button type="button" value="${ order.ordNo }" onclick="orderCancel(this.value);">주문취소</button></div>
+	                        <div><button type="button" id="sell_ok" value="${ order.ordNo }" onclick="orderConfirm(this.value);">판매확정</button></div>
+	                        <div><button type="button" id="order_cancle" value="${ order.ordNo }" onclick="orderCancel(this.value);">주문취소</button></div>
 	                        <input type="hidden" value="${ order.ordOption }" id="oOption">
 	                        <input type="hidden" value="${ order.ordCount }" id="oCount">
 	                        <input type="hidden" value="${ order.ordPrice }" id="oPrice">
@@ -292,7 +295,7 @@
 	                    </div>
 	                    <div class="detail_body_option">
 	                        <div>옵션 | ${ order.ordOption }</div>
-	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                        <div>${ order.ordPrice } 원 | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
 	                        <div><button style="display: none;">판매확정</button></div>
@@ -319,7 +322,7 @@
 	                    </div>
 	                    <div class="detail_body_option">
 	                        <div>옵션 | ${ order.ordOption }</div>
-	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                        <div>${ order.ordPrice } 원 | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
 	                        <div><button style="display: none;">판매확정</button></div>
@@ -336,16 +339,7 @@
 			</c:forEach>
 
             </div>
-        </div>
-
-        
-
-
-
-        <!-- 페이징처리 -->
-        <div class="order_list_paging">
-            1  2  3  4  5
-        </div>
+        </div> 
     </section>
 
 

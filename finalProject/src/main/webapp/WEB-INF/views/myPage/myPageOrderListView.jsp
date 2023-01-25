@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap2.min.css" rel="stylesheet" type="text/css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -341,8 +342,8 @@
                 </div><!--review_buy_star 까지-->
                 <div class="review_buy_upload">
                     <h5 class="review_title">사진 첨부 (선택)</h5>
-                    <p>사진을 첨부해주세요. (최대 1장) </p> 
-                    <input type="file" name="upfile" class="main_file">
+                    <p>사진을 첨부해주세요. (1장 필수) </p> 
+                    <input type="file" name="upfile" class="main_file" required>
                 </div> <!--review_buy_upload 까지-->
                   
                 <div class="review_write"> 

@@ -105,7 +105,7 @@
                         <td><a href="" id="mypage_menu">판매상품</a></td>
                         <td><a href="" id="mypage_menu" style="color: #21d9cb;">주문내역</a></td>
                         <td><a href="" id="mypage_menu">답변내역</a></td>
-                        <td><a href="" id="mypage_menu">개인정보수정</a></td>
+                        <td><a href="sellerInfoUpdate.se?selNo=${ s.selNo }" id="mypage_menu">개인정보수정</a></td>
                     </tr>
                 </table>
             </div>

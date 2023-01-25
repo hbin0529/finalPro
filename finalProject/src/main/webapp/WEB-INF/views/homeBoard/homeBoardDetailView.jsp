@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style> 
-</style>
 <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css"> 
 <body>
  <jsp:include page="../common/header.jsp"/> 
@@ -76,19 +74,9 @@
       <div class="detail_content_text">
           <p>${ h.boardContent }</p>
           <br>  
-
-       <div style="margin-top: 60px;"><h3 style="color: #21d9cb; font-family: 'Pretendard-Regular'; font-weight: bold; font-size:30px;">⚡️오늘의 집 회원 PICK!</h3></div>
- <!-- Swiper -->
-    <div class="swiper mySwiper"> 
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-            <img src="${path}/resources/img/detail_content_buy_img01.jpeg" width="130px">
-            <img src="${path}/resources/img/detail_content_buy_img02.jpeg" width="130px"> 
-          </div>
-        </div>   
-     </div>  
+   
       <div class="protect_buttom">
-           <img src="${path}/resources/img/protect_buttom.PNG"><div>  
+           <img src="${path}/resources/img/protect_buttom.PNG" width="750px"><div>  
       </div>    
       
        <!-- 댓글 창 -->    
@@ -107,7 +95,7 @@
                      </c:when>
                      <c:otherwise>  
                              <tr>
-                                   <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
+                                   <td><img src="${path}/${h.memImg}" width="40px; height:40px;" style="border-radius:50%"></td>
                                   <td><textarea class="form-control" id="content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px;"></textarea></td>
                                    <td><button onclick="addReply();" style="border-style:none; background-color:white; color:black; font-size:18px; cursor: pointer;">입력</button></td>
                                </tr>  

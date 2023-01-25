@@ -92,6 +92,10 @@ public class StoreBoardDao {
 	public int updateReply(SqlSessionTemplate sqlSession, int proQueNo) {
 		return sqlSession.update("storeBoardMapper.updateReply", proQueNo); 
 	}
-	 
+	
+	public ArrayList<Product> StarAmount(SqlSessionTemplate sqlSession, int proNo){
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.StarAmount", proNo);
+	}
+	
 	
 }

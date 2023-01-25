@@ -42,24 +42,15 @@ public class SellerController {
 		s.setSelZipcode(zipcode);
 		s.setSelAddr(address);
 		s.setSelDetailAddr(detailaddress);
-		System.out.println(s);
 		if(!s.getSelPwd().equals("kakaoSnsLoginUser")) {
 			String encPwd = bcryptPasswordEncoder.encode(s.getSelPwd());
 			s.setSelPwd(encPwd);
 		}
 		String memberFullEmail = "";
-		System.out.println(s.getSelEmailF());
-		System.out.println(s.getSelEmailS());
-		//if(s.getSelEmail().equals("")||s.getSelEmail()!=null) {
-			//memberFullEmail = s.getSelEmail();
-		//}else {
 			memberFullEmail = s.getSelEmailF()+"@"+s.getSelEmailS();
-		//}
-		System.out.println(memberFullEmail);
 		s.setSelEmail(memberFullEmail);
 		
 		
-		System.out.println(s);
 		
 		int insertMemResult = SService.insertMember(s);
 		if(insertMemResult > 0) {
@@ -76,7 +67,6 @@ public class SellerController {
 	@RequestMapping("loginUser.se")
 	public String login(Seller s, HttpSession session, Model model) {
 		
-		System.out.println(s.getSelEmail());
 		Seller loginUser = SService.searchUser(s);
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(s.getSelPwd(), loginUser.getSelPwd())) {
@@ -120,6 +110,37 @@ public class SellerController {
 	}
 	
 	
+	@RequestMapping("sellerInfoUpdate.se")
+	public String sellerInfoUpdate(int selNo, Model model) {
+		
+		Seller getSellerInfo = SService.getSellerInfo(selNo);
+		String fullEmail = getSellerInfo.getSelEmail();
+		String[] emails = fullEmail.split("@");
+		getSellerInfo.setSelEmailF(emails[0]);
+		getSellerInfo.setSelEmailS(emails[1]);
+		model.addAttribute("seller", getSellerInfo);
+		return "sellerPage/sellerInfoUpdate";
+	}
+	
+	@RequestMapping("doUpdate.se")
+	public String doUpdate(Seller seller, String address, int zipcode, String detailaddress, Model model) {
+		
+		seller.setSelZipcode(zipcode);
+		seller.setSelAddr(address);
+		seller.setSelDetailAddr(detailaddress);
+		
+		int updateResult = SService.doUpdate(seller);
+		
+		if(updateResult>0) {
+			model.addAttribute("alertMsg", "정보가 성공적으로 수정되었습니다.");
+			return "main";
+			
+		}else {
+			model.addAttribute("alertMsg", "회원정보 수정에 실패하였습니다.");
+			return "common/errorPage";
+		}
+		
+	}
 	
 	
 }
