@@ -53,4 +53,11 @@ public interface StoreBoardService {
 
 	int deleteReview(int reviewNo);
 	
-}
+	
+	ArrayList<Product> arrayReplyList(Product p); 
+	
+	 
+	int insertReply(Product p);
+	
+	int updateReply(int proQueNo);
+ }

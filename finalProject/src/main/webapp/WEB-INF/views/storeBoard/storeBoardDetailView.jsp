@@ -539,7 +539,11 @@ $(function() {
                 </div>
             </div>
         </div>
+         <form id="deleteQue" action="qdelete.bo">
+            <input name="proQueNo" type="hidden" id="test23123">
+         </form>
     </section>
+    
     </form>
     
     <script>
@@ -632,10 +636,10 @@ $(function() {
 							  } else {
 					 	value += "<div class='user_question'>"
 							  + 	"<div class='question_nickname_date'>"
-							  +			"<div style='display:flex;'>"+list[i].proQueNo
+							  +			"<div style='display:flex;'>"
 							  +				"<p style='background-color:#21d9cb; color:white;width:40px; text-align:center; border-radius:5px; height:20px; padding-top:2px;' > 미답변</p>"
 							  		if(list[i].memId == $("#memId").val()){
-						value += 		"<a onClick='queFormSubmit(1);' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
+						value += 		"<button value='"+ list[i].proQueNo +"' class='testSpan' onclick='a(this.value)' style=' width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder; border-style:none; color:black; background-color:white;'>삭제</button>"
 							  		} 
 						value +=		"</div>"
 						      + 		"<form action='' method='post' id='queForm'><input type='hidden' name='proQueNo' value='" +list[i].proQueNo+ "'></form>"
@@ -644,7 +648,7 @@ $(function() {
 							  + 	"<div class='bottom_question'>"
 							  +			"<div><p>Q</p></div>"
 							  +			"<div>"
-							  +				"<p>" + list[i].proQueContent + list[i].proQueNo +"</p>"
+							  +				"<p>" + list[i].proQueContent  +"</p>"
 							  +			"</div>"
 							  +		"</div>"
 							  + "</div>" 
@@ -686,6 +690,14 @@ $(function() {
     			alertify.alert("내용을 작성해주세요")
     		}
     	}
+	    
+	function a(no){
+     		
+            $("#deleteQue #test23123").val(no)
+            //$("#postForm").attr("action", "delete.bo").submit();
+            $("#deleteQue").submit();
+     	}
+       
 
     </script>
     

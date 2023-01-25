@@ -74,4 +74,18 @@ public class StoreBoardDao {
 		return sqlSession.update("storeBoardMapper.deleteReview", reviewNo); 
 	} 
 	
+	
+	public ArrayList<Product> arrayReplyList(SqlSessionTemplate sqlSession, Product p) {
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.arrayReplyList", p); 
+	}
+	
+	public int insertReply(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("storeBoardMapper.insertReply", p);
+	}
+	
+	public int updateReply(SqlSessionTemplate sqlSession, int proQueNo) {
+		return sqlSession.update("storeBoardMapper.updateReply", proQueNo); 
+	}
+	 
+	
 }

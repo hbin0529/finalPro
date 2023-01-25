@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.seller.model.dao.SellerDao;
 import com.house.kh.seller.model.vo.Seller;
+import com.house.kh.storeBoard.model.vo.Product;
 
 @Service
 public class SellerService {
@@ -43,6 +44,6 @@ public class SellerService {
 		ArrayList<Seller> sellList = sDao.getAllSeller(sqlSession);
 		return sellList;
 	}
-	
+
 	
 }
