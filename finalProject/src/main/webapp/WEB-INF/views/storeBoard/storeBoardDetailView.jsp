@@ -293,7 +293,7 @@ $(function() {
 						</form>
 						
 						<!-- 상품수정, 삭제시 post방식으로 넘겨주기 -->
-						<form action="" method="post" id="postForm">
+						<form action="#" method="post" id="postForm">
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="filePath" value="${ p.proChangeImg }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
 						</form>
@@ -504,7 +504,7 @@ $(function() {
                                 <a id="tag1"><p>문의</p></a>
                                 <p id="qcount1">0</p>
                                 	<c:choose>
-	                                	<c:when test="${ empty id }">
+	                                	<c:when test="${ empty id or permit eq 2}">
 	                                		<div><button type="button" data-toggle="modal" data-target="#myModal" style="display:none;">문의하기</button></div>
 	                                	</c:when> 
 	                                	<c:otherwise>
@@ -712,7 +712,6 @@ $(function() {
 	function a(no){
      		
             $("#deleteQue #test23123").val(no)
-            //$("#postForm").attr("action", "delete.bo").submit();
             $("#deleteQue").submit();
      	}
        
