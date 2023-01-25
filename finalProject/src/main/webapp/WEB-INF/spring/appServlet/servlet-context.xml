@@ -28,6 +28,56 @@
 	
 	<context:component-scan base-package="com.house.kh" />
 	
+	<!-- 일반회원 로그인 안 할 시 접속 불가 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/myPage.me"/>
+			<mapping path="/updateForm.bo"/>
+		 	<mapping path="/order.or"/>
+		 	<mapping path="/pointCharge.or"/>
+		 	<mapping path="/charge.or"/>
+		 	<mapping path="/chat.in"/>
+		 	<mapping path="/myPageOrderlist.bo"/>
+			<beans:bean class="com.house.kh.common.interceptor.LoginInterceptor" id="LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
+	<!-- 판매자 로그인 안 할 시 접속 불가 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/enrollForm.in"/>
+			<mapping path="/productWrite.bo"/>
+			<mapping path="/productUpdate.bo"/>
+			<mapping path="/sellerProduct.se"/>
+			<mapping path="/pointCharge.or"/>
+			<mapping path="/charge.or"/>
+			<beans:bean class="com.house.kh.common.interceptor.SellerInterceptor" id="SellerInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+	<!-- 로그인 되어있을 때 회원가입 불가 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/signIn.me"/>
+			<beans:bean class="com.house.kh.common.interceptor.SignInterceptor" id="SignInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+	<!-- 일반 회원 로그인 되어있을 때 장바구니 허용 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/cartlist.ca"/>
+			<beans:bean class="com.house.kh.common.interceptor.CartInterceptor" id="CartInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+	<!-- 로그인 되지 않았을 때 집들이 글쓰기 불가 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/enrollForm.bo"/>
+			<mapping path="/mypagehblist.bo"/>
+			<beans:bean class="com.house.kh.common.interceptor.EnrollFormInterceptor" id="EnrollFormInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

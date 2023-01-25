@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.house.kh.cart.model.service.CartService;
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.member.model.vo.Member;
+import com.house.kh.seller.model.vo.Seller;
 import com.house.kh.storeBoard.model.vo.Product;
 
 @Controller
@@ -23,7 +25,9 @@ public class CartController {
 
 	/* 카트 리스트 불러오기 */
 	@RequestMapping("cartlist.ca")
-	public ModelAndView selectCartList(Cart cart, ModelAndView mv, Model model) {
+	public ModelAndView selectCartList(Cart cart, ModelAndView mv, Model model, HttpSession session, Seller s, Member m) {
+		m = (Member) session.getAttribute("m");
+		s = (Seller) session.getAttribute("s");
 		int cartCount = 0;
 		ArrayList<Cart> list = new ArrayList<Cart>();
 		list = cartService.selectCartList();
