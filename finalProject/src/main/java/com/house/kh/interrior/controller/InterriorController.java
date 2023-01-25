@@ -60,7 +60,8 @@ public class InterriorController {
 	}
 	
 	@RequestMapping("enrollForm.in")
-	   public String enrollForm(int selNo, Model model) {
+	   public String enrollForm(int selNo, Model model, HttpSession session, Seller s) {
+		s = (Seller) session.getAttribute("s");
 			model.addAttribute("selNo", selNo);
 	      return "interrior/interriorEnrollForm";
 	   }

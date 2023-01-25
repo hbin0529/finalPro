@@ -76,11 +76,6 @@ public class MyPageHomeBoardController {
 	public String usersOrderList(String id, Model model){
 		
 		ArrayList<Order> orderList = oService.usersOrderList(id);
-		/*
-		for(int i=0; i<orderList.size(); i++) {
-			System.out.println(orderList.get(i));
-		}
-		*/
 		model.addAttribute("o", orderList);
 		return "myPage/myPageOrderListView";
 	
@@ -88,7 +83,6 @@ public class MyPageHomeBoardController {
 	  
 	   @RequestMapping("reviewinsert.bo")
 	   public String insertReview(Product p, MultipartFile upfile, HttpSession session, Model model) {
-		   System.out.println(p);
 		   if(!upfile.getOriginalFilename().equals("")) { 
 				  String changeName = changeFilename(upfile, session);
 			         p.setReviewImgOrigin(upfile.getOriginalFilename());
@@ -105,7 +99,7 @@ public class MyPageHomeBoardController {
 	      } else {
 	         return "common/errorPage";
 	      }
-	   }  
+	   }
 	   
 	   public String changeFilename(MultipartFile upfile, HttpSession session) {
 		      String originName = upfile.getOriginalFilename();

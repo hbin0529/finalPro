@@ -49,7 +49,6 @@ public class MainController {
    @ResponseBody
 	@RequestMapping(value="topStoreBoardList3.bo", produces="application/json; charset=UTF-8")
 	public String ajaxTopStoreBoardList3() {
-	   System.out.println("왜안되나요?");
 		ArrayList<Main> list = mService.topStoreBoardList3();
 		return new Gson().toJson(list);
 	}

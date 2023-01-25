@@ -1,5 +1,6 @@
 package com.house.kh.main.model.vo;
 
+import com.house.kh.order.model.vo.Order;
 import com.house.kh.seller.model.vo.Seller;
 
 import lombok.AllArgsConstructor;
@@ -75,6 +76,8 @@ public class Main {
 	private String homeOption;
 	private String homeFamily;
 	private String homeStatus;
+	
+	private Order order;
 }
 
 

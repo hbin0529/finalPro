@@ -42,24 +42,15 @@ public class SellerController {
 		s.setSelZipcode(zipcode);
 		s.setSelAddr(address);
 		s.setSelDetailAddr(detailaddress);
-		System.out.println(s);
 		if(!s.getSelPwd().equals("kakaoSnsLoginUser")) {
 			String encPwd = bcryptPasswordEncoder.encode(s.getSelPwd());
 			s.setSelPwd(encPwd);
 		}
 		String memberFullEmail = "";
-		System.out.println(s.getSelEmailF());
-		System.out.println(s.getSelEmailS());
-		//if(s.getSelEmail().equals("")||s.getSelEmail()!=null) {
-			//memberFullEmail = s.getSelEmail();
-		//}else {
 			memberFullEmail = s.getSelEmailF()+"@"+s.getSelEmailS();
-		//}
-		System.out.println(memberFullEmail);
 		s.setSelEmail(memberFullEmail);
 		
 		
-		System.out.println(s);
 		
 		int insertMemResult = SService.insertMember(s);
 		if(insertMemResult > 0) {
@@ -76,7 +67,6 @@ public class SellerController {
 	@RequestMapping("loginUser.se")
 	public String login(Seller s, HttpSession session, Model model) {
 		
-		System.out.println(s.getSelEmail());
 		Seller loginUser = SService.searchUser(s);
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(s.getSelPwd(), loginUser.getSelPwd())) {
@@ -124,7 +114,6 @@ public class SellerController {
 	public String sellerInfoUpdate(int selNo, Model model) {
 		
 		Seller getSellerInfo = SService.getSellerInfo(selNo);
-		System.out.println(getSellerInfo);
 		String fullEmail = getSellerInfo.getSelEmail();
 		String[] emails = fullEmail.split("@");
 		getSellerInfo.setSelEmailF(emails[0]);
