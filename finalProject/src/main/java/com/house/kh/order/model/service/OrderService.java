@@ -97,12 +97,12 @@ public class OrderService {
 	
 	
 	
+	//통계
+	public ArrayList<Order> getStatistics(int selNo) {
 	
-	
-	
-	
-	
-	
+		ArrayList<Order> stats = oDao.getStatistics(sqlSession, selNo);
+		return stats;
+	}
 	
 	
 	public boolean isThereStock(Order o) {
@@ -140,6 +140,6 @@ public class OrderService {
 	
 	
 	
-	
+
 	
 }

@@ -29,4 +29,11 @@ public class SellerDao {
 		return (ArrayList)sqlSession.selectList("sellerMapper.getAllSeller");
 	}
 	
+	
+	public int getSellerPoint(SqlSessionTemplate sqlSession, int selNo) {
+		Seller getSeller = sqlSession.selectOne("sellerMapper.getSellerPoint", selNo);
+		int sellerPoint = getSeller.getSelPoint();
+		return sellerPoint;
+	}
+	
 }

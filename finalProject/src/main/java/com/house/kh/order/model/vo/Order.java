@@ -80,4 +80,9 @@ public class Order {
 		
 		private int aaa;
  
+		
+	// 통계
+		
+	private int statCount;
+	private int statPrice;
 }
