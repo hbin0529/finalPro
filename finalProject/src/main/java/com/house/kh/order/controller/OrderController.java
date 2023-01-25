@@ -68,7 +68,7 @@ public class OrderController {
 		/* int orderDetailSheetReulst = oService.orderSheet2(o); */
 		if(orderSheetResult > 0) {
 			model.addAttribute("alertMsg", "결제가 완료되었습니다.");
-			return "order/orderDetailView";
+			return "main";
 		} else {
 			model.addAttribute("alertMsg", "결제가 취소되었습니다.");
 			return "main";

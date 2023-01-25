@@ -81,13 +81,13 @@
     .store_product_card{ height: 350px; font-family: 'Pretendard-Regular';}
     .store_product_list:first-child{ margin-left: 80px;}
     .store_product_list:nth-child(5){ margin-left: 80px;}
-    .store_product_list img{width: 240px; height: 240px; margin-left: 15px; margin-top: 30px; border: 1px solid #dee2e6;}
+    .store_product_list img{width: 240px; height: 240px; margin-left: 15px; margin-top: 40px; border: 1px solid #dee2e6;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 12px;}
     .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold;}    
     .store_product_top_title{position: relative; top: 50px; left: 103px;  font-family: 'Pretendard-Regular';}
     .store_product_card_top3{ height: 440px; width: 347px; font-family: 'Pretendard-Regular'; }
-    .store_product_card_top3 img{width: 325px; height: 325px; margin-left: 20px; margin-top: 30px; border: 1px solid #dee2e6;}
+    .store_product_card_top3 img{width: 325px; height: 325px; margin-left: 20px; margin-top: 40px; border: 1px solid #dee2e6;}
     #store_main_img  {margin-left: 50px;}  
     #button_left, #button_right { width: 40px; height: 40px; position: relative;}
     #button_right{right: 26px; top: -110px; border-style: none; border-radius : 50%; font-size: 25px; box-shadow: 1px 1px 1px 1px gray;}
@@ -142,7 +142,7 @@
 
  <!-- ----------------------------가구별 판매량 1위 첫번째행----------------------------------------- -->        
 
-         <div class="store_product_top_title"><h3><img src="${ path }/resources/img/top_tropli.png" width="25px">가구별 판매량 1위</h3></div>
+         <div class="store_product_top_title"><h3><img src="${ path }/resources/img/top_tropli.png" width="25px">&ensp;가구별 판매량 1위</h3></div>
      
     
             <div class="store_product" id="topBoardList">
@@ -187,7 +187,7 @@
             
 <!-- ----------------------------집들이 조회수 탑쓰리---------------------------------------- -->            
 
-	<div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="25px">집들이 조회수 TOP3</h3></div>
+	<div id="target"><div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="30px">&ensp;집들이 조회수 TOP3</h3></div></div>
 	<div class="store_product" id="topBoardList2">
 	
 		<!-- 집들이 조회수가 가장 높은 상위 3개를 조회하여 보여주기(ajax) -->
@@ -229,7 +229,7 @@
 
 
 <!-- ---------------------------상품 조회 탑3----------------------------------------- --> 
-	<div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="25px">가구 조회수 TOP3</h3></div>
+	<div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="30px">&ensp;가구 조회수 TOP3</h3></div>
 	<div class="store_product" id="topBoardList3">
 		
 		<!-- 현재 조회수가 가장 높은 상품 상위 3개를 조회하여 보여주기(ajax) -->
@@ -265,7 +265,7 @@
 			})
 		}
 	</script>
-	<hr style="margin: 50px 0;">
+	<hr style="margin: 50px 0 0 0; margin-left: 100px; width: 1065px;">
 
 <!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함-------------------------------------------> 
 	<div class="store_product_top_title"><h3>⚡️신규제품</h3></div> 

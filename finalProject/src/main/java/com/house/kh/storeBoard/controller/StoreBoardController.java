@@ -69,10 +69,23 @@ public class StoreBoardController {
    @RequestMapping("productdetail.bo")
    public ModelAndView selectBoard(int pno, ModelAndView mv) {
       
+	  ArrayList<Product> starAmount = sbService.StarAmount(pno);
+	  int[] stars = {0, 0, 0, 0, 0};
+	  
+	  
+	  for(int i = 0; i < starAmount.size(); i++) {
+		  if(starAmount.get(i).getStarAmount()>0) {
+			  int thisStar = Integer.parseInt(starAmount.get(i).getReviewStar());
+			  stars[thisStar-1] += starAmount.get(i).getStarAmount();
+		  }
+	  }
+	  
+	  
       int result = sbService.increaseCount(pno);
       if (result > 0) {
          Product p = sbService.selectBoard(pno);
          mv.addObject("p", p).setViewName("storeBoard/storeBoardDetailView");
+         mv.addObject("stars", stars);
       } else {
          mv.addObject("errorMsg", "상세조회 실패").setViewName("common/errorPage");
       }
@@ -198,11 +211,11 @@ public class StoreBoardController {
          String[] changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
          
          p.setProOriginImg(reupfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile" + changeName[0]);
+         p.setProChangeImg("resources/uploadFile/" + changeName[0]);
          p.setProOriginImg1(reupfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile" + changeName[1]);
+         p.setProChangeImg1("resources/uploadFile/" + changeName[1]);
          p.setProOriginDetailimg(reupfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile" + changeName[2]);
+         p.setProChangeDetailimg("resources/uploadFile/" + changeName[2]);
       }
       int result = sbService.proUpdateBoard(p);
       if(result > 0) {

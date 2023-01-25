@@ -69,6 +69,9 @@ public class Product {
 	private String queReplyContent;
 	private String queReplyDate;
 	private String pqrStatus;
+	
+	
+	private int starAmount;
 }
 
 

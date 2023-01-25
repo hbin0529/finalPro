@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -90,7 +92,7 @@ $(function() {
     .review_box{display: flex; width: 850px; height: 200px; margin: 0 auto; background-color: rgb(243, 243, 243); border-radius: 5px; font-family: 'Pretendard-Regular';}
     .bottom_review_star{display:flex; margin-bottom: 20px; font-size: 20px; font-weight: bolder; font-family: 'GmarketSansMedium';}
     .bottom_star{display: flex; margin: 0 auto; width: 350px; }
-    .bottom_star p{font-size: 30px; font-weight: bolder;  padding-top: 80px;}
+    .bottom_star p{font-size: 30px; font-weight: bolder;  padding-top: 80px; padding-right:30px}
     .bottom_star p:nth-child(1) {text-align: right;vertical-align: middle; width: 250px; color: #21d9cb; }
     .bottom_star p:nth-child(2) {text-align: left;width: 100px; border-right: 1px solid rgb(230, 230, 230); color: rgb(102, 102, 102); padding-right: 20px; margin-top: 3px;}
     .review_table{ background-color: rgb(243, 243, 243);width: 450px; margin: 0 auto;}
@@ -381,35 +383,49 @@ $(function() {
                             <div style="display: flex;">
                                 <div class="review_box">
                                     <div class="bottom_star" >
+                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 0 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 1}">
+                                        <p>★</p>
+                                    </c:if>    
+                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 1 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 2}">
+                                        <p>★★</p>
+                                    </c:if>    
+                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 2 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 3}">
+                                        <p>★★★</p>
+                                    </c:if>    
+                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 3 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 4}">
+                                        <p>★★★★</p>
+                                    </c:if>    
+                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 4}">
                                         <p>★★★★★</p>
-                                        <p>&ensp;5.0</p>
+                                    </c:if>    
+                                        <p>&ensp;<fmt:formatNumber value="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) }" pattern=".00"/></p>
                                     </div>
                                     <div class="review_table">
                                         <table>
                                             <tr>
                                                 <td>5점</td>
                                                 <td>★★★★★</td>
-                                                <td>10개</td>
+                                                <td>${ stars[4] }개</td>
                                             </tr>
                                             <tr>
                                                 <td>4점</td>
                                                 <td>★★★★</td>
-                                                <td>10개</td>
+                                                <td>${ stars[3] }개</td>
                                             </tr>
                                             <tr>
                                                 <td>3점</td>
                                                 <td>★★★</td>
-                                                <td>10개</td>
+                                                <td>${ stars[2] }개</td>
                                             </tr>
                                             <tr>
                                                 <td>2점</td>
                                                 <td>★★</td>
-                                                <td>10개</td>
+                                                <td>${ stars[1] }개</td>
                                             </tr>
                                             <tr>
                                                 <td>1점</td>
                                                 <td>★</td>
-                                                <td>10개</td>
+                                                <td>${ stars[0] }개</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -609,7 +625,7 @@ $(function() {
 							  		if(list[i].memId == $("#memId").val()){
 					    value +=			"<a onClick='queFormSubmit(1);' style='width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
 							  			} 
-						value +=		"</div>" +list[i].proQueNo + list[i].memEmail 
+						value +=		"</div>"  
 						      + 		"<form action='' method='post' id='queForm'><input type='hidden' name='proQueNo' value='" +list[i].proQueNo+ "'></form>"						
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
 							  +		"</div>"

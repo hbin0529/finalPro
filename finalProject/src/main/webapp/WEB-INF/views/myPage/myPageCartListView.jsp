@@ -50,7 +50,7 @@
     .mypage_cart_sum table{width: 350px; margin: 0 auto; margin-top: 50px; border: 1px solid rgb(204, 204, 204); padding: 10px; font-family: 'Pretendard-Regular';}
     .mypage_cart_sum table tr td:nth-child(1){font-size: 17px; padding: 5px;}
     .mypage_cart_sum table tr td:nth-child(2){text-align: right;}
-    .mypage_cart_sum button{background-color: #21d9cb; border: 1px solid #21d9cb; color: white; width: 300px; height: 50px; margin-top: 10px; font-size: 18px; font-weight: bolder; cursor: pointer; text-align: center; margin-left:5px; border-radius:5px;}
+    .mypage_cart_sum button{ font-family: 'Pretendard-Regular';    background-color: #21d9cb; border: 1px solid #21d9cb; color: white; width: 300px; height: 50px; margin-top: 10px; font-size: 18px; font-weight: bolder; cursor: pointer; text-align: center; margin-left:5px; border-radius:5px;}
     #option{font-size: 14px; padding-top: 10px; margin-top: 10px; padding-left: 20px;}       
     #option span{padding-right:5px; color:gray;}
     #amount{font-size: 14px; padding-left: 20px;}

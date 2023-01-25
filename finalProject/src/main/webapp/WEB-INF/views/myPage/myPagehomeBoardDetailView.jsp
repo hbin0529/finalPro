@@ -19,7 +19,13 @@
         <div>
             <div class="detail_title"><h2>${ h.boardTitle }</h2></div> 
                 <div class="detail_title_author_img">
+               <c:if test="${empty h.memImg}"> 
                       <a href="#"><img class="image" src="${path}/resources/img/logo_user.png"></a>
+                </c:if>
+              <c:if test="${!empty h.memImg}"> 
+                       <a href="#"><img class="image" src="${path}${h.memImg}" style="width:50px; height:50px; border-radius: 50%;"></a>
+               </c:if>
+                 
                      <div class="detail_title_author_name">${ h.memNick }</div>
                       <div class="detail_title_author_date">${ h.boardDate }</div> 
                 </div>  
@@ -67,31 +73,14 @@
         </table>
       </div>
        
-      <div class="detail_content_text">
+       <div class="detail_content_text">
           <p>${ h.boardContent }</p>
           <br>  
-
-       <div style="margin-top: 60px;"><h3 style="color: #21d9cb; font-family: 'Pretendard-Regular'; font-weight: bold; font-size:30px;">⚡️오늘의 집 회원 PICK!</h3></div>
- <!-- Swiper -->
-    <div class="swiper mySwiper"> 
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-            <img src="${path}/resources/img/detail_content_buy_img01.jpeg" width="130px">
-            <img src="${path}/resources/img/detail_content_buy_img02.jpeg" width="130px"> 
-          </div>
-        </div>   
-     </div>  
+   
       <div class="protect_buttom">
-           <img src="${path}/resources/img/protect_buttom.PNG"><div>  
-      </div>   
-       
-        <%--  <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
-         <form action="" method="post" id="postForm">
-            <input type="hidden" name= "bno" value="${ b.boardNo }">
-            <input type="hidden" name="filePath" value="${ b.changeName }">         
-         </form>
+           <img src="${path}/resources/img/protect_buttom.PNG" width="750px"><div>  
+      </div>
       
-       --%> 
       
        <!-- 댓글 창 -->    
          <table class="table" id="replyArea" style="padding-bottom: 40px;margin-bottom: 5px;">
@@ -101,7 +90,7 @@
                               <td style="width: 5000px;  display: inline-block; margin-top: 40px">댓글(<span id="rcount">0</span>)</td> 
                             </tr>
                 
-                     <c:choose>
+                      <c:choose>
                      <c:when test="${ empty id }">
                           <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
                            <td><textarea class="form-control" id="content" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px; font-family: 'Pretendard-Regular'; font-size:16px">로그인한 사용자만 이용가능합니다.</textarea></td>
@@ -109,13 +98,13 @@
                      </c:when>
                      <c:otherwise>  
                              <tr>
-                                   <td><img src="${path}/resources/img/logo_user.png" width="40px"></td>
+                                   <td><img src="${path}/${h.memImg}" width="40px; height:40px;" style="border-radius:50%"></td>
                                   <td><textarea class="form-control" id="content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)" style="width: 600px; height:45px; padding-left: 6px; border: 1px solid rgb(208, 207, 207); padding-top: 10px; margin-left:8px; border-radius: 3px;"></textarea></td>
                                    <td><button onclick="addReply();" style="border-style:none; background-color:white; color:black; font-size:18px; cursor: pointer;">입력</button></td>
                                </tr>  
                        </c:otherwise>
                      </c:choose>  
-                 </thead>  
+                 </thead> 
              <tbody style="font-family: 'Pretendard-Regular';"> 
               </tbody>  
                <hr>     

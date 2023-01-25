@@ -119,6 +119,12 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	public int updateReply(int proQueNo) {
 		return sbDao.updateReply(sqlSession, proQueNo);
 	}
+
+	@Override
+	public ArrayList<Product> StarAmount(int proNo) {
+		
+		return sbDao.StarAmount(sqlSession, proNo);
+	}
 	 
 	 
 }
