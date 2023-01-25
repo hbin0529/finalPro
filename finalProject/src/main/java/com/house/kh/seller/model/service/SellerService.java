@@ -52,5 +52,14 @@ public class SellerService {
 	}
 	
 	
+	public Seller getSellerInfo(int selNo) {
+		return sDao.getSellerInfo(sqlSession, selNo);
+	}
+	
+	public int doUpdate(Seller seller) {
+		return sDao.doUpdate(sqlSession, seller);
+	}
+	
+	
 	
 }
