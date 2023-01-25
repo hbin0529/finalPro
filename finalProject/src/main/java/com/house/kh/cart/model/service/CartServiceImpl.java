@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.house.kh.cart.model.dao.CartDao;
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.vo.Product;
 
 @Service
@@ -45,8 +46,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public ArrayList<Cart> selectProList() {
-		return cDao.selectProList(sqlSession);
+	public ArrayList<Cart> selectProList(PageInfo pi) {
+		return cDao.selectProList(sqlSession, pi);
 	}
 
 	/*

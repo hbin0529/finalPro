@@ -2,10 +2,12 @@ package com.house.kh.cart.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.vo.Product;
 
 @Repository
@@ -33,8 +35,12 @@ public class CartDao {
 	}
 
 	//셀러페이지 상품리스트
-	public ArrayList<Cart> selectProList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("cartMapper.selectProList");
+	public ArrayList<Cart> selectProList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		
+		return (ArrayList)sqlSession.selectList("cartMapper.selectProList", null, rowBounds);
 	}
 	
 	/*
