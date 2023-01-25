@@ -264,6 +264,7 @@ $(function() {
 	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
 	                                 <input type="hidden" value="${ p.proName }" name="proName">
 	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
+	                                 <input type="hidden" value="${ p.proChangeImg }" name="proChangeImg">
 	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
 	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
 	                        	</c:if>
@@ -278,6 +279,7 @@ $(function() {
 		                              </script>
 	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
 	                                 <input type="hidden" value="${ p.proName }" name="proName">
+	                                 <input type="hidden" value="${ p.proChangeImg }" name="proChangeImg">
 	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
 	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
 	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
@@ -293,6 +295,7 @@ $(function() {
 							<input type="hidden" name="proPrice" value="${ p.proPrice }" >
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="selNo" value="${ p.selNo }">
+							<input type="hidden" name="proChangeImg" value="${ p.proChangeImg }" >
 							<input type="hidden" name="memEmail" value="${ id }">
 						</form>
 						
