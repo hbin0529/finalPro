@@ -21,10 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.house.kh.common.model.vo.PageInfo;
-<<<<<<< HEAD
 import com.house.kh.common.template.Pagination;
-=======
->>>>>>> 9f1c7347bf5ebef9f691cc348bc69a39bbd96a82
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.order.model.service.OrderService;
@@ -43,19 +40,13 @@ public class MyPageHomeBoardController {
 	private OrderService oService;
 
 	@RequestMapping("mypagehblist.bo")
-<<<<<<< HEAD
+ 
 	public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, ModelAndView mv, Model model) {
-		int listCount = hbService.selectListCount();
+		  int listCount = hbService.selectListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
 		ArrayList<HomeBoard> list = hbService.selectList(pi);
-		
-		mv.addObject("pi", pi);
-=======
-	public ModelAndView selectList(ModelAndView mv, Model model, PageInfo pi) {
-		int listCount = hbService.selectListCount();
-		ArrayList<HomeBoard> list = hbService.selectList(pi);
 
->>>>>>> 9f1c7347bf5ebef9f691cc348bc69a39bbd96a82
+		mv.addObject("pi", pi);
 		mv.addObject("list", list);
 		model.addAttribute("listCount", listCount);
 		mv.setViewName("myPage/myPageHomeListView");
