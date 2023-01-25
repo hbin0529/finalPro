@@ -22,7 +22,7 @@
 /* -----------------------------------메인바디 상품리스트 스타일모음----------------------------------- */
     .store_product_top{width: 1250px; } 
     .store_product_top table{ width: 1100px; padding-top: 70px; margin: 0 auto;}
-    .store_product_top table tr td:nth-child(1){width: 30px; padding-left: 30px; font-size: 13px; padding-top: 5px; color: rgb(105, 105, 105);}
+    .store_product_top table tr td:nth-child(1){width: 30px; padding-left: 30px; font-size: 13px; padding-top: 5px; color: rgb(105, 105, 105); padding-left: 80px;}
     .store_product_top table tr td:nth-child(2){font-size: 13px; padding-top: 5px; color: rgb(105, 105, 105);} 
     .store_product_top table tr td:nth-child(3){text-align: right; padding-right: 40px;}
     #product_list{border: 1px solid #dee2e6; width: 100px; padding: 5px; border-radius: 6%; color: rgb(105, 105, 105);} 
@@ -64,14 +64,7 @@
                 <table>
                     <tr>
                         <td>전체</td>
-                        <td>${ listCount }</td>
-                        <td>
-                            <select id="product_list">
-                                <option>최신순</option>
-                                <option>조회순</option>
-                                <option>판매순</option>
-                            </select>
-                        </td>
+                        <td>${ listCount }</td> 
                     </tr>
                 </table>
             </div>

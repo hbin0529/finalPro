@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style> 
-</style>
 <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css"> 
 <body>
  <jsp:include page="../common/header.jsp"/> 

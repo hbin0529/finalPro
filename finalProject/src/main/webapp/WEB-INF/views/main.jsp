@@ -86,7 +86,7 @@
     .store_product_list:nth-child(5){ margin-left: 80px;}
     .store_product_list img{width: 240px; height: 240px; margin-left: 15px; margin-top: 40px; border: 1px solid #dee2e6;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 12px;}
-    .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; overflow: e; width:228px; height: 1em; white-space: nowrap;}
+    .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; overflow: e; width:228px; height: 20px;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold;}    
     .store_product_top_title{position: relative; top: 50px; left: 107px;  font-family: 'Pretendard-Regular';}
     .store_product_card_top3{ height: 440px; width: 347px; font-family: 'Pretendard-Regular'; }
@@ -102,6 +102,9 @@
     #topBoardList{width:1250px; flex-wrap: wrap;}
     #topBoardList4{width:1250px; flex-wrap: wrap;}
     .store_product_img{width:266px}
+    img{
+    	object-fit: cover;
+    }
 </style>
 <body>
 <!-- header -->
@@ -271,7 +274,7 @@
 	<hr style="margin: 50px 0 0 0; margin-left: 100px; width: 1065px;">
 
 <!-- ---------------------------모든제품(무한스크롤)4세트씩 넣어야 함-------------------------------------------> 
-	<div class="store_product_top_title"><h3>⚡️신규제품</h3></div> 
+	<div class="store_product_top_title"><h3>⚡️모든제품</h3></div> 
 	<div class="store_product" id="topBoardList4" style="margin-bottom: 80px">
 		<!-- 전체 상품 리스트(ajax) -->
 	</div> 

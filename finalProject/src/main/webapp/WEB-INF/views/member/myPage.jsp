@@ -232,12 +232,17 @@
         height: 40px;
         font-size: large;
         padding-left: 10px;
+        font-family: 'Pretendard-Regular';
     }
     .formElement>button{
         margin: 50px 0px 0px 130px;
         width: 400px; font-size: 20px; font-weight: bolder;
         height: 50px; background-color: rgb(33, 217, 203);
         border: 0; color: rgb(255, 255, 255);
+        font-family: 'Pretendard-Regular';
+        font-size:13px;
+        
+        
     }
     .necessaryInfo::after{
         content: "*";

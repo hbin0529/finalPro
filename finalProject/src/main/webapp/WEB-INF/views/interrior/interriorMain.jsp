@@ -97,10 +97,10 @@
 
     <!-- 본문 -->
     <section class="container">
-        <form action="">
+        <form action="searchInter.in">
             <div class="searchBarSection">
                 <img src="${ path }/resources/img/search.png" alt="돋보기" class="searchImg">
-                <input type="text" class="searchWord" placeholder='"거실이 넓은 집에 맞는 인테리어 추천해 줘"'>
+                <input type="text" name="searchWord" class="searchWord" placeholder='"거실이 넓은 집에 맞는 인테리어 추천해 줘"'>
                 <button class="searchButton">검색하기</button>
             </div>
         </form>

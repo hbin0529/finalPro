@@ -30,6 +30,28 @@
     })
 </script>
 <style>
+
+  /* 로고폰트 */
+        @font-face {
+        font-family: 'SDSamliphopangche_Outline';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        } 
+    /* 메뉴폰트 */
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+    /* 본문내용폰트 */
+    @font-face {
+        font-family: 'Pretendard-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
    
     /* --------------------- 본문 --------------------- */
     .container{
@@ -68,12 +90,14 @@
         height: 40px;
         font-size: large;
         padding-left: 10px;
+          font-family: 'Pretendard-Regular';
     }
     .formElement>button{
         margin: 50px 0px 0px 130px;
         width: 400px; font-size: 20px; font-weight: bolder;
         height: 50px; background-color: rgb(33, 217, 203);
         border: 0; color: rgb(255, 255, 255);
+          font-family: 'Pretendard-Regular';
     }
     .necessaryInfo::after{
         content: "*";

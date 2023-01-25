@@ -3,6 +3,7 @@ package com.house.kh.cart.model.service;
 import java.util.ArrayList;
 
 import com.house.kh.cart.model.vo.Cart;
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.vo.Product;
 
 public interface CartService {
@@ -23,7 +24,7 @@ public interface CartService {
 	int selectProListCount();
 	
 	// 셀러페이지 상품리스트
-	ArrayList<Cart> selectProList(); 
+	ArrayList<Cart> selectProList(PageInfo pi); 
 	
 	/*
 	 * // 게시글 상세조회 int increaseProCount(int proNo); //조회수올리기 Cart selectProBoard(int

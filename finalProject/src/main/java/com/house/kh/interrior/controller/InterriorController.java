@@ -144,6 +144,12 @@ public class InterriorController {
    }
    
    
+   @RequestMapping("searchInter.in")
+   public String searchInter(String searchWord) {
+	   
+	   return "";
+   }
+   
 	
 	
 }
