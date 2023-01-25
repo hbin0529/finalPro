@@ -33,7 +33,7 @@ public class Product {
 	private String status;
 	private int proCount;
 	
-	//판매자테이블
+	//판매자테이블 
 	private String selBusName;
 	private String selEmail;
 	private String selName;

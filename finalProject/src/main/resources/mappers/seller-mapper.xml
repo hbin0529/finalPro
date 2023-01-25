@@ -49,4 +49,10 @@
   	insert into seller_base values(sel_seq.nextval, #{selEmail}, #{selPwd}, #{selName}, #{selBusName}, #{selPhone}, #{selBusNo}, #{selZipcode}, #{selAddr}, #{selDetailAddr}, default, 0, default, #{selInter}, #{selInterIntroduce})
   </insert>
   
+  
+  <select id="getSellerPoint" resultMap="sellerResult">
+  	select sel_point from seller_base where sel_no = #{selNo}
+  </select>
+  
+  
 </mapper>

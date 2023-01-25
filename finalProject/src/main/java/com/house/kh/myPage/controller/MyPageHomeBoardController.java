@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.house.kh.common.model.vo.PageInfo;
+<<<<<<< HEAD
 import com.house.kh.common.template.Pagination;
+=======
+>>>>>>> 9f1c7347bf5ebef9f691cc348bc69a39bbd96a82
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.order.model.service.OrderService;
@@ -39,12 +43,19 @@ public class MyPageHomeBoardController {
 	private OrderService oService;
 
 	@RequestMapping("mypagehblist.bo")
+<<<<<<< HEAD
 	public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, ModelAndView mv, Model model) {
 		int listCount = hbService.selectListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
 		ArrayList<HomeBoard> list = hbService.selectList(pi);
 		
 		mv.addObject("pi", pi);
+=======
+	public ModelAndView selectList(ModelAndView mv, Model model, PageInfo pi) {
+		int listCount = hbService.selectListCount();
+		ArrayList<HomeBoard> list = hbService.selectList(pi);
+
+>>>>>>> 9f1c7347bf5ebef9f691cc348bc69a39bbd96a82
 		mv.addObject("list", list);
 		model.addAttribute("listCount", listCount);
 		mv.setViewName("myPage/myPageHomeListView");
@@ -126,9 +137,8 @@ public class MyPageHomeBoardController {
 	      
 	   
 	   /* 리뷰 삭제하기 */
-	   @RequestMapping("reviewdelete.bo")
-	   public String deleteReview(int reviewNo, Model model, HttpSession session) {
-		   System.out.println(reviewNo);
+	   @GetMapping("reviewdelete.bo")
+	   public String deleteReview(@RequestParam("reviewNo") int reviewNo, Model model, HttpSession session) { 
 	      int result = sbService.deleteReview(reviewNo);
 	      if(result > 0) {
 	         session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다");
@@ -137,8 +147,7 @@ public class MyPageHomeBoardController {
 	         model.addAttribute("errorMsg" , "문의 삭제 실패");
 	         return "common/errorPage";
 	      }
-	   }  
-	    
+	   }   
 	   @RequestMapping("mypagereviewlist.bo")
 	   public ModelAndView usersReviewList(String id, ModelAndView mv, Model model){
 			

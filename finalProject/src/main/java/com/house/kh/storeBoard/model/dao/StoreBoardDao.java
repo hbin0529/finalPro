@@ -29,7 +29,7 @@ public class StoreBoardDao {
 		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(startNo, limit);
-		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList",product, null);
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList", product);
 	}
 	
 	public int increaseCount(SqlSessionTemplate sqlSession, int proNo) {
@@ -79,5 +79,19 @@ public class StoreBoardDao {
 	public int deleteReview(SqlSessionTemplate sqlSession, int reviewNo) {
 		return sqlSession.update("storeBoardMapper.deleteReview", reviewNo); 
 	} 
+	
+	
+	public ArrayList<Product> arrayReplyList(SqlSessionTemplate sqlSession, Product p) {
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.arrayReplyList", p); 
+	}
+	
+	public int insertReply(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("storeBoardMapper.insertReply", p);
+	}
+	
+	public int updateReply(SqlSessionTemplate sqlSession, int proQueNo) {
+		return sqlSession.update("storeBoardMapper.updateReply", proQueNo); 
+	}
+	 
 	
 }

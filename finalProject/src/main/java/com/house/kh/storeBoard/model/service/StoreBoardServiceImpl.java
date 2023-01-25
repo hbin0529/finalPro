@@ -36,7 +36,11 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	
 	@Override
 	public ArrayList<Product> selectCateList(Product product, PageInfo pi) {
-		return sbDao.selectCateList(sqlSession, pi, product);
+		ArrayList<Product> s = sbDao.selectCateList(sqlSession, pi, product);
+		for(int i = 0; i < s.size(); i++) {
+			System.out.println(s.get(i));
+		}
+		return s;
 	}
 	
 	@Override
@@ -101,5 +105,20 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 		return sbDao.deleteReview(sqlSession, reviewNo);
 		 
 	}
+	
+	@Override
+	public ArrayList<Product> arrayReplyList(Product p) {
+		return sbDao.arrayReplyList(sqlSession, p);
 
+	}  
+	public int insertReply(Product p) { 
+		return sbDao.insertReply(sqlSession, p);
+	}
+	
+	@Override
+	public int updateReply(int proQueNo) {
+		return sbDao.updateReply(sqlSession, proQueNo);
+	}
+	 
+	 
 }

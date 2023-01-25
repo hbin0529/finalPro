@@ -69,8 +69,6 @@ public class InterriorController {
 	@ResponseBody
     @RequestMapping(value="SummerNoteImageFile2", produces="application/json; charset=utf-8")
     public Map<Object, Object> SummerNoteImageFile(@RequestParam("file") MultipartFile file, @RequestParam("pathF") String pathF, HttpSession session) {
-      System.out.println("닿긴함");
-       //JsonObject jsonObject = new JsonObject();
        Map<Object, Object> returnMap = new HashMap<Object, Object>();
        String fileRoot = pathF + "/resources/summernoteImg/";   
        String originalFileName = file.getOriginalFilename();
@@ -83,8 +81,6 @@ public class InterriorController {
        try {
           InputStream inputstream = file.getInputStream();
           FileUtils.copyInputStreamToFile(inputstream, targetFile); //파일 저장
-          //jsonObject.addProperty("url", "/summernoteImage/"+saveFileName);
-          //jsonObject.addProperty("responseCode", "success");
           returnMap.put("url", savePath+saveFileName);
           returnMap.put("responseCode", "success");
           returnMap.put("fileName", saveFileName);

@@ -39,17 +39,15 @@
 <jsp:include page="../common/myPageHeader.jsp" /> 
 <jsp:include page="../common/myPageReviewHeader.jsp" /> 
 
-<section class="mypage_main_body">
-<form action="reviewdelete.bo" method="post">
+<section class="mypage_main_body">  
         <div class="mypage_product_review"> 
       <c:forEach var="order" items="${ o }">
-        <input type="hidden" name="reviewNo" value="${ order.reviewNo }">   
            <c:if test="${ id eq order.memEmail }">
             <table class="mypage_product_review_table">
                 <tr>
                     <td colspan="2" style="text-align: right;">
-                         <button type ="submit">삭제</button>
-                    </td>
+                    	<input type="button" value="삭제" onclick="del(${ order.reviewNo })"   style="width:100px; height:40px; background-color:white; color: #21d9cb; border:1px solid  #21d9cb; border-radius:4px; cursor:pointer;"> 
+                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="font-size: 20px; font-weight: bolder;"><a href="">${ order.proName }</a></td>
@@ -82,8 +80,18 @@
             </table>
             </c:if>
            </c:forEach>  
-        </div>  
-      </form>  
+        </div>    
+      
+      <script>
+      
+      function del(reviewNo) {
+  		var chk = confirm("정말 삭제하시겠습니까?");
+  		if (chk) {
+  			location.href='reviewdelete.bo?reviewNo='+reviewNo;
+  		}
+  	}
+      
+      </script>
     </section> 
     
 <jsp:include page="../common/footer.jsp"/> 

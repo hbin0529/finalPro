@@ -121,9 +121,6 @@
             var data = new FormData();
             data.append("file", file);
             data.append("pathF", "${path}")
-            //console.log(file);
-            console.log(editor);
-            console.log("에이잭스실행전");
             $.ajax({
                data: data,
                type:"POST",
@@ -131,12 +128,6 @@
                contentType: false,
                processData: false,
                success: function(data) {
-                  console.log('성공은했냐?');
-                  console.log(data);
-                  console.log(data.url);
-                  console.log(data.fileRoot);
-                  console.log(data.fileName);
-                  console.log(data.url);
                   $(editor).summernote('insertImage', data.fileRoot+"/"+data.fileName);
                },
                error: function(e) {

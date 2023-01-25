@@ -123,52 +123,16 @@
     	
     	<div class="order_count">
             <div><p>총 보유 포인트</p></div>
-            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;">${ s.selPoint } POINT <button>환전하기</button></p></div>
+            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;" class="sellerPoint">0 POINT <button>환전하기</button></p></div>
         </div>
     
     
         <div class="order_count">
             <div><p>주문내역</p></div>&ensp;
-            <div><p>${ orderListCount }건</p></div>
+            <div><p class="allCount"></p></div>
             
         </div>
 
-        <!--통계테이블-->
-        <div class="order_sum">
-            <div class="order_sum_table">
-                <table>
-                    <thead>
-                        <tr id="order_sum_table_1row">
-                            <td id="table_border">통계표</td>
-                            <td id="table_border">건수</td>
-                            <td>금액</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="order_sum_table_2row">
-                            <td id="table_border">판매</td>
-                            <td id="table_border">3</td>
-                            <td>30,000</td>
-                        </tr>
-                        <tr id="order_sum_table_3row">
-                            <td id="table_border">취소</td>
-                            <td id="table_border">3</td>
-                            <td>30000</td>
-                        </tr>
-                        <tr id="order_sum_table_4row">
-                            <td id="table_border">총 주문</td>
-                            <td id="table_border">6</td>
-                            <td>60,000</td>
-                        </tr>
-                        <tr id="order_sum_table_5row">
-                            <td id="table_border">실 매출</td>
-                            <td id="table_border">3</td>
-                            <td>30,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 		<script>
         	function orderConfirm(a){
         		
@@ -189,9 +153,95 @@
         	}
         	
         	$(function(){
-        		
+        		getStatistics();
+        		getSellerPoint();
         	})
+        	
+        	function getStatistics(){
+        		$.ajax({
+    	    		url:"getStatistics.or",
+    	    		data:{
+    	    			selNo : ${s.selNo}
+    	    		},
+    	    		type:"post",
+    	    		success:function(list){
+    	    			var allCount = 0;
+    	    			$(function(){
+    	    				for(i in list){
+    	    					if(list[i].ordStatus == 'Y'){
+    	    						$(".sellYcount").text(list[i].statCount)
+    	    						$(".sellYprice").text(list[i].statPrice+" point")
+    	    					}
+    	    					if(list[i].ordStatus == 'N'){
+    	    						$(".sellNcount").text(list[i].statCount)
+    	    						$(".sellNprice").text(list[i].statPrice+" point")
+    	    					}
+    	    					if(list[i].ordStatus == 'F'){
+    	    						$(".sellFcount").text(list[i].statCount)
+    	    						$(".sellFprice").text(list[i].statPrice+" point")
+    	    					}
+    	    					allCount += list[i].statCount;
+    	    					$(".allCount").text(allCount+" 건")
+    	    				}
+    	    				
+    	    			})
+    	    		},
+    	    		error:function(){
+    	    			console.log("ajax error")
+    	    		}
+    	    		
+        		})
+        	}
+        	
+        	function getSellerPoint(){
+        		$.ajax({
+        			url:"getSellerPoint.se",
+        			type:"post",
+        			data:{
+        				selNo : ${s.selNo}
+        			},
+        			success:function(sellerPoint){
+        				$(function(){
+        					$(".sellerPoint").text(sellerPoint+' POINT')
+        				})
+        			},
+        			error:function(){
+        				console.log('판매자포인트 조회 실패')
+        			}
+        		})
+        	}
         </script>
+        <!--통계테이블-->
+        <div class="order_sum">
+            <div class="order_sum_table">
+                <table>
+                    <thead>
+                        <tr id="order_sum_table_1row">
+                            <td id="table_border">통계표</td>
+                            <td id="table_border">건수</td>
+                            <td>금액</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="order_sum_table_2row">
+                            <td id="table_border">판매</td>
+                            <td id="table_border" class="sellYcount">0</td>
+                            <td class="sellYprice">0</td>
+                        </tr>
+                        <tr id="order_sum_table_3row">
+                            <td id="table_border">취소</td>
+                            <td id="table_border" class="sellFcount">0</td>
+                            <td class="sellFprice">0</td>
+                        </tr>
+                        <tr id="order_sum_table_3row">
+                            <td id="table_border">대기중</td>
+                            <td id="table_border" class="sellNcount">0</td>
+                            <td class="sellNprice">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         
         <div class="order_list">
             <div class="order_list_detail">
