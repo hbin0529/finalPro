@@ -46,6 +46,7 @@ public class MemberController {
 	public String login(Member m, HttpSession session, Model model) {
 		
 		Member loginUser = mService.searchUser(m);
+		System.out.println(loginUser);
 		
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) {

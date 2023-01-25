@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.house.kh.member.model.service.MemberService;
 import com.house.kh.member.model.vo.Member;
 import com.house.kh.order.model.service.OrderService;
 import com.house.kh.order.model.vo.Order;
@@ -24,14 +25,19 @@ public class OrderController {
 	@Autowired
 	private OrderService oService;
 	
+	@Autowired
+	private MemberService mService;
+	
+	
 	// 주문결제페이지 이동
 	// 상품 정보 p에 담음
 	@RequestMapping("order.or")
-	public String order(Product p, Model m, String colorSelect, int countSelect) {
-		System.out.println(p);
-		m.addAttribute("p", p);
-		m.addAttribute("colorSelect", colorSelect);
-		m.addAttribute("countSelect", countSelect);
+	public String order(Member m, Product p, Model model, String colorSelect, int countSelect, HttpSession session) {
+		m = (Member) session.getAttribute("m");
+		System.out.println(m);
+		model.addAttribute("p", p);
+		model.addAttribute("colorSelect", colorSelect);
+		model.addAttribute("countSelect", countSelect);
 		return "order/order";
 		
 	}

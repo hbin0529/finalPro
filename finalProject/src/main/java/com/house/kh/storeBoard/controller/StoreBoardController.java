@@ -27,6 +27,9 @@ import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.common.template.Pagination;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
+import com.house.kh.member.model.service.MemberService;
+import com.house.kh.member.model.vo.Member;
+import com.house.kh.seller.model.vo.Seller;
 import com.house.kh.storeBoard.model.service.StoreBoardService;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -34,7 +37,10 @@ import com.house.kh.storeBoard.model.vo.Product;
 public class StoreBoardController {
    @Autowired
    private StoreBoardService sbService;
-
+   
+   @Autowired
+   private MemberService mService;
+   
    /* 스토어리스트 불러오기 */
    @RequestMapping("storelist.bo")
    public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, Product product,ModelAndView mv, Model model) {
@@ -104,7 +110,8 @@ public class StoreBoardController {
    }
 
    @RequestMapping("productWrite.bo") // 글쓰는 페이지로 넘겨주기
-   public String productWrite() {
+   public String productWrite(Seller s, HttpSession session) {
+	  s = (Seller) session.getAttribute("s");
       return "storeBoard/productWrite";
    }
    

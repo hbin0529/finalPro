@@ -19,7 +19,9 @@ public class LoginInterceptor implements HandlerInterceptor{
 		// true 리턴이 되면 : 기존 요청의 흐름대로 실행
 		// false 리턴이 되면 : Controller
 		HttpSession session = request.getSession();
-		if(session.getAttribute("loginUser") != null) {
+		if(session.getAttribute("m") != null) {
+			return true;
+		}else if(session.getAttribute("s") != null) {
 			return true;
 		} else {
 			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
@@ -27,5 +29,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return false;
 		}
 	}
+	
 	
 }
