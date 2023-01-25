@@ -5,16 +5,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <c:if test="${ not empty alertMsg }">
-      <script>
-         alert("${ alertMsg }");
-      </script>
-      <c:remove var="alertMsg" scope="session" />
-   </c:if> 
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오구싶은집 > 나의 판매 목록</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
+<c:if test="${ not empty alertMsg }">
+  <script>
+     alert("${ alertMsg }");
+  </script>
+  <c:remove var="alertMsg" scope="session" />
+</c:if> 
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
