@@ -183,10 +183,11 @@
 				,pro_name = #{proName}
 				,pro_price = #{proPrice}
 				,pro_origin_img = #{proOriginImg}
+				,pro_origin_img1 = #{proOriginImg1}
 				,pro_change_img = #{proChangeImg}
+				,pro_change_img1 = #{proChangeImg1}
 				,pro_origin_detailimg = #{proOriginDetailimg}
 				,pro_change_detailimg = #{proChangeDetailimg}
-				,pro_origin_img1 = #{proOriginImg1}
 		   where pro_no = #{proNo}
 	</update>
 	

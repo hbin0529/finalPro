@@ -204,11 +204,11 @@ public class StoreBoardController {
          String[] changeName = changeFilename(reupfile, reupfile1, reupfile2, session);
          
          p.setProOriginImg(reupfile.getOriginalFilename());
-         p.setProChangeImg("resources/uploadFile" + changeName[0]);
+         p.setProChangeImg("resources/uploadFile/" + changeName[0]);
          p.setProOriginImg1(reupfile1.getOriginalFilename());
-         p.setProChangeImg1("resources/uploadFile" + changeName[1]);
+         p.setProChangeImg1("resources/uploadFile/" + changeName[1]);
          p.setProOriginDetailimg(reupfile2.getOriginalFilename());
-         p.setProChangeDetailimg("resources/uploadFile" + changeName[2]);
+         p.setProChangeDetailimg("resources/uploadFile/" + changeName[2]);
       }
       int result = sbService.proUpdateBoard(p);
       if(result > 0) {

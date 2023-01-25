@@ -132,7 +132,7 @@
    	                <li><a href="myPage.me">${ nick }</a></li>
                   </c:if>
                     <li><a href="logout.me">로그아웃</a></li>
-                    <li><a href=""><img src="${path}/resources/img/main_chat.png"></a></li>
+                    <li><a href="chat.in"><img src="${path}/resources/img/main_chat.png"></a></li>
                 </ul>
             </c:if>
             </div> 
