@@ -99,6 +99,9 @@
     #topBoardList{width:1250px; flex-wrap: wrap;}
     #topBoardList4{width:1250px; flex-wrap: wrap;}
     .store_product_img{width:266px}
+    img{
+    	object-fit: cover;
+    }
 </style>
 <body>
 <!-- header -->
