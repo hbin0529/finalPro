@@ -609,7 +609,7 @@ $(function() {
 							  		if(list[i].memId == $("#memId").val()){
 					    value +=			"<a onClick='queFormSubmit(1);' style='width:45px; text-align:center; height:20px; padding-top:2px; font-weight: bolder;'>삭제</a>"
 							  			} 
-						value +=		"</div>" +list[i].proQueNo + list[i].memEmail 
+						value +=		"</div>"  
 						      + 		"<form action='' method='post' id='queForm'><input type='hidden' name='proQueNo' value='" +list[i].proQueNo+ "'></form>"						
 							  +			"<p>" + list[i].memNick + " | " + list[i].proQueDate + "</p>"
 							  +		"</div>"
