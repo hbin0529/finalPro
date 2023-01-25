@@ -37,6 +37,7 @@
 		 	<mapping path="/pointCharge.or"/>
 		 	<mapping path="/charge.or"/>
 		 	<mapping path="/chat.in"/>
+		 	<mapping path="/myPageOrderlist.bo"/>
 			<beans:bean class="com.house.kh.common.interceptor.LoginInterceptor" id="LoginInterceptor"/>
 		</interceptor>
 	</interceptors>

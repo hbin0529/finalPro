@@ -35,7 +35,6 @@ public class OrderController {
 	@RequestMapping("order.or")
 	public String order(Member m, Product p, Model model, String colorSelect, int countSelect, HttpSession session) {
 		m = (Member) session.getAttribute("m");
-		System.out.println(m);
 		model.addAttribute("p", p);
 		model.addAttribute("colorSelect", colorSelect);
 		model.addAttribute("countSelect", countSelect);
@@ -63,8 +62,6 @@ public class OrderController {
 	@RequestMapping("orderSheet.or")
 	public String orderSheet2(Order o, Model model, HttpSession session) {
 		
-		System.out.println(o);
-		
 		int orderSheetResult = oService.orderSheet2(o);
 		oService.payUserPoint(o); 
 		oService.insertDetail(o);
@@ -81,15 +78,7 @@ public class OrderController {
 	
 	@RequestMapping("sellerOrderList.or")
 	public String sellerOrderList(int selNo, Model model,ModelAndView mv, Order order) {
-		System.out.println("메소드 실행 전");
-		/*
-		Order orderListCount = oService.orderListCount(selNo);
-		System.out.println(orderListCount.getAaa());
-		System.out.println("메소드 실행 후");
-		System.out.println(orderListCount);
-		*/
 		ArrayList<Order> getSellersOrderList = oService.sellersOrderList(selNo);
-		//model.addAttribute("orderListCount", orderListCount);
 		model.addAttribute("o", getSellersOrderList);
 		return "order/orderDetailView";
 		

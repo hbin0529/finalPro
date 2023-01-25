@@ -219,7 +219,6 @@ public class StoreBoardController {
    @RequestMapping(value="qinsert.bo")
    public void ajaxInsertQuestion(Product p, Model model, HttpServletResponse response) throws IOException {
       int result = sbService.insertQuestion(p);
-      System.out.println(result);
       if(result > 0) {
          model.addAttribute("alertMsg", "문의 등록이 완료 되었습니다.");
          response.sendRedirect("productdetail.bo?pno="+ p.getProNo());
@@ -245,7 +244,6 @@ public class StoreBoardController {
       ArrayList<Product> list = new ArrayList<Product>();
      
       list = sbService.arrayReplyList(p);   
-        System.out.println(list);
       mv.addObject("list", list);
       mv.setViewName("sellerPage/sellerPageQuestionView");
 
