@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.homeBoard.model.service.HomeBoardService;
 import com.house.kh.homeBoard.model.vo.HomeBoard;
 import com.house.kh.order.model.service.OrderService;
@@ -36,9 +37,9 @@ public class MyPageHomeBoardController {
 	private OrderService oService;
 
 	@RequestMapping("mypagehblist.bo")
-	public ModelAndView selectList(ModelAndView mv, Model model) {
+	public ModelAndView selectList(ModelAndView mv, Model model, PageInfo pi) {
 		int listCount = hbService.selectListCount();
-		ArrayList<HomeBoard> list = hbService.selectList();
+		ArrayList<HomeBoard> list = hbService.selectList(pi);
 
 		mv.addObject("list", list);
 		model.addAttribute("listCount", listCount);

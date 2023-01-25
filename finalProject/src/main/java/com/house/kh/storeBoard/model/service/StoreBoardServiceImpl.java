@@ -36,7 +36,11 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	
 	@Override
 	public ArrayList<Product> selectCateList(Product product, PageInfo pi) {
-		return sbDao.selectCateList(sqlSession, pi, product);
+		ArrayList<Product> s = sbDao.selectCateList(sqlSession, pi, product);
+		for(int i = 0; i < s.size(); i++) {
+			System.out.println(s.get(i));
+		}
+		return s;
 	}
 	
 	@Override

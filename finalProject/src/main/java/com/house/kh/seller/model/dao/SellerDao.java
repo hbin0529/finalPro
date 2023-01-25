@@ -29,5 +29,11 @@ public class SellerDao {
 	}
 	
 	
+	public int getSellerPoint(SqlSessionTemplate sqlSession, int selNo) {
+		Seller getSeller = sqlSession.selectOne("sellerMapper.getSellerPoint", selNo);
+		int sellerPoint = getSeller.getSelPoint();
+		return sellerPoint;
+	}
+	
 	
 }

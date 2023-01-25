@@ -45,4 +45,11 @@ public class SellerService {
 	}
 	
 	
+	//판매자보유포인트불러오기(ajax)
+	public int getSellerPoint(int selNo) {
+		return sDao.getSellerPoint(sqlSession, selNo);
+	}
+	
+	
+	
 }

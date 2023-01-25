@@ -91,6 +91,7 @@
 	<select id="selectCateList" resultType="Product" resultMap="storeBoardResult"> 
 		 select pro_no
 			 , pro.pro_origin_img
+			 , pro.pro_change_img
 			 , sb.sel_bus_name
 			 , sb.sel_name
 			 , sb.sel_email

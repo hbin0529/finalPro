@@ -29,7 +29,7 @@ public class StoreBoardDao {
 		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(startNo, limit);
-		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList",product, null);
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList", product);
 	}
 	
 	public int increaseCount(SqlSessionTemplate sqlSession, int proNo) {

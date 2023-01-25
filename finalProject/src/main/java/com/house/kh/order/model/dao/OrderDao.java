@@ -43,7 +43,9 @@ public class OrderDao {
 		return (ArrayList)sqlSession.selectList("orderMapper.usersOrderList", id);
 	}
 	
-	
+	public ArrayList<Order> getStatistics(SqlSessionTemplate sqlSession, int selNo) {
+		return (ArrayList)sqlSession.selectList("orderMapper.getStatistics", selNo);
+	}
 	
 	
 	
