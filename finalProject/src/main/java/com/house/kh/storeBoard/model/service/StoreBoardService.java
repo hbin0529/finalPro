@@ -61,4 +61,6 @@ public interface StoreBoardService {
 	int insertReply(Product p);
 	
 	int updateReply(int proQueNo);
+	
+	ArrayList<Product> StarAmount(int proNo);
  }

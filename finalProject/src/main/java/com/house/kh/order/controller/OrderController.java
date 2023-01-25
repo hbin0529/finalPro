@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +38,7 @@ public class OrderController {
 	}
 	
 	// 충전페이지 이동
+	@Transactional
 	@RequestMapping("charge.or")
 	public String charge() {
 		return "order/charge";
@@ -63,7 +65,7 @@ public class OrderController {
 		/* int orderDetailSheetReulst = oService.orderSheet2(o); */
 		if(orderSheetResult > 0) {
 			model.addAttribute("alertMsg", "결제가 완료되었습니다.");
-			return "order/orderDetailView";
+			return "main";
 		} else {
 			model.addAttribute("alertMsg", "결제가 취소되었습니다.");
 			return "main";
@@ -198,7 +200,7 @@ public class OrderController {
 	
 	
 	
-	
+	@Transactional
 	@RequestMapping("orderConfirm.or")
 	public String orderConfirm(Order o, Model model) {
 		//먼저 여분의 재고가 있는지부터 확인
@@ -213,7 +215,7 @@ public class OrderController {
 	}
 	
 
-	
+	@Transactional
 	@RequestMapping("orderCancel.or")
 	public String orderCancel(Order o) {
 		//주문취소처리하고('F', 오더디테일) 포인트 일반회원구매자한테 돌려주기(멤버베이스)

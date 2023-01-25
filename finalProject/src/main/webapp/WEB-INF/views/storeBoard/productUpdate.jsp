@@ -80,8 +80,8 @@
     <header class="top_box">
         <nav class="main_top">
             <div class="main_logo" >
-                <li><a href="">59'HOUSE</a></li>
-                <li><a href="" style="color:black; font-size: 20px; margin-left: 45px; margin-top:10px;">오구싶은집</a></li>
+                <li><a href="home.com">59'HOUSE</a></li>
+                <li><a href="home.com" style="color:black; font-size: 20px; margin-left: 45px; margin-top:10px;">오구싶은집</a></li>
             </div> 
         </nav> 
     </header> 
