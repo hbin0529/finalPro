@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -122,9 +124,8 @@ public class MyPageHomeBoardController {
 	      
 	   
 	   /* 리뷰 삭제하기 */
-	   @RequestMapping("reviewdelete.bo")
-	   public String deleteReview(int reviewNo, Model model, HttpSession session) {
-		   System.out.println(reviewNo);
+	   @GetMapping("reviewdelete.bo")
+	   public String deleteReview(@RequestParam("reviewNo") int reviewNo, Model model, HttpSession session) { 
 	      int result = sbService.deleteReview(reviewNo);
 	      if(result > 0) {
 	         session.setAttribute("alertMsg", "성공적으로 문의가 삭제되었습니다");
@@ -133,8 +134,7 @@ public class MyPageHomeBoardController {
 	         model.addAttribute("errorMsg" , "문의 삭제 실패");
 	         return "common/errorPage";
 	      }
-	   }  
-	    
+	   }   
 	   @RequestMapping("mypagereviewlist.bo")
 	   public ModelAndView usersReviewList(String id, ModelAndView mv, Model model){
 			

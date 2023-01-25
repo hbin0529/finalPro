@@ -29,10 +29,8 @@
 <jsp:include page="../common/myPageReviewHeader.jsp" /> 
  
    <section class="mypage_main_body">
- <form method="post" action="qdelete.bo"> 
         <div class="mypage_question_review">
    <c:forEach var="p" items="${ list }">   
-   <input type="hidden" name="proQueNo" value="${ p.proQueNo }">
       <c:if test="${ id eq p.memId }">
        <c:choose>
 		 <c:when test="${  p.proQueResult eq 'Y' }">
@@ -58,7 +56,8 @@
                 </tr> 
                 <tr>
                     <td colspan="3" id="update_delete">
-                        <button type="submit">삭제</button>
+                       <input type="button" value="삭제" onclick="del(${ p.proQueNo })"  style="width:60px; height:30px; background-color:white; color: #21d9cb; border:1px solid  #21d9cb; border-radius:4px; cursor:pointer;"> 
+                         
                     </td>
                 </tr>
             </table>			        
@@ -82,7 +81,7 @@
                 </tr>
                 <tr>
                     <td colspan="3" id="update_delete">
-                        <button type="submit">삭제</button>
+                         <input type="button" value="삭제" onclick="del(${ p.proQueNo })"  style="width:60px; height:30px; background-color:white; color: #21d9cb; border:1px solid  #21d9cb; border-radius:4px; cursor:pointer;" > 
                     </td>
                 </tr>
             </table> 
@@ -92,7 +91,21 @@
          </c:forEach>  
          
         </div> 
-   </form>       
+    
+     <script>
+     
+
+     function del(proQueNo) {
+ 		var chk = confirm("정말 삭제하시겠습니까?");
+ 		if (chk) {
+ 			location.href='qdelete.bo?proQueNo='+proQueNo;
+ 		}
+ 	}
+     
+     </script>
+    
+    
+        
     </section>
 
 <jsp:include page="../common/footer.jsp"/>   
