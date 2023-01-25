@@ -107,29 +107,32 @@
                onImageUpload : function(files) {
             // 파일 업로드(다중업로드를 위해 반복문 사용)
                   
-                     console.log(files[0]);                     
                      uploadSummernoteImageFile(files[0], this);
                }
                
             } 
-      
+	
         });
         
-        function uploadSummernoteImageFile(file, el) {
-			data = new FormData();
-			data.append("file", file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : "uploadSummernoteImageFile",
-				contentType : false,
-				enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					$(el).summernote('editor.insertImage', data.url);
-				}
-			});
-		}
+		function uploadSummernoteImageFile (file, editor) {
+	        var data = new FormData();
+	        data.append("file", file);
+	        data.append("pathF", "${path}")
+	        $.ajax({
+	           data: data,
+	           type:"POST",
+	           url: "uploadSummernoteImageFile",
+	           contentType: false,
+	           processData: false,
+	           success: function(data) {
+	              $(editor).summernote('insertImage', data.fileRoot+"/"+data.fileName);
+	           },
+	           error: function(e) {
+	              console.log(e);
+	           }
+	           
+	        })
+	     }
 </script>
      
 <jsp:include page="../common/footer.jsp"/>

@@ -13,6 +13,9 @@
 		<result column="cus_name" property="cusName"/>
 		<result column="cus_phone" property="cusPhone"/>
 		<result column="ord_request" property="orderRequest"/>
+		<result column="stat_count" property="statCount"/>
+		<result column="stat_price" property="statPrice"/>
+		<result column="ord_status" property="ordStatus"/>
 	  </resultMap>
 	  
 	  <!-- 멤버 포인트 -->
@@ -374,5 +377,31 @@
 		  group by sel_no
 	</select>
 	
+	<select id="getStatistics" resultMap="orderResult">
+		select sel_no, ord_status, sum(ord_count) as stat_count, sum(ord_count*ord_price) as stat_price from order_detail 
+		join order_main using (ord_no) 
+		join product using (pro_no) 
+		join seller_base using (sel_no)
+		where ord_status = 'Y'
+		and sel_no = #{selNo}
+		group by sel_no, ord_status
+		union
+		select sel_no, ord_status, sum(ord_count) as stat_count, sum(ord_count*ord_price) as stat_price from order_detail 
+		join order_main using (ord_no) 
+		join product using (pro_no) 
+		join seller_base using (sel_no)
+		where ord_status = 'N'
+		and sel_no = #{selNo}
+		group by sel_no, ord_status
+		union
+		select sel_no, ord_status, sum(ord_count) as stat_count, sum(ord_count*ord_price) as stat_price from order_detail 
+		join order_main using (ord_no) 
+		join product using (pro_no) 
+		join seller_base using (sel_no)
+		where ord_status = 'F'
+		and sel_no = #{selNo}
+		group by sel_no, ord_status
+		order by ord_status
+	</select>
 	
 </mapper>

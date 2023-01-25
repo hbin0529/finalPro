@@ -96,7 +96,31 @@ public class OrderController {
 	
 		
 	
-	
+	@ResponseBody
+	@RequestMapping("getStatistics.or")
+	public ArrayList<Order> getStat(int selNo, Model model) {
+		
+		ArrayList<Order> stats = oService.getStatistics(selNo);
+		
+		/*
+		for(int i = 0; i < stats.size(); i++) {
+			if(stats.get(i).getOrdStatus().equals("F")) {
+				model.addAttribute("fcount", stats.get(i).getStatCount());
+				model.addAttribute("fprice", stats.get(i).getStatPrice());
+			}
+			if(stats.get(i).getOrdStatus().equals("N")) {
+				model.addAttribute("Ncount", stats.get(i).getStatCount());
+				model.addAttribute("Nprice", stats.get(i).getStatPrice());
+			}
+			if(stats.get(i).getOrdStatus().equals("Y")) {
+				model.addAttribute("Ycount", stats.get(i).getStatCount());
+				model.addAttribute("Yprice", stats.get(i).getStatPrice());
+			}
+		}
+		*/
+		
+		return stats;
+	}
 	
 	
 	

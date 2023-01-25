@@ -112,5 +112,14 @@ public class SellerController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping("getSellerPoint.se")
+	public int getSellerPoint(int selNo) {
+		int getSellerPoint = SService.getSellerPoint(selNo);
+		return getSellerPoint;
+	}
+	
+	
+	
 	
 }
