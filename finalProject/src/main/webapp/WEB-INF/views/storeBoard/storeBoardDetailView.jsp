@@ -18,9 +18,6 @@
 $(function() {
 	$("#proCnt").change(function(e){
 		$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
-		if( $("#proCnt").val() == "add" ) { 
-			$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
-		};
 	})
 })
 
@@ -217,7 +214,6 @@ $(function() {
                             <option value="8">8</option>
                             <option value="9">9</option>
                             <option value="10">10</option>
-                            <option value="add" id="add">직접입력</option>
                         </select>
                     </div>
                     <div class="order_price">
@@ -383,6 +379,7 @@ $(function() {
                             <div style="display: flex;">
                                 <div class="review_box">
                                     <div class="bottom_star" >
+                                    <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] > 0 }">
                                     <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 0 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 1}">
                                         <p>★</p>
                                     </c:if>    
@@ -399,6 +396,11 @@ $(function() {
                                         <p>★★★★★</p>
                                     </c:if>    
                                         <p>&ensp;<fmt:formatNumber value="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) }" pattern=".00"/></p>
+                                    </c:if>
+                                    <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] == 0 }">
+                                        <p style="font-size:22px; position:relative; top:9px; left:6px">등록된 별점이 없습니다</p>
+                                        <p>&ensp;0.0</p>
+                                    </c:if>
                                     </div>
                                     <div class="review_table">
                                         <table>
