@@ -18,9 +18,6 @@
 $(function() {
 	$("#proCnt").change(function(e){
 		$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
-		if( $("#proCnt").val() == "add" ) { 
-			$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
-		};
 	})
 })
 
@@ -217,7 +214,6 @@ $(function() {
                             <option value="8">8</option>
                             <option value="9">9</option>
                             <option value="10">10</option>
-                            <option value="add" id="add">직접입력</option>
                         </select>
                     </div>
                     <div class="order_price">
@@ -300,7 +296,7 @@ $(function() {
 						</form>
 						
 						<!-- 상품수정, 삭제시 post방식으로 넘겨주기 -->
-						<form action="" method="post" id="postForm">
+						<form action="#" method="post" id="postForm">
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="filePath" value="${ p.proChangeImg }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
 						</form>
@@ -386,6 +382,7 @@ $(function() {
                             <div style="display: flex;">
                                 <div class="review_box">
                                     <div class="bottom_star" >
+                                    <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] > 0 }">
                                     <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 0 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 1}">
                                         <p>★</p>
                                     </c:if>    
@@ -402,6 +399,11 @@ $(function() {
                                         <p>★★★★★</p>
                                     </c:if>    
                                         <p>&ensp;<fmt:formatNumber value="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) }" pattern=".00"/></p>
+                                    </c:if>
+                                    <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] == 0 }">
+                                        <p style="font-size:22px; position:relative; top:9px; left:6px">등록된 별점이 없습니다</p>
+                                        <p>&ensp;0.0</p>
+                                    </c:if>
                                     </div>
                                     <div class="review_table">
                                         <table>
@@ -505,7 +507,7 @@ $(function() {
                                 <a id="tag1"><p>문의</p></a>
                                 <p id="qcount1">0</p>
                                 	<c:choose>
-	                                	<c:when test="${ empty id }">
+	                                	<c:when test="${ empty id or permit eq 2}">
 	                                		<div><button type="button" data-toggle="modal" data-target="#myModal" style="display:none;">문의하기</button></div>
 	                                	</c:when> 
 	                                	<c:otherwise>
@@ -713,7 +715,6 @@ $(function() {
 	function a(no){
      		
             $("#deleteQue #test23123").val(no)
-            //$("#postForm").attr("action", "delete.bo").submit();
             $("#deleteQue").submit();
      	}
        
