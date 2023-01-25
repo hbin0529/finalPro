@@ -49,8 +49,6 @@
 			<mapping path="/productWrite.bo"/>
 			<mapping path="/productUpdate.bo"/>
 			<mapping path="/sellerProduct.se"/>
-			<mapping path="/pointCharge.or"/>
-			<mapping path="/charge.or"/>
 			<mapping path="/sellerInfoUpdate.se"/>
 			<mapping path="/sellerOrderList.or"/>
 			<mapping path="/rArrayList.bo"/>
