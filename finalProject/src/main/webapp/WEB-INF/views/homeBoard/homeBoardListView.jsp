@@ -7,16 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<style>
-#pagingArea{width:fit-content; margin: auto;}
-    .pagination{display: flex; list-style: none; font-family: 'Pretendard-Regular'; margin-bottom:50px;}
-    .page-pre{background-color: #21d9cb; width: 25px; height: 25px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
-    .page-pre a{color: white; text-decoration: none;}
-    .page-next{background-color: #21d9cb; width: 25px; height: 25px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
-    .page-next a{color: white; text-decoration: none;}
-    .page-number{margin-right: 20px;}
-</style>
+</head> 
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">

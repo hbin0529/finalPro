@@ -35,7 +35,7 @@
     .product_count{width: 950px; margin: 0 auto; display: flex; margin-top: 30px; font-weight: bolder; font-size: 18px;}
     .product_count div:nth-child(1){font-family: 'GmarketSansMedium'; padding-top: 10px;}
     .product_count div:nth-child(2){font-family: 'GmarketSansMedium'; color: #21d9cb; margin-left: 5px; padding-top: 10px;}
-    .product_count div:nth-child(3){font-family: 'Pretendard-Regular'; font-size:15px; padding-top:10px; width: 100px; height: 25px; margin-left:720px; text-align: center; background-color: #21d9cb; border-radius:5px; cursor:pointer;}
+    .product_count div:nth-child(3){font-family: 'Pretendard-Regular'; font-size:15px; padding-top:10px; width: 100px; height: 25px; margin-left:753px; text-align: center; background-color: #21d9cb; border-radius:5px; cursor:pointer;}
     .product_count div a{text-decoration:none; color:white;} 
     .sellerpage_main_body{padding-top: 20px;}
     .sellerpage_product_list{width:1000px; margin: 0 auto; display: flex; flex-wrap: wrap;}
