@@ -120,6 +120,38 @@ public class SellerController {
 	}
 	
 	
+	@RequestMapping("sellerInfoUpdate.se")
+	public String sellerInfoUpdate(int selNo, Model model) {
+		
+		Seller getSellerInfo = SService.getSellerInfo(selNo);
+		System.out.println(getSellerInfo);
+		String fullEmail = getSellerInfo.getSelEmail();
+		String[] emails = fullEmail.split("@");
+		getSellerInfo.setSelEmailF(emails[0]);
+		getSellerInfo.setSelEmailS(emails[1]);
+		model.addAttribute("seller", getSellerInfo);
+		return "sellerPage/sellerInfoUpdate";
+	}
+	
+	@RequestMapping("doUpdate.se")
+	public String doUpdate(Seller seller, String address, int zipcode, String detailaddress, Model model) {
+		
+		seller.setSelZipcode(zipcode);
+		seller.setSelAddr(address);
+		seller.setSelDetailAddr(detailaddress);
+		
+		int updateResult = SService.doUpdate(seller);
+		
+		if(updateResult>0) {
+			model.addAttribute("alertMsg", "정보가 성공적으로 수정되었습니다.");
+			return "main";
+			
+		}else {
+			model.addAttribute("alertMsg", "회원정보 수정에 실패하였습니다.");
+			return "common/errorPage";
+		}
+		
+	}
 	
 	
 }
