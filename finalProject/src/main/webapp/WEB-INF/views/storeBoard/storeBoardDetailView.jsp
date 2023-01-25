@@ -383,22 +383,8 @@ $(function() {
                                 <div class="review_box">
                                     <div class="bottom_star" >
                                     <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] > 0 }">
-                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 0 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 1}">
-                                        <p>★</p>
-                                    </c:if>    
-                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 1 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 2}">
-                                        <p>★★</p>
-                                    </c:if>    
-                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 2 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 3}">
-                                        <p>★★★</p>
-                                    </c:if>    
-                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 3 and (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) <= 4}">
-                                        <p>★★★★</p>
-                                    </c:if>    
-                                    <c:if test="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) > 4}">
-                                        <p>★★★★★</p>
-                                    </c:if>    
-                                        <p>&ensp;<fmt:formatNumber value="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) }" pattern=".00"/></p>
+                                        <p style="position:relative; right:90px; bottom:10px">평균&emsp;<img src="${ path }/resources/img/review_star_empty.png" style="position:absolute"><img src="${ path }/resources/img/review_star_full.png" style="position:absolute; object-fit: none; object-position:0% 50%; height:32px; width: calc(${ ((stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]))/5 }*160px);"></p>
+                                        <p><span style="position:relative; right:50px ">&ensp;<fmt:formatNumber value="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) }" pattern=".00"/>/5</span></p>
                                     </c:if>
                                     <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] == 0 }">
                                         <p style="font-size:22px; position:relative; top:9px; left:6px">등록된 별점이 없습니다</p>
