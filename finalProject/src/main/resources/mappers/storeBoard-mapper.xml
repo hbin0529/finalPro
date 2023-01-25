@@ -52,6 +52,7 @@
 		<result column="que_reply_content" property="queReplyContent" />
 		<result column="que_reply_date" property="queReplyDate" />
 		<result column="pqr_status" property="pqrStatus" />
+		<result column="star_amount" property="starAmount" />
 	</resultMap>
 	
 
@@ -248,6 +249,34 @@
 		  where pro_que_no = #{proQueNo}
 	</update>
  	 
+ 	 
+ 	<select id="StarAmount" resultMap="storeBoardResult">
+ 		select pro_no, review_star, count(review_star) star_amount
+		from review
+		where pro_no = #{ proNo } and review_star = 1
+		group by pro_no, review_star
+		union
+		select pro_no, review_star, count(review_star) star_amount
+		from review
+		where pro_no = #{ proNo } and review_star = 2
+		group by pro_no, review_star
+		union
+		select pro_no, review_star, count(review_star) star_amount
+		from review
+		where pro_no = #{ proNo } and review_star = 3
+		group by pro_no, review_star
+		union
+		select pro_no, review_star, count(review_star) star_amount
+		from review
+		where pro_no = #{ proNo } and review_star = 4
+		group by pro_no, review_star
+		union
+		select pro_no, review_star, count(review_star) star_amount
+		from review
+		where pro_no = #{ proNo } and review_star = 5
+		group by pro_no, review_star
+		order by review_star
+ 	</select>
 	
 	
  </mapper>

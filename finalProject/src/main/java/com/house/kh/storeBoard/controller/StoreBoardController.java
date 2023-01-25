@@ -63,10 +63,23 @@ public class StoreBoardController {
    @RequestMapping("productdetail.bo")
    public ModelAndView selectBoard(int pno, ModelAndView mv) {
       
+	  ArrayList<Product> starAmount = sbService.StarAmount(pno);
+	  int[] stars = {0, 0, 0, 0, 0};
+	  
+	  
+	  for(int i = 0; i < starAmount.size(); i++) {
+		  if(starAmount.get(i).getStarAmount()>0) {
+			  int thisStar = Integer.parseInt(starAmount.get(i).getReviewStar());
+			  stars[thisStar-1] += starAmount.get(i).getStarAmount();
+		  }
+	  }
+	  
+	  
       int result = sbService.increaseCount(pno);
       if (result > 0) {
          Product p = sbService.selectBoard(pno);
          mv.addObject("p", p).setViewName("storeBoard/storeBoardDetailView");
+         mv.addObject("stars", stars);
       } else {
          mv.addObject("errorMsg", "상세조회 실패").setViewName("common/errorPage");
       }
