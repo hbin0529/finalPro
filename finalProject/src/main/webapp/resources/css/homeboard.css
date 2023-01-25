@@ -188,3 +188,12 @@
     .order_status{display: flex; height: 30px; margin-left: 20px;}
     .order_status select{background-color: rgb(247, 248, 250); font-weight: bold; color: rgba(0, 0, 0, 0.7); border: none; font-family: 'Pretendard-Regular'; border-radius: 3px; box-shadow: 0px 0px 1px #555;}
     .buy_back{color: red;}  
+    
+    /* -----------------------------------페이징처리 스타일모음----------------------------------- */
+    #pagingArea{width:fit-content; margin: auto;}
+    .pagination{display: flex; list-style: none; font-family: 'Pretendard-Regular'; margin-bottom:50px;}
+    .page-pre{background-color: #21d9cb; width: 25px; height: 20px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
+    .page-pre a{color: white; text-decoration: none;}
+    .page-next{background-color: #21d9cb; width: 25px; height: 20px; text-align: center; margin-right: 20px; border-radius: 5px; cursor: pointer;}
+    .page-next a{color: white; text-decoration: none;}
+    .page-number{margin-right: 20px;}

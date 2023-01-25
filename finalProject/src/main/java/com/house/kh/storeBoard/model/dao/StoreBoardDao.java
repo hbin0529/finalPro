@@ -18,12 +18,18 @@ public class StoreBoardDao {
 		return sqlSession.selectOne("storeBoardMapper.selectCateListCount", product);
 	}
 	
-	public ArrayList<Product> selectList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectList");
+	public ArrayList<Product> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectList", null, rowBounds);
 	}
 	
-	public ArrayList<Product> selectCateList(SqlSessionTemplate sqlSession, Product product) {
-		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList", product);
+	public ArrayList<Product> selectCateList(SqlSessionTemplate sqlSession, PageInfo pi, Product product) {
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		return (ArrayList)sqlSession.selectList("storeBoardMapper.selectCateList",product, null);
 	}
 	
 	public int increaseCount(SqlSessionTemplate sqlSession, int proNo) {

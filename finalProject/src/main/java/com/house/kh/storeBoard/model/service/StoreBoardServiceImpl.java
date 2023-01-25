@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.dao.StoreBoardDao;
 import com.house.kh.storeBoard.model.vo.Product;
 
@@ -29,13 +30,13 @@ public class StoreBoardServiceImpl implements StoreBoardService{
 	}
 
 	@Override
-	public ArrayList<Product> selectList() {
-		return sbDao.selectList(sqlSession);
+	public ArrayList<Product> selectList(PageInfo pi) {
+		return sbDao.selectList(sqlSession, pi);
 	}
 	
 	@Override
-	public ArrayList<Product> selectCateList(Product product) {
-		return sbDao.selectCateList(sqlSession, product);
+	public ArrayList<Product> selectCateList(Product product, PageInfo pi) {
+		return sbDao.selectCateList(sqlSession, pi, product);
 	}
 	
 	@Override

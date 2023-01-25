@@ -2,6 +2,7 @@ package com.house.kh.storeBoard.model.service;
 
 import java.util.ArrayList;
 
+import com.house.kh.common.model.vo.PageInfo;
 import com.house.kh.storeBoard.model.vo.Product;
 
 public interface StoreBoardService {
@@ -10,8 +11,8 @@ public interface StoreBoardService {
 	int selectCateListCount(Product product);
 	
 	// 게시판리스트 페이지
-	ArrayList<Product> selectList(); //어떤거 가져올지
-	ArrayList<Product> selectCateList(Product product); //어떤거 가져올지
+	ArrayList<Product> selectList(PageInfo pi); //어떤거 가져올지
+	ArrayList<Product> selectCateList(Product product, PageInfo pi); //어떤거 가져올지
 	
 	// 게시글 상세조회
 	int increaseCount(int proNo); //조회수올리기

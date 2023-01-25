@@ -51,7 +51,7 @@ $(function() {
     .main_body{width: 1400px; margin: 0 auto; }
     .product_header{display: flex; width: 1200px; margin: 0 auto; padding-top: 100px;}
     .product_small_img img{width: 100px; margin-bottom: 10px; margin-right: 20px; border-radius: 5px;}
-    .product_main_img img{width: 600px; border-radius: 5px; margin-right: 40px; margin-bottom: 100px;}
+    .product_main_img img{width: 600px; height:600px; border-radius: 5px; margin-right: 40px; margin-bottom: 100px;}
     .product_intro{margin-top: 10px; font-family: 'Pretendard-Regular';}
     .intro_review{display: flex; margin-bottom: 10px;}
     .intro_review div:nth-child(1){color: #21d9cb; font-size: 25px;}
@@ -66,7 +66,7 @@ $(function() {
     #btnbtn1{width: 200px; height: 50px; font-size: 18px; font-weight: bolder; margin-right: 10px; background-color: black;
     border: 1px solid black; color: white; cursor: pointer; border-radius: 5px; text-align:center;}
     #buy{margin-top:15px; color:white; font-size: 18px;}
-    #delete{margin-top:15px; color:white; font-size: 18px;}
+    #delete{margin-top:10px; color:white; font-size: 18px;}
    /*----------------------------------- 상품 바디 카테고리 바 -----------------------------------*/
     .product_body{}
     .body_category{height: 60px;}
