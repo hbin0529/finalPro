@@ -126,7 +126,7 @@
     	
     	<div class="order_count">
             <div><p>총 보유 포인트</p></div>
-            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;" class="sellerPoint">0 POINT <button>환전하기</button></p></div>
+            <div><p style="font-size:30px; position:relative; bottom: 7px; left: 5px;" class="sellerPoint">0 원 <button>환전하기</button></p></div>
         </div>
     
     
@@ -173,15 +173,15 @@
     	    				for(i in list){
     	    					if(list[i].ordStatus == 'Y'){
     	    						$(".sellYcount").text(list[i].statCount)
-    	    						$(".sellYprice").text(list[i].statPrice+" point")
+    	    						$(".sellYprice").text(list[i].statPrice+" 원")
     	    					}
     	    					if(list[i].ordStatus == 'N'){
     	    						$(".sellNcount").text(list[i].statCount)
-    	    						$(".sellNprice").text(list[i].statPrice+" point")
+    	    						$(".sellNprice").text(list[i].statPrice+" 원")
     	    					}
     	    					if(list[i].ordStatus == 'F'){
     	    						$(".sellFcount").text(list[i].statCount)
-    	    						$(".sellFprice").text(list[i].statPrice+" point")
+    	    						$(".sellFprice").text(list[i].statPrice+" 원")
     	    					}
     	    					allCount += list[i].statCount;
     	    					$(".allCount").text(allCount+" 건")
@@ -205,7 +205,7 @@
         			},
         			success:function(sellerPoint){
         				$(function(){
-        					$(".sellerPoint").text(sellerPoint+' POINT')
+        					$(".sellerPoint").text(sellerPoint+' 원')
         				})
         			},
         			error:function(){
@@ -263,7 +263,7 @@
 	                    </div>
 	                    <div class="detail_body_option">
 	                        <div>옵션 | ${ order.ordOption }</div>
-	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                        <div>${ order.ordPrice } 원 | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
 	                        <div><button type="button" id="sell_ok" value="${ order.ordNo }" onclick="orderConfirm(this.value);">판매확정</button></div>
@@ -295,7 +295,7 @@
 	                    </div>
 	                    <div class="detail_body_option">
 	                        <div>옵션 | ${ order.ordOption }</div>
-	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                        <div>${ order.ordPrice } 원 | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
 	                        <div><button style="display: none;">판매확정</button></div>
@@ -322,7 +322,7 @@
 	                    </div>
 	                    <div class="detail_body_option">
 	                        <div>옵션 | ${ order.ordOption }</div>
-	                        <div>${ order.ordPrice } POINT | ${ order.ordCount } 개</div>
+	                        <div>${ order.ordPrice } 원 | ${ order.ordCount } 개</div>
 	                    </div>
 	                    <div class="detail_body_button">
 	                        <div><button style="display: none;">판매확정</button></div>
