@@ -140,9 +140,9 @@
     
 <div>
 
- <!-- ----------------------------가구별 판매량 1위 첫번째행----------------------------------------- -->        
+ <!-- ----------------------------카테고리별 조회수 1위 첫번째행----------------------------------------- -->        
 
-         <div class="store_product_top_title"><h3><img src="${ path }/resources/img/top_tropli.png" width="25px">&ensp;가구별 판매량 1위</h3></div>
+         <div class="store_product_top_title"><h3><img src="${ path }/resources/img/top_tropli.png" width="25px">&ensp;카테고리별 조회수 1위</h3></div>
      
     
             <div class="store_product" id="topBoardList">
