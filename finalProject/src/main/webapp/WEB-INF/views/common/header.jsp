@@ -103,8 +103,10 @@
                  </ul>
              </div>
              <div class="main_search">
-                <input id="search_bar" type="text" placeholder="통합검색">
-                <button>검색</button>
+	             <form action="searchMain.ma">
+	                <input id="search_bar" name="searchWord" type="text" placeholder="통합검색">
+	                <button>검색</button>
+                </form>
              </div>
             <div class="main_login">
             <c:if test="${ empty id }">

@@ -57,5 +57,9 @@ public interface MainService {
 	
 	// 전체 상품 리스트 (ajax)	
 	ArrayList<Main> topStoreBoardList4();
+	
+	
+	//검색
+	ArrayList<Main> searchList(String searchWord);
 
 }

@@ -125,5 +125,12 @@
 		where rownum between 1 and 8
 	</select>
 	
+	
+	<select id="searchList" resultMap="storeBoardResult">
+		select * from product
+		where pro_name like '%' || #{searchWord} || '%'
+	</select>
+	
+	
 </mapper>
 

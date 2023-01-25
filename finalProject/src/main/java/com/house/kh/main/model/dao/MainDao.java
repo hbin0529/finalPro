@@ -33,4 +33,11 @@ public class MainDao {
 		return (ArrayList)sqlSession.selectList("mainMapper.topStoreBoardList4");
 	}
 	
+	
+	public ArrayList<Main> searchList(SqlSessionTemplate sqlSession, String searchWord){
+		return (ArrayList)sqlSession.selectList("mainMapper.searchList", searchWord);
+	}
+	
+	
+	
 }
