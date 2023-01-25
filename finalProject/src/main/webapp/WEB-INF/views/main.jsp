@@ -85,7 +85,7 @@
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 12px;}
     .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold;}    
-    .store_product_top_title{position: relative; top: 50px; left: 103px;  font-family: 'Pretendard-Regular';}
+    .store_product_top_title{position: relative; top: 50px; left: 107px;  font-family: 'Pretendard-Regular';}
     .store_product_card_top3{ height: 440px; width: 347px; font-family: 'Pretendard-Regular'; }
     .store_product_card_top3 img{width: 325px; height: 325px; margin-left: 20px; margin-top: 40px; border: 1px solid #dee2e6;}
     #store_main_img  {margin-left: 50px;}  
@@ -135,7 +135,7 @@
  
  <div class="store_main">
     <button id="button_left" onclick="ChnImg1()"><</button>
-        <a href="#target"><img id="store_main_img" src="${path}/resources/img/main_img1.jpg" width="1050px" height="230px" style="margin-top: 80px;"></a>  
+        <a href="#target"><img id="store_main_img" src="${path}/resources/img/main_img1.jpg" width="1073px" height="230px" style="margin-top: 80px;"></a>  
         <button id="button_right"  onclick="ChnImg2()"> ></button>
     
 <div>
@@ -188,7 +188,7 @@
 <!-- ----------------------------집들이 조회수 탑쓰리---------------------------------------- -->            
 
 	<div id="target"><div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="30px">&ensp;집들이 조회수 TOP3</h3></div></div>
-	<div class="store_product" id="topBoardList2">
+	<div class="store_product" id="topBoardList2" style="margin-left: 10px;">
 	
 		<!-- 집들이 조회수가 가장 높은 상위 3개를 조회하여 보여주기(ajax) -->
 		
@@ -230,7 +230,7 @@
 
 <!-- ---------------------------상품 조회 탑3----------------------------------------- --> 
 	<div class="store_product_top_title"><h3><img src="${ path }/resources/img/greate_img.png" width="30px">&ensp;가구 조회수 TOP3</h3></div>
-	<div class="store_product" id="topBoardList3">
+	<div class="store_product" id="topBoardList3" style="margin-left: 10px;">
 		
 		<!-- 현재 조회수가 가장 높은 상품 상위 3개를 조회하여 보여주기(ajax) -->
 		
