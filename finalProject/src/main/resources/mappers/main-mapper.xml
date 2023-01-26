@@ -129,6 +129,7 @@
 	<select id="searchList" resultMap="storeBoardResult">
 		select * from product
 		where pro_name like '%' || #{searchWord} || '%'
+		and status = 'Y'
 	</select>
 	
 	
