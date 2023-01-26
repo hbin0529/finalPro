@@ -86,7 +86,7 @@
     .store_product_list:nth-child(5){ margin-left: 80px;}
     .store_product_list img{width: 240px; height: 240px; margin-left: 15px; margin-top: 40px; border: 1px solid #dee2e6;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 12px;}
-    .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; overflow: e; width:228px; height: 20px;}
+    .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; width:228px; height: 20pxh; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold;}    
     .store_product_top_title{position: relative; top: 50px; left: 107px;  font-family: 'Pretendard-Regular';}
   
