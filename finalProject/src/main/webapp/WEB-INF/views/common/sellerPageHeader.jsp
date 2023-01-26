@@ -21,7 +21,7 @@
         <div class="mypage_category">
             <table>
                 <tr>
-                    <td><a href="sellerProduct.se" id="mypage_menu">판매상품</a></td>
+                    <td><a href="sellerProduct.se?selNo=${ s.selNo }" id="mypage_menu">판매상품</a></td>
                     <td><a href="sellerOrderList.or?selNo=${ s.selNo }" id="mypage_menu">주문내역</a></td>
                     <td><a href="rArrayList.bo" id="mypage_menu">답변내역</a></td>
                     <td><a href="sellerInfoUpdate.se?selNo=${ s.selNo }" id="mypage_menu">개인정보수정</a></td>

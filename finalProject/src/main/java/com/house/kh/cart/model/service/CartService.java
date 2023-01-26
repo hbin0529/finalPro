@@ -21,10 +21,10 @@ public interface CartService {
 	int cartDelete(int cartNo);
 	
 	// 셀러페이지 상품 카운트
-	int selectProListCount();
+	int selectProListCount(int selNo);
 	
 	// 셀러페이지 상품리스트
-	ArrayList<Cart> selectProList(PageInfo pi); 
+	ArrayList<Cart> selectProList(PageInfo pi, int selNo); 
 	
 	/*
 	 * // 게시글 상세조회 int increaseProCount(int proNo); //조회수올리기 Cart selectProBoard(int
