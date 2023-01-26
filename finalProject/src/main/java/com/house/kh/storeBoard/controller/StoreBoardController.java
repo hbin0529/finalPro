@@ -272,8 +272,8 @@ public class StoreBoardController {
 		int result2 = sbService.updateReply(proQueNo);
 		if (result > 0) { 
 			if (result2 > 0) {
-				session.setAttribute("alertMsg", "성공적으로 답변이 등록되었습니다");
-				 return  "redirect: rArrayList.bo";
+				session.setAttribute("alertMsg", "성공적으로 답변이 등록되었습니다");  
+				 return  "redirect: rArrayList.bo?selNo=" + p.getSelNo();
 				 
 			}else {
 				model.addAttribute("errorMsg", "업데이트 실패");
