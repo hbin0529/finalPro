@@ -6,9 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오구싶은집 > 나의 구매목록</title>
-<!-- 파비콘 로고 -->
-<link rel="icon" href="${path}/resources/img/pavilogo.png">
+<title>Insert title here</title>
 </head> 
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap2.min.css" rel="stylesheet" type="text/css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
@@ -57,7 +55,7 @@
     .detail_body_button {width: 260px; text-align: right; padding-top: 40px;margin-top: 30px; margin-right: 10px;}
    /*  .detail_body_button div:nth-child(1){margin-bottom: 20px;} */
 /*     .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
- */     .detail_body img{width: 150px; margin-top: 25px;}
+ */     .detail_body img{width: 150px; margin-top: 25px; height:150px;}
     .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 30px;}
     .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
     .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
@@ -345,7 +343,7 @@
                 <div class="review_buy_upload">
                     <h5 class="review_title">사진 첨부 (선택)</h5>
                     <p>사진을 첨부해주세요. (1장 필수) </p> 
-                    <input type="file" name="upfile" class="main_file" required>
+                    <input type="file" name="upfile" class="main_file">
                 </div> <!--review_buy_upload 까지-->
                   
                 <div class="review_write"> 
