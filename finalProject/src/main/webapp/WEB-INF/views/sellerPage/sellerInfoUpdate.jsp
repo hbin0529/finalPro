@@ -95,6 +95,7 @@
         height: 50px; background-color: rgb(33, 217, 203);
         border: 0; color: rgb(255, 255, 255);
           font-family: 'Pretendard-Regular';
+           font-size:18px;
     }
     .necessaryInfo::after{
         content: "*";

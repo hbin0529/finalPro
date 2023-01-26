@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <link href="${pageContext.request.contextPath}/resources/css/homeboard.css" rel="stylesheet" type="text/css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
  <jsp:include page="../common/header.jsp"/> 
 <main> 
