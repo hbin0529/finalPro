@@ -6,9 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오구싶은집 > 나의 구매목록</title>
-<!-- 파비콘 로고 -->
-<link rel="icon" href="${path}/resources/img/pavilogo.png">
+<title>Insert title here</title>
 </head> 
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap2.min.css" rel="stylesheet" type="text/css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
@@ -57,7 +55,7 @@
     .detail_body_button {width: 260px; text-align: right; padding-top: 40px;margin-top: 30px; margin-right: 10px;}
    /*  .detail_body_button div:nth-child(1){margin-bottom: 20px;} */
 /*     .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
- */     .detail_body img{width: 150px; margin-top: 25px;}
+ */     .detail_body img{width: 150px; margin-top: 25px; height:150px;}
     .detail_bottom{height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 30px;}
     .detail_bottom div:nth-child(1){margin-bottom: 10px; padding-top: 30px;}
     .detail_bottom div:nth-child(2){font-size: 16px; font-weight: bolder;}
@@ -212,7 +210,7 @@
 		
 		
 		//document.getElementById("proName").value = 'x[clickNum-1]';
-	}
+	} 
 	
 </script>
   
@@ -323,7 +321,7 @@
                      <div class="review_top_buy_price"><p id="priceAndCount">${ order.ordPrice } POINT | ${ order.ordCount } 개</p></div>
                    </div>  
              </div>  <!--review_top_buyimg까지-->
-             <form action="reviewinsert.bo" method="post" enctype="multipart/form-data">
+             <form action="reviewinsert.bo" method="post" enctype="multipart/form-data" name="reviewinput">
                <input type="hidden" name="memEmail" value="${ id }">
                <input type="hidden" name="ordNo" id="ordNo" value="${ order.ordNo }">
                <input type="hidden" name="proNo" id="proNo" value="${ order.proNo }">
@@ -337,7 +335,7 @@
                                       <input type="radio" name="reviewStar" value="4" id="4"><label for="4">☆</label> 
                                       <input type="radio" name="reviewStar" value="3" id="3"><label for="3">☆</label>
                                       <input type="radio" name="reviewStar" value="2" id="2"><label for="2">☆</label>
-                                      <input type="radio" name="reviewStar" value="1" id="1"><label for="1">☆</label>
+                                      <input type="radio" name="reviewStar" value="1" id="1"><label for="1">☆</label> 
                                   </div> 
                             </div> 
                     </div>
@@ -345,18 +343,20 @@
                 <div class="review_buy_upload">
                     <h5 class="review_title">사진 첨부 (선택)</h5>
                     <p>사진을 첨부해주세요. (1장 필수) </p> 
-                    <input type="file" name="upfile" class="main_file" required>
+                    <input type="file" name="upfile" class="main_file">
                 </div> <!--review_buy_upload 까지-->
                   
                 <div class="review_write"> 
                       <h5 class="review_title">리뷰작성</h5> 
                       <div class="review_write_detail">
                           <textarea name="reviewContent" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)"></textarea>
-                          <input type="submit" value="완료">
+                         <button type="button" id="button1" onclick="reviewadd();">완료</button>
+                      
                       </div>
                   </div> 
+                  </form> 
                </div><!--review_write 까지-->  
-          </form> 
+          
      <div class="modal-footer">
         <div class="modal-footer_text">포인트는 최초 작성한 리뷰를 기준으로 지급됩니다.</div>
         <div class="modal-footer_text">상품과 무관한 내용이나 사진, 동일 문자 반복 등의 부적합한 리뷰는  사전 경고 없이 삭제 및 포인트 회수될 수 있습니다.</div>
@@ -368,6 +368,21 @@
  </c:forEach> 
             </div>
         </div> 
+        
+        
+         
+      <!--  function reviewadd(){
+        if(!$('input:radio[name=reviewStar]).is(':checked')){   
+				   alert("별점을 1개 이상 선택해 주세요.");
+				   return;
+				}else{
+					reviewinput.submit();
+				}  
+       -->
+
+      
+        
+        
     </section>
      
 <jsp:include page="../common/footer.jsp"/>   
