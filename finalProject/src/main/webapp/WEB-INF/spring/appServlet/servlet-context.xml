@@ -60,6 +60,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/signIn.me"/>
+			<mapping path="/sellerSignIn.se"/>
 			<beans:bean class="com.house.kh.common.interceptor.SignInterceptor" id="SignInterceptor" />
 		</interceptor>
 	</interceptors>

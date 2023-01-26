@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오구싶은집 > 나의 회원 정보 수정</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -122,6 +125,28 @@
     .bd1{border: 1px solid black;}.mt30{margin-top: 30px;}
     .bdradi4{border-radius: 4px;}
 </style>
+<script type="text/javascript">
+	function checkAndSubmit() {
+		/* 판매자명 정규표현식 */
+		var selName = document.getElementById("selName").value;
+	   	var selNameRegExp = /^[가-힣]{2,5}$/
+	   	if(selNameRegExp.test(selName)){
+	   	}else{
+	   		alert("이름을 올바르게 입력해주세요")
+	   		return;
+	   	}
+	   	
+	   	/* 핸드폰 정규표현식 */
+	   	var selPhone = document.getElementById("selPhone").value;
+	   	var selPhoneRegExp = /^(010|011)-[0-9]{4}-[0-9]{4}$/
+		if(selPhoneRegExp.test(selPhone)){
+		}else{
+			alert("핸드폰 번호를 올바르게 입력해주세요")
+	   		return;
+		}
+	   	regFrm.submit();
+	}
+</script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function findAddr(){
@@ -157,6 +182,12 @@
         }).open();
     }
 </script>
+		<c:if test="${ not empty alertMsg }">
+			<script>
+				alert("${ alertMsg }");
+			</script>
+			<c:remove var="alertMsg" scope="session" />
+		</c:if> 
 <body>
     <jsp:include page="../common/header.jsp"/>
 
@@ -182,20 +213,20 @@
                     <div class="formElement">
                         <div class="formEle1">판매자대표이름</div>
                         <div>
-                            <input type="text" name="selName" class="wid400 bdradi4" value="${ seller.selName }">
+                            <input type="text" name="selName" id="selName" class="wid400 bdradi4" value="${ seller.selName }" placeholder="2~5글자 사이의 한글 입력">
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">우편번호</div>
                         <div>
-                            <input type="text" name="zipcode" id="postcode" class="wid400 bdradi4" value="${ seller.selZipcode }"  style="width: 120px;">
+                            <input type="text" name="zipcode" id="postcode" class="wid400 bdradi4" value="${ seller.selZipcode }"  style="width: 120px;" readonly>
                             <input class="sz50p kakaobut" type="button" value="우편번호찾기" onclick="findAddr()">
                         </div>
                     </div>
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">주소</div>
                         <div>
-                            <input type="text" name="address" id="addr" class="wid400 bdradi4" value="${ seller.selAddr }">
+                            <input type="text" name="address" id="addr" class="wid400 bdradi4" value="${ seller.selAddr }" readonly>
                         </div>
                     </div>
                     <div class="formElement">
@@ -207,7 +238,7 @@
                     <div class="formElement">
                         <div class="formEle1 necessaryInfo">전화번호</div>
                         <div>
-                            <input type="text" name="selPhone" class="wid400 bdradi4" value="${ seller.selPhone }">
+                            <input type="text" name="selPhone" id="selPhone" class="wid400 bdradi4" value="${ seller.selPhone }" placeholder="010-0000-0000">
                         </div>
                     </div>
                     <div class="formElement">
@@ -223,7 +254,7 @@
                     </div>
                     
                     <div class="formElement">
-                        <button class="bdradi4" onclick="submit();">회원 정보 수정</button>
+                        <button class="bdradi4" type="button" onclick="checkAndSubmit();">회원 정보 수정</button>
                     </div>
                 </form>
             </div>

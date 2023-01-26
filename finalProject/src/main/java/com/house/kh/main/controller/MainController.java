@@ -62,5 +62,21 @@ public class MainController {
 	}
    
    
+   @RequestMapping("searchMain.ma")
+	public String searching(Model model, String searchWord) {
+		
+		ArrayList<Main> searchResult = mService.searchList(searchWord);
+		for(int i = 0; i < searchResult.size(); i++) {
+			System.out.println(searchResult.get(i));
+		}
+		model.addAttribute("list", searchResult);
+		model.addAttribute("searchWord", searchWord);
+		
+		
+		return "common/searchResult";
+	}
+   
+   
+   
 
 }

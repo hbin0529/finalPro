@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -141,6 +142,20 @@
 		
 	</script>
 	<style type="text/css">
+		/* 로고폰트 */
+	    @font-face {
+	    font-family: 'SDSamliphopangche_Outline';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	    } 
+	    /* 메뉴폰트 */
+	    @font-face {
+	    font-family: 'GmarketSansMedium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	    }
 		.container {
 			width: 500px;
 		}
@@ -150,20 +165,27 @@
 			padding: 15px;
 			overflow: auto;
 		}
+		.headFont{
+			font-family: 'SDSamliphopangche_Outline';
+			font-size: 70px !important;
+		}
+		.headFont img{
+			width:120px
+		}
 	</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Simple Chat</title>
 </head>
 <body>
     <div class="container">
-		<h1 class="page-header">Chat</h1>		
+		<h1 class="page-header headFont"><img src="${ path }/resources/img/logo1.gif">떠들석한 <span style="color:rgb(33,217,203)">집</span></h1>		
 		
 		<table class="table table-bordered">
 			<tr>
-				<td><input type="text" name="user" id="user" class="form-control" placeholder="유저명"></td>
+				<td><input type="text" name="user" id="user" class="form-control" value="${ nick }"></td>
 				<td>
-					<button type="button" class="btn btn-default" id="btnConnect">연결</button>
-					<button type="button" class="btn btn-default" id="btnDisconnect" disabled>종료</button>
+					<button type="button" class="btn btn-default" id="btnConnect">같이떠들기</button>
+					<button type="button" class="btn btn-default" id="btnDisconnect" disabled>나가기</button>
 				</td>
 			</tr>
 			<tr>

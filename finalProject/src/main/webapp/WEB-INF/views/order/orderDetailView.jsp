@@ -5,16 +5,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <c:if test="${ not empty alertMsg }">
-      <script>
-         alert("${ alertMsg }");
-      </script>
-      <c:remove var="alertMsg" scope="session" />
-   </c:if> 
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오구싶은집 > 나의 판매 목록</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
+<c:if test="${ not empty alertMsg }">
+  <script>
+     alert("${ alertMsg }");
+  </script>
+  <c:remove var="alertMsg" scope="session" />
+</c:if> 
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -110,13 +112,14 @@
     .detail_body_button {width: 260px; text-align: right; padding-top: 40px; margin-right: 10px;}
    /*  .detail_body_button div:nth-child(1){margin-bottom: 20px;} */
 /*     .detail_body_button button{ font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
- */     .detail_body img{width: 150px; margin-top: 25px;}
+ */     .detail_body img{width: 150px; height:150px; margin-top: 25px;}
     .detail_bottom{line-height: 133%; height: 100px; margin-left: 20px; margin-right: 20px; text-align: center; background-color: #f6fdfd; border-radius: 5px; margin-bottom: 30px;}
     .detail_bottom div:nth-child(1){padding-top: 20px;  }
     .detail_bottom div:nth-child(2){font-size: 16px; }
      .detail_top p {font-size: 15px;}
      #sell_ok, #order_cancle {font-family: 'Pretendard-Regular'; background-color: #21d9cb; border: 1px solid #21d9cb; width: 170px; height: 50px; color: white; font-size: 17px; cursor: pointer; border-radius: 5px;}
      #order_cancle{margin-top:10px}
+     .orderCount{margin-top:5px;}
 </style>
 <body>
     <jsp:include page="../common/header.jsp"/>
@@ -131,7 +134,7 @@
     
     
         <div class="order_count">
-            <div><p>주문내역</p></div>&ensp;
+            <div><p class="orderCount">주문내역</p></div>&ensp;
             <div><p class="allCount"></p></div>
             
         </div>

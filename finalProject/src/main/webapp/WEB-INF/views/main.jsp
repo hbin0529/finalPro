@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <c:set var="path" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오구싶은집</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
 </head>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -83,7 +86,7 @@
     .store_product_list:nth-child(5){ margin-left: 80px;}
     .store_product_list img{width: 240px; height: 240px; margin-left: 15px; margin-top: 40px; border: 1px solid #dee2e6;}
     .store_product_seller{margin-left: 25px; margin-top: 5px; font-size: 12px;}
-    .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; overflow: e; width:228px; height: 1em; white-space: nowrap;}
+    .store_product_title{margin-left: 25px;  font-size: 17px; font-weight: bold; overflow: e; width:228px; height: 20px;}
     .store_product_price{margin-left: 25px;  font-size: 20px; font-weight: bold;}    
     .store_product_top_title{position: relative; top: 50px; left: 107px;  font-family: 'Pretendard-Regular';}
   
@@ -100,6 +103,9 @@
     #topBoardList{width:1250px; flex-wrap: wrap;}
     #topBoardList4{width:1250px; flex-wrap: wrap;}
     .store_product_img{width:266px}
+    img{
+    	object-fit: cover;
+    }
 </style>
 <body>
 <!-- header -->

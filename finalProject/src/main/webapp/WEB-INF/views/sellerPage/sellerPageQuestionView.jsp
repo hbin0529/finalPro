@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오구싶은집 > 판매자 답변내역</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
