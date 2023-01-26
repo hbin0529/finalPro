@@ -378,15 +378,15 @@
 
 
                 <span class="wid360 mgtb30 rmmg" style="text-align: left;">비밀번호</span>
-                <div class="inputInfo">(아직테스트중이라 제한없음 1234 ㄱㄱ)</div>
+                <div class="inputInfo"></div>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" name="selPwd" id="pass">
+                    <input class="sz100p bd1 ilb bora4" type="password" name="selPwd" id="pass">
                 </div>
 
 
                 <span class="wid360 mgtb30" style="text-align: left;">비밀번호 확인</span>
                 <div class="wid360 alcen">
-                    <input class="sz100p bd1 ilb bora4" id="repass">
+                    <input class="sz100p bd1 ilb bora4" type="password" id="repass">
                 </div>
                 <hr style="margin:50px 0">
 
