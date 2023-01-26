@@ -154,4 +154,9 @@ public class MainServiceImpl implements MainService{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Main> searchList(String searchWord) {
+		return mDao.searchList(sqlSession, searchWord);
+	}
+
 }

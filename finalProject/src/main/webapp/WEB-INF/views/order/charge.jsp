@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오구싶은집 충전사이트</title>
+<title>오구싶은집 > 충전사이트</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
 <link rel="shortcut icon" href="#">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>

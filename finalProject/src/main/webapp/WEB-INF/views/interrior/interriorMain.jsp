@@ -5,11 +5,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<title>오구싶은집 > 인테리어</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
     <style>
          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
            /* 로고폰트 */
@@ -95,10 +97,10 @@
 
     <!-- 본문 -->
     <section class="container">
-        <form action="">
+        <form action="searchInter.in">
             <div class="searchBarSection">
                 <img src="${ path }/resources/img/search.png" alt="돋보기" class="searchImg">
-                <input type="text" class="searchWord" placeholder='"거실이 넓은 집에 맞는 인테리어 추천해 줘"'>
+                <input type="text" name="searchWord" class="searchWord" placeholder='"거실이 넓은 집에 맞는 인테리어 추천해 줘"'>
                 <button class="searchButton">검색하기</button>
             </div>
         </form>
