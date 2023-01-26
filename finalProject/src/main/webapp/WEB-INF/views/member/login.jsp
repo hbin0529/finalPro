@@ -209,18 +209,26 @@
 	</script>
 	<script type="text/javascript">
 	$(function(){
+		const mEl = document.getElementById("mLogChoice")
+		const mclasses = mEl.classList;
+		const sEl = document.getElementById("sLogChoice")
+		const sclasses = sEl.classList;
 		$("#randomComment").html('${randomComment}');
 		$("#mLogChoice").on("click", function(){
-			$("#memberLog").show();
-			$("#sellerLog").hide();
-			$("#sLogChoice").toggleClass("selectLogin")
-			$("#mLogChoice").toggleClass("selectLogin")
+			if(!mclasses.contains("selectLogin")){
+				$("#memberLog").show();
+				$("#sellerLog").hide();
+				$("#sLogChoice").toggleClass("selectLogin")
+				$("#mLogChoice").toggleClass("selectLogin")
+			}
 		})
 		$("#sLogChoice").on("click", function(){
-			$("#sellerLog").show();
-			$("#memberLog").hide();
-			$("#sLogChoice").toggleClass("selectLogin")
-			$("#mLogChoice").toggleClass("selectLogin")
+			if(!sclasses.contains("selectLogin")){
+				$("#sellerLog").show();
+				$("#memberLog").hide();
+				$("#sLogChoice").toggleClass("selectLogin")
+				$("#mLogChoice").toggleClass("selectLogin")
+			}
 		})
 	})
 	</script>

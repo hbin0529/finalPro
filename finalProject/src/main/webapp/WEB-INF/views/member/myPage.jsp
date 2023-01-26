@@ -305,7 +305,7 @@
                         </div>
                     </div>
                     <div class="formElement">
-                        <div class="formEle1 necessaryInfo">비밀번호확인(아직정규식안넣음)</div>
+                        <div class="formEle1 necessaryInfo">비밀번호확인</div>
                         <div>
                             <input type="password" name="memRePwd" id="repass" class="wid400 bdradi4" value="">
                         </div>

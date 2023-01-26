@@ -55,7 +55,7 @@ public class SellerController {
 		int insertMemResult = SService.insertMember(s);
 		if(insertMemResult > 0) {
 			session.setAttribute("alertMsg", "회원가입에 성공하였습니다.");
-			return "seller/sellerLogin";
+			return "member/login";
 		}else {
 			//md.addAttribute("error", "회원가입실패");
 			return "redirect:/";
