@@ -30,17 +30,17 @@ public class CartDao {
 	}
 	
 	//셀러페이지 상품리스트 카운트
-	public int selectProListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("cartMapper.selectProListCount");
+	public int selectProListCount(SqlSessionTemplate sqlSession, int selNo) {
+		return sqlSession.selectOne("cartMapper.selectProListCount", selNo);
 	}
 
 	//셀러페이지 상품리스트
-	public ArrayList<Cart> selectProList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Cart> selectProList(SqlSessionTemplate sqlSession, PageInfo pi, int selNo) {
 		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		
-		return (ArrayList)sqlSession.selectList("cartMapper.selectProList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("cartMapper.selectProList", selNo, rowBounds);
 	}
 	
 	/*

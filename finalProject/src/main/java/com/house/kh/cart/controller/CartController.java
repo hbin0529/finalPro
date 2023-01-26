@@ -70,11 +70,15 @@ public class CartController {
 	/* 셀러페이지 상품리스트 */
 	@RequestMapping("sellerProduct.se")
 	public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, Cart cart, ModelAndView mv, Model model) {
-		int listCount = cartService.selectProListCount();
-		
+		System.out.println(cart);
+		int listCount = cartService.selectProListCount(cart.getSelNo());
+		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
-		ArrayList<Cart> list = cartService.selectProList(pi);
-
+		ArrayList<Cart> list = cartService.selectProList(pi, cart.getSelNo());
+		System.out.println(list.size() + "리스트사이즈");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 		mv.addObject("pi", pi);
 		mv.addObject("list", list);
 		model.addAttribute("listCount", listCount);
