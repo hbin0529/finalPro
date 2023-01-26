@@ -161,7 +161,7 @@
 		}
 		
 		#list {
-			height: 300px;
+			height: 600px;
 			padding: 15px;
 			overflow: auto;
 		}
@@ -178,7 +178,7 @@
 </head>
 <body>
     <div class="container">
-		<h1 class="page-header headFont"><img src="${ path }/resources/img/logo1.gif">떠들석한 <span style="color:rgb(33,217,203)">집</span></h1>		
+		<h1 class="page-header headFont"><img src="${ path }/resources/img/logo1.gif" onclick="javascript:location.href='home.com'">떠들석한 <span style="color:rgb(33,217,203)">집</span></h1>		
 		
 		<table class="table table-bordered">
 			<tr>
