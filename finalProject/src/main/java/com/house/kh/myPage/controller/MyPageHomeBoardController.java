@@ -39,8 +39,8 @@ public class MyPageHomeBoardController {
 	@Autowired
 	private OrderService oService;
 
-	@RequestMapping("mypagehblist.bo")
  
+	@RequestMapping("mypagehblist.bo")
 	public ModelAndView selectList(@RequestParam(value="cpage" , defaultValue="1")int nowPage, ModelAndView mv, Model model) {
 		  int listCount = hbService.selectListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 12);
