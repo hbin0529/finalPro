@@ -87,7 +87,7 @@
         </div>   
      </div>  
       <div class="protect_buttom">
-           <img src="${path}/resources/img/protect_buttom.PNG"><div>  
+           <img src="${path}/resources/img/protect_buttom.PNG" style="width:750px;"><div>  
       </div>   
        
         <%--  <!-- 수정, 삭제시 post방식으로 넘겨주기 -->
