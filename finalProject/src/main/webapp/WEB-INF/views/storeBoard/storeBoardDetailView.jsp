@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오구싶은집 > ${ p.proName }</title>
-<!-- 파비콘 로고 -->
-<link rel="icon" href="${path}/resources/img/pavilogo.png">
+<title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,6 +16,9 @@
 $(function() {
 	$("#proCnt").change(function(e){
 		$("#sumPrice").text( (parseInt($("#proCnt").val()) * parseInt($("#proPrice").val())) );
+		if( $("#proCnt").val() == "add" ) { 
+			$("#proCntBox").html("<input type='number' style='width: 380px; height: 50px; padding-left: 5px; font-size: 15px; border-color: rgb(202, 202, 202); border-radius: 5px; margin-bottom: 10px;'>")
+		};
 	})
 })
 
@@ -69,13 +68,10 @@ $(function() {
     #buy{margin-top:15px; color:white; font-size: 18px;}
     #delete{margin-top:10px; color:white; font-size: 18px;}
    /*----------------------------------- 상품 바디 카테고리 바 -----------------------------------*/
-    .product_body{height: 100%;}
-    .body_category{margin-top: 100px;}
-    .product_body_category{display: flex; background-color: rgb(252, 252, 252); width:1900px; margin-left:-250px; overflow: auto;
-    position: -webkit-sticky;
-    position: sticky;
-    z-index: 100;
-    top:0; height: 60px; border-top: 1px solid rgb(214, 214, 214); border-bottom: 1px solid rgb(214, 214, 214); margin-bottom: 50px;}
+    .product_body{}
+    .body_category{height: 60px;}
+    .product_body_category{display: flex; background-color: rgb(252, 252, 252); width:1900px; margin-left:-250px;
+        height: 60px; border-top: 1px solid rgb(214, 214, 214); border-bottom: 1px solid rgb(214, 214, 214); margin-bottom: 50px;}
     .product_body_category p{margin-top: 22px; font-family: 'GmarketSansMedium'; font-weight: bolder;}
     .product_body_category a:hover{color: #21d9cb;}
     .product_body_category_review{display: flex;}
@@ -89,16 +85,17 @@ $(function() {
     .detail_information_table td:nth-child(1){width: 180px; color: gray;}
     .detail_information_table tr td{border-bottom: 1px solid rgb(224, 224, 224);}
 
-     /*-----------------------------------  리뷰 별점 -----------------------------------*/
+    /*-----------------------------------  리뷰 별점 -----------------------------------*/
     .bottom_review{height: 300px; }
     .review_box{display: flex; width: 850px; height: 200px; margin: 0 auto; background-color: rgb(243, 243, 243); border-radius: 5px; font-family: 'Pretendard-Regular';}
     .bottom_review_star{display:flex; margin-bottom: 20px; font-size: 20px; font-weight: bolder; font-family: 'GmarketSansMedium';}
-    .bottom_star{width: 350px;}
-    .bottom_star p{font-size: 28px; font-weight: bolder; font-family: 'Pretendard-Regular';}
-    .bottom_star p:nth-child(1) {vertical-align: middle; width: 250px; color: #21d9cb;}
-    .review_table{background-color: rgb(243, 243, 243); width: 450px; margin: 0 auto;}
-    .review_table table {margin: 0 auto; border-collapse: collapse; margin-top: 20px;}
-    .review_table table tr td{font-size: 13px; border-collapse: collapse; padding-bottom: 5px; vertical-align: middle;}
+    .bottom_star{display: flex; margin: 0 auto; width: 350px; }
+    .bottom_star p{font-size: 30px; font-weight: bolder;  padding-top: 80px;}
+    .bottom_star p:nth-child(1) {text-align: right;vertical-align: middle; width: 250px; color: #21d9cb; }
+    .bottom_star p:nth-child(2) {text-align: left;width: 100px; border-right: 1px solid rgb(230, 230, 230); color: rgb(102, 102, 102); padding-right: 20px; margin-top: 3px;}
+    .review_table{ background-color: rgb(243, 243, 243);width: 450px; margin: 0 auto;}
+    .review_table table {margin: 0 auto; border-collapse: collapse; margin-top: 30px;}
+    .review_table table tr td{font-size: 13px; border-collapse: collapse; padding-bottom: 5px; vertical-align: middle; font-weight: bolder;}
     .review_table table tr td:nth-child(1){width: 50px; color: rgb(102, 102, 102);}
     .review_table table tr td:nth-child(2){width: 150px; font-size: 20px; color: #21d9cb;}
     .review_table table tr td:nth-child(3){width: 50px; padding-left: 10px; color: rgb(102, 102, 102);}
@@ -218,6 +215,7 @@ $(function() {
                             <option value="8">8</option>
                             <option value="9">9</option>
                             <option value="10">10</option>
+                            <option value="add" id="add">직접입력</option>
                         </select>
                     </div>
                     <div class="order_price">
@@ -231,7 +229,43 @@ $(function() {
 		                        <div id="btnbtn1"><a onClick="postFormSubmit(2);"><p id="delete">삭제하기</p></a></div>
 		                    </c:when>
 	                        <c:otherwise>
-	                        	<c:if test="${ not empty permit }">
+	                        
+	                       <c:if test="${selNo ne p.selNo }">
+		                              <script type="text/javascript">
+		                                 function directBuy() {
+		                                	 if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                                		 alert('구매 옵션을 선택해주세요');
+		                                		 return;
+		                                	 }
+		                                    hbInfo.submit();
+		                                 }
+		                                 
+		                               	function cartInsert() {
+		                               		if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                                		 alert('옵션을 선택해주세요');
+		                                		 return;
+		                                	 } else {
+		                                	 var color = document.getElementById("colorSelect").value
+		                                	 document.getElementById("color_otp").value = color;
+		                                	 
+		                                	 var amount = document.getElementById("proCnt").value
+		                                	 document.getElementById("cart_amount").value = amount;
+		                                	 
+		                                	 cartForm.submit();
+		                                 	}
+		                               	} 
+		                              $(function(){
+		                              })
+		                              </script>
+			                         <input type="hidden" value="${ p.proNo }" name="proNo">
+	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
+	                                 <input type="hidden" value="${ p.proName }" name="proName">
+	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
+	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
+	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
+	                        	</c:if> 
+	                        
+	                         	<c:if test="${ permit eq 1 }"> 
 		                        	 <div id="btnbtn"><a onclick="cartInsert()"><p id="buy">장바구니</p></a></div>
 		                             <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
 		                              <script type="text/javascript">
@@ -264,10 +298,47 @@ $(function() {
 	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
 	                                 <input type="hidden" value="${ p.proName }" name="proName">
 	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
-	                                 <input type="hidden" value="${ p.proChangeImg }" name="proChangeImg">
 	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
 	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
 	                        	</c:if>
+	                        	
+	                        	<c:if test="${ permit eq 2 }">  
+		                              <script type="text/javascript">
+		                                 function directBuy() {
+		                                	 if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                                		 alert('구매 옵션을 선택해주세요');
+		                                		 return;
+		                                	 }
+		                                    hbInfo.submit();
+		                                 }
+		                                 
+		                               	function cartInsert() {
+		                               		if(document.getElementById("colorSelect").value=='색상선택'||document.getElementById("proCnt").value=='수량선택'){
+		                                		 alert('옵션을 선택해주세요');
+		                                		 return;
+		                                	 } else {
+		                                	 var color = document.getElementById("colorSelect").value
+		                                	 document.getElementById("color_otp").value = color;
+		                                	 
+		                                	 var amount = document.getElementById("proCnt").value
+		                                	 document.getElementById("cart_amount").value = amount;
+		                                	 
+		                                	 cartForm.submit();
+		                                 	}
+		                               	} 
+		                              $(function(){
+		                              })
+		                              </script>
+			                         <input type="hidden" value="${ p.proNo }" name="proNo">
+	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
+	                                 <input type="hidden" value="${ p.proName }" name="proName">
+	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
+	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
+	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
+	                        	</c:if>
+	                        	
+	                        	
+	                        	
 	                        	<c:if test="${ empty permit }">
 		                        	 <div id="btnbtn"><a onClick="directBuy()"><p id="buy">장바구니</p></a></div>
 		                              <div id="btnbtn"><a onclick="directBuy()"><p id="buy">바로구매</p></a></div>
@@ -279,7 +350,6 @@ $(function() {
 		                              </script>
 	                              	 <input type="hidden" value="${ p.selBusName }" name="selBusName">
 	                                 <input type="hidden" value="${ p.proName }" name="proName">
-	                                 <input type="hidden" value="${ p.proChangeImg }" name="proChangeImg">
 	                                 <input type="hidden" value="${ p.proPrice }" name="proPrice">
 	                                 <input type="hidden" value="${ p.proWhiteStock }" name="proWhiteStock">
 	                                 <input type="hidden" value="${ p.proBlackStock }" name="proBlackStock">
@@ -295,12 +365,11 @@ $(function() {
 							<input type="hidden" name="proPrice" value="${ p.proPrice }" >
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="selNo" value="${ p.selNo }">
-							<input type="hidden" name="proChangeImg" value="${ p.proChangeImg }" >
 							<input type="hidden" name="memEmail" value="${ id }">
 						</form>
 						
 						<!-- 상품수정, 삭제시 post방식으로 넘겨주기 -->
-						<form action="#" method="post" id="postForm">
+						<form action="" method="post" id="postForm">
 							<input type="hidden" name="proNo" value="${ p.proNo }">
 							<input type="hidden" name="filePath" value="${ p.proChangeImg }"> <!-- 파일도 삭제해줘야해서 같이넘기기 -->
 						</form>
@@ -328,19 +397,19 @@ $(function() {
             <div class="product_body">
                 <!--메뉴바-->
                 <div class="body_category">
-					<div class="product_body_category">
-						<div><p style="width: 220px; margin-left: 680px; "><a href="#tag3">상품정보</a></p></div>
-						<div class="product_body_category_review" style="width: 220px;">
-							<div><a href="#tag2"><p style="margin-right: 10px;">리뷰</p></div>
-							<div><p style="color: gray;"><span id="rcount1">0</span></p></div>
-						</div>
-						<div class="product_body_category_question" style="width: 220px;">
-							<div><a href="#tag1"><p style="margin-right: 10px;">문의</p></div>
-							<div><p style="color: gray;" id="qcount">0</p></a></div>
-						</div>
+                    <div class="product_body_category">
+                            <div><p style="width: 220px; margin-left: 680px; "><a href="#tag3">상품정보</a></p></div>
+                            <div class="product_body_category_review" style="width: 220px;">
+                                <div><a href="#tag2"><p style="margin-right: 10px;">리뷰</p></div>
+                                <div><p style="color: gray;"><span id="rcount1">0</span></p></div>
+                            </div>
+                            <div class="product_body_category_question" style="width: 220px;">
+                                <div><a href="#tag1"><p style="margin-right: 10px;">문의</p></div>
+                                <div><p style="color: gray;" id="qcount">0</p></a></div>
+                            </div>
+                        </div>
                     </div>
-				
-			
+                </div>
 
                 <!-- 상품디테일 -->
                 <div class="product_detail">
@@ -386,40 +455,35 @@ $(function() {
                             <div style="display: flex;">
                                 <div class="review_box">
                                     <div class="bottom_star" >
-                                       <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] > 0 }">
-                                           <p style="margin-left:100px; margin-top:60px;"><span style="margin-right:10px;">별점</span><img src="${ path }/resources/img/review_star_empty.png" style="position:absolute"><img src="${ path }/resources/img/review_star_full.png" style="position:absolute; object-fit: none; object-position:0% 50%; height:32px; width: calc(${ ((stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]))/5 }*160px);"></p>
-                                           <p><span style="font-size:20px; color:rgb(141, 141, 141); margin-left:160px;">(평균 <fmt:formatNumber value="${ (stars[0]*1+stars[1]*2+stars[2]*3+stars[3]*4+stars[4]*5)/(stars[0]+stars[1]+stars[2]+stars[3]+stars[4]) }" pattern=".0"/>점)</span></p>
-                                       </c:if>
-                                       <c:if test="${ stars[0]+stars[1]+stars[2]+stars[3]+stars[4] == 0 }">
-                                           <p style="padding-top: 80px; font-size:22px; position:relative; top:9px; margin-left:100px;">등록된 별점이 없습니다</p>
-                                       </c:if>
+                                        <p>★★★★★</p>
+                                        <p>&ensp;5.0</p>
                                     </div>
                                     <div class="review_table">
                                         <table>
                                             <tr>
                                                 <td>5점</td>
-                                                <td>★ ★ ★ ★ ★</td>
-                                                <td>${ stars[4] }개</td>
+                                                <td>★★★★★</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>4점</td>
-                                                <td>★ ★ ★ ★ ☆</td>
-                                                <td>${ stars[3] }개</td>
+                                                <td>★★★★</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>3점</td>
-                                                <td>★ ★ ★ ☆ ☆</td>
-                                                <td>${ stars[2] }개</td>
+                                                <td>★★★</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>2점</td>
-                                                <td>★ ★ ☆ ☆ ☆</td>
-                                                <td>${ stars[1] }개</td>
+                                                <td>★★</td>
+                                                <td>10개</td>
                                             </tr>
                                             <tr>
                                                 <td>1점</td>
-                                                <td>★ ☆ ☆ ☆ ☆</td>
-                                                <td>${ stars[0] }개</td>
+                                                <td>★</td>
+                                                <td>10개</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -496,7 +560,7 @@ $(function() {
                                 <a id="tag1"><p>문의</p></a>
                                 <p id="qcount1">0</p>
                                 	<c:choose>
-	                                	<c:when test="${ empty id or permit eq 2}">
+	                                	<c:when test="${ empty id }">
 	                                		<div><button type="button" data-toggle="modal" data-target="#myModal" style="display:none;">문의하기</button></div>
 	                                	</c:when> 
 	                                	<c:otherwise>
@@ -548,12 +612,13 @@ $(function() {
                     </div>               
                 </div>
             </div>
-		</div>
+        </div>
          <form id="deleteQue" action="qdelete.bo">
             <input name="proQueNo" type="hidden" id="test23123">
          </form>
     </section>
     
+    </form>
     
     <script>
 	    $(function(){
@@ -567,7 +632,6 @@ $(function() {
 				success:function(list){
 					let value = "";
 					for(let i in list) {
-						if ( list[i].reviewImgChange != null) {
 						value += "<tbody>"
 							  + 	"<tr>"
 							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/" + list[i].memImg + " ' id='user_img'></td>"
@@ -587,24 +651,6 @@ $(function() {
 							  +	 	"</tr>"
 							  + "</tbody>"
 							  + "<hr>";
-								} else {
-						value += "<tbody>"
-							  + 	"<tr>"
-							  +			"<td rowspan='2' id='review_user_img'><img src='${path}/" + list[i].memImg + " ' id='user_img'></td>"
-							  +			"<td colspan='2' id='review_nickname'>" + list[i].memNick + "</td>"
-							  +  	"</tr>"
-							  +  	"<tr>" 
-							  +  "<td id='review_date'>"  +list[i].reviewDate + "</td>"     
-							  +  	"</tr>"
-							  +  	"<tr>"
-							  +			"<td colspan='3' id='review_option'> 옵션 :"+ list[i].ordOption + "</td>"
-							  +  	"</tr>"
-							  +  	"<tr>"		
-							  +			"<td colspan='3' id='review_text'>" + list[i].reviewContent + "</td>"			  
-							  +	 	"</tr>"
-							  + "</tbody>"
-							  + "<hr>";
-								}
 					}
 					$(".review_detail table").html(value);
 					$("#rcount").text(list.length);
@@ -722,6 +768,7 @@ $(function() {
 	function a(no){
      		
             $("#deleteQue #test23123").val(no)
+            //$("#postForm").attr("action", "delete.bo").submit();
             $("#deleteQue").submit();
      	}
        

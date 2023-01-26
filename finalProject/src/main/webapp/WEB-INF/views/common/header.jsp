@@ -104,7 +104,7 @@
              </div>
              <div class="main_search">
 	             <form action="searchMain.ma">
-	                <input id="search_bar" name="searchWord" type="text" placeholder="통합검색">
+	                <input id="search_bar" name="searchWord" type="text" placeholder="상품통합검색">
 	                <button>검색</button>
                 </form>
              </div>
