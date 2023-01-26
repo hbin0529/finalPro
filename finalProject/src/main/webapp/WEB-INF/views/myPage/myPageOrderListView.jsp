@@ -210,7 +210,7 @@
 		
 		
 		//document.getElementById("proName").value = 'x[clickNum-1]';
-	}
+	} 
 	
 </script>
   
@@ -321,7 +321,7 @@
                      <div class="review_top_buy_price"><p id="priceAndCount">${ order.ordPrice } POINT | ${ order.ordCount } 개</p></div>
                    </div>  
              </div>  <!--review_top_buyimg까지-->
-             <form action="reviewinsert.bo" method="post" enctype="multipart/form-data">
+             <form action="reviewinsert.bo" method="post" enctype="multipart/form-data" name="reviewinput">
                <input type="hidden" name="memEmail" value="${ id }">
                <input type="hidden" name="ordNo" id="ordNo" value="${ order.ordNo }">
                <input type="hidden" name="proNo" id="proNo" value="${ order.proNo }">
@@ -335,7 +335,7 @@
                                       <input type="radio" name="reviewStar" value="4" id="4"><label for="4">☆</label> 
                                       <input type="radio" name="reviewStar" value="3" id="3"><label for="3">☆</label>
                                       <input type="radio" name="reviewStar" value="2" id="2"><label for="2">☆</label>
-                                      <input type="radio" name="reviewStar" value="1" id="1"><label for="1">☆</label>
+                                      <input type="radio" name="reviewStar" value="1" id="1"><label for="1">☆</label> 
                                   </div> 
                             </div> 
                     </div>
@@ -350,11 +350,13 @@
                       <h5 class="review_title">리뷰작성</h5> 
                       <div class="review_write_detail">
                           <textarea name="reviewContent" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)"></textarea>
-                          <input type="submit" value="완료">
+                         <button type="button" id="button1" onclick="reviewadd();">완료</button>
+                      
                       </div>
                   </div> 
+                  </form> 
                </div><!--review_write 까지-->  
-          </form> 
+          
      <div class="modal-footer">
         <div class="modal-footer_text">포인트는 최초 작성한 리뷰를 기준으로 지급됩니다.</div>
         <div class="modal-footer_text">상품과 무관한 내용이나 사진, 동일 문자 반복 등의 부적합한 리뷰는  사전 경고 없이 삭제 및 포인트 회수될 수 있습니다.</div>
@@ -366,6 +368,21 @@
  </c:forEach> 
             </div>
         </div> 
+        
+        
+         
+      <!--  function reviewadd(){
+        if(!$('input:radio[name=reviewStar]).is(':checked')){   
+				   alert("별점을 1개 이상 선택해 주세요.");
+				   return;
+				}else{
+					reviewinput.submit();
+				}  
+       -->
+
+      
+        
+        
     </section>
      
 <jsp:include page="../common/footer.jsp"/>   
