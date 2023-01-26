@@ -12,7 +12,9 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 	crossorigin="anonymous"></script>
-<title>Document</title>
+<title>오늘의집 > ${ selBusName }</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
 <style>
 /* 로고폰트 */
 @font-face {

@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오구싶은집 > 나의 상품리뷰</title>
+<!-- 파비콘 로고 -->
+<link rel="icon" href="${path}/resources/img/pavilogo.png">
 <style>
 
   /*------------------------- 마이페이지 메뉴바 스타일모음------------------------- */
