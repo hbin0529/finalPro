@@ -51,6 +51,7 @@
 |<img src="https://user-images.githubusercontent.com/114133335/225907273-ba4192dc-a40b-4842-b979-774a4d6df965.jpg" width="400" height="250">|<img src="https://user-images.githubusercontent.com/114133335/225906421-ea22b07b-34af-42d3-80af-ab0be344b538.JPG" width="400" height="250">|
 |<p style="margin: 0 auto" align="center">장바구니</p>|<p style="margin: 0 auto" align="center">나의 쇼핑</p>|
 |<img src="https://user-images.githubusercontent.com/114133335/225907463-1ab87da8-c436-4c19-9e05-4469f195347e.jpg" width="400" height="250">|<img src="https://user-images.githubusercontent.com/114133335/225907335-fae3f7f4-564c-4e13-a9c9-37a1fccd3de3.jpg" width="400" height="250">|
+
 <br><br>
 
 ## :ticket: 주요기능 
