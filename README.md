@@ -41,6 +41,12 @@
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white">
 <br>
 
+## :key: ERD 다이어그램
+<p align="center">
+<img src="https://user-images.githubusercontent.com/114133335/225937310-b6517e01-b230-44d4-b46f-6715756d350b.JPG" width="800" height="400"/>
+</p>
+<br>
+
 ## :rocket: 화면구성
 |메인페이지|회원가입|
 |---|---|
