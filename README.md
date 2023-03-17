@@ -17,7 +17,7 @@
 |---|---|---|---|
 |<img src="https://user-images.githubusercontent.com/114133335/225826447-00f8fdb0-e4d1-4fc7-9de7-5c82262c9387.png" width="150" height="150">|<img src="https://user-images.githubusercontent.com/114133335/225826719-868c9e68-feb1-44dc-93ab-e499598b8c95.png" width="150" height="150">|<img src="https://user-images.githubusercontent.com/114133335/225826785-8add6fce-927e-47ca-9f61-023abcb23980.png" width="150" height="150">|<img src="https://user-images.githubusercontent.com/114133335/225837423-88f02217-628c-42fd-944d-6cf4866f6fcd.jpg" width="150" height="150">|
 |<p style="margin: 0 auto" align="center">[@ANHYOBIN1](https://github.com/ANHYOBIN1)</p>|<p style="margin: 0 auto" align="center">[@GoSukgyeong](https://github.com/GoSukgyeong)</p>|<p style="margin: 0 auto" align="center">[@sooyeonkims](https://github.com/sooyeonkims)</p>|<p style="margin: 0 auto" align="center">[@hbin0529](https://github.com/hbin0529)</p>|
-* 안효빈(팀장) [ANHYOBIN1](https://github.com/ANHYOBIN1) : 회원가입 및 로그인 / 인테리어 업체 등록 / 서드파티 로그인(카카오) / WebSocket 채팅 <br>
+* 안효빈(팀장) [ANHYOBIN1](https://github.com/ANHYOBIN1) : 회원가입 및 로그인 / 인테리어 업체 등록 / 서드파티 로그인 / WebSocket 채팅 <br>
 * 고숙경 [GoSukgyeong](https://github.com/ANHYOBIN1) : 판매자 물품 등록 및 등록한 판매물품 수정, 재고관리 / 판매자 통계 <br>
 * 김수연 [sooyeonkims](https://github.com/ANHYOBIN1) : 집들이 게시판 / 댓글 / 판매글 리뷰 및 판매자 마이페이지 <br>
 * 이형빈 [hbin0529](https://github.com/hbin0529) : 메인 페이지 / 주문 및 결제, 포인트 충전 / 인터셉터 <br>
@@ -36,8 +36,12 @@
 <br>
 
 ## 화면구성
-|메인페이지|ㅁㄴㅇ|
+|메인페이지|회원가입|
 |---|---|
-|<img src="https://user-images.githubusercontent.com/114133335/225845630-0ce52091-49dd-4848-9d4b-0b0570157337.jpg" width="250" height="350">|asd|
-|이야기|asd|
-|asd|asd|
+|<img src="https://user-images.githubusercontent.com/114133335/225845630-0ce52091-49dd-4848-9d4b-0b0570157337.jpg" width="400" height="250">|<img src="https://user-images.githubusercontent.com/114133335/225906069-33bee5e5-0d5f-4eb3-838a-5f7835e76753.jpg" width="400" height="200">|
+|로그인|집들이 게시판|
+|<img src="https://user-images.githubusercontent.com/114133335/225906168-c8f44e0c-6a7b-4397-9875-631156a15473.jpg" width="400" height="250">|<img src="https://user-images.githubusercontent.com/114133335/225907191-47bb5e82-257d-43a8-9a5a-63a51f62e23f.jpg" width="400" height="250">|
+|포인트 충전|구매하기|
+|<img src="https://user-images.githubusercontent.com/114133335/225906421-ea22b07b-34af-42d3-80af-ab0be344b538.JPG" width="400" height="250">|<img src="https://user-images.githubusercontent.com/114133335/225907273-ba4192dc-a40b-4842-b979-774a4d6df965.jpg" width="400" height="250">|
+|장바구니|나의 쇼핑|
+|<img src="https://user-images.githubusercontent.com/114133335/225907463-1ab87da8-c436-4c19-9e05-4469f195347e.jpg" width="400" height="250">|<img src="https://user-images.githubusercontent.com/114133335/225907335-fae3f7f4-564c-4e13-a9c9-37a1fccd3de3.jpg" width="400" height="250">|
