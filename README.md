@@ -36,4 +36,8 @@
 <br>
 
 ## 화면구성
-
+|메인페이지|ㅁㄴㅇ|
+|---|---|
+|<img src="https://user-images.githubusercontent.com/114133335/225845630-0ce52091-49dd-4848-9d4b-0b0570157337.jpg" width="250" height="350">|asd|
+|이야기|asd|
+|asd|asd|
